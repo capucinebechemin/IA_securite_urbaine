@@ -1,0 +1,122 @@
+<!-- Navbar de la page Jeux et page_mondes -->
+<template>
+    <div class="game_card">
+        <div class='main'>
+        <img class='card_image' :src="require(`@/assets/${img_title}`)" alt="game_card" />
+        <h2>{{ title }}</h2>
+        <p class='description'>{{ description }}</p>
+        <hr />
+        <div class='btn_play'>
+          <button>Jouer</button>
+        </div>
+        </div>
+    </div>
+  </template>
+  
+  <script lang="ts">
+  import { Options, Vue } from 'vue-class-component';
+  
+  @Options({
+    props: {
+      title: String,
+      description: String,
+      img_title: String
+    }
+  })
+  export default class GameCard extends Vue {
+    title!: string;
+    description!: string;
+    img_title!: string;
+  }
+  </script>
+  
+  <style scoped>
+
+  .game_card{
+    text-align: center;
+    position: relative;
+    user-select:none;
+    max-width: 300px;
+    margin: 2rem auto;
+    border: 1px solid #ffffff22;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
+    box-shadow: 0 7px 20px 5px #00000088;
+    border-radius: .7rem;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    overflow: hidden;
+    transition: .5s all;
+    hr{
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #011624da;
+      margin-top: 0;
+    }
+    .main{
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      padding: 1rem;
+      .card_image{
+        border-radius: .5rem;
+        max-width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+      .description{
+        margin: .5rem 0;
+        color: #011624da;
+      }
+    }
+
+    .btn_play{
+      display:flex;
+      justify-content: center;
+
+      button {
+        position: absolute;
+        bottom: 1%;
+        background-color: var(--main-bg-color);
+        border-radius: 8px;
+        border-style: none;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        flex-shrink: 0;
+        height: 3rem;
+        padding: 0 2.6rem;
+        font-size: 1.2rem;
+        text-align: center;
+        text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+        transition: all .5s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+    }
+
+    ::before{
+      position: fixed;
+      content: "";
+      box-shadow: 0 0 100px 40px #ffffff08;
+      top: -10%;
+      left: -100%;
+      transform: rotate(-45deg);
+      height: 60rem;
+      transition: .7s all;
+    }
+    &:hover{
+      border: 1px solid #ffffff44;
+      box-shadow: 0 7px 50px 10px #000000aa;
+      transform: scale(1.015);
+      filter: brightness(1.3);
+      ::before{
+        filter: brightness(.5);
+        top: -100%;
+        left: 200%;
+      }
+    }
+  }
+  
+  </style>
+  
