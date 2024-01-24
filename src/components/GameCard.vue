@@ -2,7 +2,7 @@
 <template>
     <div class="game_card">
         <div class='main'>
-        <img class='card_image' :src="require(`@/assets/${img_title}`)" alt="game_card" />
+        <img class='card_image' :src="require(`@/assets/mini_games/${img_title}`)" alt="game_card" />
         <h2>{{ title }}</h2>
         <hr />
         <p class='description'>{{ description }}</p>
