@@ -2,13 +2,10 @@
 <template>
     <div class="game_card">
         <div class='main'>
-        <img class='card_image' :src="require(`@/assets/${img_title}`)" alt="game_card" />
+        <img class='card_image' :src="require(`@/assets/mini_games/${img_title}`)" alt="game_card" />
         <h2>{{ title }}</h2>
-        <p class='description'>{{ description }}</p>
         <hr />
-        <div class='btn_play'>
-          <button>Jouer</button>
-        </div>
+        <p class='description'>{{ description }}</p>
         </div>
     </div>
   </template>
@@ -66,32 +63,6 @@
       .description{
         margin: .5rem 0;
         color: #011624da;
-      }
-    }
-
-    .btn_play{
-      display:flex;
-      justify-content: center;
-
-      button {
-        position: absolute;
-        bottom: 1%;
-        background-color: var(--main-bg-color);
-        border-radius: 8px;
-        border-style: none;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        flex-shrink: 0;
-        height: 3rem;
-        padding: 0 2.6rem;
-        font-size: 1.2rem;
-        text-align: center;
-        text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
-        transition: all .5s;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
       }
     }
 

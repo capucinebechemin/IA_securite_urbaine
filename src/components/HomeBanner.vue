@@ -1,9 +1,11 @@
 <!-- Navbar de la page Jeux et page_mondes -->
 <template>
     <div class="home_banner">
-      <img alt="Menu" src='@/assets/burger-bar.png'/>
+      <img alt="Menu" src='@/assets/menu/burger-bar.png'/>
       <h1>{{ title }}</h1>
-      <img class='avatar-icon' alt="Avatar choisi" src='@/assets/avatar1.png'/>
+      <div class="image-container">
+        <img class='avatar-icon' alt="Avatar choisi" src='@/assets/players/player1.png'/>
+      </div>
     </div>
   </template>
   
@@ -31,9 +33,16 @@
     background: var(--main-transparent);
   }
 
-  .avatar-icon {
-    max-height: 100%;
-    max-width: 100%;
+  .image-container {
+  width: 5rem; /* ou la taille que vous voulez */
+  height: 5rem; /* la même que la largeur pour un cercle parfait */
+  border-radius: 50%;
+  overflow: hidden;
+}
+  .image-container .avatar-icon {
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
   }
   </style>
   

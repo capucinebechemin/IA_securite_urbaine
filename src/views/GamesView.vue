@@ -3,9 +3,9 @@
     <HomeBanner title="jeux"/>
     <div class="game-cards">
       <!-- <router-link to="/">Home</router-link> -->
-      <GameCard title="IA et sécurité urbaine" description="Partez à la conquête des mondes en vous challangeant sur quatre thèmes !" img_title='jeu-1.png'/>
-      <GameCard class="game-soon" title="Cartographie" description="Prochainement disponible !" img_title='jeu-2.png'/>
-      <GameCard class="game-soon" title="Simulateur vidéosurveillance" description="Prochainement disponible !" img_title='jeu-3.png'/>
+      <GameCard title="IA et sécurité urbaine" description="Partez à la conquête des mondes en vous challangeant sur quatre thèmes !" img_title='securite_urbaine.png'/>
+      <GameCard class="game-soon" title="Cartographie" description="Prochainement disponible !" img_title='cartographie.png'/>
+      <GameCard class="game-soon" title="Simulateur vidéosurveillance" description="Prochainement disponible !" img_title='videosurveillance.png'/>
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@
 
 <style>
   .games-view{
-    background: url('../assets/fond_jeux.png');
+    background: url('../assets/mini_games/games_bg.png');
     background-size: 100% auto;
     height: 100vh;
     width: 100wh;
@@ -38,6 +38,17 @@
   .game-cards{
     display: flex;
     justify-content: space-around;
-    height: 35rem;
   }
+  @media (max-width: 768px) {
+    .game-cards{
+      flex-direction: column;
+      align-items: center;
+    }
+    .games-view{
+      background-size: auto 100%;
+      height: auto;
+    }
+  }
+
+  
 </style>
