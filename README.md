@@ -1,5 +1,10 @@
 # ia-securite-urbaine
 
+## Update NPM
+```
+npm update
+```
+
 ## Project setup
 ```
 npm install
