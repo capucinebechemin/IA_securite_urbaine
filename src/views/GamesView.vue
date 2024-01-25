@@ -1,11 +1,12 @@
 <template>
   <div class="games-view">
-    <HomeBanner title="jeux"/>
+    <HomeBanner title="jeux" @open-modal-avatar="showModal = true; showGameCard = false"/>
+    <AvatarModal title="Veuillez choisir votre avatar" v-show="showModal" @close="showModal = false; ; showGameCard = true"></AvatarModal>
     <div class="game-cards">
       <!-- <router-link to="/">Home</router-link> -->
-      <GameCard title="IA et sécurité urbaine" description="Partez à la conquête des mondes en vous challangeant sur quatre thèmes !" img_title='securite_urbaine.png'/>
-      <GameCard class="game-soon" title="Cartographie" description="Prochainement disponible !" img_title='cartographie.png'/>
-      <GameCard class="game-soon" title="Simulateur vidéosurveillance" description="Prochainement disponible !" img_title='videosurveillance.png'/>
+      <GameCard v-show="showGameCard" title="IA et sécurité urbaine" description="Partez à la conquête des mondes en vous challangeant sur quatre thèmes !" img_title='securite_urbaine.png'/>
+      <GameCard v-show="showGameCard" class="game-soon" title="Cartographie" description="Prochainement disponible !" img_title='cartographie.png'/>
+      <GameCard v-show="showGameCard" class="game-soon" title="Simulateur vidéosurveillance" description="Prochainement disponible !" img_title='videosurveillance.png'/>
     </div>
   </div>
 </template>
@@ -14,14 +15,24 @@
   import { Options, Vue } from 'vue-class-component';
   import HomeBanner from '@/components/HomeBanner.vue';
   import GameCard from '@/components/GameCard.vue';
+  import AvatarModal from '@/components/AvatarModal.vue';
 
   @Options({
   components: {
-    HomeBanner, GameCard
+    HomeBanner, GameCard, AvatarModal
   },
+  data() {
+    return {
+      showModal: false,
+      showGameCard: false
+    }
+  }
   })
 
-  export default class GamesView extends Vue {}
+  export default class GamesView extends Vue {
+    showModal = false;
+    showGameCard = true;
+  }
 </script>
 
 <style>
