@@ -2,10 +2,9 @@
   <div class="games-view">
     <HomeBanner title="jeux"/>
     <div class="game-cards">
-      <!-- <router-link to="/">Home</router-link> -->
-      <GameCard title="IA et sécurité urbaine" description="Partez à la conquête des mondes en vous challangeant sur quatre thèmes !" img_title='securite_urbaine.png'/>
-      <GameCard class="game-soon" title="Cartographie" description="Prochainement disponible !" img_title='cartographie.png'/>
-      <GameCard class="game-soon" title="Simulateur vidéosurveillance" description="Prochainement disponible !" img_title='videosurveillance.png'/>
+      <router-link to="/safecity"><GameCard title="IA et sécurité urbaine" description="Partez à la conquête des mondes en vous challangeant sur quatre thèmes !" img_title='mini_games/securite_urbaine.png'/></router-link>
+      <router-link to="/"><GameCard title="Cartographie" description="Prochainement disponible !" img_title='mini_games/cartographie.png'/></router-link>
+      <router-link to="/"><GameCard title="Simulateur vidéosurveillance" description="Prochainement disponible !" img_title='mini_games/videosurveillance.png'/></router-link>
     </div>
   </div>
 </template>
@@ -27,7 +26,6 @@
 <style>
   .games-view{
     background: url('../assets/mini_games/games_bg.png');
-    background-size: 100% auto;
     height: 100vh;
     width: 100wh;
     position: absolute;
@@ -39,14 +37,14 @@
     display: flex;
     justify-content: space-around;
   }
-  @media (max-width: 768px) {
-    .game-cards{
-      flex-direction: column;
-      align-items: center;
-    }
+  @media (max-width: 1255px) {
     .games-view{
       background-size: auto 100%;
       height: auto;
+    }
+    .game-cards{
+      flex-direction: column;
+      align-items: center;
     }
   }
 

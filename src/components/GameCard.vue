@@ -1,29 +1,38 @@
 <!-- Navbar de la page Jeux et page_mondes -->
 <template>
     <div class="game_card">
-        <div class='main'>
-        <img class='card_image' :src="require(`@/assets/mini_games/${img_title}`)" alt="game_card" />
+      <div class='main'>
+        <img class='card_image' :src="require(`@/assets/${img_title}`)" alt="game_card" />
         <h2>{{ title }}</h2>
         <hr />
+        <StarRating :rating=rating :world_num=world_num :title=title /> 
         <p class='description'>{{ description }}</p>
-        </div>
+      </div>
     </div>
   </template>
   
   <script lang="ts">
   import { Options, Vue } from 'vue-class-component';
+  import StarRating from '@/components/StarRating.vue';
   
   @Options({
     props: {
       title: String,
       description: String,
-      img_title: String
-    }
+      img_title: String,
+      rating: Number,
+      world_num: String,
+    },
+    components: {
+      StarRating
+    },
   })
   export default class GameCard extends Vue {
     title!: string;
     description!: string;
     img_title!: string;
+    rating!: number;
+    world_num!: string;
   }
   </script>
   
@@ -34,6 +43,8 @@
     position: relative;
     user-select:none;
     max-width: 300px;
+    height: 35rem;
+    width: 40rem;
     margin: 2rem auto;
     border: 1px solid #ffffff22;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
@@ -53,6 +64,7 @@
       display: flex;
       flex-direction: column;
       width: 90%;
+      height: 100%;
       padding: 1rem;
       .card_image{
         border-radius: .5rem;
@@ -73,7 +85,6 @@
       top: -10%;
       left: -100%;
       transform: rotate(-45deg);
-      height: 60rem;
       transition: .7s all;
     }
     &:hover{

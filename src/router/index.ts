@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import GamesView from '../views/GamesView.vue'
+import SafeCityView from '../views/SafeCityView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -7,6 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: GamesView
   },
+  {
+    path: '/safecity',
+    name: 'safe-city',
+    component: SafeCityView
+  }
 ]
 
 const router = createRouter({
