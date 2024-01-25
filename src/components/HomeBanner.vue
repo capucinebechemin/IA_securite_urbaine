@@ -4,7 +4,7 @@
       <img alt="Menu" src='@/assets/menu/burger-bar.png'/>
       <h1>{{ title }}</h1>
       <div class="image-container">
-        <img class='avatar-icon' alt="Avatar choisi" src='@/assets/players/player1.png' @click="$emit('open-modal-avatar')"/>
+        <img class='avatar-icon' alt="Avatar choisi" :src="`@/assets/players/player${player}.png`" @click="$emit('open-modal-avatar')"/>
       </div>
     </div>
   </template>
@@ -14,12 +14,14 @@
   
   @Options({
     props: {
-      title: String
+      title: String,
+      player: Number,
     },
     emits: ['open-modal-avatar'],
   })
   export default class HomeBanner extends Vue {
-    title!: string
+    title!: string;
+    player!: number;
   }
   </script>
   

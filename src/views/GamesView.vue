@@ -1,7 +1,7 @@
 <template>
   <div class="games-view">
-    <HomeBanner title="jeux" @open-modal-avatar="showModal = true; showGameCard = false"/>
-    <AvatarModal title="Veuillez choisir votre avatar" v-show="showModal" @close="showModal = false; ; showGameCard = true"></AvatarModal>
+    <HomeBanner title="jeux" @open-modal-avatar="showModal = true; showGameCard = false" :player="avatar"/>
+    <AvatarModal title="Veuillez choisir votre avatar" v-show="showModal" @close="showModal = false; ; showGameCard = true" @data="getData"></AvatarModal>
     <div class="game-cards">
       <!-- <router-link to="/">Home</router-link> -->
       <GameCard v-show="showGameCard" title="IA et sécurité urbaine" description="Partez à la conquête des mondes en vous challangeant sur quatre thèmes !" img_title='securite_urbaine.png'/>
@@ -24,14 +24,28 @@
   data() {
     return {
       showModal: false,
-      showGameCard: false
+      showGameCard: false,
+      name: "",
+      avatar: 1,
     }
-  }
+  },
+  methods: {
+    getData(value: { name: string; avatar: string; }) {
+      this.name = value.name;
+      this.avatar = value.avatar;
+    },
+  },
   })
 
   export default class GamesView extends Vue {
+vShow(vShow: any) {
+throw new Error('Method not implemented.');
+}
     showModal = false;
     showGameCard = true;
+    name!: string;
+    avatar!: number;
+    getData: any;
   }
 </script>
 

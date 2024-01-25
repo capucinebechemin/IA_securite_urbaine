@@ -7,16 +7,16 @@
             <div class="title"><h2>{{ title }}</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
         </div>
         <p>NOM</p>
-        <input>
+        <input type="text" id="name" v-model="name">
         <p>AVATAR</p>
         <div class="images">
-            <img class='card_image' :src="require(`@/assets/players/player1.png`)" alt="avatar_card" />
-            <img class='card_image' :src="require(`@/assets/players/player2.png`)" alt="avatar_card" />
-            <img class='card_image' :src="require(`@/assets/players/player3.png`)" alt="avatar_card" />
-            <img class='card_image' :src="require(`@/assets/players/player4.png`)" alt="avatar_card" />
+            <img class='card_image' :src="require(`@/assets/players/player1.png`)" alt="avatar_card" @click="selectedAvatar = 1" v-bind:class="{checked:selectedAvatar == 1}"/>
+            <img class='card_image' :src="require(`@/assets/players/player2.png`)" alt="avatar_card" @click="selectedAvatar = 2" v-bind:class="{checked:selectedAvatar == 2}"/>
+            <img class='card_image' :src="require(`@/assets/players/player3.png`)" alt="avatar_card" @click="selectedAvatar = 3" v-bind:class="{checked:selectedAvatar == 3}"/>
+            <img class='card_image' :src="require(`@/assets/players/player4.png`)" alt="avatar_card" @click="selectedAvatar = 4" v-bind:class="{checked:selectedAvatar == 4}"/>
         </div>
         <div class='btn_submit'>
-          <button>Choisir</button>
+          <button @click="submitPlayer">Choisir</button>
         </div>
         </div>
     </div>
@@ -30,12 +30,27 @@
     props: {
       title: String
     },
-    emits: ['close']
+    emits: ['close','data'],
+    data() {
+        return {
+        selectedAvatar: 1,
+        name: null
+        };
+    },
   })
   export default class AvatarModal extends Vue {
     title!: string;
+    selectedAvatar!: number;
+    name!: string;
     closeModal() {
       this.$emit('close');
+    }
+    submitPlayer() {
+        this.$emit('data', {
+            name: this.name,
+            avatar: this.selectedAvatar,
+        });
+        this.$emit('close');
     }
   }
   </script>
@@ -57,6 +72,9 @@
     overflow: hidden;
     transition: .5s all;
     
+    input{
+        font-family: 'Game', sans-serif;
+    }
     .head{
         display: flex; 
         align-items: center; 
@@ -75,7 +93,7 @@
       display: flex;
       flex-direction: column;
       padding: 1rem;
-      
+
       .images {
         display: flex;
         flex-wrap: wrap;
@@ -101,10 +119,20 @@
             top: -100%;
             left: 200%;
         }
-        }
+        }     
 
       }
-      
+      .checked{
+        border-bottom: 1px solid #ffffff44;
+        box-shadow: 0 7px 50px 10px #000000aa;
+        transform: scale(1.015);
+        filter: brightness(1.3);
+        ::before{
+            filter: brightness(.5);
+            top: -100%;
+            left: 200%;
+        }
+        }
         
     }
 
