@@ -27,15 +27,12 @@
   .game-cards{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
   }
   @media (max-width: 1255px) {
     .games-view{
       background-size: auto 100%;
       height: inherit;
-    }
-    .game-cards{
-      flex-direction: column;
-      align-items: center;
     }
   }
 
