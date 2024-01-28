@@ -24,15 +24,6 @@
 </script>
 
 <style>
-  .games-view{
-    background: url('../assets/mini_games/games_bg.png');
-    height: 100vh;
-    width: 100wh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
   .game-cards{
     display: flex;
     justify-content: space-around;
@@ -40,7 +31,7 @@
   @media (max-width: 1255px) {
     .games-view{
       background-size: auto 100%;
-      height: auto;
+      height: inherit;
     }
     .game-cards{
       flex-direction: column;
