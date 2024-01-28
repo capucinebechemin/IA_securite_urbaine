@@ -28,7 +28,8 @@
 
   @Options({
     props: {
-      title: String
+      title: String,
+      avatar: Number,
     },
     emits: ['close','data'],
     data() {
@@ -42,8 +43,10 @@
     title!: string;
     selectedAvatar!: number;
     name!: string;
+    avatar!: number;
     closeModal() {
-      this.$emit('close');
+      this.selectedAvatar = this.avatar;
+      this.$emit('close');      
     }
     submitPlayer() {
         this.$emit('data', {
@@ -60,7 +63,7 @@
   .avatar_card{
     position: relative;
     user-select:none;
-    height: 45rem;
+    height: 38rem;
     width: 70rem;
     margin: 2rem auto;
     border: 1px solid #ffffff22;
@@ -104,7 +107,7 @@
       .card_image {
         border-radius: .5rem;
         max-width: 100%;
-        height: 25rem;
+        height: 18rem;
         object-fit: cover;
         margin: 10px;
         cursor: pointer;

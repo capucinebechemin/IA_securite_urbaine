@@ -4,7 +4,7 @@
       <img alt="Menu" src='@/assets/menu/burger-bar.png'/>
       <h1>{{ title }}</h1>
       <div class="image-container">
-        <img class='avatar-icon' alt="Avatar choisi" :src="`@/assets/players/player${player}.png`" @click="$emit('open-modal-avatar')"/>
+        <img class='avatar-icon' alt="Avatar choisi" v-bind:src="`src/assets/players/player{{ player }}.png`" @click="$emit('open-modal-avatar')"/>
       </div>
     </div>
   </template>
