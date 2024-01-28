@@ -15,6 +15,8 @@
 import { Vue } from 'vue-class-component';
 
 export default class BannerMenu extends Vue {
+    links!: Array<{ id: string, label: string, url: string, img: string }>;
+
     data() {
         return {
             links: [
