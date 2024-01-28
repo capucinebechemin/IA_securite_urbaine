@@ -11,10 +11,14 @@
   
   <script lang="ts">
   import { Options, Vue } from 'vue-class-component';
+  import BannerMenu from './BannerMenu.vue';
   
   @Options({
     props: {
       title: String
+    },
+    components: {
+      BannerMenu
     }
   })
   export default class HomeBanner extends Vue {
@@ -38,7 +42,7 @@
   height: 5rem; /* la même que la largeur pour un cercle parfait */
   border-radius: 50%;
   overflow: hidden;
-}
+  }
   .image-container .avatar-icon {
     width: 100%;
     border-radius: 50%;

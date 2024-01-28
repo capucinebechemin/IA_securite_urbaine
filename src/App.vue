@@ -16,4 +16,8 @@
     -o-background-size: cover;
     background-size: cover;
  }
+ a{
+    color: black;
+    text-decoration: none;
+ }
 </style>
