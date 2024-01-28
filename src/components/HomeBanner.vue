@@ -1,6 +1,6 @@
 <!-- Navbar de la page Jeux et page_mondes -->
 <template>
-    <div class="home_banner">
+    <div class="banner">
       <img alt="Menu" src='@/assets/menu/burger-bar.png'/>
       <h1>{{ title }}</h1>
       <div class="image-container">
@@ -23,7 +23,7 @@
   </script>
   
   <style scoped>
-  .home_banner{
+  .banner{
     text-transform: uppercase;
     display: flex;
     justify-content: space-between;
@@ -43,6 +43,12 @@
     width: 100%;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  @media screen and (max-width: 800px) {
+    h1{
+      font-size: 0.75rem;
+    }
   }
   </style>
   
