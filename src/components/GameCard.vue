@@ -72,7 +72,7 @@
       box-shadow: 0 0 100px 40px #ffffff08;
       top: -10%;
       left: -100%;
-      transform: rotate(-45deg);
+      transform: translate(-50%, -50%) rotate(-45deg);
       height: 60rem;
       transition: .7s all;
     }

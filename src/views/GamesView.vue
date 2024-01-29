@@ -38,9 +38,9 @@
   })
 
   export default class GamesView extends Vue {
-vShow(vShow: any) {
-throw new Error('Method not implemented.');
-}
+  vShow(vShow: any) {
+  throw new Error('Method not implemented.');
+  }
     showModal = false;
     showGameCard = true;
     name!: string;
