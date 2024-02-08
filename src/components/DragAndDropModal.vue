@@ -7,10 +7,10 @@
             <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
         </div>
         <p>Question</p>
-        <div class="question">{{ question }}</div>>
+        <div class="question">{{ props.question }}</div>>
         <p>Choix multiple</p>
         <div class="answers">
-            <div class="answer" v-for="answer in answers" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.text }}</div>
+            <div class="answer" v-for="answer in form.answers" :key="answer.id" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.answer }}</div>
         </div>
         <div class="dropzone">
             <div class="drop"></div>
@@ -18,75 +18,58 @@
             <div class="drop"></div>
             <div class="drop"></div>
         </div>
-        <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ textAnswer }}</div>>
+        <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ props.textAnswer }}</div>>
         <div class='btn_submit'>
-            <button @click="submit">Précédent</button>
-          <button @click="submit">Suivant</button>
+          <button>Précédent</button>
+          <button>Suivant</button>
         </div>
         </div>
     </div>
     </Transition>
   </template>
   
-  <script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
+  <script setup lang="ts">
+  import store from '@/store/index';
+  import { computed, ref, watch } from 'vue';
 
-  @Options({
-    props: {
-      id: String,
+  const props = defineProps({
+      id: {type : String, required : true},
       question: String,
-      answers: [String, Boolean],
+      answers: Array,
       textAnswer: String,
-    },
-    emits: ['close','data'],
-    data() {
-        return {
-        questionId: null,
-        selectedAnswer: []
-        };
-    },
-    methods: {
-        // clickAnswer(a: number) {
-        //     if(this.selectedAnswer.includes(a)){
-        //         this.selectedAnswer = this.selectedAnswer.filter((answer: number)=>answer!==a);
-        //     }else{
-        //         this.selectedAnswer.push(a);
-        //     }
-        // },
-        // startDrag(evt, item) {
-        // evt.dataTransfer.dropEffect = 'move'
-        // evt.dataTransfer.effectAllowed = 'move'
-        // evt.dataTransfer.setData('itemID', item.id)
-        // },
-        // onDrop(evt, list) {
-        // const itemID = evt.dataTransfer.getData('itemID')
-        // const item = this.items.find((item) => item.id == itemID)
-        // item.list = list
-        // }
+  });
+
+  const form = {
+    "id": "1",
+    "type": "draganddrop",
+    "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
+    "answers": [
+      { "id": "1", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true},
+      { "id": "2", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true},
+      { "id": "3", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false},
+      { "id": "4", "answer": "D) Fournir des données pour des études sociologiques." , "response": false},
+    ],
+    "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
+  };
+
+  const data = ref({ questionId: null as string | null, selectedAnswer: [] as number[]});
+  let selectedAnswer: string[] = [];
+
+  const clickAnswer = (a: string) => {
+      if(selectedAnswer.includes(a)){
+        selectedAnswer = selectedAnswer.filter((answer)=>answer!==a);
+      }else{
+        selectedAnswer.push(a);
+      }
     }
-  })
-  export default class DragAndDropModal extends Vue {
-    clickAnswer!: any;
-    id!: string;
-    question!: string;
-    answers!: [string, boolean];
-    correctAnswer!: [number];
-    tewtAnswer!: string;
-    textAnswer = this.tewtAnswer;
-    selectedAnswer!: [number];
-    closeModal() {
-      this.$emit('close');      
-    }
-    submit() {
-        alert(this.selectedAnswer);
-        this.$emit('data', {
-            questionId: this.id,
-            selectedAnswer: this.selectedAnswer,
-        });
-        //question suivante
-        this.$emit('close');
-    }
-  }
+
+  const isDragAndDropModalVisible = computed(() => store.state.isDragAndDropModalVisible);
+
+  // Méthode pour fermer la modale
+  const closeModal = () => {
+    store.commit('toggleDragAndDropModal'); // Utilise la même mutation pour basculer l'état
+  };
+  
   </script>
   
   <style scoped>
