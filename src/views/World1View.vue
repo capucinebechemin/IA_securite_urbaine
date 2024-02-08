@@ -2,10 +2,11 @@
     <div class="world1_page">
         <HomeBanner title="videosurveillance algorithmique"/>
         <div class="game_zone">
-            <img src="../assets/world1/castle1.png" alt="castle1" class="castle1">
-            <img src="../assets/world1/castle2.png" alt="castle2" class="castle2">
-            <img src="../assets/world1/castle3.png" alt="castle3" class="castle3">
-            <img src="../assets/players/player1.png" alt="player" class="player">
+            <span id="start" @click="movePlayer('start')"></span>
+            <img src="../assets/world1/castle1.png" alt="castle1" id="castle1" @click="movePlayer('castle1')">
+            <img src="../assets/world1/castle2.png" alt="castle2" id="castle2" @click="movePlayer('castle2')">
+            <img src="../assets/world1/castle3.png" alt="castle3" id="castle3" @click="movePlayer('castle3')">
+            <img src="../assets/players/player1.png" alt="player" id="player">
         </div>
     </div>
 </template>
@@ -21,6 +22,34 @@
     })
 
     export default class World1View extends Vue {
+        movePlayer(castleName: string) {
+            var castle = document.getElementById(castleName);
+            var player = document.getElementById('player');
+
+            if (castle && player) {
+                const castleStyle = window.getComputedStyle(castle);
+                const playerStyle = window.getComputedStyle(player);
+
+                const topValue = castleStyle.top;
+                const leftValue = castleStyle.left;
+                const heightValue = castleStyle.height;
+
+                const topValueInPixels = parseInt(topValue, 10);
+                const leftValueInPixels = parseInt(leftValue, 10);
+                const heightValueInPixels = parseInt(heightValue, 10);
+                
+                if (castleName === 'start') {
+                    player.style.setProperty('height', '10rem');
+                    var playerHeight = parseInt(playerStyle.height, 10)
+                    player.style.setProperty('top', `${topValueInPixels - playerHeight}px`);
+                    player.style.setProperty('left', leftValue);
+                } else {
+                    player.style.setProperty('top', `${topValueInPixels + 10}px`);
+                    player.style.setProperty('height', `${heightValueInPixels+30}px`);
+                    player.style.setProperty('left', `${leftValueInPixels + heightValueInPixels / 2}px`);
+                }
+            }
+        }
     }
 </script>
 
@@ -38,15 +67,28 @@
         height: 90vh;
     }
 
-    .player{
+    #start {
         position: absolute;
-        height: 10rem;
-        bottom: 0%;
-        right: 35%;
-        filter: drop-shadow(0 0 0.75rem white);
+        width: 5rem;
+        top: 95%;
+        left: 60%;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 1rem 0;
+        color: rgba(255, 255, 255, 0.3);
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.5));
     }
 
-    .castle1{
+    #player{
+        position: absolute;
+        height: 10rem;
+        top: 80%;
+        left: 60%;
+        filter: drop-shadow(0 0 0.75rem white);
+        transition: all 1s ease-in-out;
+    }
+
+    #castle1{
         position: absolute;
         animation: floating 2s ease-in-out 0s infinite;
         height: 8rem;
@@ -54,20 +96,20 @@
         left: 50%;
         filter: drop-shadow(0 0 0.5rem crimson);
     }
-    .castle2{
+    #castle2{
         position: absolute;
         animation: floating 2s ease-in-out 1s infinite;
         height: 5rem;
         top: 30%;
-        left: 35%;
+        left: 37%;
         filter: drop-shadow(0 0 0.5rem crimson);
     }
-    .castle3{
+    #castle3{
         position: absolute;
         animation: floating 2s ease-in-out 0.5s infinite;
         height: 3rem;
         top: 15%;
-        left: 27%;
+        left: 30%;
         filter: drop-shadow(0 0 0.5rem crimson);
     }
 
