@@ -38,9 +38,10 @@ export default class BannerMenu extends Vue {
 	position: absolute;
     top : 0;
     left : 0;
-    width: 50%;
-    margin-top: 5rem;
+    height: 100vh;
     z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
 }
 ul {
     list-style: none;
@@ -50,7 +51,7 @@ li {
     margin: 1vh 0;
     padding: 2.5vh 1rem;
     width: 80%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(15px);
     border-radius: 5px;
     box-shadow: 1px 1px 0 0 rgba(255, 255, 255, 0.8) inset,
