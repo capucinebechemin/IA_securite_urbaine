@@ -6,9 +6,10 @@
         <div class="head">
             <div class="title"><h2>{{ title }}</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
         </div>
-        <p>NOM</p>
-        <input type="text" id="name" v-model="name">
-        <p>AVATAR</p>
+        <h3>NOM</h3>
+          <input type="text" class="form_field" name="name" id='name' :v-model="name" required />
+
+        <h3>AVATAR</h3>
         <div class="images">
             <img class='card_image' :src="require(`@/assets/players/player1.png`)" alt="avatar_card" @click="selectedAvatar = 1" v-bind:class="{checked:selectedAvatar == 1}"/>
             <img class='card_image' :src="require(`@/assets/players/player2.png`)" alt="avatar_card" @click="selectedAvatar = 2" v-bind:class="{checked:selectedAvatar == 2}"/>
@@ -60,13 +61,17 @@
   
   <style scoped>
 
+  h3 {
+    font-size: 0.9rem;
+    margin-left: 10rem;
+  }
   .avatar_card{
     position: relative;
     user-select:none;
     height: 38rem;
     width: 70rem;
     margin: 2rem auto;
-    border: 1px solid #ffffff22;
+    outline: 1px solid #ffffff22;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
     box-shadow: 0 7px 20px 5px #00000088;
     border-radius: .7rem;
@@ -76,7 +81,47 @@
     transition: .5s all;
     
     input{
-        font-family: 'Game', sans-serif;
+      font-family: 'Game', sans-serif;
+    }
+
+    .form_field {
+      display: inline-flex;
+      text-align: center;
+      margin: 0 auto;
+      width: 30%;
+      border: 0;
+      outline: 0;
+      border-bottom: 2px solid black;
+      font-size: 1.3rem;
+      color: black;
+      background: transparent;
+      transition: border-color 0.2s;
+
+      &::placeholder {
+        color: transparent;
+      }
+
+      &:placeholder-shown {
+        cursor: text;
+      }
+    }
+
+    .form_field:focus {
+      filter: drop-shadow(0 2rem 2rem white);
+      border-bottom: 2px solid white;
+      color: white;
+      box-shadow: 0 8px 4px -4px rgba(255, 255, 255, 0.5);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-size: 1.5rem;
+      background-color:#222222;
     }
     .head{
         display: flex; 
@@ -113,10 +158,7 @@
         cursor: pointer;
         
         &:hover{
-        border: 1px solid #ffffff44;
-        box-shadow: 0 7px 50px 10px #000000aa;
-        transform: scale(1.015);
-        filter: brightness(1.3);
+        filter: drop-shadow(0 0 2rem white);
         ::before{
             filter: brightness(.5);
             top: -100%;
@@ -126,10 +168,8 @@
 
       }
       .checked{
-        border-bottom: 1px solid #ffffff44;
-        box-shadow: 0 7px 50px 10px #000000aa;
-        transform: scale(1.015);
-        filter: brightness(1.3);
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 2rem white);
         ::before{
             filter: brightness(.5);
             top: -100%;

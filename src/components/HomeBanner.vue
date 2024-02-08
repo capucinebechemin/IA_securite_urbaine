@@ -4,7 +4,7 @@
       <img alt="Menu" src='@/assets/menu/burger-bar.png'/>
       <h1>{{ title }}</h1>
       <div class="image-container">
-        <img class='avatar-icon' alt="Avatar choisi" v-bind:src="`src/assets/players/player${player}.png`" @click="$emit('open-modal-avatar')"/>
+        <img class='avatar-icon' alt="Avatar choisi" v-bind:src="`src/assets/players/player${playerImage}.png`" @click="$emit('open-modal-avatar')"/>
       </div>
     </div>
   </template>
@@ -15,13 +15,25 @@
   @Options({
     props: {
       title: String,
-      player: Number,
     },
-    emits: ['open-modal-avatar']
+    data() {
+      return {
+        playerName: String,
+        playerImage: String,
+      }
+    },
+    emits: ['open-modal-avatar'],
+    methods: {
+      getData(value: { playerName: string; playerImage: string; }) {
+        this.playerName = value.playerName;
+        this.playerImage = value.playerImage;
+      },
+  },
   })
   export default class HomeBanner extends Vue {
     title!: string;
-    player!: number;
+    playerImage!: 1;
+    playerName!: string;
   }
   </script>
   
