@@ -17,46 +17,15 @@
             <img class='card_image' :src="require(`@/assets/players/player4.png`)" alt="avatar_card" @click="selectedAvatar = 4" v-bind:class="{checked:selectedAvatar == 4}"/>
         </div>
         <div class='btn_submit'>
-          <button @click="submitPlayer">Choisir</button>
+          <button>Choisir</button>
         </div>
         </div>
     </div>
     </Transition>
   </template>
   
-  <script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
+  <script setup lang="ts">
 
-  @Options({
-    props: {
-      title: String,
-      avatar: Number,
-    },
-    emits: ['close','data'],
-    data() {
-        return {
-        selectedAvatar: 1,
-        name: null
-        };
-    },
-  })
-  export default class AvatarModal extends Vue {
-    title!: string;
-    selectedAvatar!: number;
-    name!: string;
-    avatar!: number;
-    closeModal() {
-      this.selectedAvatar = this.avatar;
-      this.$emit('close');      
-    }
-    submitPlayer() {
-        this.$emit('data', {
-            name: this.name,
-            avatar: this.selectedAvatar,
-        });
-        this.$emit('close');
-    }
-  }
   </script>
   
   <style scoped>
