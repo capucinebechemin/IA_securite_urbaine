@@ -22,8 +22,6 @@
     world_num: String,
   });
 
-
-
   </script>
   
   <style scoped>
@@ -89,6 +87,6 @@
       }
     }
   }
-  
+
   </style>
   

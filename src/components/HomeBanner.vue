@@ -4,18 +4,22 @@
       <img alt="Menu" src='/menu/burger-bar.png'/>
       <h1>{{ title }}</h1>
       <div class="image-container">
-        <img class='avatar-icon' alt="Avatar choisi" src="/players/player1.png"/>
+        <img class='avatar-icon' alt="Avatar choisi" :src="`/players/player${store.avatarId}.png`" @click="store.toggleAvatarModalVisible"/>
       </div>
     </div>
   </template>
   
   <script setup lang="ts">
+  import { useAlertsStore } from '@/store';
+
+  const store = useAlertsStore();
 
   const props = defineProps({
     title: String
   });
   
-  const title =''
+  const title = '';
+  
   </script>
   
   <style scoped>
@@ -39,6 +43,7 @@
     width: 100%;
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
   }
 
   @media (max-width: 1255px) {
