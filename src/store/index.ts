@@ -1,18 +1,15 @@
-import { createStore } from 'vuex';
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export default createStore({
-  state: {
-    isAvatarModalVisible: false,
-  },
-  getters: {
-  },
-  mutations: {
-    isAvatarModalVisible(state) {
-      state.isAvatarModalVisible = !state.isAvatarModalVisible;
-    }
+export const useAlertsStore = defineStore('alerts', {
+  state: () => {
+    return {
+      isAvatarModalVisible: ref(false),
+    };
   },
   actions: {
+    toggleAvatarModalVisible() {
+      this.isAvatarModalVisible = !this.isAvatarModalVisible;
+    },
   },
-  modules: {
-  }
 })

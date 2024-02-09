@@ -11,6 +11,7 @@
 
         <h3>AVATAR</h3>
         <div class="images">
+            <!-- <img class='card_image' v-for="i in [1,2,3,4]" :src="require(`@/assets/players/player${i}.png`)" alt="avatar_card" @click="selectedAvatar = i" v-bind:class="{checked:selectedAvatar == i}"/> -->
             <img class='card_image' :src="require(`@/assets/players/player1.png`)" alt="avatar_card" @click="selectedAvatar = 1" v-bind:class="{checked:selectedAvatar == 1}"/>
             <img class='card_image' :src="require(`@/assets/players/player2.png`)" alt="avatar_card" @click="selectedAvatar = 2" v-bind:class="{checked:selectedAvatar == 2}"/>
             <img class='card_image' :src="require(`@/assets/players/player3.png`)" alt="avatar_card" @click="selectedAvatar = 3" v-bind:class="{checked:selectedAvatar == 3}"/>
