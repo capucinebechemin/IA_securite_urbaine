@@ -7,18 +7,19 @@
             <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
         </div>
         <p>Question</p>
-        <div class="question">{{ props.question }}</div>>
+        <!-- <div class="question">{{ props.question }}</div>> -->
+        <div class="question">{{ form.question }}</div>>
         <p>Choix multiple</p>
         <div class="answers">
-            <div class="answer" v-for="answer in form.answers" :key="answer.id" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.answer }}</div>
+            <div class="answer" draggable @dragstart="startDrag($event, answer)" v-for="answer in form.answers" :key="answer.id" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.answer }}</div>
         </div>
         <div class="dropzone">
-            <div class="drop"></div>
-            <div class="drop"></div>
-            <div class="drop"></div>
-            <div class="drop"></div>
+            <div class="drop" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent></div>
+            <div class="drop" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent></div>
+            <div class="drop" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent></div>
+            <div class="drop" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent></div>
         </div>
-        <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ props.textAnswer }}</div>>
+        <!-- <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ props.textAnswer }}</div>> -->
         <div class='btn_submit'>
           <button>Précédent</button>
           <button>Suivant</button>
@@ -32,12 +33,12 @@
   import store from '@/store/index';
   import { computed, ref, watch } from 'vue';
 
-  const props = defineProps({
-      id: {type : String, required : true},
-      question: String,
-      answers: Array,
-      textAnswer: String,
-  });
+  // const props = defineProps({
+  //     id: {type : String, required : true},
+  //     question: String,
+  //     answers: Array,
+  //     textAnswer: String,
+  // });
 
   const form = {
     "id": "1",
@@ -56,20 +57,30 @@
   let selectedAnswer: string[] = [];
 
   const clickAnswer = (a: string) => {
-      if(selectedAnswer.includes(a)){
-        selectedAnswer = selectedAnswer.filter((answer)=>answer!==a);
-      }else{
-        selectedAnswer.push(a);
-      }
+    if(selectedAnswer.includes(a)){
+      selectedAnswer = selectedAnswer.filter((answer)=>answer!==a);
+    }else{
+      selectedAnswer.push(a);
     }
-
-  const isDragAndDropModalVisible = computed(() => store.state.isDragAndDropModalVisible);
+  }
 
   // Méthode pour fermer la modale
   const closeModal = () => {
     store.commit('toggleDragAndDropModal'); // Utilise la même mutation pour basculer l'état
   };
-  
+
+  const startDrag = (evt, answer) => {
+    evt.dataTransfer.dropEffect = 'move'
+    evt.dataTransfer.effectAllowed = 'move'
+    evt.dataTransfer.setData('itemID', answer.id)
+  };
+
+  const onDrop = (evt, list) => {
+    const itemID = evt.dataTransfer.getData('itemID')
+    const item = this.items.find((item) => item.id == itemID)
+    item.list = list
+  };
+
   </script>
   
   <style scoped>
@@ -142,7 +153,7 @@
             top: -100%;
             left: 200%;
         }
-        }     
+        }
 
       }
 
