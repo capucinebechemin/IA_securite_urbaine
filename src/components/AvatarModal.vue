@@ -1,34 +1,44 @@
 <!-- Modal des avatars -->
 <template>
   <Transition name="modal">
-      <div class="avatar_card" >
+    <div class="avatar_card" >
       <div class='main'>
-      <div class="head">
-          <div class="title"><h2>{{ title }}</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
+        <div class="head">
+            <div class="title"><h2>{{ title }}</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="store.toggleAvatarModalVisible"/>
+        </div>
+        <h3>NOM</h3>
+        <input type="text" class="form_field" name="name" id='name' v-model="name" required />
+        <h3>AVATAR</h3>
+        <div class="images">
+            <img class='card_image' v-for="i in avatarNumber" :src="`/players/player${i}.png`" alt="avatar_card" @click="selectedAvatar = i" v-bind:class="{checked:selectedAvatar == i}"/>
+        </div>
+        <div class='btn_submit'>
+          <button @click="submit()">Choisir</button>
+        </div>
       </div>
-      <h3>NOM</h3>
-        <input type="text" class="form_field" name="name" id='name' :v-model="name" required />
-
-      <h3>AVATAR</h3>
-      <div class="images">
-          <!-- <img class='card_image' v-for="i in [1,2,3,4]" :src="require(`@/assets/players/player${i}.png`)" alt="avatar_card" @click="selectedAvatar = i" v-bind:class="{checked:selectedAvatar == i}"/> -->
-          <img class='card_image' :src="require(`@/assets/players/player1.png`)" alt="avatar_card" @click="selectedAvatar = 1" v-bind:class="{checked:selectedAvatar == 1}"/>
-          <img class='card_image' :src="require(`@/assets/players/player2.png`)" alt="avatar_card" @click="selectedAvatar = 2" v-bind:class="{checked:selectedAvatar == 2}"/>
-          <img class='card_image' :src="require(`@/assets/players/player3.png`)" alt="avatar_card" @click="selectedAvatar = 3" v-bind:class="{checked:selectedAvatar == 3}"/>
-          <img class='card_image' :src="require(`@/assets/players/player4.png`)" alt="avatar_card" @click="selectedAvatar = 4" v-bind:class="{checked:selectedAvatar == 4}"/>
-      </div>
-      <div class='btn_submit'>
-        <button>Choisir</button>
-      </div>
-      </div>
-  </div>
+    </div>
   </Transition>
 </template>
   
 <script setup lang="ts">
   import { useAlertsStore } from '@/store';
+import { computed, ref } from 'vue';
 
   const store = useAlertsStore();
+  const props = defineProps({
+      title: String,
+  });
+
+  const name = ref(store.avatarName);
+  let avatarNumber: string[] = ["1", "2", "3", "4"];
+  const selectedAvatar = ref(store.avatarId);
+
+  const submit = () => {
+    store.setAvatarId(selectedAvatar.value);
+    store.setAvatarName(name.value);
+    store.toggleAvatarModalVisible();
+  }
+
 </script>
   
 <style scoped>
