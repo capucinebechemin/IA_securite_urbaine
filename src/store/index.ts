@@ -1,14 +1,14 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    showAvatarModal: false,
+    isAvatarModalVisible: false,
   },
   getters: {
   },
   mutations: {
-    showAvatarModal(state) {
-      state.showAvatarModal = !state.showAvatarModal;
+    isAvatarModalVisible(state) {
+      state.isAvatarModalVisible = !state.isAvatarModalVisible;
     }
   },
   actions: {
