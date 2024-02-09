@@ -4,7 +4,7 @@
     <div class="avatar_card" >
       <div class='main'>
         <div class="head">
-            <div class="title"><h2>{{ title }}</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="store.toggleAvatarModalVisible"/>
+            <div class="title"><h2>{{ title }}</h2></div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleAvatarModalVisible"/>
         </div>
         <h3>NOM</h3>
         <input type="text" class="form_field" name="name" id='name' v-model="name" required />
