@@ -1,5 +1,9 @@
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+</script>
+
 <template>
-  <router-view/>
+  <RouterView />
 </template>
 
 <style>
@@ -10,7 +14,7 @@
     --main-bg-color: #0099ff;
     --main-transparent: linear-gradient(0deg, rgba(255, 255, 255, 0.5) 0%, rgba(122, 183, 225, 0.5) 100%);
     font-family: 'Game', sans-serif;
-    background: url('./assets/mini_games/games_bg.png') no-repeat center center fixed;
+    background: url('/mini_games/games_bg.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

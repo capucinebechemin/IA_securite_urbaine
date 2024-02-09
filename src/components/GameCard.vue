@@ -2,7 +2,7 @@
 <template>
     <div class="game_card">
       <div class='main'>
-        <img class='card_image' :src="require(`@/assets/${img_title}`)" alt="game_card" />
+        <img class='card_image' :src="img_title" alt="game_card" />
         <h2>{{ title }}</h2>
         <hr />
         <StarRating :rating=rating :world_num=world_num :title=title /> 
@@ -11,29 +11,19 @@
     </div>
   </template>
   
-  <script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
+  <script setup lang="ts">
   import StarRating from '@/components/StarRating.vue';
   
-  @Options({
-    props: {
-      title: String,
-      description: String,
-      img_title: String,
-      rating: Number,
-      world_num: String,
-    },
-    components: {
-      StarRating
-    },
-  })
-  export default class GameCard extends Vue {
-    title!: string;
-    description!: string;
-    img_title!: string;
-    rating!: number;
-    world_num!: string;
-  }
+  const props = defineProps({
+    title: {type : String, required : true },
+    description: String,
+    img_title: String,
+    rating: Number,
+    world_num: String,
+  });
+
+
+
   </script>
   
   <style scoped>
