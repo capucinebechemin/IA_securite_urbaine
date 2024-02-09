@@ -1,18 +1,15 @@
-import { createStore } from 'vuex'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export default createStore({
-  state: {
-    isDragAndDropModalVisible: false
-  },
-  getters: {
-  },
-  mutations: {
-    toggleDragAndDropModal(state) {
-      state.isDragAndDropModalVisible = !state.isDragAndDropModalVisible;
-    }
+export const useAlertsStore = defineStore('alerts', {
+  state: () => {
+    return {
+      isQuestionModalVisible: ref(false),
+    };
   },
   actions: {
+    toggleQuestionModalVisible() {
+      this.isQuestionModalVisible = !this.isQuestionModalVisible;
+    }
   },
-  modules: {
-  }
 })

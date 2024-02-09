@@ -4,20 +4,20 @@
         <div class="question_card" >
         <div class='main'>
         <div class="head">
-            <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
+            <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleQuestionModalVisible"/>
         </div>
         <p>Question</p>
         <!-- <div class="question">{{ props.question }}</div>> -->
         <div class="question">{{ form.question }}</div>>
         <p>Choix multiple</p>
         <div class="answers">
-            <div class="answer" draggable @dragstart="startDrag($event, answer)" v-for="answer in form.answers" :key="answer.id" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.answer }}</div>
+            <div class="answer"  v-for="answer in form.answers" :key="answer.id" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.answer }}</div>
         </div>
         <div class="dropzone">
-            <div class="drop" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent></div>
-            <div class="drop" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent></div>
-            <div class="drop" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent></div>
-            <div class="drop" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent></div>
+            <div class="drop"></div>
+            <div class="drop"></div>
+            <div class="drop"></div>
+            <div class="drop"></div>
         </div>
         <!-- <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ props.textAnswer }}</div>> -->
         <div class='btn_submit'>
@@ -30,8 +30,10 @@
   </template>
   
   <script setup lang="ts">
-  import store from '@/store/index';
-  import { computed, ref, watch } from 'vue';
+  import { useAlertsStore } from '@/store';
+  import { ref } from 'vue';
+
+  const store = useAlertsStore();
 
   // const props = defineProps({
   //     id: {type : String, required : true},
@@ -63,23 +65,6 @@
       selectedAnswer.push(a);
     }
   }
-
-  // Méthode pour fermer la modale
-  const closeModal = () => {
-    store.commit('toggleDragAndDropModal'); // Utilise la même mutation pour basculer l'état
-  };
-
-  const startDrag = (evt, answer) => {
-    evt.dataTransfer.dropEffect = 'move'
-    evt.dataTransfer.effectAllowed = 'move'
-    evt.dataTransfer.setData('itemID', answer.id)
-  };
-
-  const onDrop = (evt, list) => {
-    const itemID = evt.dataTransfer.getData('itemID')
-    const item = this.items.find((item) => item.id == itemID)
-    item.list = list
-  };
 
   </script>
   

@@ -7,13 +7,13 @@
             <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
         </div>
         <p>Question</p>
-        <div class="question">{{ question }}</div>>
+        <div class="question">{{ props.question }}</div>
         <p>Choix multiple</p>
         <div class="answers">
-            <div class="answer" @click="clickAnswer(1)"  v-bind:class="{checked:selectedAnswer.includes(1)}">{{ answer1 }}</div>
-            <div class="answer" @click="clickAnswer(2)"  v-bind:class="{checked:selectedAnswer.includes(2)}">{{ answer2 }}</div>
-            <div class="answer" @click="clickAnswer(3)"  v-bind:class="{checked:selectedAnswer.includes(3)}">{{ answer3 }}</div>
-            <div class="answer" @click="clickAnswer(4)"  v-bind:class="{checked:selectedAnswer.includes(4)}">{{ answer4 }}</div>
+            <div class="answer" @click="clickAnswer(1)"  v-bind:class="{checked:selectedAnswer.includes(1)}">{{ props.answer1 }}</div>
+            <div class="answer" @click="clickAnswer(2)"  v-bind:class="{checked:selectedAnswer.includes(2)}">{{ props.answer2 }}</div>
+            <div class="answer" @click="clickAnswer(3)"  v-bind:class="{checked:selectedAnswer.includes(3)}">{{ props.answer3 }}</div>
+            <div class="answer" @click="clickAnswer(4)"  v-bind:class="{checked:selectedAnswer.includes(4)}">{{ props.answer4 }}</div>
         </div>
         <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ textAnswer }}</div>>
         <div class='btn_submit'>
@@ -25,62 +25,53 @@
     </Transition>
   </template>
   
-  <script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
+  <script setup lang="ts">
+  import { ref , defineEmits } from 'vue';
 
-  @Options({
-    props: {
-      id: String,
-      question: String,
-      answer1: String,
-      answer2: String,
-      answer3: String,
-      answer4: String,
-      correctAnswer: [Number],
-      textAnswer: String,
-    },
-    emits: ['close','data'],
-    data() {
-        return {
-        questionId: null,
-        selectedAnswer: []
-        };
-    },
-    methods: {
-        clickAnswer(a: number) {
-            if(this.selectedAnswer.includes(a)){
-                this.selectedAnswer = this.selectedAnswer.filter((answer: number)=>answer!==a);
-            }else{
-                this.selectedAnswer.push(a);
-            }
-        },
+    const emit = defineEmits();
+    const props = defineProps({
+        id: {type : String, required : true },
+        question: String,
+        answer1: String,
+        answer2: String,
+        answer3: String,
+        answer4: String,
+        correctAnswer: [Number],
+        textAnswer: String,
+    });
+
+    const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[]});
+    const tewtAnswer = '';
+    const textAnswer = tewtAnswer;
+    let selectedAnswer: number[] = [];
+
+    const triggerCustomEvent = () => {
+      data.value.questionId = props.id; 
+      data.value.selectedAnswer = selectedAnswer; 
+
+      emit('close', data.value);
+    };
+
+    const clickAnswer = (a: number) => {
+      if(selectedAnswer.includes(a)){
+        selectedAnswer = selectedAnswer.filter((answer: number)=>answer!==a);
+      }else{
+        selectedAnswer.push(a);
+      }
     }
-  })
-  export default class QuestionModal extends Vue {
-    clickAnswer!: any;
-    id!: string;
-    question!: string;
-    answer1!: string;
-    answer2!: string;
-    answer3!: string;
-    answer4!: string;
-    correctAnswer!: [number];
-    tewtAnswer!: string;
-    textAnswer = this.tewtAnswer;
-    selectedAnswer!: [number];
-    closeModal() {
-      this.$emit('close');      
+    
+    const closeModal= ()=> {
+      emit('close');      
     }
-    submit() {
-        alert(this.selectedAnswer);
-        this.$emit('data', {
-            questionId: this.id,
-            selectedAnswer: this.selectedAnswer,
+    const submit = () => {
+        alert(selectedAnswer);
+        emit('data', {
+            questionId: props.id,
+            selectedAnswer: selectedAnswer,
         });
-        //question suivante
-        this.$emit('close');
+        emit('close');
     }
-  }
+  
   </script>
   
   <style scoped>
