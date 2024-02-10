@@ -10,9 +10,11 @@
         <!-- <div class="question">{{ props.question }}</div>> -->
         <div class="question">{{ form.question }}</div>>
         <p>Choix multiple</p>
-        <div class="answers">
+        <!-- <draggable> -->
+          <div class="answers">
             <div class="answer"  v-for="answer in form.answers" :key="answer.id" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.answer }}</div>
         </div>
+        <!-- </draggable> -->
         <div class="dropzone">
             <div class="drop"></div>
             <div class="drop"></div>
@@ -32,6 +34,7 @@
   <script setup lang="ts">
   import { useAlertsStore } from '@/store';
   import { ref } from 'vue';
+  import draggable from 'vuedraggable';
 
   const store = useAlertsStore();
 
