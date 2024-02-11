@@ -7,14 +7,11 @@
       <router-link to="/"><GameCard title="Cartographie" description="Prochainement disponible !" img_title='/mini_games/cartographie.png' @click="store.toggleDragAndDropModalVisible"/></router-link>
       <router-link to="/"><GameCard title="Simulateur vidéosurveillance" description="Prochainement disponible !" img_title='/mini_games/videosurveillance.png'/></router-link>
     </div>
-    <DragAndDropModal id="1" question="Selon vous, quels sont les buts principaux de la vidéosurveillance ?" 
-      answers="A) Dissuader les comportements criminels par une présence visible."
-      answer2="B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement."
-      answer3="C) Analyser les tendances de circulation pour l'urbanisme."
-      answer4="D) Fournir des données pour des études sociologiques." 
-      correctAnswer="[]"
-      textAnswer="En effet, les bonnes réponses sont la A)"
-      v-show="store.isDragAndDropModalVisible" @close="store.toggleDragAndDropModalVisible"></DragAndDropModal>
+    <DragAndDropModal :id=form.id :question=form.question
+    :answers=form.answers
+    correctAnswer="[]"
+    :textAnswer=form.textAnswer
+    v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
   </div>
 </template>
   
@@ -28,6 +25,19 @@
   import { useAlertsStore } from '@/store';
 
   const store = useAlertsStore();
+
+  const form = {
+    "id": "1",
+    "type": "draganddrop",
+    "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
+    "answers": [
+      { "id": 1, "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true},
+      { "id": 2, "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true},
+      { "id": 3, "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false},
+      { "id": 4, "answer": "D) Fournir des données pour des études sociologiques." , "response": false},
+    ],
+    "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
+  };
 
 </script>
 

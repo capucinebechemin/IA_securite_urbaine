@@ -4,23 +4,33 @@
         <div class="question_card" >
         <div class='main'>
         <div class="head">
-            <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleQuestionModalVisible"/>
+            <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleDragAndDropModalVisible"/>
         </div>
         <p>Question</p>
         <!-- <div class="question">{{ props.question }}</div>> -->
         <div class="question">{{ form.question }}</div>>
         <p>Choix multiple</p>
-        <!-- <draggable> -->
-          <div class="answers">
-            <div class="answer"  v-for="answer in form.answers" :key="answer.id" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.answer }}</div>
-        </div>
-        <!-- </draggable> -->
-        <div class="dropzone">
-            <div class="drop"></div>
-            <div class="drop"></div>
-            <div class="drop"></div>
-            <div class="drop"></div>
-        </div>
+        
+        <draggable 
+          v-model="form.answers"
+          group="answer"
+          class="answers"
+          item-key="id"
+          :move="onMove">
+            <template #item="{element}">
+                <div class="answer" :key="element.id">{{element.answer}}</div>
+            </template>
+        </draggable>
+        <draggable 
+            v-model="selectedAnswer"
+            group="answer"
+            class="dropzone"
+            item-key="id">
+              <template #item="{element, index}">
+                  <div class="drop" :key="element.id">{{element.answer}}</div>
+              </template>
+          </draggable>
+       
         <!-- <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ props.textAnswer }}</div>> -->
         <div class='btn_submit'>
           <button>Précédent</button>
@@ -45,7 +55,7 @@
   //     textAnswer: String,
   // });
 
-  const form = {
+  const form = ref({
     "id": "1",
     "type": "draganddrop",
     "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
@@ -56,20 +66,17 @@
       { "id": "4", "answer": "D) Fournir des données pour des études sociologiques." , "response": false},
     ],
     "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
+  });
+
+  const drag = ref(false)
+  const data = ref({ questionId: null as string | null, selectedAnswer: [] as number[]});
+  const selectedAnswer = ref([]);
+
+  function onMove () {
+  if (selectedAnswer.value.length == 4) return false
   };
 
-  const data = ref({ questionId: null as string | null, selectedAnswer: [] as number[]});
-  let selectedAnswer: string[] = [];
-
-  const clickAnswer = (a: string) => {
-    if(selectedAnswer.includes(a)){
-      selectedAnswer = selectedAnswer.filter((answer)=>answer!==a);
-    }else{
-      selectedAnswer.push(a);
-    }
-  }
-
-  </script>
+</script>
   
   <style scoped>
 
@@ -121,28 +128,26 @@
         align-items: flex-start;
         margin-left: 3rem;
         margin-right: 3rem;
+        min-height: 9rem;
        }
 
       .answer {
-        width: 22%;
+        width: 22.3%;
         border-radius: .7rem;
         height: 7rem;
         margin: .5rem;
         cursor: pointer;
         padding:.3rem;
+        background-color: rgba(255, 255, 255, 0.3);
         
         &:hover{
-        outline: 1px solid #ffffff44;
-        box-shadow: 0 7px 50px 10px #000000aa;
-        transform: scale(1.015);
-        filter: brightness(1.3);
+        filter: drop-shadow(0 0 2rem white);
         ::before{
             filter: brightness(.5);
             top: -100%;
             left: 200%;
         }
         }
-
       }
 
       .dropzone {
@@ -152,28 +157,30 @@
         align-items: flex-start;
         margin-left: 3rem;
         margin-right: 3rem;
+
+        min-height: 9rem;
+        border: 2px dashed white;
+        border-radius: .7rem;
        }
 
       .drop {
-        width: 22%;
+        width: 22.3%;
         border-radius: .7rem;
         height: 7rem;
         margin: .5rem;
         padding:.3rem;
+        cursor: pointer;
         background-color: rgba(255, 255, 255, 0.3);
-      }
 
-      .checked{
-        border-bottom: 1px solid #ffffff44;
-        box-shadow: 0 7px 50px 10px #000000aa;
-        transform: scale(1.015);
-        filter: brightness(1.3);
+        &:hover{
+        filter: drop-shadow(0 0 2rem white);
         ::before{
             filter: brightness(.5);
             top: -100%;
             left: 200%;
         }
         }
+      }
 
         .text_answer{
             margin: 2rem 2rem 0 0;
