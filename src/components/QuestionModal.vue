@@ -4,16 +4,13 @@
         <div class="question_card" >
         <div class='main'>
         <div class="head">
-            <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
+            <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="store.toggleQuestionModalVisible"/>
         </div>
         <p>Question</p>
         <div class="question">{{ props.question }}</div>
         <p>Choix multiple</p>
-        <div class="answers">
-            <div class="answer" @click="clickAnswer(1)"  v-bind:class="{checked:selectedAnswer.includes(1)}">{{ props.answer1 }}</div>
-            <div class="answer" @click="clickAnswer(2)"  v-bind:class="{checked:selectedAnswer.includes(2)}">{{ props.answer2 }}</div>
-            <div class="answer" @click="clickAnswer(3)"  v-bind:class="{checked:selectedAnswer.includes(3)}">{{ props.answer3 }}</div>
-            <div class="answer" @click="clickAnswer(4)"  v-bind:class="{checked:selectedAnswer.includes(4)}">{{ props.answer4 }}</div>
+        <div class="answers" v-for="answer in props.answers">
+            <div class="answer" @click="clickAnswer(answer.id)"  v-bind:class="{checked:selectedAnswer.includes(answer.id)}">{{ answer.answer }}</div>
         </div>
         <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ textAnswer }}</div>>
         <div class='btn_submit'>
@@ -27,30 +24,20 @@
   
   <script setup lang="ts">
   import { ref , defineEmits } from 'vue';
+  import { useAlertsStore } from '@/store';
+
+  const store = useAlertsStore();
 
     const emit = defineEmits();
     const props = defineProps({
         id: {type : String, required : true },
         question: String,
-        answer1: String,
-        answer2: String,
-        answer3: String,
-        answer4: String,
-        correctAnswer: [Number],
+        answers: [String],
         textAnswer: String,
     });
 
     const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[]});
-    const tewtAnswer = '';
-    const textAnswer = tewtAnswer;
     let selectedAnswer: number[] = [];
-
-    const triggerCustomEvent = () => {
-      data.value.questionId = props.id; 
-      data.value.selectedAnswer = selectedAnswer; 
-
-      emit('close', data.value);
-    };
 
     const clickAnswer = (a: number) => {
       if(selectedAnswer.includes(a)){
@@ -60,9 +47,6 @@
       }
     }
     
-    const closeModal= ()=> {
-      emit('close');      
-    }
     const submit = () => {
         alert(selectedAnswer);
         emit('data', {
