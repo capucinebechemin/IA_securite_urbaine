@@ -1,29 +1,25 @@
 <!-- Navbar de la page Jeux et page_mondes -->
 <template>
     <div class="home_banner">
-      <img alt="Menu" src='@/assets/menu/burger-bar.png'/>
+      <img alt="Menu" src='/menu/burger-bar.png'/>
       <h1>{{ title }}</h1>
       <div class="image-container">
-        <img class='avatar-icon' alt="Avatar choisi" src='@/assets/players/player1.png'/>
+        <img class='avatar-icon' alt="Avatar choisi" :src="`/players/player${store.avatarId}.png`" @click="store.toggleAvatarModalVisible"/>
       </div>
     </div>
   </template>
   
-  <script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
-  import BannerMenu from './BannerMenu.vue';
+  <script setup lang="ts">
+  import { useAlertsStore } from '@/store';
+
+  const store = useAlertsStore();
+
+  const props = defineProps({
+    title: String
+  });
   
-  @Options({
-    props: {
-      title: String
-    },
-    components: {
-      BannerMenu
-    }
-  })
-  export default class HomeBanner extends Vue {
-    title!: string
-  }
+  const title = '';
+  
   </script>
   
   <style scoped>
@@ -47,6 +43,7 @@
     width: 100%;
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
   }
 
   @media (max-width: 1255px) {

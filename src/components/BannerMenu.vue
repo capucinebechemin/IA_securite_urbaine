@@ -3,7 +3,7 @@
         <ul>
             <li v-for="link in links" :key="link.id">
                 <a :href="link.url">
-                    <img class='menu-icon' :alt="link.id" :src="require(`@/assets/${link.img}`)" />
+                    <img class='menu-icon' :alt="link.id.toString()" :src="link.img" />
                     {{ link.label }}
                 </a>
             </li>
@@ -11,24 +11,15 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Vue } from 'vue-class-component';
+<script setup lang="ts">
 
-export default class BannerMenu extends Vue {
-    links!: Array<{ id: string, label: string, url: string, img: string }>;
-
-    data() {
-        return {
-            links: [
-                { id: 1, label: 'Home', url: '/', img: "mini_games/games_bg.png" },
-                { id: 2, label: 'IA et sécurité urbaine', url: '/safecity', img: 'mini_games/securite_urbaine.png'},
-                { id: 3, label: 'Cartographie', url: '/cartographie', img: 'mini_games/cartographie.png'},
-                { id: 4, label: 'Video surveillance', url: '/videosurveillance', img: 'mini_games/videosurveillance.png'},
-                { id: 5, label: 'Contact', url: '/', img: 'menu/contact.jpeg'},
-            ]
-        };
-    }
-}
+const links = [
+                { id: 1, label: 'Home', url: '/', img: "/mini_games/games_bg.png" },
+                { id: 2, label: 'IA et sécurité urbaine', url: '/safecity', img: '/mini_games/securite_urbaine.png'},
+                { id: 3, label: 'Cartographie', url: '/cartographie', img: '/mini_games/cartographie.png'},
+                { id: 4, label: 'Video surveillance', url: '/videosurveillance', img: '/mini_games/videosurveillance.png'},
+                { id: 5, label: 'Contact', url: '/', img: '/menu/contact.jpeg'},
+            ];
 </script>
 
 <style scoped>
