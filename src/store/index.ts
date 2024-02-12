@@ -7,6 +7,7 @@ export const useAlertsStore = defineStore('alerts', {
       isAvatarModalVisible: ref(false),
       avatarName: ref(""),
       avatarId: ref("1"),
+      isHolySentenceModalVisible: ref(false),
     };
   },
   actions: {
@@ -18,6 +19,9 @@ export const useAlertsStore = defineStore('alerts', {
     },
     setAvatarId(id: string) {
       this.avatarId = id;
+    },
+    toggleHolySentenceModalVisible() {
+      this.isHolySentenceModalVisible = !this.isHolySentenceModalVisible;
     },
   },
 })
