@@ -21,7 +21,7 @@ export const useAlertsStore = defineStore('alerts', {
       this.avatarId = id;
     },
     toggleQuestionModalVisible() {
-      this.isAvatarModalVisible = !this.isAvatarModalVisible;
+      this.isQuestionModalVisible = !this.isQuestionModalVisible;
     },
   },
 })
