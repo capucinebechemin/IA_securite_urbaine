@@ -9,7 +9,7 @@
         <p>Question</p>
         <!-- <div class="question">{{ props.question }}</div>> -->
         <div class="question">{{ form.question }}</div>>
-        <p>Choix multiple</p>
+        <p v-show="form.answers.length > 4">Choix multiple</p><p v-show="form.answers.length <= 4">Classement</p>
         
         <draggable 
           v-model="form.answers"
@@ -24,7 +24,7 @@
         <draggable 
             v-model="selectedAnswer"
             group="answer"
-            class="dropzone"
+            v-bind:class="{dropzone:form.answers.length > 4, classementzone:form.answers.length <= 4}"
             item-key="id">
               <template #item="{element, index}">
                   <div class="drop" :key="element.id">{{element.answer}}</div>
@@ -151,6 +151,19 @@
       }
 
       .dropzone {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-left: 3rem;
+        margin-right: 3rem;
+
+        min-height: 9rem;
+        border: 2px dashed white;
+        border-radius: .7rem;
+       }
+
+       .classementzone {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
