@@ -1,6 +1,7 @@
 <template>
   <div class="games-view">
     <HomeBanner title="ia et sécurite urbaine"/>
+    <BannerMenu v-show="store.isMenuVisible"/>
     <div class="game-cards">
       <router-link to="/world1">
         <GameCard title="Vidéosurveillance algorithmique" description="Partie pour se concentrera sur l'utilisation de l'IA dans la vidéosurveillance, en explorant son fonctionnement, ses avantages et ses inconvénients." img_title='world1/world1.png' :rating=rating world_num='world1' />
@@ -12,20 +13,17 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
   import HomeBanner from '@/components/HomeBanner.vue';
   import GameCard from '@/components/GameCard.vue';
+  import { useAlertsStore } from '@/store';
+  import BannerMenu from '@/components/BannerMenu.vue';
 
-  @Options({
-  components: {
-    HomeBanner, GameCard
-  },
-  })
+  const store = useAlertsStore();
 
-  export default class SafeCityView extends Vue {
-    rating = 3;
-  }
+
+  const rating = 3;
+  
 </script>
 
 <style>

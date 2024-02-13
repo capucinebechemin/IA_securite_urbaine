@@ -1,53 +1,57 @@
 <!-- Navbar de la page Jeux et page_mondes -->
 <template>
-    <div class="banner">
-      <img alt="Menu" src='@/assets/menu/burger-bar.png'/>
-      <h1>{{ title }}</h1>
-      <div class="image-container">
-        <img class='avatar-icon' alt="Avatar choisi" src='@/assets/players/player1.png'/>
-      </div>
+  <div class="home_banner">
+    <img class="menu-icon" alt="Menu" src='/menu/burger-bar.png' @click="store.toggleMenu"/>
+    <h1>{{ title }}</h1>
+    <div class="avatar-container">
+      <img class='avatar-icon' alt="Avatar choisi" :src="`/players/player${store.avatarId}.png`" @click="store.toggleAvatarModalVisible"/>
     </div>
-  </template>
+  </div>
+</template>
+
+<script setup lang="ts">
+  import { useAlertsStore } from '@/store';
+
+  const store = useAlertsStore();
+
+  const props = defineProps({
+    title: String
+  });
   
-  <script lang="ts">
-  import { Options, Vue } from 'vue-class-component';
+</script>
   
-  @Options({
-    props: {
-      title: String
-    }
-  })
-  export default class HomeBanner extends Vue {
-    title!: string
-  }
-  </script>
-  
-  <style scoped>
-  .banner{
+<style scoped>
+  .home_banner{
     text-transform: uppercase;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 4rem;
+    height: 4vh;
     padding: 1rem 2rem;
     background: var(--main-transparent);
   }
 
-  .image-container {
-  width: 5rem; /* ou la taille que vous voulez */
-  height: 5rem; /* la même que la largeur pour un cercle parfait */
-  border-radius: 50%;
-  overflow: hidden;
-}
-  .image-container .avatar-icon {
+  .menu-icon:hover {
+    cursor: pointer;
+  }
+
+  .avatar-container {
+    width: 7vh;
+    height: 7vh;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .avatar-container .avatar-icon {
     width: 100%;
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
   }
 
-  @media screen and (max-width: 800px) {
-    h1{
+  @media (max-width: 1255px) {
+    .home_banner{
       font-size: 0.75rem;
+      text-align: center;
     }
   }
   </style>

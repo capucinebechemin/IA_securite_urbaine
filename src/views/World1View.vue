@@ -1,53 +1,49 @@
 <template>
     <div class="world1_page">
         <HomeBanner title="videosurveillance algorithmique"/>
+        <BannerMenu v-show="store.isMenuVisible"/>
         <div class="game_zone">
             <span id="start" @click="movePlayer('start')"></span>
-            <img src="../assets/world1/castle1.png" alt="castle1" id="castle1" @click="movePlayer('castle1')">
-            <img src="../assets/world1/castle2.png" alt="castle2" id="castle2" @click="movePlayer('castle2')">
-            <img src="../assets/world1/castle3.png" alt="castle3" id="castle3" @click="movePlayer('castle3')">
-            <img src="../assets/players/player1.png" alt="player" id="player">
+            <img src="/world1/castle1.png" alt="castle1" id="castle1" @click="movePlayer('castle1')">
+            <img src="/world1/castle2.png" alt="castle2" id="castle2" @click="movePlayer('castle2')">
+            <img src="/world1/castle3.png" alt="castle3" id="castle3" @click="movePlayer('castle3')">
+            <img :src="`/players/player${store.avatarId}.png`" alt="player" id="player">
         </div>
     </div>
 </template>
 
-<script lang="ts">
-    import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
+    import { useAlertsStore } from '@/store';
     import HomeBanner from '@/components/HomeBanner.vue';
+    import BannerMenu from '@/components/BannerMenu.vue';
 
-    @Options({
-        components: {
-            HomeBanner
-        },
-    })
+    const store = useAlertsStore();
 
-    export default class World1View extends Vue {
-        movePlayer(castleName: string) {
-            var castle = document.getElementById(castleName);
-            var player = document.getElementById('player');
+    function movePlayer(castleName: string) {
+        var castle = document.getElementById(castleName);
+        var player = document.getElementById('player');
 
-            if (castle && player) {
-                const castleStyle = window.getComputedStyle(castle);
-                const playerStyle = window.getComputedStyle(player);
+        if (castle && player) {
+            const castleStyle = window.getComputedStyle(castle);
+            const playerStyle = window.getComputedStyle(player);
 
-                const topValue = castleStyle.top;
-                const leftValue = castleStyle.left;
-                const heightValue = castleStyle.height;
+            const topValue = castleStyle.top;
+            const leftValue = castleStyle.left;
+            const heightValue = castleStyle.height;
 
-                const topValueInPixels = parseInt(topValue, 10);
-                const leftValueInPixels = parseInt(leftValue, 10);
-                const heightValueInPixels = parseInt(heightValue, 10);
-                
-                if (castleName === 'start') {
-                    player.style.setProperty('height', '10rem');
-                    var playerHeight = parseInt(playerStyle.height, 10)
-                    player.style.setProperty('top', `${topValueInPixels - playerHeight}px`);
-                    player.style.setProperty('left', leftValue);
-                } else {
-                    player.style.setProperty('top', `${topValueInPixels + 10}px`);
-                    player.style.setProperty('height', `${heightValueInPixels+30}px`);
-                    player.style.setProperty('left', `${leftValueInPixels + heightValueInPixels / 2}px`);
-                }
+            const topValueInPixels = parseInt(topValue, 10);
+            const leftValueInPixels = parseInt(leftValue, 10);
+            const heightValueInPixels = parseInt(heightValue, 10);
+            
+            if (castleName === 'start') {
+                player.style.setProperty('height', '10rem');
+                var playerHeight = parseInt(playerStyle.height, 10)
+                player.style.setProperty('top', `${topValueInPixels - playerHeight}px`);
+                player.style.setProperty('left', leftValue);
+            } else {
+                player.style.setProperty('top', `${topValueInPixels + 10}px`);
+                player.style.setProperty('height', `${heightValueInPixels+30}px`);
+                player.style.setProperty('left', `${leftValueInPixels + heightValueInPixels / 2}px`);
             }
         }
     }
@@ -55,7 +51,7 @@
 
 <style>
     html{
-        background: url('../assets/world1/world1.png') no-repeat center center fixed;
+        background: url('/world1/world1.png') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -111,6 +107,10 @@
         top: 15%;
         left: 30%;
         filter: drop-shadow(0 0 0.5rem crimson);
+    }
+
+    #start, #castle1, #castle2, #castle3, #player{
+        cursor: pointer;
     }
 
     @keyframes floating {
