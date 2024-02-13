@@ -4,7 +4,7 @@
         <div class="question_card" >
         <div class='main'>
         <div class="head">
-            <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleDragAndDropModalVisible"/>
+            <div class="title"><h2>MINI JEU N°1</h2></div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleDragAndDropModalVisible"/>
         </div>
         <p>Question</p>
         <!-- <div class="question">{{ props.question }}</div>> -->
@@ -24,10 +24,10 @@
         <draggable 
             v-model="selectedAnswer"
             group="answer"
-            v-bind:class="{dropzone:form.answers.length > 4, classementzone:form.answers.length <= 4}"
+            v-bind:class="{dropzone:form.type=='jeu_selection', classementzone:form.type=='jeu_classement'}"
             item-key="id">
               <template #item="{element, index}">
-                  <div class="drop" :key="element.id" v-bind:class="{[`classement${index + 1}`]:form.answers.length <= 4}">{{element.answer}}</div>
+                  <div class="drop" :key="element.id" v-bind:class="{[`classement${index + 1}`]:form.type=='jeu_classement'}">{{element.answer}}</div>
               </template>
           </draggable>
        
@@ -55,15 +55,32 @@
   //     textAnswer: String,
   // });
 
+  // const form = ref({
+  //   "id": "1",
+  //   "type": "jeu_classement",
+  //   "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
+  //   "answers": [
+  //     { "id": "1", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true},
+  //     { "id": "2", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true},
+  //     { "id": "3", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false},
+  //     { "id": "4", "answer": "D) Fournir des données pour des études sociologiques." , "response": false},
+  //   ],
+  //   "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
+  // });
+
   const form = ref({
     "id": "1",
-    "type": "draganddrop",
+    "type": "jeu_selection",
     "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
     "answers": [
       { "id": "1", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true},
       { "id": "2", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true},
       { "id": "3", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false},
       { "id": "4", "answer": "D) Fournir des données pour des études sociologiques." , "response": false},
+      { "id": "5", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true},
+      { "id": "6", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true},
+      { "id": "7", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false},
+      { "id": "8", "answer": "D) Fournir des données pour des études sociologiques." , "response": false},
     ],
     "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
   });
@@ -78,7 +95,7 @@
 
 </script>
   
-  <style scoped>
+<style scoped>
 
   .question_card{
     position: relative;
@@ -94,22 +111,19 @@
     -webkit-backdrop-filter: blur(7px);
     overflow: hidden;
     transition: .5s all;
-    
-    input{
-        font-family: 'Game', sans-serif;
-    }
+
     .head{
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
     }
     .title{
-        text-align: center;
-        flex: 1;
+      text-align: center;
+      flex: 1;
     }
 
     .close:hover{
-        cursor: pointer;
+      cursor: pointer;
     }
 
     .main{
@@ -143,6 +157,7 @@
         &:hover{
           background-color: rgba(255, 255, 255, 0.4);
         }
+
       }
       .dropzone {
         display: flex;
@@ -212,49 +227,48 @@
 
       }
 
-        .text_answer{
-            margin: 2rem 2rem 0 0;
-            color: rgb(63, 120, 63);
-        }
+      .text_answer{
+        margin: 2rem 2rem 0 0;
+        color: rgb(63, 120, 63);
+      }
         
     }
 
     .btn_submit {
-        display:flex;
-        justify-content: center;
+      display:flex;
+      justify-content: center;
         
-        button {
-            margin:20px;
-            width: 150px;
-            height: 50px;
-            border: none;
-            border-radius: 25px;
-            background-color: black;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px;
-            cursor: pointer;
-            font-family: 'Game', sans-serif;
-            box-shadow: 0 7px 20px 5px white;
-            border-radius: .7rem;
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
-            overflow: hidden;
-            transition: .5s all;
+      button {
+        margin:20px;
+        width: 150px;
+        height: 50px;
+        border: none;
+        border-radius: 25px;
+        background-color: black;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 10px;
+        cursor: pointer;
+        box-shadow: 0 7px 20px 5px white;
+        border-radius: .7rem;
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+        overflow: hidden;
+        transition: .5s all;
 
-            &:hover{
-                border: 1px solid #ffffff44;
-                box-shadow: 0 7px 50px 10px white;
-                transform: scale(1.015);
-                filter: brightness(1.3);
-                ::before{
-                    filter: brightness(.5);
-                    top: -100%;
-                    left: 200%;
-                }
-                }
+        &:hover{
+          border: 1px solid #ffffff44;
+          box-shadow: 0 7px 50px 10px white;
+          transform: scale(1.015);
+          filter: brightness(1.3);
+          ::before{
+              filter: brightness(.5);
+              top: -100%;
+              left: 200%;
+          }
         }
+      }
     }
 
     ::before{
@@ -267,18 +281,16 @@
   }
 
   .modal-enter-from {
-  opacity: 0;
-}
+    opacity: 0;
+  }
 
-.modal-leave-to {
-  opacity: 0;
-}
+  .modal-leave-to {
+    opacity: 0;
+  }
 
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+  .modal-enter-from .modal-container, .modal-leave-to .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
   
   </style>
-  
