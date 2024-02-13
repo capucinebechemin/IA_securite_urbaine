@@ -27,6 +27,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding: 1rem;
   }
   @media (max-width: 1255px) {
     .games-view{

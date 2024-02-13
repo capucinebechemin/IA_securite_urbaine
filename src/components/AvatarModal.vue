@@ -22,7 +22,7 @@
   
 <script setup lang="ts">
   import { useAlertsStore } from '@/store';
-import { computed, ref } from 'vue';
+  import { computed, ref } from 'vue';
 
   const store = useAlertsStore();
   const props = defineProps({

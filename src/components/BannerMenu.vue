@@ -64,6 +64,9 @@ li {
     border-radius: 50%;
     object-fit: cover;
   }
+  .menu-icon:hover{
+    cursor: pointer;
+    }
 
   @media screen and (max-width: 880px) {
     .menu{

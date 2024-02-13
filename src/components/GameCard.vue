@@ -31,7 +31,7 @@
   position: relative;
   user-select:none;
   max-width: 300px;
-  height: 35rem;
+  height: 70vh;
   width: 40rem;
   margin: 2rem auto;
   border: 1px solid #ffffff22;

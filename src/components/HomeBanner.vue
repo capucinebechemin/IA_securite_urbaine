@@ -1,14 +1,14 @@
 <!-- Navbar de la page Jeux et page_mondes -->
 <template>
   <div class="home_banner">
-    <img alt="Menu" src='/menu/burger-bar.png' @click="store.toggleMenu"/>
+    <img class="menu-icon" alt="Menu" src='/menu/burger-bar.png' @click="store.toggleMenu"/>
     <h1>{{ title }}</h1>
     <div class="avatar-container">
       <img class='avatar-icon' alt="Avatar choisi" :src="`/players/player${store.avatarId}.png`" @click="store.toggleAvatarModalVisible"/>
     </div>
   </div>
 </template>
-  
+
 <script setup lang="ts">
   import { useAlertsStore } from '@/store';
 
@@ -18,8 +18,6 @@
     title: String
   });
   
-  const title = '';
-  
 </script>
   
 <style scoped>
@@ -28,14 +26,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 4rem;
+    height: 4vh;
     padding: 1rem 2rem;
     background: var(--main-transparent);
   }
 
+  .menu-icon:hover {
+    cursor: pointer;
+  }
+
   .avatar-container {
-    width: 5rem; /* ou la taille que vous voulez */
-    height: 5rem; /* la même que la largeur pour un cercle parfait */
+    width: 7vh;
+    height: 7vh;
     border-radius: 50%;
     overflow: hidden;
   }
