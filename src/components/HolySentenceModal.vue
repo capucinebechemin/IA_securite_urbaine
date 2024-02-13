@@ -1,67 +1,58 @@
 <!-- Modal des phrases à trou -->
 <template>
-    <Transition name="modal">
-        <div class="holysentence_card" >
-        <div class='main'>
-        <div class="head">
-            <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleHolySentenceModalVisible"/>
-        </div>
+  <Transition name="modal">
+    <div class="holysentence_card" >
+      <div class="head">
+          <div class="title"><h2>MINI JEU N°1</h2></div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleHolySentenceModalVisible"/>
+      </div>
+      <div class='main'>
         <p>Question</p>
         <div class="question">
-            {{ props.start_question }}
-            <input type="text" class="form_field" name="name" id='name' v-model="selectedAnswer" required>
-            {{ props.end_question }}
+          {{ props.start_question }}
+          <input type="text" class="form_field" name="name" id='name' v-model="selectedAnswer" required>
+          {{ props.end_question }}
         </div>
-        <div class="text_answer" v-show="textAnswer!=null">Réponse : {{ textAnswer }}</div>>
+        <div class="text_answer" v-show="textAnswer!=''">Réponse : {{ textAnswer }}</div>>
         <div class='btn_submit'>
-            <button @click="submit">Précédent</button>
+          <button @click="submit">Précédent</button>
           <button @click="submit">Suivant</button>
         </div>
-        </div>
+      </div>
     </div>
-    </Transition>
-  </template>
+  </Transition>
+</template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
   import { ref , defineEmits } from 'vue';
   import { useAlertsStore } from '@/store';
 
   const store = useAlertsStore();
 
-    const emit = defineEmits();
-    const props = defineProps({
-        id: {type : String, required : true },
-        start_question: String,
-        end_question: String,
-        holy_word: String,
-        textAnswer: String,
-    });
+  const emit = defineEmits();
+  const props = defineProps({
+    id: {type : String, required : true },
+    start_question: String,
+    end_question: String,
+    holy_word: String,
+    textAnswer: String,
+  });
 
-    const form = {
-        "id": "3",
-        "type": "holysentence",
-        "start_question": "Selon vous, quels sont les buts principaux de la ",
-        "end_question": " ?",
-        "holy_word": "vidéosurveillance",
-        "textAnswer": "En effet, la bonne réponse est la VIDEOSURVEILLANCE"
-    };
+  const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[]});
+  const selectedAnswer = ref<string>("");
 
-    const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[]});
-    const selectedAnswer = ref<string>("");
+  const submit = () => {
+    store.toggleHolySentenceModalVisible;
+  }
 
-    const submit = () => {
-        store.toggleHolySentenceModalVisible;
-    }
+</script>
   
-  </script>
-  
-  <style scoped>
+<style scoped>
 
   .holysentence_card{
     position: relative;
-    user-select:none;
-    height: auto;
-    width: 70rem;
+    user-select: none;
+    height: 80vh;
+    width: 70vw;
     margin: 2rem auto;
     border: 1px solid #ffffff22;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
@@ -71,108 +62,106 @@
     -webkit-backdrop-filter: blur(7px);
     overflow: hidden;
     transition: .5s all;
-    
-    input{
-        font-family: 'Game', sans-serif;
-    }
 
     .form_field {
-        display: inline-flex;
-        text-align: center;
-        margin: 0 auto;
-        width: 30%;
-        border: 0;
-        outline: 0;
-        border-bottom: 2px solid black;
-        font-size: 1.3rem;
-        color: black;
-        background: transparent;
-        transition: border-color 0.2s;
+      display: inline-flex;
+      text-align: center;
+      margin: 0 auto;
+      width: 30%;
+      border: 0;
+      outline: 0;
+      border-bottom: 2px solid black;
+      font-size: 1.3rem;
+      color: black;
+      background: transparent;
+      transition: border-color 0.2s;
 
-        &::placeholder {
-        color: transparent;
-        }
+      &::placeholder {
+      color: transparent;
+      }
 
-        &:placeholder-shown {
-        cursor: text;
-        }
+      &:placeholder-shown {
+      cursor: text;
+      }
     }
 
     .form_field:focus {
-        filter: drop-shadow(0 2rem 2rem white);
-        border-bottom: 2px solid white;
-        color: white;
-        box-shadow: 0 8px 4px -4px rgba(255, 255, 255, 0.5);
+      filter: drop-shadow(0 2rem 2rem white);
+      border-bottom: 2px solid white;
+      color: white;
+      box-shadow: 0 8px 4px -4px rgba(255, 255, 255, 0.5);
     }
     .head{
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 2vh;
     }
     .title{
-        text-align: center;
-        flex: 1;
+      text-align: center;
+      flex: 1;
     }
 
     .close:hover{
-        cursor: pointer;
+      cursor: pointer;
     }
 
     .main{
       display: flex;
       flex-direction: column;
-      padding: 1rem;
+      padding-left: 10vh;
+      height: 70vh;
 
       .question {
         margin: 10px;
         padding-left: 3rem;
-        margin-top: 12%;
-        margin-bottom: 12%;
+        margin-top: auto;
+        margin-bottom: auto;
       }
 
-        .text_answer{
-            margin: 2rem 2rem 0 0;
-            color: rgb(63, 120, 63);
-        }
+      .text_answer{
+        height: 7vh;
+        margin: 2rem 2rem 0 0;
+        color: rgb(63, 120, 63);
+      }
         
     }
 
     .btn_submit {
-        display:flex;
-        justify-content: center;
-        
-        button {
-            margin:20px;
-            width: 150px;
-            height: 50px;
-            border: none;
-            border-radius: 25px;
-            background-color: black;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px;
-            cursor: pointer;
-            font-family: 'Game', sans-serif;
-            box-shadow: 0 7px 20px 5px white;
-            border-radius: .7rem;
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
-            overflow: hidden;
-            transition: .5s all;
+      display:flex;
+      justify-content: center;
+      margin-bottom: 5vh;
+      
+      button {
+        width: 13vw;
+        height: 6vh;
+        border: none;
+        border-radius: 25px;
+        background-color: black;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 10px;
+        cursor: pointer;
+        box-shadow: 0 7px 20px 5px white;
+        border-radius: .7rem;
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
+        overflow: hidden;
+        transition: .5s all;
 
-            &:hover{
-                border: 1px solid #ffffff44;
-                box-shadow: 0 7px 50px 10px white;
-                transform: scale(1.015);
-                filter: brightness(1.3);
-                ::before{
-                    filter: brightness(.5);
-                    top: -100%;
-                    left: 200%;
-                }
-                }
-        }
+        &:hover{
+            border: 1px solid #ffffff44;
+            box-shadow: 0 7px 50px 10px white;
+            transform: scale(1.015);
+            filter: brightness(1.3);
+            ::before{
+                filter: brightness(.5);
+                top: -100%;
+                left: 200%;
+            }
+            }
+      }
     }
 
     ::before{
@@ -185,18 +174,17 @@
   }
 
   .modal-enter-from {
-  opacity: 0;
-}
+    opacity: 0;
+  }
 
-.modal-leave-to {
-  opacity: 0;
-}
+  .modal-leave-to {
+    opacity: 0;
+  }
 
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+  .modal-enter-from .modal-container, .modal-leave-to .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
   
-  </style>
+</style>
   
