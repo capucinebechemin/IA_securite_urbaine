@@ -5,6 +5,7 @@ export const useAlertsStore = defineStore('alerts', {
   state: () => {
     return {
       isAvatarModalVisible: ref(false),
+      isMenuVisible: ref(false),
       avatarName: ref(""),
       avatarId: ref("1"),
     };
@@ -12,6 +13,9 @@ export const useAlertsStore = defineStore('alerts', {
   actions: {
     toggleAvatarModalVisible() {
       this.isAvatarModalVisible = !this.isAvatarModalVisible;
+    },
+    toggleMenu() {
+      this.isMenuVisible = !this.isMenuVisible
     },
     setAvatarName(name: string) {
       this.avatarName = name;

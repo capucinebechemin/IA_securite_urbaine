@@ -1,15 +1,15 @@
 <!-- Navbar de la page Jeux et page_mondes -->
 <template>
-    <div class="home_banner">
-      <img alt="Menu" src='/menu/burger-bar.png'/>
-      <h1>{{ title }}</h1>
-      <div class="image-container">
-        <img class='avatar-icon' alt="Avatar choisi" :src="`/players/player${store.avatarId}.png`" @click="store.toggleAvatarModalVisible"/>
-      </div>
+  <div class="home_banner">
+    <img alt="Menu" src='/menu/burger-bar.png' @click="store.toggleMenu"/>
+    <h1>{{ title }}</h1>
+    <div class="avatar-container">
+      <img class='avatar-icon' alt="Avatar choisi" :src="`/players/player${store.avatarId}.png`" @click="store.toggleAvatarModalVisible"/>
     </div>
-  </template>
+  </div>
+</template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
   import { useAlertsStore } from '@/store';
 
   const store = useAlertsStore();
@@ -20,9 +20,9 @@
   
   const title = '';
   
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .home_banner{
     text-transform: uppercase;
     display: flex;
@@ -33,13 +33,13 @@
     background: var(--main-transparent);
   }
 
-  .image-container {
+  .avatar-container {
     width: 5rem; /* ou la taille que vous voulez */
     height: 5rem; /* la même que la largeur pour un cercle parfait */
     border-radius: 50%;
     overflow: hidden;
   }
-  .image-container .avatar-icon {
+  .avatar-container .avatar-icon {
     width: 100%;
     border-radius: 50%;
     object-fit: cover;
