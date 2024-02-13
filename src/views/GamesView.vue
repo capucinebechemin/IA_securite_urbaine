@@ -1,6 +1,7 @@
 <template>
   <div class="games-view">
     <HomeBanner title="jeux"/>
+    <BannerMenu v-show="store.isMenuVisible"/>
     <AvatarModal title="Veuillez choisir votre avatar" v-if="store.isAvatarModalVisible"></AvatarModal>
     <div class="game-cards" v-show="!store.isAvatarModalVisible">
       <router-link to="/safecity"><GameCard title="IA et sécurité urbaine" description="Partez à la conquête des mondes en vous challangeant sur quatre thèmes !" img_title='/mini_games/securite_urbaine.png'/></router-link>
@@ -15,6 +16,7 @@
   import GameCard from '@/components/GameCard.vue';
   import AvatarModal from '@/components/AvatarModal.vue';
   import { useAlertsStore } from '@/store';
+  import BannerMenu from '@/components/BannerMenu.vue';
 
   const store = useAlertsStore();
 

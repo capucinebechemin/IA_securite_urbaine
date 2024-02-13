@@ -1,8 +1,8 @@
 <!-- Modal des avatars -->
 <template>
-    <Transition name="modal">
-        <div class="question_card" >
-        <div class='main'>
+  <Transition name="modal">
+    <div class="question_card" >
+      <div class='main'>
         <div class="head">
             <div class="title"><h2>MINI JEUX N°1</h2></div> <img alt="Fermer" class="close" src='@/assets/buttons/close.png' @click="closeModal"/>
         </div>
@@ -20,12 +20,12 @@
             <button @click="submit">Précédent</button>
           <button @click="submit">Suivant</button>
         </div>
-        </div>
+      </div>
     </div>
-    </Transition>
-  </template>
+  </Transition>
+</template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
   import { ref , defineEmits } from 'vue';
 
     const emit = defineEmits();
@@ -72,9 +72,9 @@
         emit('close');
     }
   
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
 
   .question_card{
     position: relative;
@@ -215,18 +215,18 @@
   }
 
   .modal-enter-from {
-  opacity: 0;
-}
+    opacity: 0;
+  }
 
-.modal-leave-to {
-  opacity: 0;
-}
+  .modal-leave-to {
+    opacity: 0;
+  }
 
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+  .modal-enter-from .modal-container,
+  .modal-leave-to .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
   
-  </style>
+</style>
   
