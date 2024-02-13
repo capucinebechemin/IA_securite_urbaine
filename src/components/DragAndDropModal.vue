@@ -27,7 +27,7 @@
             v-bind:class="{dropzone:form.answers.length > 4, classementzone:form.answers.length <= 4}"
             item-key="id">
               <template #item="{element, index}">
-                  <div class="drop" :key="element.id">{{element.answer}}</div>
+                  <div class="drop" :key="element.id" v-bind:class="{[`classement${index + 1}`]:form.answers.length <= 4}">{{element.answer}}</div>
               </template>
           </draggable>
        
@@ -141,15 +141,9 @@
         background-color: rgba(255, 255, 255, 0.3);
         
         &:hover{
-        filter: drop-shadow(0 0 2rem white);
-        ::before{
-            filter: brightness(.5);
-            top: -100%;
-            left: 200%;
-        }
+          background-color: rgba(255, 255, 255, 0.4);
         }
       }
-
       .dropzone {
         display: flex;
         flex-wrap: wrap;
@@ -157,7 +151,6 @@
         align-items: flex-start;
         margin-left: 3rem;
         margin-right: 3rem;
-
         min-height: 9rem;
         border: 2px dashed white;
         border-radius: .7rem;
@@ -170,11 +163,35 @@
         align-items: flex-start;
         margin-left: 3rem;
         margin-right: 3rem;
+        position: relative;
 
         min-height: 9rem;
         border: 2px dashed white;
         border-radius: .7rem;
        }
+
+      .classement1::after, .classement2::after, .classement3::after {
+        content: '';
+        position: absolute;
+        top: 50%; 
+        border: .5rem solid transparent; 
+        border-right-color: white;
+        transform: translateY(-50%);
+      }
+
+      .sortable-chosen::after {
+        border-right-color: transparent;
+      }
+
+      .classement1::after {
+        left: 23.6%;
+      } 
+      .classement2::after {
+        left: 48.5%;
+      } 
+      .classement3::after {
+        left: 73.4%;
+      } 
 
       .drop {
         width: 22.3%;
@@ -186,13 +203,13 @@
         background-color: rgba(255, 255, 255, 0.3);
 
         &:hover{
-        filter: drop-shadow(0 0 2rem white);
-        ::before{
-            filter: brightness(.5);
-            top: -100%;
-            left: 200%;
+         background-color: rgba(255, 255, 255, 0.4);
         }
+
+        &:hover::after {
+          background-color: transparent;
         }
+
       }
 
         .text_answer{
