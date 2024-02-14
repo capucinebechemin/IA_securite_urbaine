@@ -12,6 +12,8 @@
         <HolySentenceModal :id=form.id :start_question=form.start_question :end_question=form.end_question
             :holy_word=form.holy_word correctAnswer="[]" :textAnswer=form.textAnswer
             v-show="store.isHolySentenceModalVisible"></HolySentenceModal>
+        <QuestionModal :id=form2.id :question=form2.question :answers=form2.answers :textAnswer=form2.textAnswer
+            v-show="store.isQuestionModalVisible"></QuestionModal>
     </div>
 </template>
 
@@ -20,6 +22,7 @@ import { useAlertsStore } from '@/store';
 import HomeBanner from '@/components/HomeBanner.vue';
 import BannerMenu from '@/components/BannerMenu.vue';
 import HolySentenceModal from '@/components/HolySentenceModal.vue';
+import QuestionModal from '@/components/QuestionModal.vue';
 
 const store = useAlertsStore();
 
@@ -30,6 +33,19 @@ const form = {
     "end_question": " ?",
     "holy_word": "vidéosurveillance",
     "textAnswer": "La bonne réponse est vidéosurveillance"
+};
+
+const form2 = {
+    "id": "2",
+    "type": "question",
+    "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
+    "answers": [
+        { "id": 1, "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
+        { "id": 2, "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
+        { "id": 3, "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
+        { "id": 4, "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
+    ],
+    "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
 };
 
 function movePlayer(castleName: string) {
@@ -61,7 +77,8 @@ function movePlayer(castleName: string) {
     }
 
     setTimeout(() => {
-        store.toggleHolySentenceModalVisible();
+        // store.toggleHolySentenceModal();
+        store.toggleQuestionModal();
     }, 1500);
 
 }

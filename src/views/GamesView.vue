@@ -23,10 +23,10 @@
   
 <script setup lang="ts">
 import HomeBanner from '@/components/HomeBanner.vue';
+import BannerMenu from '@/components/BannerMenu.vue';
 import GameCard from '@/components/GameCard.vue';
 import AvatarModal from '@/components/AvatarModal.vue';
 import { useAlertsStore } from '@/store';
-import BannerMenu from '@/components/BannerMenu.vue';
 
 const store = useAlertsStore();
 
@@ -45,4 +45,5 @@ const store = useAlertsStore();
     background-size: auto 100%;
     height: inherit;
   }
-}</style>
+}
+</style>

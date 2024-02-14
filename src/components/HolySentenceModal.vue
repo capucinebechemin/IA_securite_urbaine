@@ -5,7 +5,7 @@
       <div class="head">
         <div class="title">
           <h2>MINI JEU N°1</h2>
-        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleHolySentenceModalVisible" />
+        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleHolySentenceModal" />
       </div>
       <div class='main'>
         <p>Question</p>
@@ -43,7 +43,7 @@ const data = ref({ questionId: null as String | null, selectedAnswer: [] as numb
 const selectedAnswer = ref<string>("");
 
 const submit = () => {
-  store.toggleHolySentenceModalVisible;
+  store.toggleHolySentenceModal;
 }
 
 </script>
