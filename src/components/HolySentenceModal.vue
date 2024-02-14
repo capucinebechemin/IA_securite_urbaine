@@ -1,22 +1,23 @@
-<!-- Modal des avatars -->
+<!-- Modal des phrases à trou -->
 <template>
   <Transition name="modal">
-    <div class="avatar_card">
+    <div class="holysentence_card">
+      <div class="head">
+        <div class="title">
+          <h2>MINI JEU N°1</h2>
+        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleHolySentenceModalVisible" />
+      </div>
       <div class='main'>
-        <div class="head">
-          <div class="title">
-            <h2>{{ title }}</h2>
-          </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleAvatarModal" />
+        <p>Question</p>
+        <div class="question">
+          {{ props.start_question }}
+          <input type="text" class="form_field" name="name" id='name' v-model="selectedAnswer" required>
+          {{ props.end_question }}
         </div>
-        <h3>NOM</h3>
-        <input type="text" class="form_field" name="name" id='name' v-model="name" required />
-        <h3>AVATAR</h3>
-        <div class="images">
-          <img class='card_image' v-for="i in avatarNumber" :src="`/players/player${i}.png`" alt="avatar_card"
-            @click="selectedAvatar = i" v-bind:class="{ checked: selectedAvatar == i }" />
-        </div>
+        <div class="text_answer" v-show="textAnswer != ''">Réponse : {{ textAnswer }}</div>>
         <div class='btn_submit'>
-          <button @click="submit()">Choisir</button>
+          <button @click="submit">Précédent</button>
+          <button @click="submit">Suivant</button>
         </div>
       </div>
     </div>
@@ -24,46 +25,38 @@
 </template>
   
 <script setup lang="ts">
+import { ref, defineEmits } from 'vue';
 import { useAlertsStore } from '@/store';
-import { ref } from 'vue';
 
 const store = useAlertsStore();
+
+const emit = defineEmits();
 const props = defineProps({
-  title: String,
+  id: { type: String, required: true },
+  start_question: String,
+  end_question: String,
+  holy_word: String,
+  textAnswer: String,
 });
 
-const name = ref(store.avatarName);
-let avatarNumber: string[] = ["1", "2", "3", "4"];
-const selectedAvatar = ref(store.avatarId);
+const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[] });
+const selectedAnswer = ref<string>("");
 
 const submit = () => {
-  store.setAvatarId(selectedAvatar.value);
-  store.setAvatarName(name.value);
-  store.toggleAvatarModal();
+  store.toggleHolySentenceModalVisible;
 }
 
 </script>
   
 <style scoped>
-h3 {
-  font-size: 0.9rem;
-  margin-left: 10rem;
-}
-
-.avatar_card {
-  position: relative;
-  user-select: none;
+.holysentence_card {
   height: 80vh;
   width: 70vw;
   margin: 2rem auto;
-  outline: 1px solid #ffffff22;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
   box-shadow: 0 7px 20px 5px #00000088;
   border-radius: .7rem;
   backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  overflow: hidden;
-  transition: .5s all;
 
   .form_field {
     display: inline-flex;
@@ -94,21 +87,10 @@ h3 {
     box-shadow: 0 8px 4px -4px rgba(255, 255, 255, 0.5);
   }
 
-  body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 1.5rem;
-    background-color: #222222;
-  }
-
   .head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    padding: 2vh;
   }
 
   .title {
@@ -123,44 +105,19 @@ h3 {
   .main {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 0 10vh;
+    height: 70vh;
 
-    .images {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+    .question {
+      padding-left: 3rem;
+      margin-top: auto;
+      margin-bottom: auto;
     }
 
-    .card_image {
-      border-radius: .5rem;
-      max-width: 100%;
-      height: 18rem;
-      object-fit: cover;
-      margin: 10px;
-      cursor: pointer;
-
-      &:hover {
-        filter: drop-shadow(0 0 2rem white);
-
-        ::before {
-          filter: brightness(.5);
-          top: -100%;
-          left: 200%;
-        }
-      }
-
-    }
-
-    .checked {
-      transform: scale(1.2);
-      filter: drop-shadow(0 0 2rem white);
-
-      ::before {
-        filter: brightness(.5);
-        top: -100%;
-        left: 200%;
-      }
+    .text_answer {
+      height: 7vh;
+      margin: 2rem 2rem 0 0;
+      color: rgb(63, 120, 63);
     }
 
   }
@@ -168,21 +125,18 @@ h3 {
   .btn_submit {
     display: flex;
     justify-content: center;
-    margin-top: 8vh;
+    margin-bottom: 4vh;
 
     button {
-      margin: 20px;
-      width: 150px;
-      height: 50px;
+      width: 13vw;
+      height: 6vh;
       border: none;
-      border-radius: 25px;
       background-color: black;
       color: white;
-      font-size: 20px;
+      font-size: 1.1rem;
       font-weight: bold;
-      margin: 10px;
+      margin: .5rem;
       cursor: pointer;
-      font-family: 'Game', sans-serif;
       box-shadow: 0 7px 20px 5px white;
       border-radius: .7rem;
       backdrop-filter: blur(7px);
@@ -226,4 +180,6 @@ h3 {
 .modal-leave-to .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-}</style>
+}
+</style>
+  
