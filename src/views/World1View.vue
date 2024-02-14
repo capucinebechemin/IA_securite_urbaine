@@ -77,8 +77,8 @@ function movePlayer(castleName: string) {
     }
 
     setTimeout(() => {
-        // store.toggleHolySentenceModalVisible();
-        store.toggleQuestionModalVisible();
+        // store.toggleHolySentenceModal();
+        store.toggleQuestionModal();
     }, 1500);
 
 }

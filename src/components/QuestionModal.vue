@@ -5,7 +5,7 @@
       <div class="head">
         <div class="title">
           <h2>MINI JEU N°1</h2>
-        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleQuestionModalVisible" />
+        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleQuestionModal" />
       </div>
       <div class='main'>
         <p>Question</p>
@@ -66,7 +66,7 @@ const clickAnswer = (a: number) => {
 }
 
 const submit = () => {
-  store.toggleQuestionModalVisible;
+  store.toggleQuestionModal;
 }
 
 </script>
