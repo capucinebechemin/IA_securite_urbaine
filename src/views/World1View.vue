@@ -9,11 +9,13 @@
             <img src="/world1/castle3.png" alt="castle3" id="castle3" @click="movePlayer('castle3')">
             <img :src="`/players/player${store.avatarId}.png`" alt="player" id="player">
         </div>
-        <HolySentenceModal :id=form.id :start_question=form.start_question :end_question=form.end_question
-            :holy_word=form.holy_word correctAnswer="[]" :textAnswer=form.textAnswer
+        <HolySentenceModal :id=form3.id :start_question=form3.start_question :end_question=form3.end_question
+            :holy_word=form3.holy_word correctAnswer="[]" :textAnswer=form3.textAnswer
             v-show="store.isHolySentenceModalVisible"></HolySentenceModal>
         <QuestionModal :id=form2.id :question=form2.question :answers=form2.answers :textAnswer=form2.textAnswer
             v-show="store.isQuestionModalVisible"></QuestionModal>
+        <DragAndDropModal :id=form1.id :question=form1.question :answers=form1.answers correctAnswer="[]"
+            :textAnswer=form1.textAnswer v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
     </div>
 </template>
 
@@ -23,16 +25,21 @@ import HomeBanner from '@/components/HomeBanner.vue';
 import BannerMenu from '@/components/BannerMenu.vue';
 import HolySentenceModal from '@/components/HolySentenceModal.vue';
 import QuestionModal from '@/components/QuestionModal.vue';
+import DragAndDropModal from '@/components/DragAndDropModal.vue';
 
 const store = useAlertsStore();
 
-const form = {
-    "id": "3",
-    "type": "holysentence",
-    "start_question": "Selon vous, quels sont les buts principaux de la ",
-    "end_question": " ?",
-    "holy_word": "vidéosurveillance",
-    "textAnswer": "La bonne réponse est vidéosurveillance"
+const form1 = {
+    "id": "1",
+    "type": "draganddrop",
+    "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
+    "answers": [
+        { "id": 1, "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
+        { "id": 2, "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
+        { "id": 3, "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
+        { "id": 4, "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
+    ],
+    "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
 };
 
 const form2 = {
@@ -44,6 +51,32 @@ const form2 = {
         { "id": 2, "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
         { "id": 3, "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
         { "id": 4, "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
+    ],
+    "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
+};
+
+const form3 = {
+    "id": "3",
+    "type": "holysentence",
+    "start_question": "Selon vous, quels sont les buts principaux de la ",
+    "end_question": " ?",
+    "holy_word": "vidéosurveillance",
+    "textAnswer": "La bonne réponse est vidéosurveillance"
+};
+
+const form4 = {
+    "id": "4",
+    "type": "jeu_selection",
+    "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
+    "answers": [
+        { "id": "1", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
+        { "id": "2", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
+        { "id": "3", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
+        { "id": "4", "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
+        { "id": "5", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
+        { "id": "6", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
+        { "id": "7", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
+        { "id": "8", "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
     ],
     "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
 };
@@ -77,8 +110,9 @@ function movePlayer(castleName: string) {
     }
 
     setTimeout(() => {
-        // store.toggleHolySentenceModal();
-        store.toggleQuestionModal();
+        store.toggleHolySentenceModal();
+        // store.toggleQuestionModal();
+        // store.toggleDragAndDropModal();
     }, 1500);
 
 }

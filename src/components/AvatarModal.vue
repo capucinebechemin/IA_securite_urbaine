@@ -2,12 +2,12 @@
 <template>
   <Transition name="modal">
     <div class="avatar_card">
+      <div class="head">
+        <div class="title">
+          <h2>{{ title }}</h2>
+        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleAvatarModal" />
+      </div>
       <div class='main'>
-        <div class="head">
-          <div class="title">
-            <h2>{{ title }}</h2>
-          </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleAvatarModal" />
-        </div>
         <h3>NOM</h3>
         <input type="text" class="form_field" name="name" id='name' v-model="name" required />
         <h3>AVATAR</h3>
@@ -15,9 +15,9 @@
           <img class='card_image' v-for="i in avatarNumber" :src="`/players/player${i}.png`" alt="avatar_card"
             @click="selectedAvatar = i" v-bind:class="{ checked: selectedAvatar == i }" />
         </div>
-        <div class='btn_submit'>
-          <button @click="submit()">Choisir</button>
-        </div>
+      </div>
+      <div class='btn_submit'>
+        <button @click="submit()">Choisir</button>
       </div>
     </div>
   </Transition>
@@ -47,23 +47,17 @@ const submit = () => {
 <style scoped>
 h3 {
   font-size: 0.9rem;
-  margin-left: 10rem;
+  margin: 0 4vw;
 }
 
 .avatar_card {
-  position: relative;
-  user-select: none;
-  height: 80vh;
-  width: 70vw;
-  margin: 2rem auto;
-  outline: 1px solid #ffffff22;
+  height: 65vh;
+  width: 60vw;
+  margin: 5vh auto;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
   box-shadow: 0 7px 20px 5px #00000088;
   border-radius: .7rem;
   backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  overflow: hidden;
-  transition: .5s all;
 
   .form_field {
     display: inline-flex;
@@ -94,21 +88,10 @@ h3 {
     box-shadow: 0 8px 4px -4px rgba(255, 255, 255, 0.5);
   }
 
-  body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 1.5rem;
-    background-color: #222222;
-  }
-
   .head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    padding: 2vh 2vw;
   }
 
   .title {
@@ -123,7 +106,9 @@ h3 {
   .main {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    justify-content: center;
+    padding: 0 10vw;
+    height: 43vh;
 
     .images {
       display: flex;
@@ -168,21 +153,18 @@ h3 {
   .btn_submit {
     display: flex;
     justify-content: center;
-    margin-top: 8vh;
+    margin: 2vh 0;
 
     button {
-      margin: 20px;
-      width: 150px;
-      height: 50px;
+      width: 13vw;
+      height: 5vh;
       border: none;
-      border-radius: 25px;
       background-color: black;
       color: white;
-      font-size: 20px;
+      font-size: 1.1rem;
       font-weight: bold;
-      margin: 10px;
+      margin: .5vh .5vw;
       cursor: pointer;
-      font-family: 'Game', sans-serif;
       box-shadow: 0 7px 20px 5px white;
       border-radius: .7rem;
       backdrop-filter: blur(7px);
@@ -226,4 +208,5 @@ h3 {
 .modal-leave-to .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-}</style>
+}
+</style>

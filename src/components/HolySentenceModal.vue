@@ -14,11 +14,11 @@
           <input type="text" class="form_field" name="name" id='name' v-model="selectedAnswer" required>
           {{ props.end_question }}
         </div>
-        <div class="text_answer" v-show="textAnswer != ''">Réponse : {{ textAnswer }}</div>>
-        <div class='btn_submit'>
-          <button @click="submit">Précédent</button>
-          <button @click="submit">Suivant</button>
-        </div>
+        <div class="text_answer" v-show="textAnswer != ''">Réponse : {{ textAnswer }}</div>
+      </div>
+      <div class='btn_submit'>
+        <button @click="submit">Précédent</button>
+        <button @click="submit">Suivant</button>
       </div>
     </div>
   </Transition>
@@ -51,7 +51,7 @@ const submit = () => {
 .holysentence_card {
   height: 80vh;
   width: 70vw;
-  margin: 2rem auto;
+  margin: 5vh auto;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
   box-shadow: 0 7px 20px 5px #00000088;
   border-radius: .7rem;
@@ -89,7 +89,7 @@ const submit = () => {
   .head {
     display: flex;
     align-items: center;
-    padding: 2vh;
+    padding: 2vh 2vw;
   }
 
   .title {
@@ -104,37 +104,38 @@ const submit = () => {
   .main {
     display: flex;
     flex-direction: column;
-    padding: 0 10vh;
-    height: 70vh;
+    justify-content: center;
+    padding: 0 10vw;
+    height: 58vh;
 
     .question {
-      padding-left: 3rem;
+      padding: 1vh 4vw;
       margin-top: auto;
       margin-bottom: auto;
     }
 
-    .text_answer {
-      height: 7vh;
-      margin: 2rem 2rem 0 0;
-      color: rgb(63, 120, 63);
-    }
+  }
 
+  .text_answer {
+    max-height: 7vh;
+    margin: 2vh 0;
+    color: rgb(63, 120, 63);
   }
 
   .btn_submit {
     display: flex;
     justify-content: center;
-    margin-bottom: 4vh;
+    margin: 2vh 0;
 
     button {
       width: 13vw;
-      height: 6vh;
+      height: 5vh;
       border: none;
       background-color: black;
       color: white;
       font-size: 1.1rem;
       font-weight: bold;
-      margin: .5rem;
+      margin: .5vh .5vw;
       cursor: pointer;
       box-shadow: 0 7px 20px 5px white;
       border-radius: .7rem;

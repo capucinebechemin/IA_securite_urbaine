@@ -11,16 +11,16 @@
         <p>Question</p>
         <div class="question">{{ props.question }}</div>
         <p>Choix multiple</p>
-        <div class="answers" v-for="answer in form.answers">
-          <div class="answer" @click="clickAnswer(answer.id)"
+        <div class="answers">
+          <div class="answer" v-for="answer in form.answers" @click="clickAnswer(answer.id)"
             v-bind:class="{ checked: selectedAnswer.includes(answer.id) }">
             {{ answer.answer }}</div>
         </div>
-        <div class="text_answer" v-show="textAnswer != null">Réponse : {{ textAnswer }}</div>>
-        <div class='btn_submit'>
-          <button @click="submit">Précédent</button>
-          <button @click="submit">Suivant</button>
-        </div>
+        <div class="text_answer" v-show="textAnswer != null">Réponse : {{ textAnswer }}</div>
+      </div>
+      <div class='btn_submit'>
+        <button @click="submit">Précédent</button>
+        <button @click="submit">Suivant</button>
       </div>
     </div>
   </Transition>
@@ -74,7 +74,7 @@ const submit = () => {
 .question_card {
   height: 80vh;
   width: 70vw;
-  margin: 2rem auto;
+  margin: 5vh auto;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
   box-shadow: 0 7px 20px 5px #00000088;
   border-radius: .7rem;
@@ -83,7 +83,7 @@ const submit = () => {
   .head {
     display: flex;
     align-items: center;
-    padding: 2vh;
+    padding: 2vh 2vw;
   }
 
   .title {
@@ -98,22 +98,24 @@ const submit = () => {
   .main {
     display: flex;
     flex-direction: column;
-    padding: 0 10vh;
-    height: 70vh;
+    justify-content: center;
+    padding: 0 10vw;
+    height: 58vh;
 
     .question {
-      padding-left: 3rem;
-      margin-top: auto;
-      margin-bottom: auto;
+      max-height: 10vh;
+      padding: 1vh 4vw;
+      display: flex;
+      align-items: center;
     }
 
     .answers {
+      padding: 0 4vw;
       display: flex;
       flex-wrap: wrap;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: auto;
-      margin-bottom: auto;
+      flex-direction: row;
+      align-items: center;
+      max-height: 40vh;
     }
 
     .answer {
@@ -121,12 +123,10 @@ const submit = () => {
       display: flex;
       align-items: center;
       border-radius: .7rem;
-      max-width: 85%;
-      height: 5vh;
-      margin: .5rem 3rem;
+      height: 6vh;
+      margin: .5vh .5vw;
+      padding: 1vh 1vw;
       cursor: pointer;
-      padding: .3rem;
-      padding-left: 1rem;
       background-color: rgba(255, 255, 255, 0.3);
       transition: filter 0.3s ease, transform 0.3s ease;
 
@@ -147,28 +147,28 @@ const submit = () => {
       outline: 2px solid black;
     }
 
-    .text_answer {
-      height: 7vh;
-      margin: 2rem 2rem 0 0;
-      color: rgb(63, 120, 63);
-    }
+  }
 
+  .text_answer {
+    max-height: 7vh;
+    margin: 2vh 0;
+    color: rgb(63, 120, 63);
   }
 
   .btn_submit {
     display: flex;
     justify-content: center;
-    margin-bottom: 4vh;
+    margin: 2vh 0;
 
     button {
       width: 13vw;
-      height: 6vh;
+      height: 5vh;
       border: none;
       background-color: black;
       color: white;
       font-size: 1.1rem;
       font-weight: bold;
-      margin: .5rem;
+      margin: .5vh .5vw;
       cursor: pointer;
       box-shadow: 0 7px 20px 5px white;
       border-radius: .7rem;

@@ -9,6 +9,7 @@ export const useAlertsStore = defineStore('alerts', {
       isMenuVisible: sessionStorage.getItem('isMenuVisible') === 'true',
       isHolySentenceModalVisible: sessionStorage.getItem('isHolySentenceModalVisible') === 'true',
       isQuestionModalVisible: sessionStorage.getItem('isQuestionModalVisible') === 'true',
+      isDragAndDropModalVisible: sessionStorage.getItem('isDragAndDropModalVisible') === 'true',
     };
   },
   actions: {
@@ -36,5 +37,9 @@ export const useAlertsStore = defineStore('alerts', {
       this.isQuestionModalVisible = !this.isQuestionModalVisible;
       sessionStorage.setItem('isQuestionModalVisible', this.isQuestionModalVisible ? 'true' : 'false');
     },
+    toggleDragAndDropModal() {
+      this.isDragAndDropModalVisible = !this.isDragAndDropModalVisible;
+      sessionStorage.setItem('isDragAndDropModalVisible', this.isDragAndDropModalVisible ? 'true' : 'false');
+    }
   },
 })
