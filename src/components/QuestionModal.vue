@@ -104,8 +104,8 @@ const submit = () => {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 6vw;
-    height: 54vh;
+    padding: 0 10vw;
+    height: 55vh;
 
     .question {
       max-height: 10vh;

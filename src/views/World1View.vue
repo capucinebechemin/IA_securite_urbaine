@@ -14,8 +14,8 @@
             v-show="store.isHolySentenceModalVisible"></HolySentenceModal>
         <QuestionModal :id=form2.id :question=form2.question :answers=form2.answers :textAnswer=form2.textAnswer
             v-show="store.isQuestionModalVisible"></QuestionModal>
-        <DragAndDropModal :id=form1.id :question=form1.question :answers=form1.answers correctAnswer="[]"
-            :textAnswer=form1.textAnswer v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
+        <DragAndDropModal :id=form4.id :question=form4.question :answers=form4.answers correctAnswer="[]"
+            :textAnswer=form4.textAnswer v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
     </div>
 </template>
 

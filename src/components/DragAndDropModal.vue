@@ -51,35 +51,35 @@ const props = defineProps({
   textAnswer: String,
 });
 
-const form = {
-  "id": "1",
-  "type": "jeu_classement",
-  "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
-  "answers": [
-    { "id": "1", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
-    { "id": "2", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
-    { "id": "3", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
-    { "id": "4", "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
-  ],
-  "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
-};
-
 // const form = {
 //   "id": "1",
-//   "type": "jeu_selection",
+//   "type": "jeu_classement",
 //   "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
 //   "answers": [
 //     { "id": "1", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
 //     { "id": "2", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
 //     { "id": "3", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
 //     { "id": "4", "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
-//     { "id": "5", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
-//     { "id": "6", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
-//     { "id": "7", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
-//     { "id": "8", "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
 //   ],
 //   "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
 // };
+
+const form = {
+  "id": "1",
+  "type": "jeu_selection",
+  "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
+  "answers": [
+    { "id": "1", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
+    { "id": "2", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
+    { "id": "3", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
+    { "id": "4", "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
+    { "id": "5", "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
+    { "id": "6", "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
+    { "id": "7", "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
+    { "id": "8", "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
+  ],
+  "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
+};
 
 const drag = ref(false)
 const data = ref({ questionId: null as string | null, selectedAnswer: [] as number[] });
@@ -89,6 +89,10 @@ const answerPage = false;
 function onMove() {
   if (selectedAnswer.value.length == 4) return false
 };
+
+const submit = () => {
+  store.toggleDragAndDropModal;
+}
 
 </script>
   
@@ -124,8 +128,8 @@ function onMove() {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 6vw;
-    height: 58vh;
+    padding: 0 10vw;
+    height: 55vh;
 
     .question {
       max-height: 10vh;
