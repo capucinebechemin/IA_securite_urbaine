@@ -1,57 +1,55 @@
-<!-- Modal des avatars -->
+<!-- Modal des phrases à trou -->
 <template>
   <Transition name="modal">
-    <div class="avatar_card">
+    <div class="holysentence_card">
       <div class="head">
         <div class="title">
-          <h2>{{ title }}</h2>
-        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleAvatarModal" />
+          <h2>MINI JEU N°1</h2>
+        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleHolySentenceModal" />
       </div>
       <div class='main'>
-        <h3>NOM</h3>
-        <input type="text" class="form_field" name="name" id='name' v-model="name" required />
-        <h3>AVATAR</h3>
-        <div class="images">
-          <img class='card_image' v-for="i in avatarNumber" :src="`/players/player${i}.png`" alt="avatar_card"
-            @click="selectedAvatar = i" v-bind:class="{ checked: selectedAvatar == i }" />
+        <p>Question</p>
+        <div class="question">
+          {{ props.start_question }}
+          <input type="text" class="form_field" name="name" id='name' v-model="selectedAnswer" required>
+          {{ props.end_question }}
         </div>
+        <div class="text_answer" v-show="textAnswer != ''">Réponse : {{ textAnswer }}</div>
       </div>
       <div class='btn_submit'>
-        <button @click="submit()">Choisir</button>
+        <button @click="submit">Précédent</button>
+        <button @click="submit">Suivant</button>
       </div>
     </div>
   </Transition>
 </template>
   
 <script setup lang="ts">
-import { useAlertsStore } from '@/store';
 import { ref } from 'vue';
+import { useAlertsStore } from '@/store';
 
 const store = useAlertsStore();
+
 const props = defineProps({
-  title: String,
+  id: { type: String, required: true },
+  start_question: String,
+  end_question: String,
+  holy_word: String,
+  textAnswer: String,
 });
 
-const name = ref(store.avatarName);
-let avatarNumber: string[] = ["1", "2", "3", "4"];
-const selectedAvatar = ref(store.avatarId);
+const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[] });
+const selectedAnswer = ref<string>("");
 
 const submit = () => {
-  store.setAvatarId(selectedAvatar.value);
-  store.setAvatarName(name.value);
-  store.toggleAvatarModal();
+  store.toggleHolySentenceModal;
 }
 
 </script>
   
 <style scoped>
-h3 {
-  font-size: 0.9rem;
-  margin: 0 4vw;
-}
-
-.avatar_card {
-  height: 65vh;
+.holysentence_card {
+  height: 80vh;
   width: 70vw;
   margin: 5vh auto;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
@@ -108,46 +106,20 @@ h3 {
     flex-direction: column;
     justify-content: center;
     padding: 0 10vw;
-    height: 43vh;
+    height: 58vh;
 
-    .images {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+    .question {
+      padding: 1vh 4vw;
+      margin-top: auto;
+      margin-bottom: auto;
     }
 
-    .card_image {
-      border-radius: .5rem;
-      max-width: 100%;
-      height: 18rem;
-      object-fit: cover;
-      margin: 10px;
-      cursor: pointer;
+  }
 
-      &:hover {
-        filter: drop-shadow(0 0 2rem white);
-
-        ::before {
-          filter: brightness(.5);
-          top: -100%;
-          left: 200%;
-        }
-      }
-
-    }
-
-    .checked {
-      transform: scale(1.2);
-      filter: drop-shadow(0 0 2rem white);
-
-      ::before {
-        filter: brightness(.5);
-        top: -100%;
-        left: 200%;
-      }
-    }
-
+  .text_answer {
+    max-height: 7vh;
+    margin: 2vh 0;
+    color: rgb(63, 120, 63);
   }
 
   .btn_submit {
@@ -210,3 +182,4 @@ h3 {
   transform: scale(1.1);
 }
 </style>
+  
