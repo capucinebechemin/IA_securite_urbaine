@@ -52,7 +52,7 @@ h3 {
 
 .avatar_card {
   height: 65vh;
-  width: 70vw;
+  width: 60vw;
   margin: 5vh auto;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
   box-shadow: 0 7px 20px 5px #00000088;
