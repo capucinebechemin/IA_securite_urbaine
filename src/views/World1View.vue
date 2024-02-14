@@ -110,9 +110,9 @@ function movePlayer(castleName: string) {
     }
 
     setTimeout(() => {
-        store.toggleHolySentenceModal();
+        // store.toggleHolySentenceModal();
         // store.toggleQuestionModal();
-        // store.toggleDragAndDropModal();
+        store.toggleDragAndDropModal();
     }, 1500);
 
 }

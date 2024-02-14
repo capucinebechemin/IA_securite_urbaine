@@ -11,14 +11,16 @@
         <p>Question</p>
         <div class="question">
           {{ props.start_question }}
-          <input type="text" class="form_field" name="name" id='name' v-model="selectedAnswer" required>
+          <input type="text" class="form_field" v-bind:class="{ form_field_good_answer: answerPage }"
+            v-bind:readonly="answerPage" name="name" id='name' v-model="selectedAnswer" required>
           {{ props.end_question }}
         </div>
-        <div class="text_answer" v-show="textAnswer != ''">Réponse : {{ textAnswer }}</div>
+        <div class="text_answer" v-show="answerPage">Réponse : {{ textAnswer }}</div>
       </div>
       <div class='btn_submit'>
-        <button @click="submit">Précédent</button>
-        <button @click="submit">Suivant</button>
+        <button class="btn_previous" @click="submit" v-show="!answerPage">Précédent</button>
+        <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+        <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
       </div>
     </div>
   </Transition>
@@ -40,6 +42,7 @@ const props = defineProps({
 
 const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[] });
 const selectedAnswer = ref<string>("");
+const answerPage = false;
 
 const submit = () => {
   store.toggleHolySentenceModal;
@@ -52,23 +55,25 @@ const submit = () => {
   height: 80vh;
   width: 70vw;
   margin: 5vh auto;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
+  background: rgba(255, 255, 255, 0.7);
   box-shadow: 0 7px 20px 5px #00000088;
   border-radius: .7rem;
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(10px);
 
   .form_field {
     display: inline-flex;
     text-align: center;
     margin: 0 auto;
-    width: 30%;
     border: 0;
     outline: 0;
+    min-width: 30%;
+    max-width: 70%;
     border-bottom: 2px solid black;
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: black;
     background: transparent;
     transition: border-color 0.2s;
+    font-family: 'Roboto Mono', monospace;
 
     &::placeholder {
       color: transparent;
@@ -80,10 +85,32 @@ const submit = () => {
   }
 
   .form_field:focus {
-    filter: drop-shadow(0 2rem 2rem white);
-    border-bottom: 2px solid white;
-    color: white;
-    box-shadow: 0 8px 4px -4px rgba(255, 255, 255, 0.5);
+    filter: drop-shadow(0 2rem 2rem #638e99);
+    border-bottom: 2px solid #638e99;
+    color: #638e99;
+    box-shadow: 0 8px 4px -4px #638e99d1;
+  }
+
+  .form_field_good_answer {
+    color: #88924b;
+  }
+
+  .form_field_good_answer:focus {
+    filter: drop-shadow(0 2rem 2rem #89924bb4);
+    border-bottom: 2px solid #88924b;
+    color: #88924b;
+    box-shadow: 0 8px 4px -4px #88924b;
+  }
+
+  .form_field_bad_answer {
+    color: #BB5326;
+  }
+
+  .form_field_bad_answer:focus {
+    filter: drop-shadow(0 2rem 2rem #bb5326b8);
+    border-bottom: 2px solid #BB5326;
+    color: #BB5326;
+    box-shadow: 0 8px 4px -4px #BB5326;
   }
 
   .head {
@@ -99,14 +126,17 @@ const submit = () => {
 
   .close:hover {
     cursor: pointer;
+    box-shadow: 0 7px 20px 5px white;
+    border-radius: .7rem;
+    backdrop-filter: blur(7px);
   }
 
   .main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10vw;
-    height: 58vh;
+    padding: 0 6vw;
+    height: 54vh;
 
     .question {
       padding: 1vh 4vw;
@@ -119,7 +149,7 @@ const submit = () => {
   .text_answer {
     max-height: 7vh;
     margin: 2vh 0;
-    color: rgb(63, 120, 63);
+    color: #638e99;
   }
 
   .btn_submit {
@@ -127,15 +157,26 @@ const submit = () => {
     justify-content: center;
     margin: 2vh 0;
 
+    .btn_previous {
+      background-color: black;
+    }
+
+    .btn_next {
+      background-color: #638e99;
+    }
+
+    .btn_return {
+      background-color: black;
+    }
+
     button {
-      width: 13vw;
+      width: 6rem;
       height: 5vh;
       border: none;
-      background-color: black;
       color: white;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin: .5vh .5vw;
+      font-size: 1rem;
+      font-family: 'Roboto Mono', monospace;
+      margin: .5vh 1vw;
       cursor: pointer;
       box-shadow: 0 7px 20px 5px white;
       border-radius: .7rem;

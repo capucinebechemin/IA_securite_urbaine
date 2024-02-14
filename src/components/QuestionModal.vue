@@ -16,11 +16,12 @@
             v-bind:class="{ checked: selectedAnswer.includes(answer.id) }">
             {{ answer.answer }}</div>
         </div>
-        <div class="text_answer" v-show="textAnswer != null">Réponse : {{ textAnswer }}</div>
+        <div class="text_answer" v-show="answerPage">Réponse : {{ textAnswer }}</div>
       </div>
       <div class='btn_submit'>
-        <button @click="submit">Précédent</button>
-        <button @click="submit">Suivant</button>
+        <button class="btn_previous" @click="submit" v-show="!answerPage">Précédent</button>
+        <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+        <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
       </div>
     </div>
   </Transition>
@@ -54,6 +55,7 @@ const form = {
 
 const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[] });
 const selectedAnswer = ref<number[]>([]);
+const answerPage = false;
 
 const clickAnswer = (a: number) => {
   const index = selectedAnswer.value.indexOf(a);
@@ -75,10 +77,10 @@ const submit = () => {
   height: 80vh;
   width: 70vw;
   margin: 5vh auto;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
+  background: rgba(255, 255, 255, 0.7);
   box-shadow: 0 7px 20px 5px #00000088;
   border-radius: .7rem;
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(10px);
 
   .head {
     display: flex;
@@ -93,14 +95,17 @@ const submit = () => {
 
   .close:hover {
     cursor: pointer;
+    box-shadow: 0 7px 20px 5px white;
+    border-radius: .7rem;
+    backdrop-filter: blur(7px);
   }
 
   .main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10vw;
-    height: 58vh;
+    padding: 0 6vw;
+    height: 54vh;
 
     .question {
       max-height: 10vh;
@@ -127,7 +132,7 @@ const submit = () => {
       margin: .5vh .5vw;
       padding: 1vh 1vw;
       cursor: pointer;
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: #638e995d;
       transition: filter 0.3s ease, transform 0.3s ease;
 
       &:hover {
@@ -152,7 +157,7 @@ const submit = () => {
   .text_answer {
     max-height: 7vh;
     margin: 2vh 0;
-    color: rgb(63, 120, 63);
+    color: #638e99;
   }
 
   .btn_submit {
@@ -160,15 +165,26 @@ const submit = () => {
     justify-content: center;
     margin: 2vh 0;
 
+    .btn_previous {
+      background-color: black;
+    }
+
+    .btn_next {
+      background-color: #638e99;
+    }
+
+    .btn_return {
+      background-color: black;
+    }
+
     button {
-      width: 13vw;
+      width: 6rem;
       height: 5vh;
       border: none;
-      background-color: black;
       color: white;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin: .5vh .5vw;
+      font-size: 1rem;
+      font-family: 'Roboto Mono', monospace;
+      margin: .5vh 1vw;
       cursor: pointer;
       box-shadow: 0 7px 20px 5px white;
       border-radius: .7rem;
