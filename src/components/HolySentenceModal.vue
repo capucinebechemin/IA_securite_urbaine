@@ -25,12 +25,11 @@
 </template>
   
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 import { useAlertsStore } from '@/store';
 
 const store = useAlertsStore();
 
-const emit = defineEmits();
 const props = defineProps({
   id: { type: String, required: true },
   start_question: String,
