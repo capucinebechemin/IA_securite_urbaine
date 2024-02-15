@@ -1,23 +1,23 @@
 <!-- Modal des avatars -->
 <template>
   <Transition name="modal">
-    <div class="avatar_card">
-      <div class="head">
-        <div class="title">
+    <div class="card_modal">
+      <div class="head_modal">
+        <div class="title_modal">
           <h2>{{ title }}</h2>
-        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleAvatarModal" />
+        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleAvatarModal" />
       </div>
-      <div class='main'>
+      <div class='main_avatar'>
         <h3>NOM</h3>
-        <input type="text" class="form_field" name="name" id='name' v-model="name" required />
+        <input type="text" class="field_avatar" name="name" id='name' v-model="name" required />
         <h3>AVATAR</h3>
-        <div class="images">
-          <img class='card_image' v-for="i in avatarNumber" :src="`/players/player${i}.png`" alt="avatar_card"
-            @click="selectedAvatar = i" v-bind:class="{ checked: selectedAvatar == i }" />
+        <div class="images_avatar">
+          <img class='image_avatar' v-for="i in avatarNumber" :src="`/players/player${i}.png`" alt="avatar_card"
+            @click="selectedAvatar = i" v-bind:class="{ checked_avatar: selectedAvatar == i }" />
         </div>
       </div>
-      <div class='btn_submit'>
-        <button @click="submit()">Choisir</button>
+      <div class='btn_submit_modal'>
+        <button class="btn_avatar" @click="submit()">Choisir</button>
       </div>
     </div>
   </Transition>
@@ -45,100 +45,60 @@ const submit = () => {
 </script>
   
 <style scoped>
-h3 {
-  font-size: 0.9rem;
-  margin: 0 4vw;
+.field_avatar {
+  display: inline-flex;
+  text-align: center;
+  margin: 0 auto;
+  width: 30%;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid black;
+  font-size: 1.3rem;
+  color: black;
+  background: transparent;
+  transition: border-color 0.2s;
+  font-family: 'Roboto Mono', monospace;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown {
+    cursor: text;
+  }
 }
 
-.avatar_card {
-  height: 65vh;
-  width: 60vw;
-  margin: 5vh auto;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
-  box-shadow: 0 7px 20px 5px #00000088;
-  border-radius: .7rem;
-  backdrop-filter: blur(7px);
+.field_avatar:focus {
+  filter: drop-shadow(0 2rem 2rem #638e99);
+  border-bottom: 2px solid #638e99;
+  color: #638e99;
+  box-shadow: 0 8px 4px -4px #638e99d1;
+}
 
-  .form_field {
-    display: inline-flex;
-    text-align: center;
-    margin: 0 auto;
-    width: 30%;
-    border: 0;
-    outline: 0;
-    border-bottom: 2px solid black;
-    font-size: 1.3rem;
-    color: black;
-    background: transparent;
-    transition: border-color 0.2s;
+.main_avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 6vw;
+  height: 55vh;
 
-    &::placeholder {
-      color: transparent;
-    }
-
-    &:placeholder-shown {
-      cursor: text;
-    }
-  }
-
-  .form_field:focus {
-    filter: drop-shadow(0 2rem 2rem white);
-    border-bottom: 2px solid white;
-    color: white;
-    box-shadow: 0 8px 4px -4px rgba(255, 255, 255, 0.5);
-  }
-
-  .head {
+  .images_avatar {
     display: flex;
-    align-items: center;
-    padding: 2vh 2vw;
-  }
-
-  .title {
-    text-align: center;
-    flex: 1;
-  }
-
-  .close:hover {
-    cursor: pointer;
-  }
-
-  .main {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    padding: 0 10vw;
-    height: 43vh;
+    align-items: center;
+    height: 50vh;
+  }
 
-    .images {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-    }
+  .image_avatar {
+    border-radius: .5rem;
+    max-width: 100%;
+    height: 35vh;
+    object-fit: cover;
+    margin: 1vh 1vw;
+    cursor: pointer;
 
-    .card_image {
-      border-radius: .5rem;
-      max-width: 100%;
-      height: 18rem;
-      object-fit: cover;
-      margin: 10px;
-      cursor: pointer;
-
-      &:hover {
-        filter: drop-shadow(0 0 2rem white);
-
-        ::before {
-          filter: brightness(.5);
-          top: -100%;
-          left: 200%;
-        }
-      }
-
-    }
-
-    .checked {
-      transform: scale(1.2);
+    &:hover {
       filter: drop-shadow(0 0 2rem white);
 
       ::before {
@@ -150,63 +110,20 @@ h3 {
 
   }
 
-  .btn_submit {
-    display: flex;
-    justify-content: center;
-    margin: 2vh 0;
+  .checked_avatar {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 2rem white);
 
-    button {
-      width: 13vw;
-      height: 5vh;
-      border: none;
-      background-color: black;
-      color: white;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin: .5vh .5vw;
-      cursor: pointer;
-      box-shadow: 0 7px 20px 5px white;
-      border-radius: .7rem;
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      overflow: hidden;
-      transition: .5s all;
-
-      &:hover {
-        border: 1px solid #ffffff44;
-        box-shadow: 0 7px 50px 10px white;
-        transform: scale(1.015);
-        filter: brightness(1.3);
-
-        ::before {
-          filter: brightness(.5);
-          top: -100%;
-          left: 200%;
-        }
-      }
+    ::before {
+      filter: brightness(.5);
+      top: -100%;
+      left: 200%;
     }
   }
 
-  ::before {
-    position: fixed;
-    content: "";
-    box-shadow: 0 0 100px 40px #ffffff08;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    transition: .7s all;
-  }
 }
 
-.modal-enter-from {
-  opacity: 0;
-}
-
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+.btn_avatar {
+  background-color: #88924b;
 }
 </style>

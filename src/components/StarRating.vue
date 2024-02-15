@@ -1,6 +1,7 @@
 <template>
   <div class="star-rating">
-    <img v-for="star in rating" :key="star" :src="'/' + world_num + '/castle' + star + '.png'" class="star-img" :alt="title" />
+    <img v-for="star in rating" :key="star" :src="'/' + world_num + '/castle' + star + '.png'" class="star-img"
+      :alt="title" />
   </div>
 </template>
 
