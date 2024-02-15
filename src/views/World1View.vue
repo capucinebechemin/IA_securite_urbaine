@@ -10,15 +10,18 @@
             <img :src="`/players/player${store.avatarId}.png`" alt="player" id="player">
         </div>
         <HolySentenceModal :id=form3.id :title=form3.title :start_question=form3.start_question
-            :end_question=form3.end_question :holy_word=form3.holy_word correctAnswer="[]" :textAnswer=form3.textAnswer
+            :end_question=form3.end_question :holy_word=form3.holy_word :textAnswer=form3.textAnswer
             v-show="store.isHolySentenceModalVisible"></HolySentenceModal>
         <QuestionModal :id=form2.id :title=form2.title :question=form2.question :answers=form2.answers
             :textAnswer=form2.textAnswer v-show="store.isQuestionModalVisible"></QuestionModal>
-        <DragAndDropModal :id=form1.id :title=form1.title :question=form1.question :answers=form1.answers correctAnswer="[]"
+        <DragAndDropModal :id=form1.id :title=form1.title :question=form1.question :answers=form1.answers
             :textAnswer=form1.textAnswer v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
         <HeightQuestionModal :id=form4.id :title=form4.title :question=form4.question :answers=form4.answers
-            correctAnswer="[]" :textAnswer=form4.textAnswer v-show="store.isHeightQuestionModalVisible">
+            :textAnswer=form4.textAnswer v-show="store.isHeightQuestionModalVisible">
         </HeightQuestionModal>
+        <CaptchaModal :id=form5.id :title=form5.title :question=form5.question :answers=form5.answers
+            :textAnswer=form5.textAnswer v-show="store.isCaptchaModalVisible">
+        </CaptchaModal>
     </div>
 </template>
 
@@ -30,6 +33,7 @@ import HolySentenceModal from '@/components/HolySentenceModal.vue';
 import QuestionModal from '@/components/QuestionModal.vue';
 import DragAndDropModal from '@/components/DragAndDropModal.vue';
 import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
+import CaptchaModal from '@/components/CaptchaModal.vue';
 
 const store = useAlertsStore();
 
@@ -89,6 +93,22 @@ const form4 = {
     "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
 };
 
+const form5 = {
+    "id": "4",
+    "title": "Captcha",
+    "type": "jeu_captcha",
+    "question": "Qu’est-ce qui peut bloquer la reconnaissance faciale ?",
+    "answers": [
+        { "id": 1, "answer": "Le maquillage", "img": "/captcha/captcha1_answer1.png", "response": true },
+        { "id": 2, "answer": "Le masque", "img": "/captcha/captcha1_answer2.png", "response": true },
+        { "id": 3, "answer": "Les perruques", "img": "/captcha/captcha1_answer3.png", "response": true },
+        { "id": 4, "answer": "Les fausses barbes", "img": "/captcha/captcha1_answer4.png", "response": true },
+        { "id": 5, "answer": "Un t-shirt vert", "img": "/captcha/captcha1_answer5.png", "response": false },
+        { "id": 6, "answer": "Une cravate", "img": "/captcha/captcha1_answer6.png", "response": false }
+    ],
+    "textAnswer": "En effet, le style vestimentaire n'impacte pas la reconnaissance faciale."
+};
+
 function movePlayer(castleName: string) {
     var castle = document.getElementById(castleName);
     var player = document.getElementById('player');
@@ -122,6 +142,7 @@ function movePlayer(castleName: string) {
         // store.toggleQuestionModal();
         // store.toggleDragAndDropModal();
         // store.toggleHeightQuestionModal();
+        // store.toggleCaptchaModal();
     }, 1500);
 
 }
@@ -211,29 +232,7 @@ html {
     }
 }
 
-@media screen and (max-width: 900px) {
 
-    .player {
-        bottom: 5%;
-        right: 0;
-    }
-
-    .castle1 {
-        height: 6rem;
-        top: 60%;
-        left: 55%;
-    }
-
-    .castle2 {
-        top: 45%;
-        left: 35%;
-    }
-
-    .castle3 {
-        top: 35%;
-        left: 10%;
-    }
-}
 
 h3 {
     font-size: 0.9rem;
@@ -396,6 +395,61 @@ h3 {
             }
         }
     }
+}
+
+@media screen and (max-width: 900px) {
+
+    .player {
+        bottom: 5%;
+        right: 0;
+    }
+
+    .castle1 {
+        height: 6rem;
+        top: 60%;
+        left: 55%;
+    }
+
+    .castle2 {
+        top: 45%;
+        left: 35%;
+    }
+
+    .castle3 {
+        top: 35%;
+        left: 10%;
+    }
+
+    .card_modal {
+        height: 85vh;
+        width: 90vw;
+        margin: 2vh auto;
+    }
+
+    .head_modal {
+        max-height: 8vh;
+    }
+
+    .title_modal {
+        font-size: 0.8rem;
+    }
+
+    .question_modal {
+        padding: 0 2vw;
+    }
+
+    .main_modal {
+        font-size: 0.8rem;
+        height: 63vh;
+    }
+
+    .text_answer_modal {
+        max-height: 7vh;
+        margin: 2vh 0;
+        color: #638e99;
+    }
+
+
 }
 
 .modal-enter-from {
