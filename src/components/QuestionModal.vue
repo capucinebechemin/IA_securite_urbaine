@@ -1,13 +1,13 @@
 <!-- Modal question -->
 <template>
   <Transition name="modal">
-    <div class="card_question">
+    <div class="card_modal">
       <div class="head_modal">
         <div class="title_modal">
           <h2>{{ props.title }}</h2>
         </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleQuestionModal" />
       </div>
-      <div class='main_question'>
+      <div class='main_modal'>
         <p>Question</p>
         <div class="question_modal">{{ props.question }}</div>
         <p>Choix multiple</p>
@@ -66,70 +66,43 @@ const submit = () => {
 </script>
   
 <style scoped>
-.card_question {
-  height: 80vh;
-  width: 70vw;
-  margin: 5vh auto;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 7px 20px 5px #00000088;
+.answers_question {
+  padding: 0 4vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  max-height: 40vh;
+}
+
+.answer_question {
+  width: 100%;
+  display: flex;
+  align-items: center;
   border-radius: .7rem;
-  backdrop-filter: blur(10px);
+  height: 6vh;
+  margin: .5vh .5vw;
+  padding: 1vh 1vw;
+  cursor: pointer;
+  background-color: #638e995d;
+  transition: filter 0.3s ease, transform 0.3s ease;
 
-  .main_question {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 6vw;
-    height: 55vh;
+  &:hover {
+    filter: drop-shadow(0 0 2rem white);
+    transform: translateY(-3px);
 
-    .answers_question {
-      padding: 0 4vw;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items: center;
-      max-height: 40vh;
+    ::before {
+      filter: brightness(.5);
+      top: -100%;
+      left: 200%;
     }
-
-    .answer_question {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      border-radius: .7rem;
-      height: 6vh;
-      margin: .5vh .5vw;
-      padding: 1vh 1vw;
-      cursor: pointer;
-      background-color: #638e995d;
-      transition: filter 0.3s ease, transform 0.3s ease;
-
-      &:hover {
-        filter: drop-shadow(0 0 2rem white);
-        transform: translateY(-3px);
-
-        ::before {
-          filter: brightness(.5);
-          top: -100%;
-          left: 200%;
-        }
-      }
-
-    }
-
-    .checked_question {
-      box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-      transform: translate3d(0, 0, 3px);
-      transition: filter 0.3s ease, transform 0.3s ease;
-    }
-
   }
 
-  ::before {
-    position: fixed;
-    content: "";
-    box-shadow: 0 0 100px 40px #ffffff08;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    transition: .7s all;
-  }
+}
+
+.checked_question {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+  transform: translate3d(0, 0, 3px);
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 </style>

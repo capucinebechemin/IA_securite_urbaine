@@ -1,14 +1,14 @@
 <!-- Modal des questions à 8 réponses -->
 <template>
     <Transition name="modal">
-        <div class="card_height_question">
+        <div class="card_modal">
             <div class="head_modal">
                 <div class="title_modal">
                     <h2>{{ props.title }}</h2>
                 </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
                     @click="store.toggleHeightQuestionModal" />
             </div>
-            <div class='main_height_question'>
+            <div class='main_modal'>
                 <p>Question</p>
                 <div class="question_modal">{{ props.question }}</div>
                 <p>Choix multiple</p>
@@ -68,72 +68,44 @@ const submit = () => {
 </script>
     
 <style scoped>
-.card_height_question {
-    height: 80vh;
-    width: 70vw;
-    margin: 5vh auto;
-    background: rgba(255, 255, 255, 0.7);
-    box-shadow: 0 7px 20px 5px #00000088;
+.answers_height_question {
+    padding: 0 4vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    min-height: 34vh;
+}
+
+.answer_height_question {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 9.5vw;
+    height: 13vh;
     border-radius: .7rem;
-    backdrop-filter: blur(10px);
+    margin: .5vh .5vw;
+    padding: 1vh 1vw;
+    font-size: 0.8rem;
+    background-color: #638e995d;
+    transition: filter 0.3s ease, transform 0.3s ease;
 
-    .main_height_question {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 6vw;
-        height: 55vh;
+    &:hover {
+        filter: drop-shadow(0 0 2rem white);
+        transform: translateY(-3px);
 
-        .answers_height_question {
-            padding: 0 4vw;
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            align-items: flex-start;
-            min-height: 34vh;
-        }
-
-        .answer_height_question {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            width: 9.5vw;
-            height: 13vh;
-            border-radius: .7rem;
-            margin: .5vh .5vw;
-            padding: 1vh 1vw;
-            font-size: 0.8rem;
-            background-color: #638e995d;
-            transition: filter 0.3s ease, transform 0.3s ease;
-
-            &:hover {
-                filter: drop-shadow(0 0 2rem white);
-                transform: translateY(-3px);
-
-                ::before {
-                    filter: brightness(.5);
-                    top: -100%;
-                    left: 200%;
-                }
-            }
-        }
-
-        .checked_height_question {
-            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-            transform: translate3d(0, 0, 3px);
-            transition: filter 0.3s ease, transform 0.3s ease;
+        ::before {
+            filter: brightness(.5);
+            top: -100%;
+            left: 200%;
         }
     }
+}
 
-
-
-    ::before {
-        position: fixed;
-        content: "";
-        box-shadow: 0 0 100px 40px #ffffff08;
-        transform: translate(-50%, -50%) rotate(-45deg);
-        transition: .7s all;
-    }
+.checked_height_question {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+    transform: translate3d(0, 0, 3px);
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 </style>
   

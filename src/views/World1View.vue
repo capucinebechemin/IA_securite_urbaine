@@ -276,10 +276,71 @@ h3 {
     backdrop-filter: blur(7px);
 }
 
+.main_modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 6vw;
+    height: 55vh;
+}
+
 .text_answer_modal {
     max-height: 7vh;
     margin: 2vh 0;
     color: #638e99;
+}
+
+.field_input {
+    display: inline-flex;
+    text-align: center;
+    margin: 0 auto;
+    border: 0;
+    outline: 0;
+    min-width: 30%;
+    max-width: 70%;
+    border-bottom: 2px solid black;
+    font-size: 1rem;
+    color: black;
+    background: transparent;
+    transition: border-color 0.2s;
+    font-family: 'Roboto Mono', monospace;
+
+    &::placeholder {
+        color: transparent;
+    }
+
+    &:placeholder-shown {
+        cursor: text;
+    }
+}
+
+.field_input:focus {
+    filter: drop-shadow(0 2rem 2rem #638e99);
+    border-bottom: 2px solid #638e99;
+    color: #638e99;
+    box-shadow: 0 8px 4px -4px #638e99d1;
+}
+
+.field_input_good_answer {
+    color: #88924b;
+}
+
+.field_input_good_answer:focus {
+    filter: drop-shadow(0 2rem 2rem #89924bb4);
+    border-bottom: 2px solid #88924b;
+    color: #88924b;
+    box-shadow: 0 8px 4px -4px #88924b;
+}
+
+.field_input_bad_answer {
+    color: #BB5326;
+}
+
+.field_input_bad_answer:focus {
+    filter: drop-shadow(0 2rem 2rem #bb5326b8);
+    border-bottom: 2px solid #BB5326;
+    color: #BB5326;
+    box-shadow: 0 8px 4px -4px #BB5326;
 }
 
 .question_modal {
