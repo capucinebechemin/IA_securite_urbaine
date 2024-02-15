@@ -10,15 +10,19 @@
             <img :src="`/players/player${store.avatarId}.png`" alt="player" id="player">
         </div>
         <HolySentenceModal :id=form3.id :title=form3.title :start_question=form3.start_question
-            :end_question=form3.end_question :holy_word=form3.holy_word correctAnswer="[]" :textAnswer=form3.textAnswer
+            :end_question=form3.end_question :holy_word=form3.holy_word :textAnswer=form3.textAnswer
             v-show="store.isHolySentenceModalVisible"></HolySentenceModal>
         <QuestionModal :id=form2.id :title=form2.title :question=form2.question :answers=form2.answers
             :textAnswer=form2.textAnswer v-show="store.isQuestionModalVisible"></QuestionModal>
-        <DragAndDropModal :id=form1.id :title=form1.title :question=form1.question :answers=form1.answers correctAnswer="[]"
+        <DragAndDropModal :id=form1.id :title=form1.title :question=form1.question :answers=form1.answers
             :textAnswer=form1.textAnswer v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
         <HeightQuestionModal :id=form4.id :title=form4.title :question=form4.question :answers=form4.answers
-            correctAnswer="[]" :textAnswer=form4.textAnswer v-show="store.isHeightQuestionModalVisible">
+            :textAnswer=form4.textAnswer v-show="store.isHeightQuestionModalVisible">
         </HeightQuestionModal>
+        <EstimationModal :id=form5.id :title=form5.title :question=form5.question :minNumber=form5.minNumber
+            :maxNumber=form5.maxNumber :minAnswer=form5.minAnswer :maxAnswer=form5.maxAnswer :increment=form5.increment
+            :textAnswer=form5.textAnswer v-show="store.isEstimationModalVisible">
+        </EstimationModal>
     </div>
 </template>
 
@@ -30,6 +34,7 @@ import HolySentenceModal from '@/components/HolySentenceModal.vue';
 import QuestionModal from '@/components/QuestionModal.vue';
 import DragAndDropModal from '@/components/DragAndDropModal.vue';
 import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
+import EstimationModal from '@/components/EstimationModal.vue';
 
 const store = useAlertsStore();
 
@@ -89,6 +94,19 @@ const form4 = {
     "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
 };
 
+const form5 = {
+    "id": "5",
+    "title": "Estimation",
+    "type": "bar_chiffree",
+    "question": "En pratique et en moyenne, combien de temps les collectivités gardent-elles les images ? (en jours)",
+    "minNumber": 4,
+    "maxNumber": 30,
+    "increment": 1,
+    "minAnswer": 21,
+    "maxAnswer": 30,
+    "textAnswer": "En effet, entre 21 et 30 jours est la bonne réponse"
+};
+
 function movePlayer(castleName: string) {
     var castle = document.getElementById(castleName);
     var player = document.getElementById('player');
@@ -118,10 +136,11 @@ function movePlayer(castleName: string) {
     }
 
     setTimeout(() => {
-        store.toggleHolySentenceModal();
+        // store.toggleHolySentenceModal();
         // store.toggleQuestionModal();
         // store.toggleDragAndDropModal();
         // store.toggleHeightQuestionModal();
+        store.toggleEstimationModal();
     }, 1500);
 
 }

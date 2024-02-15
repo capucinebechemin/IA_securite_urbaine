@@ -11,6 +11,7 @@ export const useAlertsStore = defineStore('alerts', {
       isQuestionModalVisible: sessionStorage.getItem('isQuestionModalVisible') === 'true',
       isDragAndDropModalVisible: sessionStorage.getItem('isDragAndDropModalVisible') === 'true',
       isHeightQuestionModalVisible: sessionStorage.getItem('isHeightQuestionModalVisible') === 'true',
+      isEstimationModalVisible: sessionStorage.getItem('isEstimationModalVisible') === 'true',
     };
   },
   actions: {
@@ -45,6 +46,10 @@ export const useAlertsStore = defineStore('alerts', {
     toggleHeightQuestionModal() {
       this.isHeightQuestionModalVisible = !this.isHeightQuestionModalVisible;
       sessionStorage.setItem('isHeightQuestionModalVisible', this.isHeightQuestionModalVisible ? 'true' : 'false');
+    },
+    toggleEstimationModal() {
+      this.isEstimationModalVisible = !this.isEstimationModalVisible;
+      sessionStorage.setItem('isEstimationModalVisible', this.isEstimationModalVisible ? 'true' : 'false');
     }
   },
 })
