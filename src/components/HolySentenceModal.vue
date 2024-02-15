@@ -1,23 +1,23 @@
 <!-- Modal des phrases à trou -->
 <template>
   <Transition name="modal">
-    <div class="holysentence_card">
-      <div class="head">
-        <div class="title">
-          <h2>MINI JEU N°1</h2>
-        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleHolySentenceModal" />
+    <div class="card_holysentence">
+      <div class="head_modal">
+        <div class="title_modal">
+          <h2>{{ props.title }}</h2>
+        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleHolySentenceModal" />
       </div>
-      <div class='main'>
+      <div class='main_holysentence'>
         <p>Question</p>
-        <div class="question">
+        <div class="question_holysentence">
           {{ props.start_question }}
-          <input type="text" class="form_field" v-bind:class="{ form_field_good_answer: answerPage }"
+          <input type="text" class="field_holysentence" v-bind:class="{ field_good_answer: answerPage }"
             v-bind:readonly="answerPage" name="name" id='name' v-model="selectedAnswer" required>
           {{ props.end_question }}
         </div>
-        <div class="text_answer" v-show="answerPage">Réponse : {{ textAnswer }}</div>
+        <div class="text_answer_modal" v-show="answerPage">Réponse : {{ textAnswer }}</div>
       </div>
-      <div class='btn_submit'>
+      <div class='btn_submit_modal'>
         <button class="btn_previous" @click="submit" v-show="!answerPage">Précédent</button>
         <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
         <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
@@ -34,6 +34,7 @@ const store = useAlertsStore();
 
 const props = defineProps({
   id: { type: String, required: true },
+  title: String,
   start_question: String,
   end_question: String,
   holy_word: String,
@@ -51,7 +52,7 @@ const submit = () => {
 </script>
   
 <style scoped>
-.holysentence_card {
+.card_holysentence {
   height: 80vh;
   width: 70vw;
   margin: 5vh auto;
@@ -60,7 +61,7 @@ const submit = () => {
   border-radius: .7rem;
   backdrop-filter: blur(10px);
 
-  .form_field {
+  .field_holysentence {
     display: inline-flex;
     text-align: center;
     margin: 0 auto;
@@ -84,120 +85,48 @@ const submit = () => {
     }
   }
 
-  .form_field:focus {
+  .field_holysentence:focus {
     filter: drop-shadow(0 2rem 2rem #638e99);
     border-bottom: 2px solid #638e99;
     color: #638e99;
     box-shadow: 0 8px 4px -4px #638e99d1;
   }
 
-  .form_field_good_answer {
+  .field_holysentence_good_answer {
     color: #88924b;
   }
 
-  .form_field_good_answer:focus {
+  .field_holysentence_good_answer:focus {
     filter: drop-shadow(0 2rem 2rem #89924bb4);
     border-bottom: 2px solid #88924b;
     color: #88924b;
     box-shadow: 0 8px 4px -4px #88924b;
   }
 
-  .form_field_bad_answer {
+  .field_holysentence_bad_answer {
     color: #BB5326;
   }
 
-  .form_field_bad_answer:focus {
+  .field_holysentence_bad_answer:focus {
     filter: drop-shadow(0 2rem 2rem #bb5326b8);
     border-bottom: 2px solid #BB5326;
     color: #BB5326;
     box-shadow: 0 8px 4px -4px #BB5326;
   }
 
-  .head {
-    display: flex;
-    align-items: center;
-    padding: 2vh 2vw;
-  }
-
-  .title {
-    text-align: center;
-    flex: 1;
-  }
-
-  .close:hover {
-    cursor: pointer;
-    box-shadow: 0 7px 20px 5px white;
-    border-radius: .7rem;
-    backdrop-filter: blur(7px);
-  }
-
-  .main {
+  .main_holysentence {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10vw;
+    padding: 0 6vw;
     height: 55vh;
 
-    .question {
+    .question_holysentence {
       padding: 1vh 4vw;
       margin-top: auto;
       margin-bottom: auto;
     }
 
-  }
-
-  .text_answer {
-    max-height: 7vh;
-    margin: 2vh 0;
-    color: #638e99;
-  }
-
-  .btn_submit {
-    display: flex;
-    justify-content: center;
-    margin: 2vh 0;
-
-    .btn_previous {
-      background-color: black;
-    }
-
-    .btn_next {
-      background-color: #638e99;
-    }
-
-    .btn_return {
-      background-color: black;
-    }
-
-    button {
-      width: 6rem;
-      height: 5vh;
-      border: none;
-      color: white;
-      font-size: 1rem;
-      font-family: 'Roboto Mono', monospace;
-      margin: .5vh 1vw;
-      cursor: pointer;
-      box-shadow: 0 7px 20px 5px white;
-      border-radius: .7rem;
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      overflow: hidden;
-      transition: .5s all;
-
-      &:hover {
-        border: 1px solid #ffffff44;
-        box-shadow: 0 7px 50px 10px white;
-        transform: scale(1.015);
-        filter: brightness(1.3);
-
-        ::before {
-          filter: brightness(.5);
-          top: -100%;
-          left: 200%;
-        }
-      }
-    }
   }
 
   ::before {
@@ -207,20 +136,6 @@ const submit = () => {
     transform: translate(-50%, -50%) rotate(-45deg);
     transition: .7s all;
   }
-}
-
-.modal-enter-from {
-  opacity: 0;
-}
-
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
 </style>
   

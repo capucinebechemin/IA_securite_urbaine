@@ -1,24 +1,24 @@
-<!-- Modal des avatars -->
+<!-- Modal question -->
 <template>
   <Transition name="modal">
-    <div class="question_card">
-      <div class="head">
-        <div class="title">
-          <h2>MINI JEU N°1</h2>
-        </div> <img alt="Fermer" class="close" src='/buttons/close.png' @click="store.toggleQuestionModal" />
+    <div class="card_question">
+      <div class="head_modal">
+        <div class="title_modal">
+          <h2>{{ props.title }}</h2>
+        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleQuestionModal" />
       </div>
-      <div class='main'>
+      <div class='main_question'>
         <p>Question</p>
-        <div class="question">{{ props.question }}</div>
+        <div class="question_modal">{{ props.question }}</div>
         <p>Choix multiple</p>
-        <div class="answers">
-          <div class="answer" v-for="answer in form.answers" @click="clickAnswer(answer.id)"
-            v-bind:class="{ checked: selectedAnswer.includes(answer.id) }">
+        <div class="answers_question">
+          <div class="answer_question" v-for="answer in props.answers" @click="clickAnswer(answer.id)"
+            v-bind:class="{ checked_question: selectedAnswer.includes(answer.id) }">
             {{ answer.answer }}</div>
         </div>
-        <div class="text_answer" v-show="answerPage">Réponse : {{ textAnswer }}</div>
+        <div class="text_answer_modal" v-show="answerPage">Réponse : {{ textAnswer }}</div>
       </div>
-      <div class='btn_submit'>
+      <div class='btn_submit_modal'>
         <button class="btn_previous" @click="submit" v-show="!answerPage">Précédent</button>
         <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
         <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
@@ -33,25 +33,18 @@ import { useAlertsStore } from '@/store';
 
 const store = useAlertsStore();
 
+interface Answer {
+  id: number;
+  answer: string;
+  response: boolean;
+}
 const props = defineProps({
   id: { type: String, required: true },
+  title: String,
   question: String,
-  answers: Array,
+  answers: Array<Answer>,
   textAnswer: String,
 });
-
-const form = {
-  "id": "2",
-  "type": "question",
-  "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
-  "answers": [
-    { "id": 1, "answer": "A) Dissuader les comportements criminels par une présence visible.", "response": true },
-    { "id": 2, "answer": "B) Identifier a posteriori les auteurs/autrices d’infractions pour réprimander plus facilement.", "response": true },
-    { "id": 3, "answer": "C) Analyser les tendances de circulation pour l'urbanisme.", "response": false },
-    { "id": 4, "answer": "D) Fournir des données pour des études sociologiques.", "response": false },
-  ],
-  "textAnswer": "En effet, les bonnes réponses sont la A) et la B)"
-};
 
 const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[] });
 const selectedAnswer = ref<number[]>([]);
@@ -73,7 +66,7 @@ const submit = () => {
 </script>
   
 <style scoped>
-.question_card {
+.card_question {
   height: 80vh;
   width: 70vw;
   margin: 5vh auto;
@@ -82,39 +75,14 @@ const submit = () => {
   border-radius: .7rem;
   backdrop-filter: blur(10px);
 
-  .head {
-    display: flex;
-    align-items: center;
-    padding: 2vh 2vw;
-  }
-
-  .title {
-    text-align: center;
-    flex: 1;
-  }
-
-  .close:hover {
-    cursor: pointer;
-    box-shadow: 0 7px 20px 5px white;
-    border-radius: .7rem;
-    backdrop-filter: blur(7px);
-  }
-
-  .main {
+  .main_question {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10vw;
+    padding: 0 6vw;
     height: 55vh;
 
-    .question {
-      max-height: 10vh;
-      padding: 1vh 4vw;
-      display: flex;
-      align-items: center;
-    }
-
-    .answers {
+    .answers_question {
       padding: 0 4vw;
       display: flex;
       flex-wrap: wrap;
@@ -123,7 +91,7 @@ const submit = () => {
       max-height: 40vh;
     }
 
-    .answer {
+    .answer_question {
       width: 100%;
       display: flex;
       align-items: center;
@@ -148,64 +116,12 @@ const submit = () => {
 
     }
 
-    .checked {
-      outline: 2px solid black;
+    .checked_question {
+      box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+      transform: translate3d(0, 0, 3px);
+      transition: filter 0.3s ease, transform 0.3s ease;
     }
 
-  }
-
-  .text_answer {
-    max-height: 7vh;
-    margin: 2vh 0;
-    color: #638e99;
-  }
-
-  .btn_submit {
-    display: flex;
-    justify-content: center;
-    margin: 2vh 0;
-
-    .btn_previous {
-      background-color: black;
-    }
-
-    .btn_next {
-      background-color: #638e99;
-    }
-
-    .btn_return {
-      background-color: black;
-    }
-
-    button {
-      width: 6rem;
-      height: 5vh;
-      border: none;
-      color: white;
-      font-size: 1rem;
-      font-family: 'Roboto Mono', monospace;
-      margin: .5vh 1vw;
-      cursor: pointer;
-      box-shadow: 0 7px 20px 5px white;
-      border-radius: .7rem;
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      overflow: hidden;
-      transition: .5s all;
-
-      &:hover {
-        border: 1px solid #ffffff44;
-        box-shadow: 0 7px 50px 10px white;
-        transform: scale(1.015);
-        filter: brightness(1.3);
-
-        ::before {
-          filter: brightness(.5);
-          top: -100%;
-          left: 200%;
-        }
-      }
-    }
   }
 
   ::before {
@@ -215,19 +131,5 @@ const submit = () => {
     transform: translate(-50%, -50%) rotate(-45deg);
     transition: .7s all;
   }
-}
-
-.modal-enter-from {
-  opacity: 0;
-}
-
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
 </style>
