@@ -23,6 +23,9 @@
             :maxNumber=form5.maxNumber :minAnswer=form5.minAnswer :maxAnswer=form5.maxAnswer :increment=form5.increment
             :textAnswer=form5.textAnswer v-show="store.isEstimationModalVisible">
         </EstimationModal>
+        <CaptchaModal :id=form6.id :title=form6.title :question=form6.question :answers=form6.answers
+            :textAnswer=form6.textAnswer v-show="store.isCaptchaModalVisible">
+        </CaptchaModal>
     </div>
 </template>
 
@@ -35,6 +38,7 @@ import QuestionModal from '@/components/QuestionModal.vue';
 import DragAndDropModal from '@/components/DragAndDropModal.vue';
 import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
 import EstimationModal from '@/components/EstimationModal.vue';
+import CaptchaModal from '@/components/CaptchaModal.vue';
 
 const store = useAlertsStore();
 
@@ -99,12 +103,27 @@ const form5 = {
     "title": "Estimation",
     "type": "bar_chiffree",
     "question": "En pratique et en moyenne, combien de temps les collectivités gardent-elles les images ? (en jours)",
-    "minNumber": 4,
-    "maxNumber": 30,
+    "minNumber": 2000,
+    "maxNumber": 2010,
     "increment": 1,
     "minAnswer": 21,
     "maxAnswer": 30,
     "textAnswer": "En effet, entre 21 et 30 jours est la bonne réponse"
+};
+const form6 = {
+    "id": "4",
+    "title": "Captcha",
+    "type": "jeu_captcha",
+    "question": "Qu’est-ce qui peut bloquer la reconnaissance faciale ?",
+    "answers": [
+        { "id": 1, "answer": "Le maquillage", "img": "/captcha/captcha1_answer1.png", "response": true },
+        { "id": 2, "answer": "Le masque", "img": "/captcha/captcha1_answer2.png", "response": true },
+        { "id": 3, "answer": "Les perruques", "img": "/captcha/captcha1_answer3.png", "response": true },
+        { "id": 4, "answer": "Les fausses barbes", "img": "/captcha/captcha1_answer4.png", "response": true },
+        { "id": 5, "answer": "Un t-shirt vert", "img": "/captcha/captcha1_answer5.png", "response": false },
+        { "id": 6, "answer": "Une cravate", "img": "/captcha/captcha1_answer6.png", "response": false }
+    ],
+    "textAnswer": "En effet, le style vestimentaire n'impacte pas la reconnaissance faciale."
 };
 
 function movePlayer(castleName: string) {
@@ -141,6 +160,7 @@ function movePlayer(castleName: string) {
         // store.toggleDragAndDropModal();
         // store.toggleHeightQuestionModal();
         store.toggleEstimationModal();
+        // store.toggleCaptchaModal();
     }, 1500);
 
 }
@@ -230,29 +250,7 @@ html {
     }
 }
 
-@media screen and (max-width: 900px) {
 
-    .player {
-        bottom: 5%;
-        right: 0;
-    }
-
-    .castle1 {
-        height: 6rem;
-        top: 60%;
-        left: 55%;
-    }
-
-    .castle2 {
-        top: 45%;
-        left: 35%;
-    }
-
-    .castle3 {
-        top: 35%;
-        left: 10%;
-    }
-}
 
 h3 {
     font-size: 0.9rem;
@@ -415,6 +413,61 @@ h3 {
             }
         }
     }
+}
+
+@media screen and (max-width: 900px) {
+
+    .player {
+        bottom: 5%;
+        right: 0;
+    }
+
+    .castle1 {
+        height: 6rem;
+        top: 60%;
+        left: 55%;
+    }
+
+    .castle2 {
+        top: 45%;
+        left: 35%;
+    }
+
+    .castle3 {
+        top: 35%;
+        left: 10%;
+    }
+
+    .card_modal {
+        height: 85vh;
+        width: 90vw;
+        margin: 2vh auto;
+    }
+
+    .head_modal {
+        max-height: 8vh;
+    }
+
+    .title_modal {
+        font-size: 0.8rem;
+    }
+
+    .question_modal {
+        padding: 0 2vw;
+    }
+
+    .main_modal {
+        font-size: 0.8rem;
+        height: 63vh;
+    }
+
+    .text_answer_modal {
+        max-height: 7vh;
+        margin: 2vh 0;
+        color: #638e99;
+    }
+
+
 }
 
 .modal-enter-from {

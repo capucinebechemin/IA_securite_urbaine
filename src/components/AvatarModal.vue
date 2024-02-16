@@ -87,4 +87,15 @@ const submit = () => {
 .btn_avatar {
   background-color: #88924b;
 }
+
+@media screen and (max-width: 900px) {
+  .images_avatar {
+    height: 55vh;
+  }
+
+  .image_avatar {
+    height: 24vh;
+    margin: 1vh 6vw;
+  }
+}
 </style>

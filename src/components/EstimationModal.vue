@@ -13,7 +13,7 @@
                 <div class="question_modal">{{ props.question }}</div>
                 <p>Estimation</p>
                 <div class="answers_estimation">
-                    <div class="selectedAnswer_estimation" :style="{ left: sliderPosition + 'vw' }">{{ selectedAnswer }}
+                    <div class="selectedAnswer_estimation" :style="{ left: sliderPosition + '%' }">{{ selectedAnswer }}
                     </div>
                     <input type="range" :min=props.minNumber :max=props.maxNumber v-model=selectedAnswer
                         class="slider_estimation" id="myRange" @input="updateSliderPosition">
@@ -53,17 +53,13 @@ const selectedAnswer = ref(props.minNumber);
 const data = ref({ questionId: null as String | null, selectedAnswer: Number });
 
 const answerPage = false;
-const sliderPosition = ref(10);
+const sliderPosition = ref(0);
 
 const updateSliderPosition = (event: any) => {
     selectedAnswer.value = event.target.value;
     const slider = event.target;
-    const element = document.querySelector('.selectedAnswer_estimation') as HTMLElement;
-    const elementWidthInPixels = element.offsetWidth;
-    const viewportWidthInPixels = window.innerWidth;
-    const elementWidthInVW = (elementWidthInPixels / viewportWidthInPixels) * 100;
-    const value = (slider.value - slider.min) / (slider.max - slider.min) - (elementWidthInVW / 100);
-    sliderPosition.value = 10 + (value * 50);
+    const value = (slider.value - slider.min) / (slider.max - slider.min)
+    sliderPosition.value = value * 100;
 }
 
 const submit = () => {
@@ -74,7 +70,8 @@ const submit = () => {
     
 <style scoped>
 .answers_estimation {
-    padding: 1vh 4vw;
+    position: relative;
+    margin: 1vh 4vw;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -95,6 +92,7 @@ const submit = () => {
     width: 1.2vw;
     height: 7vh;
     background: #638e99;
+    transition: all 0.1s;
     cursor: pointer;
     border: .2rem solid #638e99;
     border-radius: 0.4rem;
@@ -105,6 +103,7 @@ const submit = () => {
     width: 1.2vw;
     height: 7vh;
     background: #638e99;
+    transition: all 0.25s;
     cursor: pointer;
     border: .2rem solid #638e99;
     border-radius: 0.4rem;
@@ -143,6 +142,7 @@ const submit = () => {
     margin-top: -8vh;
     color: #638e99;
     font-size: 1.5rem;
+    transform: translateX(-50%);
 }
 
 .display_values_estimation {

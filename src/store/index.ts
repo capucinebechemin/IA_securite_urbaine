@@ -12,6 +12,7 @@ export const useAlertsStore = defineStore('alerts', {
       isDragAndDropModalVisible: sessionStorage.getItem('isDragAndDropModalVisible') === 'true',
       isHeightQuestionModalVisible: sessionStorage.getItem('isHeightQuestionModalVisible') === 'true',
       isEstimationModalVisible: sessionStorage.getItem('isEstimationModalVisible') === 'true',
+      isCaptchaModalVisible: sessionStorage.getItem('isCaptchaModalVisible') === 'true',
     };
   },
   actions: {
@@ -50,6 +51,10 @@ export const useAlertsStore = defineStore('alerts', {
     toggleEstimationModal() {
       this.isEstimationModalVisible = !this.isEstimationModalVisible;
       sessionStorage.setItem('isEstimationModalVisible', this.isEstimationModalVisible ? 'true' : 'false');
-    }
+    },
+    toggleCaptchaModal() {
+      this.isCaptchaModalVisible = !this.isCaptchaModalVisible;
+      sessionStorage.setItem('isCaptchaModalVisible', this.isCaptchaModalVisible ? 'true' : 'false');
+    },
   },
 })
