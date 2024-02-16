@@ -19,8 +19,12 @@
         <HeightQuestionModal :id=form4.id :title=form4.title :question=form4.question :answers=form4.answers
             :textAnswer=form4.textAnswer v-show="store.isHeightQuestionModalVisible">
         </HeightQuestionModal>
-        <CaptchaModal :id=form5.id :title=form5.title :question=form5.question :answers=form5.answers
-            :textAnswer=form5.textAnswer v-show="store.isCaptchaModalVisible">
+        <EstimationModal :id=form5.id :title=form5.title :question=form5.question :minNumber=form5.minNumber
+            :maxNumber=form5.maxNumber :minAnswer=form5.minAnswer :maxAnswer=form5.maxAnswer :increment=form5.increment
+            :textAnswer=form5.textAnswer v-show="store.isEstimationModalVisible">
+        </EstimationModal>
+        <CaptchaModal :id=form6.id :title=form6.title :question=form6.question :answers=form6.answers
+            :textAnswer=form6.textAnswer v-show="store.isCaptchaModalVisible">
         </CaptchaModal>
     </div>
 </template>
@@ -33,6 +37,7 @@ import HolySentenceModal from '@/components/HolySentenceModal.vue';
 import QuestionModal from '@/components/QuestionModal.vue';
 import DragAndDropModal from '@/components/DragAndDropModal.vue';
 import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
+import EstimationModal from '@/components/EstimationModal.vue';
 import CaptchaModal from '@/components/CaptchaModal.vue';
 
 const store = useAlertsStore();
@@ -94,6 +99,18 @@ const form4 = {
 };
 
 const form5 = {
+    "id": "5",
+    "title": "Estimation",
+    "type": "bar_chiffree",
+    "question": "En pratique et en moyenne, combien de temps les collectivités gardent-elles les images ? (en jours)",
+    "minNumber": 2000,
+    "maxNumber": 2010,
+    "increment": 1,
+    "minAnswer": 21,
+    "maxAnswer": 30,
+    "textAnswer": "En effet, entre 21 et 30 jours est la bonne réponse"
+};
+const form6 = {
     "id": "4",
     "title": "Captcha",
     "type": "jeu_captcha",
@@ -138,10 +155,11 @@ function movePlayer(castleName: string) {
     }
 
     setTimeout(() => {
-        store.toggleHolySentenceModal();
+        // store.toggleHolySentenceModal();
         // store.toggleQuestionModal();
         // store.toggleDragAndDropModal();
         // store.toggleHeightQuestionModal();
+        store.toggleEstimationModal();
         // store.toggleCaptchaModal();
     }, 1500);
 

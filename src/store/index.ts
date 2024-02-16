@@ -11,6 +11,7 @@ export const useAlertsStore = defineStore('alerts', {
       isQuestionModalVisible: sessionStorage.getItem('isQuestionModalVisible') === 'true',
       isDragAndDropModalVisible: sessionStorage.getItem('isDragAndDropModalVisible') === 'true',
       isHeightQuestionModalVisible: sessionStorage.getItem('isHeightQuestionModalVisible') === 'true',
+      isEstimationModalVisible: sessionStorage.getItem('isEstimationModalVisible') === 'true',
       isCaptchaModalVisible: sessionStorage.getItem('isCaptchaModalVisible') === 'true',
     };
   },
@@ -47,9 +48,13 @@ export const useAlertsStore = defineStore('alerts', {
       this.isHeightQuestionModalVisible = !this.isHeightQuestionModalVisible;
       sessionStorage.setItem('isHeightQuestionModalVisible', this.isHeightQuestionModalVisible ? 'true' : 'false');
     },
+    toggleEstimationModal() {
+      this.isEstimationModalVisible = !this.isEstimationModalVisible;
+      sessionStorage.setItem('isEstimationModalVisible', this.isEstimationModalVisible ? 'true' : 'false');
+    },
     toggleCaptchaModal() {
       this.isCaptchaModalVisible = !this.isCaptchaModalVisible;
       sessionStorage.setItem('isCaptchaModalVisible', this.isCaptchaModalVisible ? 'true' : 'false');
-    }
+    },
   },
 })
