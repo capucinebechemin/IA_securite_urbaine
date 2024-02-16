@@ -195,7 +195,7 @@ const submit = () => {
     left: 50%;
     border: .5vh solid transparent;
     border-bottom-color: white;
-    transform: translate(-50%, -50%) rotate(180deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 
   .sortable-chosen::after {
@@ -203,15 +203,15 @@ const submit = () => {
   }
 
   .classement1_drag_and_drop::after {
-    top: 11.5vh;
+    top: 11vh;
   }
 
   .classement2_drag_and_drop::after {
-    top: 22.7vh;
+    top: 22.1vh;
   }
 
   .classement3_drag_and_drop::after {
-    top: 33.7vh;
+    top: 33.3vh;
   }
 
   .drop {
