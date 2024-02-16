@@ -1,27 +1,29 @@
 <!-- Modal du jeu glisser-déposer -->
 <template>
   <Transition name="modal">
-    <div class="card_drag_and_drop">
+    <div class="card_modal">
       <div class="head_modal">
         <div class="title_modal">
           <h2>{{ props.title }}</h2>
         </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleDragAndDropModal" />
       </div>
-      <div class='main_drag_and_drop'>
+      <div class='main_modal'>
         <p>Question</p>
         <div class="question_modal">{{ props.question }}</div>
         <p>Classement</p>
-        <draggable v-model="answers" group="answer" class="answers_drag_and_drop" item-key="id" :move="onMove">
-          <template #item="{ element }">
-            <div class="answer_drag_and_drop" :key="element.id">{{ element.answer }}</div>
-          </template>
-        </draggable>
-        <draggable v-model="selectedAnswer" group="answer" class="classement_drag_and_drop" item-key="id">
-          <template #item="{ element, index }">
-            <div class="drop" :key="element.id" v-bind:class="{ [`classement${index + 1}_drag_and_drop`]: true }">
-              {{ element.answer }}</div>
-          </template>
-        </draggable>
+        <div class="draggable">
+          <draggable v-model="answers" group="answer" class="answers_drag_and_drop" item-key="id" :move="onMove">
+            <template #item="{ element }">
+              <div class="answer_drag_and_drop" :key="element.id">{{ element.answer }}</div>
+            </template>
+          </draggable>
+          <draggable v-model="selectedAnswer" group="answer" class="classement_drag_and_drop" item-key="id">
+            <template #item="{ element, index }">
+              <div class="drop" :key="element.id" v-bind:class="{ [`classement${index + 1}_drag_and_drop`]: true }">
+                {{ element.answer }}</div>
+            </template>
+          </draggable>
+        </div>
         <div class="text_answer_modal" v-show="answerPage">Réponse : {{ textAnswer }}</div>
       </div>
       <div class='btn_submit_modal'>
@@ -64,120 +66,158 @@ const submit = () => {
 </script>
   
 <style scoped>
-.card_drag_and_drop {
-  height: 80vh;
-  width: 70vw;
-  margin: 5vh auto;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 7px 20px 5px #00000088;
+.answers_drag_and_drop {
+  padding: 0 4vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  min-height: 16vh;
+}
+
+.answer_drag_and_drop {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 9.5vw;
+  height: 13vh;
   border-radius: .7rem;
-  backdrop-filter: blur(10px);
+  margin: .5vh .5vw;
+  padding: 1vh 1vw;
+  font-size: 0.8rem;
+  background-color: #638e995d;
 
-  .main_drag_and_drop {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 6vw;
-    height: 55vh;
+  &:hover {
+    filter: drop-shadow(0 0 2rem white);
+    transform: translateY(-3px);
 
-    .answers_drag_and_drop {
-      padding: 0 4vw;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items: flex-start;
-      min-height: 16vh;
-    }
-
-    .answer_drag_and_drop {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      width: 9.5vw;
-      height: 13vh;
-      border-radius: .7rem;
-      margin: .5vh .5vw;
-      padding: 1vh 1vw;
-      font-size: 0.8rem;
-      background-color: #638e995d;
-
-      &:hover {
-        filter: drop-shadow(0 0 2rem white);
-        transform: translateY(-3px);
-
-
-      }
-    }
-
-    .classement_drag_and_drop {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items: flex-start;
-      position: relative;
-      margin: 1vh 4vw;
-      height: 16vh;
-      outline: .3vh dashed white;
-      border-radius: .7rem;
-    }
-
-    .classement1_drag_and_drop::after,
-    .classement2_drag_and_drop::after,
-    .classement3_drag_and_drop::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      border: .5vw solid transparent;
-      border-right-color: white;
-      transform: translateY(-50%);
-    }
-
-    .sortable-chosen::after {
-      border-right-color: transparent;
-    }
-
-    .classement1_drag_and_drop::after {
-      left: 11.8vw;
-    }
-
-    .classement2_drag_and_drop::after {
-      left: 24.2vw;
-    }
-
-    .classement3_drag_and_drop::after {
-      left: 36.8vw;
-    }
-
-    .drop {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      width: 9.5vw;
-      height: 13vh;
-      border-radius: .7rem;
-      margin: .5vh .5vw;
-      padding: 1vh 1vw;
-      font-size: .8rem;
-      background-color: #638e995d;
-
-      &:hover {
-        background-color: #638e9949;
-      }
-
-      &:hover::after {
-        background-color: transparent;
-      }
-
-    }
 
   }
+}
 
-  ::before {
-    position: fixed;
-    content: "";
-    box-shadow: 0 0 100px 40px #ffffff08;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    transition: .7s all;
+.classement_drag_and_drop {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  position: relative;
+  margin: 1vh 4vw;
+  height: 16vh;
+  outline: .3vh dashed white;
+  border-radius: .7rem;
+}
+
+.classement1_drag_and_drop::after,
+.classement2_drag_and_drop::after,
+.classement3_drag_and_drop::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  border: .5vw solid transparent;
+  border-right-color: white;
+  transform: translateY(-50%);
+}
+
+.sortable-chosen::after {
+  border-right-color: transparent;
+}
+
+.classement1_drag_and_drop::after {
+  left: 11.8vw;
+}
+
+.classement2_drag_and_drop::after {
+  left: 24.2vw;
+}
+
+.classement3_drag_and_drop::after {
+  left: 36.8vw;
+}
+
+.drop {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 9.5vw;
+  height: 13vh;
+  border-radius: .7rem;
+  margin: .5vh .5vw;
+  padding: 1vh 1vw;
+  font-size: .8rem;
+  background-color: #638e995d;
+
+  &:hover {
+    background-color: #638e9949;
+  }
+
+  &:hover::after {
+    background-color: transparent;
+  }
+
+}
+
+@media screen and (max-width: 900px) {
+
+  .draggable {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 45vh;
+    padding: 0 2vw;
+  }
+
+  .answers_drag_and_drop {
+    flex-direction: column;
+    padding: 0 0;
+    width: 50%;
+  }
+
+  .answer_drag_and_drop {
+    width: 34vw;
+    height: 8.2vh;
+    font-size: .6rem;
+  }
+
+  .classement_drag_and_drop {
+    flex-direction: column;
+    padding: 0 0;
+    margin: 0 1vw;
+    width: 50%;
+    height: 100%;
+  }
+
+  .classement1_drag_and_drop::after,
+  .classement2_drag_and_drop::after,
+  .classement3_drag_and_drop::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    border: .5vh solid transparent;
+    border-bottom-color: white;
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+
+  .sortable-chosen::after {
+    border-bottom-color: transparent;
+  }
+
+  .classement1_drag_and_drop::after {
+    top: 11.5vh;
+  }
+
+  .classement2_drag_and_drop::after {
+    top: 22.7vh;
+  }
+
+  .classement3_drag_and_drop::after {
+    top: 33.7vh;
+  }
+
+  .drop {
+    width: 34vw;
+    height: 8.2vh;
+    font-size: .6rem;
   }
 }
 </style>

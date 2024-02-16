@@ -7,9 +7,9 @@
           <h2>{{ title }}</h2>
         </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleAvatarModal" />
       </div>
-      <div class='main_avatar'>
+      <div class='main_modal'>
         <h3>NOM</h3>
-        <input type="text" class="field_avatar" name="name" id='name' v-model="name" required />
+        <input type="text" class="field_input" name="name" id='name' v-model="name" required />
         <h3>AVATAR</h3>
         <div class="images_avatar">
           <img class='image_avatar' v-for="i in avatarNumber" :src="`/players/player${i}.png`" alt="avatar_card"
@@ -45,73 +45,23 @@ const submit = () => {
 </script>
   
 <style scoped>
-.field_avatar {
-  display: inline-flex;
-  text-align: center;
-  margin: 0 auto;
-  width: 30%;
-  border: 0;
-  outline: 0;
-  border-bottom: 2px solid black;
-  font-size: 1.3rem;
-  color: black;
-  background: transparent;
-  transition: border-color 0.2s;
-  font-family: 'Roboto Mono', monospace;
-
-  &::placeholder {
-    color: transparent;
-  }
-
-  &:placeholder-shown {
-    cursor: text;
-  }
-}
-
-.field_avatar:focus {
-  filter: drop-shadow(0 2rem 2rem #638e99);
-  border-bottom: 2px solid #638e99;
-  color: #638e99;
-  box-shadow: 0 8px 4px -4px #638e99d1;
-}
-
-.main_avatar {
+.images_avatar {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-  padding: 0 6vw;
-  height: 55vh;
+  align-items: center;
+  height: 50vh;
+}
 
-  .images_avatar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-  }
+.image_avatar {
+  border-radius: .5rem;
+  max-width: 100%;
+  height: 35vh;
+  object-fit: cover;
+  margin: 1vh 1vw;
+  cursor: pointer;
 
-  .image_avatar {
-    border-radius: .5rem;
-    max-width: 100%;
-    height: 35vh;
-    object-fit: cover;
-    margin: 1vh 1vw;
-    cursor: pointer;
-
-    &:hover {
-      filter: drop-shadow(0 0 2rem white);
-
-      ::before {
-        filter: brightness(.5);
-        top: -100%;
-        left: 200%;
-      }
-    }
-
-  }
-
-  .checked_avatar {
-    transform: scale(1.2);
+  &:hover {
     filter: drop-shadow(0 0 2rem white);
 
     ::before {
@@ -123,7 +73,29 @@ const submit = () => {
 
 }
 
+.checked_avatar {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 2rem white);
+
+  ::before {
+    filter: brightness(.5);
+    top: -100%;
+    left: 200%;
+  }
+}
+
 .btn_avatar {
   background-color: #88924b;
+}
+
+@media screen and (max-width: 900px) {
+  .images_avatar {
+    height: 55vh;
+  }
+
+  .image_avatar {
+    height: 24vh;
+    margin: 1vh 6vw;
+  }
 }
 </style>
