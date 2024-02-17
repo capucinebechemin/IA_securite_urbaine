@@ -1,6 +1,6 @@
 <template>
     <div class="world4_page">
-        <HomeBanner title="Prédiction du crime" />
+        <HomeBanner title="Protection de la vie privée et contre-surveillance" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
             <span id="w4-start" @click="movePlayer('w4-start')"></span>
@@ -41,7 +41,7 @@ function movePlayer(castleName: string) {
             player.style.setProperty('top', `${topValueInPixels - playerHeight}px`);
             player.style.setProperty('left', leftValue);
         } else {
-            player.style.setProperty('top', `${topValueInPixels + 10}px`);
+            player.style.setProperty('top', `${topValueInPixels + 5}px`);
             player.style.setProperty('height', `${heightValueInPixels + 30}px`);
             player.style.setProperty('left', `${leftValueInPixels + heightValueInPixels / 2}px`);
         }
@@ -61,7 +61,7 @@ function movePlayer(castleName: string) {
     position: absolute;
     width: 5rem;
     top: 95%;
-    left: 60%;
+    left: 15%;
     border-radius: 50%;
     border-style: solid;
     border-width: 1rem 0;
@@ -72,8 +72,8 @@ function movePlayer(castleName: string) {
 #w4-player {
     position: absolute;
     height: 10rem;
-    top: 80%;
-    left: 60%;
+    top: 75%;
+    left: 15%;
     filter: drop-shadow(0 0 0.75rem white);
     transition: all 1s ease-in-out;
 }
@@ -83,25 +83,25 @@ function movePlayer(castleName: string) {
     animation: floating 2s ease-in-out 0s infinite;
     height: 8rem;
     top: 55%;
-    left: 50%;
+    left: 20%;
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
 #w4-castle2 {
     position: absolute;
     animation: floating 2s ease-in-out 1s infinite;
-    height: 5rem;
-    top: 30%;
-    left: 37%;
+    height: 7rem;
+    top: 52%;
+    left: 70%;
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
 #w4-castle3 {
     position: absolute;
     animation: floating 2s ease-in-out 0.5s infinite;
-    height: 3rem;
-    top: 15%;
-    left: 30%;
+    height: 5rem;
+    top: 45%;
+    left: 55%;
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
@@ -129,25 +129,39 @@ function movePlayer(castleName: string) {
 
 @media screen and (max-width: 900px) {
 
+    html{
+        background-position-x: 15% !important;
+    }
+
+    h1 {
+        font-size: 1rem;
+    }
+
+    #w4-start {
+        top: 100%;
+        left: 0;
+    }
+    
     #w4-player {
-        bottom: 5%;
-        right: 0;
+        top: 80%;
+        left: 0;
     }
 
     #w4-castle1 {
-        height: 6rem;
-        top: 60%;
-        left: 55%;
+        height: 7rem;
+        top: 70%;
+        left: 15%;
     }
 
     #w4-castle2 {
-        top: 45%;
+        height: 6rem;
+        top: 60%;
         left: 35%;
     }
 
     #w4-castle3 {
-        top: 35%;
-        left: 10%;
+        top: 50%;
+        left: 55%;
     }
 }
 </style>
