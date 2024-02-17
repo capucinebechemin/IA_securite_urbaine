@@ -9,7 +9,7 @@
             <img src="/world1/castle3.png" alt="castle3" id="castle3" @click="movePlayer('castle3')">
             <img :src="`/players/player${store.avatarId}.png`" alt="player" id="player">
         </div>
-        <Modals world="world1"></Modals>
+        <Modals world="world1" :v-show="store.isModalsVisible"></Modals>
     </div>
 </template>
 
@@ -50,12 +50,7 @@ function movePlayer(castleName: string) {
     }
 
     setTimeout(() => {
-        // store.toggleHolySentenceModal();
-        // store.toggleQuestionModal();
-        // store.toggleDragAndDropModal();
-        // store.toggleHeightQuestionModal();
-        store.toggleEstimationModal();
-        // store.toggleCaptchaModal();
+        store.toggleModals();
     }, 1500);
 
 }

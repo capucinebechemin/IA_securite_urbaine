@@ -13,6 +13,7 @@ export const useAlertsStore = defineStore('alerts', {
       isHeightQuestionModalVisible: sessionStorage.getItem('isHeightQuestionModalVisible') === 'true',
       isEstimationModalVisible: sessionStorage.getItem('isEstimationModalVisible') === 'true',
       isCaptchaModalVisible: sessionStorage.getItem('isCaptchaModalVisible') === 'true',
+      isModalsVisible: sessionStorage.getItem('isModalsVisible') === 'true',
     };
   },
   actions: {
@@ -31,6 +32,10 @@ export const useAlertsStore = defineStore('alerts', {
     toggleMenu() {
       this.isMenuVisible = !this.isMenuVisible
       sessionStorage.setItem('isMenuVisible', this.isMenuVisible ? 'true' : 'false');
+    },
+    toggleModals() {
+      this.isModalsVisible = !this.isModalsVisible;
+      sessionStorage.setItem('isModalsVisible', this.isModalsVisible ? 'true' : 'false');
     },
     toggleHolySentenceModal() {
       this.isHolySentenceModalVisible = !this.isHolySentenceModalVisible;

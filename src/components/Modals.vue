@@ -31,6 +31,13 @@ import CaptchaModal from '@/components/CaptchaModal.vue';
 
 const store = useAlertsStore();
 
+// store.toggleHolySentenceModal();
+// store.toggleQuestionModal();
+// store.toggleDragAndDropModal();
+// store.toggleHeightQuestionModal();
+store.toggleEstimationModal();
+// store.toggleCaptchaModal();
+
 const form1 = {
     "id": "1",
     "title": "Glisser déposer",
