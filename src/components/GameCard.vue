@@ -18,7 +18,7 @@ const props = defineProps({
   title: { type: String, required: true },
   description: String,
   img_title: String,
-  rating: Number,
+  rating: Array<Number>,
   world_num: String,
 });
 
@@ -34,7 +34,7 @@ const props = defineProps({
   width: 40rem;
   margin: 2rem auto;
   border: 1px solid #ffffff22;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 153, 255, 0.3) 100%);
+  background: rgba(255, 255, 255, 0.6);
   box-shadow: 0 7px 20px 5px #00000088;
   border-radius: .7rem;
   backdrop-filter: blur(7px);

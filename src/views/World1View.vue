@@ -4,9 +4,11 @@
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
             <span id="w1-start" class="start" @click="movePlayer('w1-start')"></span>
-            <img src="/world1/castle1.png" alt="world 1 castle 1" id="w1-castle1" class="castles" @click="movePlayer('w1-castle1')">
-            <img src="/world1/castle2.png" alt="wordl 1 castle 2" id="w1-castle2" class="castles" @click="movePlayer('w1-castle2')">
-            <img src="/world1/castle3.png" alt="world 1 castle 3" id="w1-castle3" class="castles" @click="movePlayer('w1-castle3')">
+            <div v-for="i in 3" class="castles" :id="'w1-castle' + i + '-div'">
+                <img :src="'/world1/castle' + i + '.png'" :alt="'world 1 castle ' + i" :id="'w1-castle' + i"
+                    @click="movePlayer('w1-castle' + i + '-div')">
+                <img v-if="store.scoreWorld1[i - 1]" src="/stars/star1.png" class="star-castle" />
+            </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="player" id="w1-player" class="player">
         </div>
 
@@ -20,7 +22,7 @@ import { useAlertsStore } from '@/store';
 import HomeBanner from '@/components/HomeBanner.vue';
 import BannerMenu from '@/components/BannerMenu.vue';
 import Modals from '@/components/Modals.vue';
-import { ref} from 'vue';
+import { ref } from 'vue';
 
 const store = useAlertsStore();
 
@@ -57,18 +59,17 @@ function movePlayer(castleName: string) {
 
     setTimeout(() => {
         nLevel.value = parseInt(castleName.charAt(castleName.length - 1));
-        if(nLevel.value>0){
-            modal.value?.launchLevel(nLevel.value, store.scoreWorld1[nLevel.value-2]);
+        if (nLevel.value > 0) {
+            modal.value?.launchLevel(nLevel.value, store.scoreWorld1[nLevel.value - 2]);
         }
-        
+
     }, 1500);
 
 }
- 
+
 </script>
 
 <style>
-
 .world_page {
     position: relative;
     height: 90vh;
@@ -89,7 +90,7 @@ function movePlayer(castleName: string) {
     left: 60%;
 }
 
-.player { 
+.player {
     position: absolute;
     height: 10rem;
     filter: drop-shadow(0 0 0.75rem white);
@@ -101,31 +102,53 @@ function movePlayer(castleName: string) {
     left: 60%;
 }
 
-.castles{
+.castles {
     position: absolute;
     animation: floating 2s ease-in-out 0s infinite;
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
-#w1-castle1 {
-    height: 8rem;
+#w1-castle1-div {
     top: 55%;
     left: 50%;
+
+    #w1-castle1 {
+        height: 8rem;
+    }
 }
 
-#w1-castle2 {
-    height: 5rem;
+#w1-castle2-div {
     top: 30%;
     left: 37%;
+
+    #w1-castle2 {
+        height: 5rem;
+    }
 }
 
-#w1-castle3 {
-    height: 3rem;
+#w1-castle3-div {
     top: 15%;
     left: 30%;
+
+    #w1-castle3 {
+        height: 3rem;
+    }
 }
 
-.start, .castles, .player {
+
+.star-castle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3rem;
+    height: 3rem;
+    z-index: -1;
+    filter: drop-shadow(0 0 1rem white);
+}
+
+.start,
+.castles,
+.player {
     cursor: pointer;
 }
 
@@ -155,18 +178,18 @@ function movePlayer(castleName: string) {
         left: 80%;
     }
 
-    #w1-castle1 {
+    #w1-castle1-div {
         height: 6rem;
         top: 60%;
         left: 55%;
     }
 
-    #w1-castle2 {
+    #w1-castle2-div {
         top: 45%;
         left: 35%;
     }
 
-    #w1-castle3 {
+    #w1-castle3-div {
         top: 35%;
         left: 10%;
     }
