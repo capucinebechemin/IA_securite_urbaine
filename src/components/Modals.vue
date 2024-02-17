@@ -17,7 +17,7 @@
         :textAnswer=form6.textAnswer v-show="store.isCaptchaModalVisible">
     </CaptchaModal>
     <HangedModal :id=form7.id :title=form7.title :start_question=form7.start_question :end_question=form7.end_question
-        :holy_word=form7.word :textAnswer=form7.textAnswer v-show="store.isHangedModalVisible">
+        :word=form7.word :textAnswer=form7.textAnswer v-show="store.isHangedModalVisible">
     </HangedModal>
 </template>
   
