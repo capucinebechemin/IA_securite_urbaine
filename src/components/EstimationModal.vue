@@ -64,13 +64,13 @@ const updateSliderPosition = (event: any) => {
     sliderPosition.value = value * 100;
 }
 
-const previous = () =>{
-  store.toggleEstimationModal;
-  props.previous();
+const previous = () => {
+    store.toggleEstimationModal();
+    props.previous();
 }
 
 const submit = () => {
-    store.toggleEstimationModal;
+    store.toggleEstimationModal();
     props.next();
 }
 

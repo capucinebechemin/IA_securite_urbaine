@@ -63,13 +63,13 @@ const clickAnswer = (a: number) => {
     }
 }
 
-const previous = () =>{
-  store.toggleCaptchaModal;
-  props.previous();
+const previous = () => {
+    store.toggleCaptchaModal();
+    props.previous();
 }
 
 const submit = () => {
-    store.toggleCaptchaModal;
+    store.toggleCaptchaModal();
     props.next();
 }
 

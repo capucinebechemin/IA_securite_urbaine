@@ -47,13 +47,13 @@ const data = ref({ questionId: null as String | null, selectedAnswer: [] as numb
 const selectedAnswer = ref<string>("");
 const answerPage = false;
 
-const previous = () =>{
-  store.toggleHolySentenceModal;
+const previous = () => {
+  store.toggleHolySentenceModal();
   props.previous();
 }
 
 const submit = () => {
-  store.toggleHolySentenceModal;
+  store.toggleHolySentenceModal();
   props.next();
 }
 

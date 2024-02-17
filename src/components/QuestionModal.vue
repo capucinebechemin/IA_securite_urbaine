@@ -61,13 +61,13 @@ const clickAnswer = (a: number) => {
   }
 }
 
-const previous = () =>{
-  store.toggleQuestionModal;
+const previous = () => {
+  store.toggleQuestionModal();
   props.previous();
 }
 
 const submit = () => {
-  store.toggleQuestionModal;
+  store.toggleQuestionModal();
   props.next();
 }
 

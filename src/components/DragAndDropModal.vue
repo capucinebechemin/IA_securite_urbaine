@@ -61,13 +61,13 @@ function onMove() {
   if (selectedAnswer.value.length == 4) return false
 };
 
-const previous = () =>{
-  store.toggleDragAndDropModal;
+const previous = () => {
+  store.toggleDragAndDropModal();
   props.previous();
 }
 
 const submit = () => {
-  store.toggleDragAndDropModal;
+  store.toggleDragAndDropModal();
   props.next();
 }
 

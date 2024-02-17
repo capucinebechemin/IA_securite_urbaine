@@ -62,7 +62,7 @@ const clickAnswer = (a: number) => {
 }
 
 const submit = () => {
-    store.toggleHeightQuestionModal;
+    store.toggleHeightQuestionModal();
 }
 
 </script>
