@@ -3,11 +3,11 @@
         <HomeBanner title="videosurveillance algorithmique" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="start" @click="movePlayer('start')"></span>
-            <img src="/world1/castle1.png" alt="castle1" id="castle1" @click="movePlayer('castle1')">
-            <img src="/world1/castle2.png" alt="castle2" id="castle2" @click="movePlayer('castle2')">
-            <img src="/world1/castle3.png" alt="castle3" id="castle3" @click="movePlayer('castle3')">
-            <img :src="`/players/player${store.avatarId}.png`" alt="player" id="player">
+            <span id="w1-start" @click="movePlayer('w1-start')"></span>
+            <img src="/world1/castle1.png" alt="world 1 castle 1" id="w1-castle1" @click="movePlayer('w1-castle1')">
+            <img src="/world1/castle2.png" alt="wordl 1 castle 2" id="w1-castle2" @click="movePlayer('w1-castle2')">
+            <img src="/world1/castle3.png" alt="world 1 castle 3" id="w1-castle3" @click="movePlayer('w1-castle3')">
+            <img :src="`/players/player${store.avatarId}.png`" alt="player" id="w1-player">
         </div>
         <HolySentenceModal :id=form3.id :title=form3.title :start_question=form3.start_question
             :end_question=form3.end_question :holy_word=form3.holy_word :textAnswer=form3.textAnswer
@@ -128,7 +128,7 @@ const form6 = {
 
 function movePlayer(castleName: string) {
     var castle = document.getElementById(castleName);
-    var player = document.getElementById('player');
+    var player = document.getElementById('w1-player');
 
     if (castle && player) {
         const castleStyle = window.getComputedStyle(castle);
@@ -142,7 +142,7 @@ function movePlayer(castleName: string) {
         const leftValueInPixels = parseInt(leftValue, 10);
         const heightValueInPixels = parseInt(heightValue, 10);
 
-        if (castleName === 'start') {
+        if (castleName === 'w1-start') {
             player.style.setProperty('height', '10rem');
             var playerHeight = parseInt(playerStyle.height, 10)
             player.style.setProperty('top', `${topValueInPixels - playerHeight}px`);
@@ -180,7 +180,7 @@ html {
     height: 90vh;
 }
 
-#start {
+#w1-start {
     position: absolute;
     width: 5rem;
     top: 95%;
@@ -192,7 +192,7 @@ html {
     filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.5));
 }
 
-#player {
+#w1-player {
     position: absolute;
     height: 10rem;
     top: 80%;
@@ -201,7 +201,7 @@ html {
     transition: all 1s ease-in-out;
 }
 
-#castle1 {
+#w1-castle1 {
     position: absolute;
     animation: floating 2s ease-in-out 0s infinite;
     height: 8rem;
@@ -210,7 +210,7 @@ html {
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
-#castle2 {
+#w1-castle2 {
     position: absolute;
     animation: floating 2s ease-in-out 1s infinite;
     height: 5rem;
@@ -219,7 +219,7 @@ html {
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
-#castle3 {
+#w1-castle3 {
     position: absolute;
     animation: floating 2s ease-in-out 0.5s infinite;
     height: 3rem;
@@ -228,11 +228,11 @@ html {
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
-#start,
-#castle1,
-#castle2,
-#castle3,
-#player {
+#w1-start,
+#w1-castle1,
+#w1-castle2,
+#w1-castle3,
+#w1-player {
     cursor: pointer;
 }
 
@@ -417,23 +417,23 @@ h3 {
 
 @media screen and (max-width: 900px) {
 
-    .player {
+    .w1-player {
         bottom: 5%;
         right: 0;
     }
 
-    .castle1 {
+    .w1-castle1 {
         height: 6rem;
         top: 60%;
         left: 55%;
     }
 
-    .castle2 {
+    .w1-castle2 {
         top: 45%;
         left: 35%;
     }
 
-    .castle3 {
+    .w1-castle3 {
         top: 35%;
         left: 10%;
     }

@@ -15,11 +15,16 @@ function changeBackground() {
    const body = document.querySelector('html');
    var html = document.getElementsByTagName("html")[0];
 
-   if (router.currentRoute.value.path == '/' || router.currentRoute.value.path === 'safecity') {
+   if (router.currentRoute.value.path == '/' || router.currentRoute.value.path === '/safecity') {
       html.style.setProperty("background-image", "url('/mini_games/games_bg.png')");
    } else if (router.currentRoute.value.path == '/world1') {
-      console.log('world1');
       html.style.setProperty("background-image", "url('/world1/world1.png')");
+   } else if (router.currentRoute.value.path == '/world2') {
+      html.style.setProperty("background-image", "url('/world2/world2.png')");
+   } else if (router.currentRoute.value.path == '/world3') {
+      html.style.setProperty("background-image", "url('/world3/world3.png')");
+   } else if (router.currentRoute.value.path == '/world4') {
+      html.style.setProperty("background-image", "url('/world4/world4.png')");
    }
 }
 </script>
