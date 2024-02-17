@@ -3,11 +3,11 @@
         <HomeBanner title="Protection de la vie privée et contre-surveillance" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w4-start" @click="movePlayer('w4-start')"></span>
-            <img src='/world4/castle1.png' alt="world 4 castle 1" id="w4-castle1" @click="movePlayer('w4-castle1')">
-            <img src='/world4/castle2.png' alt="world 4 castle 2" id="w4-castle2" @click="movePlayer('w4-castle2')">
-            <img src='/world4/castle3.png' alt="world 4 castle 3" id="w4-castle3" @click="movePlayer('w4-castle3')">
-            <img :src="`/players/player${store.avatarId}.png`" alt="w4-player" id="w4-player">
+            <span id="w4-start" @click="movePlayer('w4-start')" class="start"></span>
+            <img src='/world4/castle1.png' alt="world 4 castle 1" id="w4-castle1" class="castles" @click="movePlayer('w4-castle1')">
+            <img src='/world4/castle2.png' alt="world 4 castle 2" id="w4-castle2" class="castles" @click="movePlayer('w4-castle2')">
+            <img src='/world4/castle3.png' alt="world 4 castle 3" id="w4-castle3" class="castles" @click="movePlayer('w4-castle3')">
+            <img :src="`/players/player${store.avatarId}.png`" alt="w4-player" id="w4-player" class="player">
         </div>
     </div>
 </template>
@@ -51,87 +51,36 @@ function movePlayer(castleName: string) {
 </script>
 
 <style>
-
-.world4_page {
-    position: relative;
-    height: 90vh;
-}
-
 #w4-start {
-    position: absolute;
-    width: 5rem;
-    top: 95%;
-    left: 15%;
-    border-radius: 50%;
-    border-style: solid;
-    border-width: 1rem 0;
-    color: rgba(255, 255, 255, 0.3);
-    filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.5));
+    top: 90%;
+    left: 10%;
 }
 
 #w4-player {
-    position: absolute;
     height: 10rem;
     top: 75%;
-    left: 15%;
-    filter: drop-shadow(0 0 0.75rem white);
-    transition: all 1s ease-in-out;
+    left: 10%;
 }
 
 #w4-castle1 {
-    position: absolute;
-    animation: floating 2s ease-in-out 0s infinite;
     height: 8rem;
-    top: 55%;
-    left: 20%;
-    filter: drop-shadow(0 0 0.5rem crimson);
+    top: 50%;
+    left: 25%;
 }
 
 #w4-castle2 {
-    position: absolute;
-    animation: floating 2s ease-in-out 1s infinite;
     height: 7rem;
     top: 52%;
     left: 70%;
-    filter: drop-shadow(0 0 0.5rem crimson);
 }
 
 #w4-castle3 {
-    position: absolute;
-    animation: floating 2s ease-in-out 0.5s infinite;
     height: 5rem;
     top: 45%;
-    left: 55%;
-    filter: drop-shadow(0 0 0.5rem crimson);
-}
-
-#w4-start,
-#w4-castle1,
-#w4-castle2,
-#w4-castle3,
-#w4-player {
-    cursor: pointer;
-}
-
-@keyframes floating {
-    0% {
-        transform: translate(0, 0px);
-    }
-
-    50% {
-        transform: translate(0, -10px);
-    }
-
-    100% {
-        transform: translate(0, 0px);
-    }
+    left: 60%;
 }
 
 @media screen and (max-width: 900px) {
-
-    html{
-        background-position-x: 15% !important;
-    }
 
     h1 {
         font-size: 1rem;

@@ -17,14 +17,25 @@ function changeBackground() {
 
    if (router.currentRoute.value.path == '/' || router.currentRoute.value.path === '/safecity') {
       html.style.setProperty("background-image", "url('/mini_games/games_bg.png')");
+
    } else if (router.currentRoute.value.path == '/world1') {
       html.style.setProperty("background-image", "url('/world1/world1.png')");
+      
    } else if (router.currentRoute.value.path == '/world2') {
       html.style.setProperty("background-image", "url('/world2/world2.png')");
+      if (window.innerWidth <= 900) {
+         html.style.setProperty("background-position-x", "80%");
+      }
    } else if (router.currentRoute.value.path == '/world3') {
       html.style.setProperty("background-image", "url('/world3/world3.png')");
+      if (window.innerWidth <= 900) {
+         html.style.setProperty("background-position-x", "70%");
+      }
    } else if (router.currentRoute.value.path == '/world4') {
       html.style.setProperty("background-image", "url('/world4/world4.png')");
+      if (window.innerWidth <= 900) {
+         html.style.setProperty("background-position-x", "15%");
+      }
    }
 }
 </script>
@@ -43,7 +54,9 @@ html {
    -moz-background-size: cover;
    -o-background-size: cover;
    background-size: cover;
+   height: 100%;
 }
+
 
 a {
    color: black;

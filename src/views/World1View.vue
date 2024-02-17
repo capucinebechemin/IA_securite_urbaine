@@ -1,13 +1,13 @@
 <template>
-    <div class="world1_page">
+    <div class="world_page">
         <HomeBanner title="videosurveillance algorithmique" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w1-start" @click="movePlayer('w1-start')"></span>
-            <img src="/world1/castle1.png" alt="world 1 castle 1" id="w1-castle1" @click="movePlayer('w1-castle1')">
-            <img src="/world1/castle2.png" alt="wordl 1 castle 2" id="w1-castle2" @click="movePlayer('w1-castle2')">
-            <img src="/world1/castle3.png" alt="world 1 castle 3" id="w1-castle3" @click="movePlayer('w1-castle3')">
-            <img :src="`/players/player${store.avatarId}.png`" alt="player" id="w1-player">
+            <span id="w1-start" class="start" @click="movePlayer('w1-start')"></span>
+            <img src="/world1/castle1.png" alt="world 1 castle 1" id="w1-castle1" class="castles" @click="movePlayer('w1-castle1')">
+            <img src="/world1/castle2.png" alt="wordl 1 castle 2" id="w1-castle2" class="castles" @click="movePlayer('w1-castle2')">
+            <img src="/world1/castle3.png" alt="world 1 castle 3" id="w1-castle3" class="castles" @click="movePlayer('w1-castle3')">
+            <img :src="`/players/player${store.avatarId}.png`" alt="player" id="w1-player" class="player">
         </div>
         <HolySentenceModal :id=form3.id :title=form3.title :start_question=form3.start_question
             :end_question=form3.end_question :holy_word=form3.holy_word :textAnswer=form3.textAnswer
@@ -167,24 +167,15 @@ function movePlayer(castleName: string) {
 </script>
 
 <style>
-html {
-    background: url('/world1/world1.png') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
 
-.world1_page {
+.world_page {
     position: relative;
     height: 90vh;
 }
 
-#w1-start {
+.start {
     position: absolute;
     width: 5rem;
-    top: 95%;
-    left: 60%;
     border-radius: 50%;
     border-style: solid;
     border-width: 1rem 0;
@@ -192,47 +183,48 @@ html {
     filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.5));
 }
 
-#w1-player {
+#w1-start {
+    top: 95%;
+    left: 60%;
+}
+
+.player { 
     position: absolute;
     height: 10rem;
-    top: 80%;
-    left: 60%;
     filter: drop-shadow(0 0 0.75rem white);
     transition: all 1s ease-in-out;
 }
 
-#w1-castle1 {
+#w1-player {
+    top: 80%;
+    left: 60%;
+}
+
+.castles{
     position: absolute;
     animation: floating 2s ease-in-out 0s infinite;
+    filter: drop-shadow(0 0 0.5rem crimson);
+}
+
+#w1-castle1 {
     height: 8rem;
     top: 55%;
     left: 50%;
-    filter: drop-shadow(0 0 0.5rem crimson);
 }
 
 #w1-castle2 {
-    position: absolute;
-    animation: floating 2s ease-in-out 1s infinite;
     height: 5rem;
     top: 30%;
     left: 37%;
-    filter: drop-shadow(0 0 0.5rem crimson);
 }
 
 #w1-castle3 {
-    position: absolute;
-    animation: floating 2s ease-in-out 0.5s infinite;
     height: 3rem;
     top: 15%;
     left: 30%;
-    filter: drop-shadow(0 0 0.5rem crimson);
 }
 
-#w1-start,
-#w1-castle1,
-#w1-castle2,
-#w1-castle3,
-#w1-player {
+.start, .castles, .player {
     cursor: pointer;
 }
 
@@ -249,7 +241,6 @@ html {
         transform: translate(0, 0px);
     }
 }
-
 
 
 h3 {
@@ -417,23 +408,28 @@ h3 {
 
 @media screen and (max-width: 900px) {
 
-    .w1-player {
-        bottom: 5%;
-        right: 0;
+    #w1-start {
+        top: 95%;
+        left: 80%;
     }
 
-    .w1-castle1 {
+    #w1-player {
+        top: 70%;
+        left: 80%;
+    }
+
+    #w1-castle1 {
         height: 6rem;
         top: 60%;
         left: 55%;
     }
 
-    .w1-castle2 {
+    #w1-castle2 {
         top: 45%;
         left: 35%;
     }
 
-    .w1-castle3 {
+    #w1-castle3 {
         top: 35%;
         left: 10%;
     }
