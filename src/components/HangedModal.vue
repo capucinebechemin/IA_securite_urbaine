@@ -17,11 +17,12 @@
                         {{ props.end_question }}
                     </div>
                     <div class="drawing_hanged">
-                        <div v-for="l in props.word">{{ l }}</div>
+                        <input type="text" class="field_input" v-for="l in props.word" :v-model="l" readonly>
+                        <!-- <div v-for="l in props.word">{{ l }}</div> -->
                     </div>
                 </div>
                 <div class="letters_hanged">
-                    <button v-for=" a, index  in  alphabet " class="letter_hanged" @click="clickLetter(index)"
+                    <button v-for="   a, index    in    alphabet   " class="letter_hanged" @click="clickLetter(index)"
                         :class="{ letter_checked_hanged: !a.clickable }" :disabled=!a.clickable>{{
                             a.letter }}</button>
                 </div>
@@ -50,6 +51,7 @@ const props = defineProps({
     word: String,
     textAnswer: String,
 });
+
 const alphabet = ref([
     { "letter": "A", "clickable": true },
     { "letter": "B", "clickable": true },
