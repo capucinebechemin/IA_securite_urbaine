@@ -16,8 +16,8 @@
     <CaptchaModal :id=form6.id :title=form6.title :question=form6.question :answers=form6.answers
         :textAnswer=form6.textAnswer v-show="store.isCaptchaModalVisible">
     </CaptchaModal>
-    <HangedModal :id=form6.id :title=form6.title :question=form6.question :answers=form6.answers
-        :textAnswer=form6.textAnswer v-show="store.isHangedModalVisible">
+    <HangedModal :id=form7.id :title=form7.title :start_question=form7.start_question :end_question=form7.end_question
+        :holy_word=form7.word :textAnswer=form7.textAnswer v-show="store.isHangedModalVisible">
     </HangedModal>
 </template>
   
@@ -39,8 +39,9 @@ const store = useAlertsStore();
 // store.toggleQuestionModal();
 // store.toggleDragAndDropModal();
 // store.toggleHeightQuestionModal();
-store.toggleEstimationModal();
+// store.toggleEstimationModal();
 // store.toggleCaptchaModal();
+store.toggleHangedModal();
 
 const form1 = {
     "id": "1",
@@ -124,6 +125,16 @@ const form6 = {
         { "id": 6, "answer": "Une cravate", "img": "/captcha/captcha1_answer6.png", "response": false }
     ],
     "textAnswer": "En effet, le style vestimentaire n'impacte pas la reconnaissance faciale."
+};
+
+const form7 = {
+    "id": "7",
+    "title": "Pendu",
+    "type": "jeu_pendu",
+    "start_question": "Les modèles d'intelligence artificielle sont formés à l'aide d'images enregistrées. Cela permet de déterminer ce qui caractérise une situation dite “anormale” (c’est-à-dire peu fréquente statistiquement). Des biais algorithmiques peuvent alors apparaitre si ces données ne sont pas représentatives et engendrer de la ",
+    "end_question": ".",
+    "word": "discrimination",
+    "textAnswer": "La bonne réponse est la discrimination."
 };
 </script>
   

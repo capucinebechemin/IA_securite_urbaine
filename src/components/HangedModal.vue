@@ -1,25 +1,23 @@
-<!-- Modal estimation chiffré -->
+<!-- Modal des phrases à trou -->
 <template>
     <Transition name="modal">
         <div class="card_modal">
             <div class="head_modal">
                 <div class="title_modal">
                     <h2>{{ props.title }}</h2>
-                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-                    @click="store.toggleEstimationModal" />
+                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleHangedModal" />
             </div>
             <div class='main_modal'>
                 <p>Question</p>
-                <div class="question_modal">{{ props.question }}</div>
-                <p>Estimation</p>
-                <div class="answers_estimation">
-                    <div class="selectedAnswer_estimation" :style="{ left: sliderPosition + '%' }">{{ selectedAnswer }}
+                <div class="container_hanged">
+                    <div class="question_hanged">
+                        {{ props.start_question }}
+                        <input type="text" class="field_input" v-bind:class="{ field_input_good_answer: answerPage }"
+                            v-bind:readonly="answerPage" name="name" id='name' v-model="selectedAnswer" required>
+                        {{ props.end_question }}
                     </div>
-                    <input type="range" :min=props.minNumber :max=props.maxNumber v-model=selectedAnswer
-                        class="slider_estimation" id="myRange" @input="updateSliderPosition">
-                    <div class="display_values_estimation">
-                        <div>{{ minNumber }}</div>
-                        <div>{{ maxNumber }}</div>
+                    <div class="drawing_hanged">
+                        TEST
                     </div>
                 </div>
                 <div class="text_answer_modal" v-show="answerPage">Réponse : {{ textAnswer }}</div>
@@ -38,119 +36,44 @@ import { ref } from 'vue';
 import { useAlertsStore } from '@/store';
 
 const store = useAlertsStore();
+
 const props = defineProps({
     id: { type: String, required: true },
     title: String,
-    question: String,
-    minNumber: Number,
-    maxNumber: Number,
-    increment: Number,
-    minAnswer: Number,
-    maxAnswer: Number,
+    start_question: String,
+    end_question: String,
+    word: String,
     textAnswer: String,
 });
-const selectedAnswer = ref(props.minNumber);
-const data = ref({ questionId: null as String | null, selectedAnswer: Number });
 
+const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[] });
+const selectedAnswer = ref<string>("");
 const answerPage = false;
-const sliderPosition = ref(0);
-
-const updateSliderPosition = (event: any) => {
-    selectedAnswer.value = event.target.value;
-    const slider = event.target;
-    const value = (slider.value - slider.min) / (slider.max - slider.min)
-    sliderPosition.value = value * 100;
-}
 
 const submit = () => {
-    store.toggleEstimationModal;
+    store.toggleHangedModal();
 }
 
 </script>
     
 <style scoped>
-.answers_estimation {
-    position: relative;
-    margin: 1vh 4vw;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.slider_estimation {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 2vh;
-    background: transparent;
-    border: 3px solid #638e99;
-    border-radius: 0.4rem;
-}
-
-/* for chrome/safari */
-.slider_estimation::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 1.2vw;
-    height: 7vh;
-    background: #638e99;
-    transition: all 0.1s;
-    cursor: pointer;
-    border: .2rem solid #638e99;
-    border-radius: 0.4rem;
-}
-
-/* for firefox */
-.slider_estimation::-moz-range-thumb {
-    width: 1.2vw;
-    height: 7vh;
-    background: #638e99;
-    transition: all 0.25s;
-    cursor: pointer;
-    border: .2rem solid #638e99;
-    border-radius: 0.4rem;
-}
-
-/* for chrome/safari */
-.slider_estimation::-webkit-slider-thumb:hover {
-    border: 1px solid #ffffff44;
-    box-shadow: 0 7px 50px 10px white;
-    transform: scale(1.015);
-    filter: brightness(1.3);
-
-    ::before {
-        filter: brightness(.5);
-        top: -100%;
-        left: 200%;
-    }
-}
-
-/* for firefox */
-.slider_estimation::-moz-range-thumb:hover {
-    border: 1px solid #ffffff44;
-    box-shadow: 0 7px 50px 10px white;
-    transform: scale(1.015);
-    filter: brightness(1.3);
-
-    ::before {
-        filter: brightness(.5);
-        top: -100%;
-        left: 200%;
-    }
-}
-
-.selectedAnswer_estimation {
-    position: absolute;
-    margin-top: -8vh;
-    color: #638e99;
-    font-size: 1.5rem;
-    transform: translateX(-50%);
-}
-
-.display_values_estimation {
+.container_hanged {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
     align-items: center;
-    margin: 3vh 0;
+    padding: 0 4vw;
+}
+
+.question_hanged {
+    width: 50%;
+}
+
+.drawing_hanged {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 </style>
     
