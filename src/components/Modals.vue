@@ -16,6 +16,9 @@
     <CaptchaModal :id=form6.id :title=form6.title :question=form6.question :answers=form6.answers
         :textAnswer=form6.textAnswer v-show="store.isCaptchaModalVisible">
     </CaptchaModal>
+    <HangedModal :id=form6.id :title=form6.title :question=form6.question :answers=form6.answers
+        :textAnswer=form6.textAnswer v-show="store.isHangedModalVisible">
+    </HangedModal>
 </template>
   
 <script setup lang="ts">
@@ -28,6 +31,7 @@ import DragAndDropModal from '@/components/DragAndDropModal.vue';
 import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
 import EstimationModal from '@/components/EstimationModal.vue';
 import CaptchaModal from '@/components/CaptchaModal.vue';
+import HangedModal from './HangedModal.vue';
 
 const store = useAlertsStore();
 

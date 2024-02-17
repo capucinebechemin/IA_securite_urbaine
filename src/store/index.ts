@@ -14,6 +14,7 @@ export const useAlertsStore = defineStore('alerts', {
       isEstimationModalVisible: sessionStorage.getItem('isEstimationModalVisible') === 'true',
       isCaptchaModalVisible: sessionStorage.getItem('isCaptchaModalVisible') === 'true',
       isModalsVisible: sessionStorage.getItem('isModalsVisible') === 'true',
+      isHangedModalVisible: sessionStorage.getItem('isHangedModalVisible') === 'true',
     };
   },
   actions: {
@@ -60,6 +61,10 @@ export const useAlertsStore = defineStore('alerts', {
     toggleCaptchaModal() {
       this.isCaptchaModalVisible = !this.isCaptchaModalVisible;
       sessionStorage.setItem('isCaptchaModalVisible', this.isCaptchaModalVisible ? 'true' : 'false');
+    },
+    toggleHangedModal() {
+      this.isHangedModalVisible = !this.isHangedModalVisible;
+      sessionStorage.setItem('isHangedModalVisible', this.isHangedModalVisible ? 'true' : 'false');
     },
   },
 })
