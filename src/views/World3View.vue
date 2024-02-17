@@ -1,6 +1,6 @@
 <template>
     <div class="world3_page">
-        <HomeBanner title="Prédiction du crime" />
+        <HomeBanner title="Analyse statistique et criminalité" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
             <span id="w3-start" @click="movePlayer('w3-start')"></span>
@@ -60,8 +60,8 @@ function movePlayer(castleName: string) {
 #w3-start {
     position: absolute;
     width: 5rem;
-    top: 95%;
-    left: 60%;
+    top: 100%;
+    left: 57%;
     border-radius: 50%;
     border-style: solid;
     border-width: 1rem 0;
@@ -72,8 +72,8 @@ function movePlayer(castleName: string) {
 #w3-player {
     position: absolute;
     height: 10rem;
-    top: 80%;
-    left: 60%;
+    top: 85%;
+    left: 57%;
     filter: drop-shadow(0 0 0.75rem white);
     transition: all 1s ease-in-out;
 }
@@ -81,9 +81,9 @@ function movePlayer(castleName: string) {
 #w3-castle1 {
     position: absolute;
     animation: floating 2s ease-in-out 0s infinite;
-    height: 8rem;
-    top: 55%;
-    left: 50%;
+    height: 7rem;
+    top: 65%;
+    left: 55%;
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
@@ -91,8 +91,8 @@ function movePlayer(castleName: string) {
     position: absolute;
     animation: floating 2s ease-in-out 1s infinite;
     height: 5rem;
-    top: 30%;
-    left: 37%;
+    top: 50%;
+    left: 60%;
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
@@ -100,8 +100,8 @@ function movePlayer(castleName: string) {
     position: absolute;
     animation: floating 2s ease-in-out 0.5s infinite;
     height: 3rem;
-    top: 15%;
-    left: 30%;
+    top: 35%;
+    left: 65%;
     filter: drop-shadow(0 0 0.5rem crimson);
 }
 
@@ -129,25 +129,33 @@ function movePlayer(castleName: string) {
 
 @media screen and (max-width: 900px) {
 
+    html{
+        background-position-x: 70% !important;
+    }
+
+    #w3-start {
+        top: 95%;
+        left: 20%;
+    }
+
     #w3-player {
-        bottom: 5%;
-        right: 0;
+        top: 75%;
+        left: 20%;
     }
 
     #w3-castle1 {
-        height: 6rem;
         top: 60%;
-        left: 55%;
+        left: 25%;
     }
 
     #w3-castle2 {
-        top: 45%;
+        top: 43%;
         left: 35%;
     }
 
     #w3-castle3 {
-        top: 35%;
-        left: 10%;
+        top: 30%;
+        left: 45%;
     }
 }
 </style>
