@@ -1,21 +1,20 @@
 <template>
   <div class="star-rating">
-    <img v-for="star in rating" :key="star" :src="'/' + world_num + '/castle' + star + '.png'" class="star-img"
-      :alt="title" />
+    <div v-for="star in rating" :key="star" >
+      <img  v-if="Number(star)>3" :src="'stars/star' + world_num + '.png'" class="star-img" :alt="title" />
+      <img  v-else :src="'stars/star' + world_num + '.png'" class="star-img no-star" :alt="title" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 
 const props = defineProps({
-  rating: Number,
+  rating: Array<Number>,
   world_num: String,
   title: String
 });
 
-
-const rating = 0;
-const world_num = 'world1';
 const title = '';
 
 </script>
@@ -23,11 +22,16 @@ const title = '';
 <style scoped>
 .star-rating {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .star-img {
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
+  padding: 0 1rem;
+}
+
+.no-star {
+  filter: grayscale(100%);
 }
 </style>

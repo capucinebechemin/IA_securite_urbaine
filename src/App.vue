@@ -6,9 +6,13 @@
 import { RouterView } from 'vue-router'
 import router from './router';
 import { watch } from 'vue';
+import { useAlertsStore } from '@/store';
+
+const store = useAlertsStore();
 
 watch(router.currentRoute, () => {
    changeBackground();
+   setRessourceVisible();
 });
 
 function changeBackground() {
@@ -20,7 +24,7 @@ function changeBackground() {
 
    } else if (router.currentRoute.value.path == '/world1') {
       html.style.setProperty("background-image", "url('/world1/world1.png')");
-      
+
    } else if (router.currentRoute.value.path == '/world2') {
       html.style.setProperty("background-image", "url('/world2/world2.png')");
       if (window.innerWidth <= 900) {
@@ -36,6 +40,14 @@ function changeBackground() {
       if (window.innerWidth <= 900) {
          html.style.setProperty("background-position-x", "15%");
       }
+   }
+}
+
+function setRessourceVisible() {
+   if (router.currentRoute.value.path == '/' || router.currentRoute.value.path == '/safecity') {
+      store.isRessourceVisible = false;
+   } else {
+      store.isRessourceVisible = true;
    }
 }
 </script>

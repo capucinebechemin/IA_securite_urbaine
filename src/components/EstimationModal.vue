@@ -25,7 +25,7 @@
                 <div class="text_answer_modal" v-show="answerPage">Réponse : {{ textAnswer }}</div>
             </div>
             <div class='btn_submit_modal'>
-                <button class="btn_previous" @click="submit" v-show="!answerPage">Précédent</button>
+                <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
                 <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
                 <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
             </div>
@@ -35,11 +35,15 @@
     
 <script setup lang="ts">
 import { ref } from 'vue';
+import { Point } from '@/class/Point';
 import { useAlertsStore } from '@/store';
 
 const store = useAlertsStore();
 const props = defineProps({
     id: { type: String, required: true },
+    next: { type: Function, required: true },
+    previous: { type: Function, required: true },
+    addPoint: { type: Function, required: true },
     title: String,
     question: String,
     minNumber: Number,
@@ -62,8 +66,26 @@ const updateSliderPosition = (event: any) => {
     sliderPosition.value = value * 100;
 }
 
+const previous = () => {
+    store.toggleEstimationModal();
+    props.previous();
+}
+
 const submit = () => {
-    store.toggleEstimationModal;
+    store.toggleEstimationModal();
+    checkAnswer();
+    props.next();
+}
+
+const checkAnswer = () =>{
+  let answer = selectedAnswer.value!;
+  let point = 0;
+  if(answer < props.maxAnswer! && answer > props.minAnswer!){
+      point =1;
+  }
+  else 
+    point = 0
+  props.addPoint(new Point(point,"type"));
 }
 
 </script>

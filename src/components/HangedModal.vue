@@ -31,7 +31,7 @@
                 <div class="text_answer_modal" v-show="answerPage">Réponse : {{ textAnswer }}</div>
             </div>
             <div class='btn_submit_modal'>
-                <button class="btn_previous" @click="submit" v-show="!answerPage">Précédent</button>
+                <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
                 <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
                 <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
             </div>
@@ -42,46 +42,25 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useAlertsStore } from '@/store';
+import { Point } from '@/class/Point';
+import type { HangedAnswer } from '@/class/Hanged';
 
 const store = useAlertsStore();
 
 const props = defineProps({
     id: { type: String, required: true },
+    next: { type: Function, required: true },
+    previous: { type: Function, required: true },
+    addPoint: { type: Function, required: true },
     title: String,
     start_question: String,
     end_question: String,
     word: String,
+    answers: Array<HangedAnswer>,
     textAnswer: String,
 });
 
-const alphabet = ref([
-    { "letter": "A", "clickable": true },
-    { "letter": "B", "clickable": true },
-    { "letter": "C", "clickable": true },
-    { "letter": "D", "clickable": true },
-    { "letter": "E", "clickable": true },
-    { "letter": "F", "clickable": true },
-    { "letter": "G", "clickable": true },
-    { "letter": "H", "clickable": true },
-    { "letter": "I", "clickable": true },
-    { "letter": "J", "clickable": true },
-    { "letter": "K", "clickable": true },
-    { "letter": "L", "clickable": true },
-    { "letter": "M", "clickable": true },
-    { "letter": "N", "clickable": true },
-    { "letter": "O", "clickable": true },
-    { "letter": "P", "clickable": true },
-    { "letter": "Q", "clickable": true },
-    { "letter": "R", "clickable": true },
-    { "letter": "S", "clickable": true },
-    { "letter": "T", "clickable": true },
-    { "letter": "U", "clickable": true },
-    { "letter": "V", "clickable": true },
-    { "letter": "W", "clickable": true },
-    { "letter": "X", "clickable": true },
-    { "letter": "Y", "clickable": true },
-    { "letter": "Z", "clickable": true },
-]);
+const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => ({ letter, clickable: true })));
 
 const emptyWord = ref(props.word.split('').map(char => char === ' ' ? '&' : ' '));
 
@@ -110,10 +89,7 @@ const clickLetter = (index: number) => {
         nbBadAnswer.value++;
         console.log(nbBadAnswer.value);
 
-        if (nbBadAnswer.value > maxAnswer.value) {
-            //all the button are disabled
-
-        } else {
+        if (nbBadAnswer.value <= maxAnswer.value) {
             drawHangman();
         }
     }
@@ -201,9 +177,20 @@ const drawHangman = () => {
     }
 };
 
-const submit = () => {
-    selectedAnswer = ref(emptyWord.value.join(''));
+const previous = () => {
     store.toggleHangedModal();
+    props.previous();
+}
+
+const submit = () => {
+    store.toggleHangedModal();
+    checkAnswer();
+    props.next();
+}
+
+const checkAnswer = () => {
+    selectedAnswer = ref(emptyWord.value.join(''));
+    //TODO
 }
 
 </script>

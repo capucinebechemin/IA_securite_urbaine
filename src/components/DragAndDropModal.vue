@@ -27,7 +27,7 @@
         <div class="text_answer_modal" v-show="answerPage">Réponse : {{ textAnswer }}</div>
       </div>
       <div class='btn_submit_modal'>
-        <button class="btn_previous" @click="submit" v-show="!answerPage">Précédent</button>
+        <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
         <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
         <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
       </div>
@@ -38,20 +38,25 @@
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
 import { ref } from 'vue';
+import { Point } from '@/class/Point';
 import draggable from 'vuedraggable';
+import {type DragAndDropAnswer} from '@/class/DragAndDrop';
 
 const store = useAlertsStore();
 
 const props = defineProps({
   id: { type: String, required: true },
+  next: { type: Function, required: true },
+  previous: { type: Function, required: true },
+  addPoint: { type: Function, required: true },
   title: String,
   question: String,
-  answers: Array,
+  answers: { type: Array<DragAndDropAnswer>, required: true },
   textAnswer: String,
 });
 
 const data = ref({ questionId: null as string | null, selectedAnswer: [] as number[] });
-const selectedAnswer = ref([]);
+const selectedAnswer = ref<number[]>([]);
 const answerPage = false;
 const answers = ref(props.answers);
 
@@ -59,9 +64,36 @@ function onMove() {
   if (selectedAnswer.value.length == 4) return false
 };
 
-const submit = () => {
-  store.toggleDragAndDropModal;
+const previous = () => {
+  store.toggleDragAndDropModal();
+  props.previous();
 }
+
+const submit = () => {
+  store.toggleDragAndDropModal();
+  checkAnswer();
+  props.next();
+}
+
+const checkAnswer = () =>{
+  let nGoodAnswers = 0
+  let goodAsnwsers = props.answers?.filter((a) => a.response == true);
+  let answers = selectedAnswer.value.map(obj => obj.id);
+  goodAsnwsers?.forEach((a)=>{
+    if(answers.includes(a.id) ){
+      nGoodAnswers +=1;
+    } 
+  })
+  let point = 0;
+  if(nGoodAnswers == goodAsnwsers.length)
+    point = 1;
+  else if (nGoodAnswers == 0)
+    point = 0;
+  else 
+    point = 0.5
+  props.addPoint(new Point(point,"type"));
+}
+
 
 </script>
   

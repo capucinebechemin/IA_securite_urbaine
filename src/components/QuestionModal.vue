@@ -19,7 +19,7 @@
         <div class="text_answer_modal" v-show="answerPage">Réponse : {{ textAnswer }}</div>
       </div>
       <div class='btn_submit_modal'>
-        <button class="btn_previous" @click="submit" v-show="!answerPage">Précédent</button>
+        <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
         <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
         <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
       </div>
@@ -30,19 +30,19 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useAlertsStore } from '@/store';
+import { Point } from '@/class/Point';
+import type { QuestionAnswer } from '@/class/Question';
 
 const store = useAlertsStore();
 
-interface Answer {
-  id: number;
-  answer: string;
-  response: boolean;
-}
 const props = defineProps({
   id: { type: String, required: true },
+  next: { type: Function, required: true },
+  previous: { type: Function, required: true },
+  addPoint: { type: Function, required: true },
   title: String,
   question: String,
-  answers: Array<Answer>,
+  answers: Array<QuestionAnswer>,
   textAnswer: String,
 });
 
@@ -59,13 +59,39 @@ const clickAnswer = (a: number) => {
   }
 }
 
+const previous = () => {
+  store.toggleQuestionModal();
+  props.previous();
+}
+
 const submit = () => {
-  store.toggleQuestionModal;
+  store.toggleQuestionModal();
+  checkAnswer();
+  props.next();
+}
+
+const checkAnswer = () =>{
+  let nGoodAnswers = 0
+  let goodAsnwsers = props.answers?.filter((a) => a.response == true);
+  goodAsnwsers?.forEach((a)=>{
+    if(selectedAnswer.value.includes(a.id)){
+      nGoodAnswers +=1;
+    }
+  })
+  
+  let point = 0;
+  if(nGoodAnswers == goodAsnwsers!.length)
+    point = 1;
+  else if (nGoodAnswers == 0)
+    point = 0;
+  else 
+    point = 0.5
+  props.addPoint(new Point(point,"type"));
 }
 
 </script>
   
-<style scoped>
+<style>
 .answers_question {
   padding: 0 2vw;
   display: flex;
