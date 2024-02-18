@@ -191,6 +191,7 @@ const submit = () => {
 const checkAnswer = () => {
     selectedAnswer = ref(emptyWord.value.join(''));
     //TODO
+    props.addPoint(1,"");
 }
 
 </script>
