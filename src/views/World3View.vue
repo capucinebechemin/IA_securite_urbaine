@@ -4,9 +4,11 @@
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
             <span id="w3-start" @click="movePlayer('w3-start')" class="start"></span>
-            <img src='/world3/castle1.png' alt="world 3 castle 1" id="w3-castle1" class="castles" @click="movePlayer('w3-castle1')">
-            <img src='/world3/castle2.png' alt="world 3 castle 2" id="w3-castle2" class="castles" @click="movePlayer('w3-castle2')">
-            <img src='/world3/castle3.png' alt="world 3 castle 3" id="w3-castle3" class="castles" @click="movePlayer('w3-castle3')">
+            <div v-for="i in 3" class="castles" :id="'w3-castle' + i + '-div'">
+                <img :src="'/world3/castle' + i + '.png'" :alt="'world 3 castle ' + i" :id="'w3-castle' + i"
+                    @click="movePlayer('w3-castle' + i + '-div')">
+                <img v-if="store.scoreWorld3[i - 1]>3" src="/stars/star3.png" class="star-castle" />
+            </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w3-player" id="w3-player" class="player">
         </div>
     </div>
@@ -51,7 +53,6 @@ function movePlayer(castleName: string) {
 </script>
 
 <style>
-
 #w3-start {
     top: 100%;
     left: 57%;
@@ -63,22 +64,31 @@ function movePlayer(castleName: string) {
     left: 57%;
 }
 
-#w3-castle1 {
-    height: 7rem;
+#w3-castle1-div {
     top: 65%;
     left: 55%;
+
+    #w3-castle1 {
+        height: 7rem;
+    }
 }
 
-#w3-castle2 {
-    height: 5rem;
+#w3-castle2-div {
     top: 50%;
     left: 60%;
+
+    #w3-castle2 {
+        height: 5rem;
+    }
 }
 
-#w3-castle3 {
-    height: 3rem;
+#w3-castle3-div {
     top: 35%;
     left: 65%;
+
+    #w3-castle3 {
+        height: 3rem;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -93,19 +103,18 @@ function movePlayer(castleName: string) {
         left: 20%;
     }
 
-    #w3-castle1 {
+    #w3-castle1-div {
         top: 60%;
         left: 25%;
     }
 
-    #w3-castle2 {
+    #w3-castle2-div {
         top: 43%;
         left: 35%;
     }
 
-    #w3-castle3 {
+    #w3-castle3-div {
         top: 30%;
         left: 45%;
     }
-}
-</style>
+}</style>
