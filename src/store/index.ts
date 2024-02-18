@@ -18,10 +18,10 @@ export const useAlertsStore = defineStore('alerts', {
       isModalsVisible: sessionStorage.getItem('isModalsVisible') === 'true',
       isLevelEntranceModalVisible: sessionStorage.getItem('isLevelEntranceModalVisible') === 'true',
       isResultModalVisible: sessionStorage.getItem('isResultModalVisible') === 'true',
-      scoreWorld1: JSON.parse(sessionStorage.getItem('scoreWorld1') || "[4,1,0]" ) ,
-      scoreWorld2: JSON.parse(sessionStorage.getItem('scoreWorld2') || "[0,1,0]" ) ,
-      scoreWorld3: JSON.parse(sessionStorage.getItem('scoreWorld3') || "[0,1,1]" ) ,
-      scoreWorld4: JSON.parse(sessionStorage.getItem('scoreWorld4') || "[1,1,1]" ) ,
+      scoreWorld1: JSON.parse(sessionStorage.getItem('scoreWorld1') || "[0,0,0]" ) ,
+      scoreWorld2: JSON.parse(sessionStorage.getItem('scoreWorld2') || "[0,0,0]" ) ,
+      scoreWorld3: JSON.parse(sessionStorage.getItem('scoreWorld3') || "[0,0,0]" ) ,
+      scoreWorld4: JSON.parse(sessionStorage.getItem('scoreWorld4') || "[0,0,0]" ) ,
     };
   },
   actions: {

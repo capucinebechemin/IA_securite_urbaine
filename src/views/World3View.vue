@@ -12,6 +12,7 @@
             <img :src="`/players/player${store.avatarId}.png`" alt="w3-player" id="w3-player" class="player">
         </div>
         <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" ></RessourceModal>
+        <Modals ref="modal" world="world3" :v-show="store.isModalsVisible"></Modals>
     </div>
 </template>
 
@@ -20,8 +21,14 @@ import { useAlertsStore } from '@/store';
 import HomeBanner from '@/components/HomeBanner.vue';
 import BannerMenu from '@/components/BannerMenu.vue';
 import RessourceModal from '@/components/RessourceModal.vue';
+import Modals from '@/components/Modals.vue';
+import { ref } from 'vue';
+
 
 const store = useAlertsStore();
+
+const nLevel = ref(1);
+const modal = ref<any>(null);
 
 function movePlayer(castleName: string) {
     var castle = document.getElementById(castleName);
@@ -50,6 +57,15 @@ function movePlayer(castleName: string) {
             player.style.setProperty('left', `${leftValueInPixels + heightValueInPixels / 2}px`);
         }
     }
+    setTimeout(() => {
+        let element = castleName.replace(/[^\d]/g, '');
+        nLevel.value = parseInt(element[1]); 
+        if (nLevel.value > 0) {
+            modal.value?.launchLevel(nLevel.value, store.scoreWorld3[nLevel.value - 2],3);
+        }
+
+
+    }, 1500);
 
 }
 </script>

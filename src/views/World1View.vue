@@ -59,10 +59,12 @@ function movePlayer(castleName: string) {
     }
 
     setTimeout(() => {
-        nLevel.value = parseInt(castleName.charAt(castleName.length - 1));
+        let element = castleName.replace(/[^\d]/g, '');
+        nLevel.value = parseInt(element[1]); 
         if (nLevel.value > 0) {
-            modal.value?.launchLevel(nLevel.value, store.scoreWorld1[nLevel.value - 2]);
+            modal.value?.launchLevel(nLevel.value, store.scoreWorld1[nLevel.value - 2],1);
         }
+
 
     }, 1500);
 
