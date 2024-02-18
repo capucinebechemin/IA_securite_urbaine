@@ -11,6 +11,7 @@
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w4-player" id="w4-player" class="player">
         </div>
+        <Modals ref="modal" world="world4" :v-show="store.isModalsVisible"></Modals>
     </div>
 </template>
 
@@ -18,8 +19,14 @@
 import { useAlertsStore } from '@/store';
 import HomeBanner from '@/components/HomeBanner.vue';
 import BannerMenu from '@/components/BannerMenu.vue';
+import Modals from '@/components/Modals.vue';
+import { ref } from 'vue';
+
 
 const store = useAlertsStore();
+
+const nLevel = ref(1);
+const modal = ref<any>(null);
 
 function movePlayer(castleName: string) {
     var castle = document.getElementById(castleName);
@@ -48,6 +55,17 @@ function movePlayer(castleName: string) {
             player.style.setProperty('left', `${leftValueInPixels + heightValueInPixels / 2}px`);
         }
     }
+    setTimeout(() => {
+        let element = castleName.replace(/[^\d]/g, '');
+        nLevel.value = parseInt(element[1]); 
+        if (nLevel.value > 0) {
+            console.log(nLevel.value)
+            console.log(store.scoreWorld4)
+            modal.value?.launchLevel(nLevel.value, store.scoreWorld4[nLevel.value - 2],4);
+        }
+
+
+    }, 1500);
 
 }
 </script>
