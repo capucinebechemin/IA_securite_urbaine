@@ -73,7 +73,7 @@ const submit = () => {
 
 </script>
   
-<style scoped>
+<style>
 .answers_question {
   padding: 0 2vw;
   display: flex;

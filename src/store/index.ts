@@ -6,6 +6,8 @@ export const useAlertsStore = defineStore('alerts', {
       avatarName: sessionStorage.getItem('avatarName') || "",
       avatarId: sessionStorage.getItem('avatarId') || "1",
       isAvatarModalVisible: sessionStorage.getItem('isAvatarModalVisible') === 'true',
+      isRessourceModalVisible: false,
+      isRessourceVisible : false,
       isMenuVisible: sessionStorage.getItem('isMenuVisible') === 'true',
       isHolySentenceModalVisible: sessionStorage.getItem('isHolySentenceModalVisible') === 'true',
       isQuestionModalVisible: sessionStorage.getItem('isQuestionModalVisible') === 'true',
@@ -34,6 +36,9 @@ export const useAlertsStore = defineStore('alerts', {
     toggleAvatarModal() {
       this.isAvatarModalVisible = !this.isAvatarModalVisible;
       sessionStorage.setItem('isAvatarModalVisible', this.isAvatarModalVisible ? 'true' : 'false');
+    },
+    toggleRessourceModal(){
+      this.isRessourceModalVisible = !this.isRessourceModalVisible;
     },
     toggleMenu() {
       this.isMenuVisible = !this.isMenuVisible
