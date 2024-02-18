@@ -60,34 +60,34 @@ const clickAnswer = (a: number) => {
     }
 }
 
-const previous = () =>{
-  store.toggleHeightQuestionModal();
-  props.previous();
+const previous = () => {
+    store.toggleHeightQuestionModal();
+    props.previous();
 }
 
 const submit = () => {
-  store.toggleHeightQuestionModal();
-  checkAnswer();
-  props.next();
+    store.toggleHeightQuestionModal();
+    checkAnswer();
+    props.next();
 }
 
-const checkAnswer = () =>{
-  let nGoodAnswers = 0
-  let goodAsnwsers = props.answers?.filter((a) => a.response == true);
-  goodAsnwsers?.forEach((a)=>{
-    if(selectedAnswer.value.includes(a.id)){
-      nGoodAnswers +=1;
-    }
-  })
+const checkAnswer = () => {
+    let nGoodAnswers = 0
+    let goodAsnwsers = props.answers?.filter((a) => a.response == true);
+    goodAsnwsers?.forEach((a) => {
+        if (selectedAnswer.value.includes(a.id)) {
+            nGoodAnswers += 1;
+        }
+    })
 
-  let point = 0;
-  if(nGoodAnswers == goodAsnwsers!.length)
-    point = 1;
-  else if (nGoodAnswers == 0)
-    point = 0;
-  else 
-    point = 0.5
-  props.addPoint(new Point(point,"type"));
+    let point = 0;
+    if (nGoodAnswers == goodAsnwsers!.length)
+        point = 1;
+    else if (nGoodAnswers == 0)
+        point = 0;
+    else
+        point = 0.5
+    props.addPoint(new Point(point, "type"));
 }
 
 </script>

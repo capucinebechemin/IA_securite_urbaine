@@ -7,7 +7,7 @@ export const useAlertsStore = defineStore('alerts', {
       avatarId: sessionStorage.getItem('avatarId') || "1",
       isAvatarModalVisible: sessionStorage.getItem('isAvatarModalVisible') === 'true',
       isRessourceModalVisible: false,
-      isRessourceVisible : false,
+      isRessourceVisible: false,
       isMenuVisible: sessionStorage.getItem('isMenuVisible') === 'true',
       isHolySentenceModalVisible: sessionStorage.getItem('isHolySentenceModalVisible') === 'true',
       isQuestionModalVisible: sessionStorage.getItem('isQuestionModalVisible') === 'true',
@@ -16,12 +16,13 @@ export const useAlertsStore = defineStore('alerts', {
       isEstimationModalVisible: sessionStorage.getItem('isEstimationModalVisible') === 'true',
       isCaptchaModalVisible: sessionStorage.getItem('isCaptchaModalVisible') === 'true',
       isModalsVisible: sessionStorage.getItem('isModalsVisible') === 'true',
+      isHangedModalVisible: sessionStorage.getItem('isHangedModalVisible') === 'true',
       isLevelEntranceModalVisible: sessionStorage.getItem('isLevelEntranceModalVisible') === 'true',
       isResultModalVisible: sessionStorage.getItem('isResultModalVisible') === 'true',
-      scoreWorld1: JSON.parse(sessionStorage.getItem('scoreWorld1') || "[0,0,0]" ) ,
-      scoreWorld2: JSON.parse(sessionStorage.getItem('scoreWorld2') || "[0,0,0]" ) ,
-      scoreWorld3: JSON.parse(sessionStorage.getItem('scoreWorld3') || "[0,0,0]" ) ,
-      scoreWorld4: JSON.parse(sessionStorage.getItem('scoreWorld4') || "[0,0,0]" ) ,
+      scoreWorld1: JSON.parse(sessionStorage.getItem('scoreWorld1') || "[0,0,0]"),
+      scoreWorld2: JSON.parse(sessionStorage.getItem('scoreWorld2') || "[0,0,0]"),
+      scoreWorld3: JSON.parse(sessionStorage.getItem('scoreWorld3') || "[0,0,0]"),
+      scoreWorld4: JSON.parse(sessionStorage.getItem('scoreWorld4') || "[0,0,0]"),
     };
   },
   actions: {
@@ -37,7 +38,7 @@ export const useAlertsStore = defineStore('alerts', {
       this.isAvatarModalVisible = !this.isAvatarModalVisible;
       sessionStorage.setItem('isAvatarModalVisible', this.isAvatarModalVisible ? 'true' : 'false');
     },
-    toggleRessourceModal(){
+    toggleRessourceModal() {
       this.isRessourceModalVisible = !this.isRessourceModalVisible;
     },
     toggleMenu() {
@@ -72,6 +73,10 @@ export const useAlertsStore = defineStore('alerts', {
       this.isCaptchaModalVisible = !this.isCaptchaModalVisible;
       sessionStorage.setItem('isCaptchaModalVisible', this.isCaptchaModalVisible ? 'true' : 'false');
     },
+    toggleHangedModal() {
+      this.isHangedModalVisible = !this.isHangedModalVisible;
+      sessionStorage.setItem('isHangedModalVisible', this.isHangedModalVisible ? 'true' : 'false');
+    },
     toggleLevelEntranceModalVisible() {
       this.isLevelEntranceModalVisible = !this.isLevelEntranceModalVisible;
       sessionStorage.setItem('isLevelEntranceModalVisible', this.isLevelEntranceModalVisible ? 'true' : 'false');
@@ -80,7 +85,7 @@ export const useAlertsStore = defineStore('alerts', {
       this.isResultModalVisible = !this.isResultModalVisible;
       sessionStorage.setItem('isResultModalVisible', this.isResultModalVisible ? 'true' : 'false');
     },
-    setScoreWorld1(newScore:number[]){
+    setScoreWorld1(newScore: number[]) {
       this.scoreWorld1 = newScore;
       sessionStorage.setItem('scoreWorld1', JSON.stringify(this.scoreWorld1));
     }

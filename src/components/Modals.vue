@@ -1,22 +1,32 @@
 <template>
-        <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible"></ResultModal>
-        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :id=formHs.id :title=formHs.title :start_question=formHs.start_question
-            :end_question=formHs.end_question :holy_word=formHs.holy_word correctAnswer="[]" :textAnswer=formHs.textAnswer
-            v-show="store.isHolySentenceModalVisible" ></HolySentenceModal>
-        <QuestionModal :previous=previous :next=next :addPoint=addPoint :id=formQuestion.id :title=formQuestion.title :question=formQuestion.question :answers=formQuestion.answers
-            :textAnswer=formQuestion.textAnswer v-show="store.isQuestionModalVisible"></QuestionModal>
-        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint  :id=formDaD.id :title=formDaD.title :question=formDaD.question :answers=formDaD.answers correctAnswer="[]"
-            :textAnswer=formDaD.textAnswer v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
-            <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :id=formHeightQuestion.id :title=formHeightQuestion.title :question=formHeightQuestion.question :answers=formHeightQuestion.answers
-            :textAnswer=formHeightQuestion.textAnswer v-show="store.isHeightQuestionModalVisible">
-        </HeightQuestionModal>
-        <EstimationModal :previous=previous :next=next :addPoint=addPoint :id=formEstimation.id :title=formEstimation.title :question=formEstimation.question :minNumber=formEstimation.minNumber
-            :maxNumber=formEstimation.maxNumber :minAnswer=formEstimation.minAnswer :maxAnswer=formEstimation.maxAnswer :increment=formEstimation.increment
-            :textAnswer=formEstimation.textAnswer v-show="store.isEstimationModalVisible">
-        </EstimationModal>
-        <CaptchaModal :previous=previous :next=next :addPoint=addPoint :id=formCaptcha.id :title=formCaptcha.title :question=formCaptcha.question :answers=formCaptcha.answers
-            :textAnswer=formCaptcha.textAnswer v-show="store.isCaptchaModalVisible">
-        </CaptchaModal>
+    <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible">
+    </ResultModal>
+    <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :id=formHs.id :title=formHs.title
+        :start_question=formHs.start_question :end_question=formHs.end_question :holy_word=formHs.holy_word
+        correctAnswer="[]" :textAnswer=formHs.textAnswer v-show="store.isHolySentenceModalVisible"></HolySentenceModal>
+    <QuestionModal :previous=previous :next=next :addPoint=addPoint :id=formQuestion.id :title=formQuestion.title
+        :question=formQuestion.question :answers=formQuestion.answers :textAnswer=formQuestion.textAnswer
+        v-show="store.isQuestionModalVisible"></QuestionModal>
+    <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :id=formDaD.id :title=formDaD.title
+        :question=formDaD.question :answers=formDaD.answers correctAnswer="[]" :textAnswer=formDaD.textAnswer
+        v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
+    <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :id=formHeightQuestion.id
+        :title=formHeightQuestion.title :question=formHeightQuestion.question :answers=formHeightQuestion.answers
+        :textAnswer=formHeightQuestion.textAnswer v-show="store.isHeightQuestionModalVisible">
+    </HeightQuestionModal>
+    <EstimationModal :previous=previous :next=next :addPoint=addPoint :id=formEstimation.id :title=formEstimation.title
+        :question=formEstimation.question :minNumber=formEstimation.minNumber :maxNumber=formEstimation.maxNumber
+        :minAnswer=formEstimation.minAnswer :maxAnswer=formEstimation.maxAnswer :increment=formEstimation.increment
+        :textAnswer=formEstimation.textAnswer v-show="store.isEstimationModalVisible">
+    </EstimationModal>
+    <CaptchaModal :previous=previous :next=next :addPoint=addPoint :id=formCaptcha.id :title=formCaptcha.title
+        :question=formCaptcha.question :answers=formCaptcha.answers :textAnswer=formCaptcha.textAnswer
+        v-show="store.isCaptchaModalVisible">
+    </CaptchaModal>
+    <HangedModal :id=formHanged.id :title=formHanged.title :start_question=formHanged.start_question
+        :end_question=formHanged.end_question :word=formHanged.word :textAnswer=formHanged.textAnswer
+        v-show="store.isHangedModalVisible">
+    </HangedModal>
 </template>
   
 <script setup lang="ts">
@@ -27,6 +37,7 @@ import DragAndDropModal from '@/components/DragAndDropModal.vue';
 import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
 import EstimationModal from '@/components/EstimationModal.vue';
 import CaptchaModal from '@/components/CaptchaModal.vue';
+import HangedModal from './HangedModal.vue';
 import { ref, type Ref } from 'vue';
 import ResultModal from '@/components/ResultModal.vue';
 import { Point } from '@/class/Point';
@@ -37,9 +48,9 @@ import { HeightQuestion } from '@/class/HeightQuestion';
 import { DragAndDrop } from '@/class/DragAndDrop';
 import { Question } from '@/class/Question';
 import { HolySentence } from '@/class/HolySentence';
+import { Hanged } from '@/class/Hanged';
 
 const store = useAlertsStore();
-
 
 const result_modal = ref<any>(null);
 const nLevel = ref(0);
@@ -50,7 +61,7 @@ let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
 
 //test purpose
-const t =new DragAndDrop(
+const t = new DragAndDrop(
     '1',
     'Glisser déposer',
     'Selon vous, quels sont les buts principaux de la vidéosurveillance ?',
@@ -63,7 +74,7 @@ const t =new DragAndDrop(
     'En effet, les bonnes réponses sont la A) et la B)'
 );
 //test purpose
-const q =  new Question(
+const q = new Question(
     "2",
     "Question à choix multiples",
     "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
@@ -76,7 +87,7 @@ const q =  new Question(
     "En effet, les bonnes réponses sont la A) et la B)"
 )
 //test purpose
-const h= new HolySentence(
+const h = new HolySentence(
     "3",
     "Phrase à trou",
     "Selon vous, quels sont les buts principaux de la ",
@@ -100,7 +111,7 @@ const hq = new HeightQuestion(
     ],
     "En effet, les bonnes réponses sont la A) et la B)"
 );
-const e= new Estimation(
+const e = new Estimation(
     "5",
     "Estimation",
     "En pratique et en moyenne, combien de temps les collectivités gardent-elles les images ? (en jours)",
@@ -112,7 +123,7 @@ const e= new Estimation(
     "En effet, entre 21 et 30 jours est la bonne réponse"
 );
 
-const c= new Captcha(
+const c = new Captcha(
     "4",
     "Captcha",
     "Qu’est-ce qui peut bloquer la reconnaissance faciale ?",
@@ -127,42 +138,54 @@ const c= new Captcha(
     "En effet, le style vestimentaire n'impacte pas la reconnaissance faciale."
 );
 
-//test purpose
-let formEstimation : Ref<Estimation>=ref(e);
 
-let formCaptcha: Ref<Captcha>=ref(c);
+const hm = new Hanged(
+    "7",
+    "Pendu",
+    "Les modèles d'intelligence artificielle sont formés à l'aide d'images enregistrées. Cela permet de déterminer ce qui caractérise une situation dite “anormale” (c’est-à-dire peu fréquente statistiquement). Des biais algorithmiques peuvent alors apparaitre si ces données ne sont pas représentatives et engendrer de la ",
+    ".",
+    "DISCRIMI NATION",
+    "La bonne réponse est la discrimination."
+);
 
 //test purpose
-const listQuestions = [q,hq,t,h,q,
-                        c,e,t,q,t,
-                        h,c,q,e,q];
+let formEstimation: Ref<Estimation> = ref(e);
+
+let formCaptcha: Ref<Captcha> = ref(c);
+
+//test purpose
+const listQuestions = [hm, hq, t, h, q,
+    c, e, t, q, t,
+    h, c, q, e, q];
 
 
 let currentQuestions = [t, t, t, t, t];
 
-let formHeightQuestion : Ref<HeightQuestion>= ref(hq);
+let formHeightQuestion: Ref<HeightQuestion> = ref(hq);
 
-let formDaD: Ref<DragAndDrop>=ref(t);
+let formDaD: Ref<DragAndDrop> = ref(t);
 
 let formQuestion: Ref<Question> = ref(q);
 
 let formHs: Ref<HolySentence> = ref(h);
 
-const addPoint = (point : Point) => {
+let formHanged: Ref<Hanged> = ref(hm);
+
+const addPoint = (point: Point) => {
     points.value[nextQuestion.value] = point;
 }
 
-const launchLevel = (l: number,scorePrevious:number,w:number)=>{
+const launchLevel = (l: number, scorePrevious: number, w: number) => {
     nLevel.value = l;
     nWorld.value = w;
-    if(scorePrevious>=3 || nLevel.value==1){
+    if (scorePrevious >= 3 || nLevel.value == 1) {
 
         currentQuestions = []
         for (let i = 0; i < 5; i++) {
             currentQuestions[i] = listQuestions[i + (5 * (nLevel.value - 1))]
         }
         nextQuestion.value = 0;
-        points.value=[]
+        points.value = []
         store.toggleModals();
         next()
     }
@@ -186,38 +209,43 @@ const next = () => {
     }
 }
 
-const openGame=()=>{
-    switch(currentQuestions[nextQuestion.value-1].type){
-            case QuestionEnum.DragAndDrop:
-                formDaD.value = currentQuestions[nextQuestion.value-1] as DragAndDrop;
-                store.toggleDragAndDropModal();
-                break;
-            case QuestionEnum.Question:
-                formQuestion.value = currentQuestions[nextQuestion.value-1] as Question;
-                store.toggleQuestionModal();
-                break;
-            case QuestionEnum.HolySentence:
-                formHs.value = currentQuestions[nextQuestion.value - 1] as HolySentence;
-                store.toggleHolySentenceModal();
-                break;
-            case QuestionEnum.Estimation:
-                formEstimation.value = currentQuestions[nextQuestion.value - 1] as Estimation;
-                store.toggleEstimationModal();
-                break;
-            case QuestionEnum.Captcha:
-                formCaptcha.value = currentQuestions[nextQuestion.value-1] as Captcha;
-                store.toggleCaptchaModal();
-                break;
-            case QuestionEnum.Height:
-                formHeightQuestion.value = currentQuestions[nextQuestion.value-1] as HeightQuestion;
-                store.toggleHeightQuestionModal();
-                break;
-        }
+const openGame = () => {
+    switch (currentQuestions[nextQuestion.value - 1].type) {
+        case QuestionEnum.DragAndDrop:
+            formDaD.value = currentQuestions[nextQuestion.value - 1] as DragAndDrop;
+            store.toggleDragAndDropModal();
+            break;
+        case QuestionEnum.Question:
+            formQuestion.value = currentQuestions[nextQuestion.value - 1] as Question;
+            store.toggleQuestionModal();
+            break;
+        case QuestionEnum.HolySentence:
+            formHs.value = currentQuestions[nextQuestion.value - 1] as HolySentence;
+            store.toggleHolySentenceModal();
+            break;
+        case QuestionEnum.Estimation:
+            formEstimation.value = currentQuestions[nextQuestion.value - 1] as Estimation;
+            store.toggleEstimationModal();
+            break;
+        case QuestionEnum.Captcha:
+            formCaptcha.value = currentQuestions[nextQuestion.value - 1] as Captcha;
+            store.toggleCaptchaModal();
+            break;
+        case QuestionEnum.Height:
+            formHeightQuestion.value = currentQuestions[nextQuestion.value - 1] as HeightQuestion;
+            store.toggleHeightQuestionModal();
+            break;
+        case QuestionEnum.Hanged:
+            formHanged.value = currentQuestions[nextQuestion.value - 1] as Hanged;
+            store.toggleHangedModal();
+            break;
+    }
 }
 
 defineExpose({
     launchLevel
 });
+
 </script>
   
 <style>
