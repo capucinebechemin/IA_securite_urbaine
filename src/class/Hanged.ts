@@ -19,6 +19,11 @@ export class Hanged {
         this.answers = answers;
         this.textAnswer = textAnswer;
     }
+
+    static fromJSON(jsonData: any): Hanged {
+        const { id, title, start_question, end_question, word ,answers,textAnswer} = jsonData;
+        return new Hanged(id, title,start_question, end_question, word ,answers,textAnswer);
+      }
 }
 export interface HangedAnswer {
     id: number;

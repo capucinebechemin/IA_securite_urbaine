@@ -3,7 +3,7 @@ export enum QuestionEnum {
   Question = 'question',
   HolySentence = 'holysentence',
   Estimation = 'bar_chiffree',
-  Captcha = 'jeu_captcha',
   Height = 'jeu_selection',
   Hanged = 'jeu_pendu',
+  Captcha = 'captcha',
 }
