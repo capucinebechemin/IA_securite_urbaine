@@ -11,7 +11,7 @@
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="player" id="w1-player" class="player">
         </div>
-
+        <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" ></RessourceModal>
         <Modals ref="modal" world="world1" :v-show="store.isModalsVisible"></Modals>
 
     </div>
@@ -22,6 +22,7 @@ import { useAlertsStore } from '@/store';
 import HomeBanner from '@/components/HomeBanner.vue';
 import BannerMenu from '@/components/BannerMenu.vue';
 import Modals from '@/components/Modals.vue';
+import RessourceModal from '@/components/RessourceModal.vue';
 import { ref } from 'vue';
 
 const store = useAlertsStore();
