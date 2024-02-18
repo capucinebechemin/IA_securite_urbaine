@@ -34,6 +34,7 @@ onMounted(() => {
 });
 
 function getRessources(subject: String) {
+    //TODO : Remplacer par les données du JSON
     if (subject === "videosurveillance") {
         return [
             { title: "Ressource 1", url: "https://www.google.com" },
