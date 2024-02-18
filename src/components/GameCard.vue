@@ -18,7 +18,7 @@ const props = defineProps({
   title: { type: String, required: true },
   description: String,
   img_title: String,
-  rating: Array<Number>,
+  rating: Array<number>,
   world_num: String,
 });
 

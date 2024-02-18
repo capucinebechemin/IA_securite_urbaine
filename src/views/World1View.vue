@@ -7,7 +7,7 @@
             <div v-for="i in 3" class="castles" :id="'w1-castle' + i + '-div'">
                 <img :src="'/world1/castle' + i + '.png'" :alt="'world 1 castle ' + i" :id="'w1-castle' + i"
                     @click="movePlayer('w1-castle' + i + '-div')">
-                <img v-if="store.scoreWorld1[i - 1]" src="/stars/star1.png" class="star-castle" />
+                <img v-if="store.scoreWorld1[i - 1]>3" src="/stars/star1.png" class="star-castle" />
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="player" id="w1-player" class="player">
         </div>
