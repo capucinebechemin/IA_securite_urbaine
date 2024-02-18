@@ -34,7 +34,8 @@
         </div>
         <div class='btn_submit_modal'>
             <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-            <button class="btn_next" @click="checkAnswer" v-show="!answerPage">Suivant</button>
+            <button class="btn_reset" @click="reset" v-show="!answerPage">Reset</button>
+            <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
             <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
         </div>
     </div>
@@ -120,6 +121,11 @@ const previous = () => {
     props.previous();
 }
 
+const reset = () => {
+    lines.value = [];
+    connections.value = [];
+}
+
 const submit = () => {
     store.toggleConnectPairsModal();
     checkAnswer();
@@ -155,26 +161,38 @@ const checkAnswer = () => {
     justify-content: space-around;
     align-items: center;
     position: relative;
-    margin: 20px 0;
+    flex-direction: row;
 }
 
 .items-group {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding: 0 2vw;
+    max-height: 40vh;
+    width: 50%;
 }
 
 .item {
-    margin: 10px 0;
-    padding: 8px 16px;
     background-color: #e9e9e9;
-    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    align-items: center;
+    border-radius: .7rem;
+    height: 6vh;
+    margin: .5vh .5vw;
+    padding: 1vh 1vw;
+    background-color: #638e995d;
+    transition: filter 0.3s ease, transform 0.3s ease;
 
-.item:hover {
-    background-color: #d0d0d0;
+    &:hover {
+        filter: drop-shadow(0 0 2rem white);
+        transform: translateY(-3px);
+
+        ::before {
+            filter: brightness(.5);
+            top: -100%;
+            left: 200%;
+        }
+    }
 }
 
 .lines-container {

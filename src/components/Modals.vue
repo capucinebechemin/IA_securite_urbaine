@@ -306,6 +306,10 @@ h3 {
         background-color: grey;
     }
 
+    .btn_reset {
+        background-color: #BB5326;
+    }
+
     .btn_next {
         background-color: #88924b;
     }
