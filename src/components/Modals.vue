@@ -133,7 +133,7 @@ const form7 = {
     "type": "jeu_pendu",
     "start_question": "Les modèles d'intelligence artificielle sont formés à l'aide d'images enregistrées. Cela permet de déterminer ce qui caractérise une situation dite “anormale” (c’est-à-dire peu fréquente statistiquement). Des biais algorithmiques peuvent alors apparaitre si ces données ne sont pas représentatives et engendrer de la ",
     "end_question": ".",
-    "word": "discrimination",
+    "word": "DISCRIMI NATION",
     "textAnswer": "La bonne réponse est la discrimination."
 };
 </script>
