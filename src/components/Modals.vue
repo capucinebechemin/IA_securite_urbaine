@@ -1,32 +1,22 @@
 <template>
-    <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible">
-    </ResultModal>
-    <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :id=formHs.id :title=formHs.title
-        :start_question=formHs.start_question :end_question=formHs.end_question :holy_word=formHs.holy_word
-        correctAnswer="[]" :textAnswer=formHs.textAnswer v-show="store.isHolySentenceModalVisible"></HolySentenceModal>
-    <QuestionModal :previous=previous :next=next :addPoint=addPoint :id=formQuestion.id :title=formQuestion.title
-        :question=formQuestion.question :answers=formQuestion.answers :textAnswer=formQuestion.textAnswer
-        v-show="store.isQuestionModalVisible"></QuestionModal>
-    <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :id=formDaD.id :title=formDaD.title
-        :question=formDaD.question :answers=formDaD.answers correctAnswer="[]" :textAnswer=formDaD.textAnswer
-        v-show="store.isDragAndDropModalVisible"></DragAndDropModal>
-    <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :id=formHeightQuestion.id
-        :title=formHeightQuestion.title :question=formHeightQuestion.question :answers=formHeightQuestion.answers
-        :textAnswer=formHeightQuestion.textAnswer v-show="store.isHeightQuestionModalVisible">
-    </HeightQuestionModal>
-    <EstimationModal :previous=previous :next=next :addPoint=addPoint :id=formEstimation.id :title=formEstimation.title
-        :question=formEstimation.question :minNumber=formEstimation.minNumber :maxNumber=formEstimation.maxNumber
-        :minAnswer=formEstimation.minAnswer :maxAnswer=formEstimation.maxAnswer :increment=formEstimation.increment
-        :textAnswer=formEstimation.textAnswer v-show="store.isEstimationModalVisible">
-    </EstimationModal>
-    <CaptchaModal :previous=previous :next=next :addPoint=addPoint :id=formCaptcha.id :title=formCaptcha.title
-        :question=formCaptcha.question :answers=formCaptcha.answers :textAnswer=formCaptcha.textAnswer
-        v-show="store.isCaptchaModalVisible">
-    </CaptchaModal>
-    <HangedModal :previous=previous :next=next :addPoint=addPoint :id=formHanged.id :title=formHanged.title
-        :start_question=formHanged.start_question :end_question=formHanged.end_question :word=formHanged.word
-        :textAnswer=formHanged.textAnswer v-show="store.isHangedModalVisible"></HangedModal>
-    <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint title="Connect pairs" v-show="store.isConnectPairsModalVisible"></ConnectPairsModal>
+
+        <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible"/>
+        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint 
+        :form="formHs" v-show="store.isHolySentenceModalVisible" />
+        <QuestionModal :previous=previous :next=next :addPoint=addPoint 
+        :form="formQuestion" v-show="store.isQuestionModalVisible" />
+        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint 
+        :form="formDaD" v-show="store.isDragAndDropModalVisible" />
+        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint
+        :form="formHeightQuestion" v-show="store.isHeightQuestionModalVisible" />
+        <EstimationModal :previous=previous :next=next :addPoint=addPoint
+        :form="formEstimation" v-show="store.isEstimationModalVisible" />
+        <CaptchaModal :previous=previous :next=next :addPoint=addPoint
+        :form="formCaptcha" v-show="store.isCaptchaModalVisible" />
+        <HangedModal :previous=previous :next=next :addPoint=addPoint 
+        :form="formHanged" v-show="store.isHangedModalVisible"></HangedModal>
+        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint 
+        title="Connect pairs" v-show="store.isConnectPairsModalVisible"></ConnectPairsModal>
 </template>
   
 <script setup lang="ts">
@@ -61,7 +51,6 @@ const nWorld = ref(0);
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
 
-
 let currentQuestions = [];
 let listQuestions = [];
 //Ils ont besoin d'être init ils peuvent pas être vide
@@ -73,11 +62,11 @@ let formHs: Ref<HolySentence> = ref(data.worlds.world1.questions[13]);
 let formQuestion: Ref<Question> = ref(data.worlds.world1.questions[8]);
 let formHanged: Ref<Hanged> = ref(data.worlds.world1.questions[1]);
 
-const initQuestionsForWorld = () => {
 
-    for (let i = 1; i <= 15; i++) {
-        let question = data.worlds["world" + nWorld.value].questions[i];
-        switch (question.type) {
+const initQuestionsForWorld = ()=>{
+    for(let i = 1; i<=15;i++){
+        let question = data.worlds["world"+nWorld.value].questions[i];
+        switch(question.type){
             case QuestionEnum.Captcha:
                 listQuestions[i - 1] = Captcha.fromJSON(question);
                 break;
@@ -173,6 +162,7 @@ const openGame = () => {
             store.toggleHangedModal();
             break;
     }
+
 }
 
 defineExpose({
