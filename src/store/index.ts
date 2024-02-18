@@ -17,6 +17,7 @@ export const useAlertsStore = defineStore('alerts', {
       isCaptchaModalVisible: sessionStorage.getItem('isCaptchaModalVisible') === 'true',
       isModalsVisible: sessionStorage.getItem('isModalsVisible') === 'true',
       isHangedModalVisible: sessionStorage.getItem('isHangedModalVisible') === 'true',
+      isConnectPairsModalVisible: sessionStorage.getItem('isConnectPairsModalVisible') === 'true',
       isLevelEntranceModalVisible: sessionStorage.getItem('isLevelEntranceModalVisible') === 'true',
       isResultModalVisible: sessionStorage.getItem('isResultModalVisible') === 'true',
       scoreWorld1: JSON.parse(sessionStorage.getItem('scoreWorld1') || "[0,0,0]"),
@@ -76,6 +77,10 @@ export const useAlertsStore = defineStore('alerts', {
     toggleHangedModal() {
       this.isHangedModalVisible = !this.isHangedModalVisible;
       sessionStorage.setItem('isHangedModalVisible', this.isHangedModalVisible ? 'true' : 'false');
+    },
+    toggleConnectPairsModal() {
+      this.isConnectPairsModalVisible = !this.isConnectPairsModalVisible;
+      sessionStorage.setItem('isConnectPairsModalVisible', this.isConnectPairsModalVisible ? 'true' : 'false');
     },
     toggleLevelEntranceModalVisible() {
       this.isLevelEntranceModalVisible = !this.isLevelEntranceModalVisible;

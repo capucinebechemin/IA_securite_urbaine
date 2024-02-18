@@ -5,6 +5,7 @@ import World1View from '../views/World1View.vue'
 import World2View from '../views/World2View.vue'
 import World3View from '../views/World3View.vue'
 import World4View from '../views/World4View.vue'
+import TestView from '../views/TestView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/world4',
       name: 'world-4',
       component: World4View
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: TestView
     }
   ]
 })
