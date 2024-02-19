@@ -17,6 +17,9 @@
         :form="formHanged" v-show="store.isHangedModalVisible"></HangedModal>
         <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint 
         :form="formPairs" v-show="store.isConnectPairsModalVisible"></ConnectPairsModal>
+        <FlashcardModal :previous=previous :next=next :addPoint=addPoint
+        :form="formFlashcard" v-show="store.isFlashcardModalVisible" />
+        
 </template>
   
 <script setup lang="ts">
@@ -29,6 +32,7 @@ import EstimationModal from '@/components/EstimationModal.vue';
 import CaptchaModal from '@/components/CaptchaModal.vue';
 import HangedModal from './HangedModal.vue';
 import ConnectPairsModal from '@/components/ConnectPairsModal.vue';
+import FlashcardModal from '@/components/FlashcardModal.vue';
 import { ref, type Ref } from 'vue';
 import ResultModal from '@/components/ResultModal.vue';
 import { Point } from '@/class/Point';
@@ -42,12 +46,15 @@ import { HolySentence } from '@/class/HolySentence';
 import { Hanged } from '@/class/Hanged';
 import data from '@/data/questions.json';
 import { ConnectPairs } from '@/class/ConnectPairs';
+import { Flashcard } from '@/class/Flashcard';
 
 const store = useAlertsStore();
+
 
 const result_modal = ref<any>(null);
 const nLevel = ref(0);
 const nWorld = ref(0);
+
 
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
@@ -63,7 +70,26 @@ let formHs: Ref<HolySentence> = ref(data.worlds.world1.questions[13]);
 let formQuestion: Ref<Question> = ref(data.worlds.world1.questions[8]);
 let formHanged: Ref<Hanged> = ref(data.worlds.world1.questions[1]);
 let formPairs: Ref<ConnectPairs> = ref(data.worlds.world4.questions[1]);
-
+let formFlashcard: Ref<Flashcard> = ref(new Flashcard(
+    "8",
+    "Mémorie",
+    "Trouver les images paires",
+    [
+        { "id": 1, "answer": "Le maquillage", "img": "/captcha/captcha1_answer1.png" },
+        { "id": 2, "answer": "Le masque", "img": "/captcha/captcha1_answer2.png" },
+        { "id": 3, "answer": "Les perruques", "img": "/captcha/captcha1_answer3.png" },
+        { "id": 4, "answer": "Les fausses barbes", "img": "/captcha/captcha1_answer4.png" },
+        { "id": 5, "answer": "Un t-shirt vert", "img": "/captcha/captcha1_answer5.png" },
+        { "id": 6, "answer": "Une cravate", "img": "/captcha/captcha1_answer6.png" },
+        { "id": 7, "answer": "Le maquillage", "img": "/captcha/captcha1_answer1.png" },
+        { "id": 8, "answer": "Le masque", "img": "/captcha/captcha1_answer2.png" },
+        { "id": 9, "answer": "Les perruques", "img": "/captcha/captcha1_answer3.png" },
+        { "id": 10, "answer": "Les fausses barbes", "img": "/captcha/captcha1_answer4.png" },
+        { "id": 11, "answer": "Un t-shirt vert", "img": "/captcha/captcha1_answer5.png" },
+        { "id": 12, "answer": "Une cravate", "img": "/captcha/captcha1_answer6.png" }
+    ],
+    "En effet, le style vestimentaire n'impacte pas la reconnaissance faciale."
+));
 
 const initQuestionsForWorld = ()=>{
     for(let i = 1; i<=15;i++){
@@ -104,9 +130,8 @@ const addPoint = (point: Point) => {
 const launchLevel = (l: number, scorePrevious: number, w: number) => {
     nLevel.value = l;
     nWorld.value = w;
-
-    initQuestionsForWorld();
     if (scorePrevious >= 3 || nLevel.value == 1) {
+
         currentQuestions = []
         for (let i = 0; i < 5; i++) {
             currentQuestions[i] = listQuestions[i + (5 * (nLevel.value - 1))]
@@ -162,9 +187,9 @@ const openGame = () => {
             formHeightQuestion.value = currentQuestions[nextQuestion.value - 1] as HeightQuestion;
             store.toggleHeightQuestionModal();
             break;
-        case QuestionEnum.Hanged:
-            formHanged.value = currentQuestions[nextQuestion.value - 1] as Hanged;
-            store.toggleHangedModal();
+        case QuestionEnum.Flashcard:
+            formFlashcard.value = currentQuestions[nextQuestion.value - 1] as Flashcard;
+            store.toggleFlashcardModal();
             break;
         case QuestionEnum.ConnectPairs:
             formPairs.value = currentQuestions[nextQuestion.value - 1] as ConnectPairs;
@@ -177,7 +202,6 @@ const openGame = () => {
 defineExpose({
     launchLevel
 });
-
 </script>
   
 <style>
