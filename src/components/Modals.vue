@@ -16,7 +16,7 @@
         <HangedModal :previous=previous :next=next :addPoint=addPoint 
         :form="formHanged" v-show="store.isHangedModalVisible"></HangedModal>
         <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint 
-        title="Connect pairs" v-show="store.isConnectPairsModalVisible"></ConnectPairsModal>
+        :form="formPairs" v-show="store.isConnectPairsModalVisible"></ConnectPairsModal>
 </template>
   
 <script setup lang="ts">
@@ -41,6 +41,7 @@ import { Question } from '@/class/Question';
 import { HolySentence } from '@/class/HolySentence';
 import { Hanged } from '@/class/Hanged';
 import data from '@/data/questions.json';
+import { ConnectPairs } from '@/class/ConnectPairs';
 
 const store = useAlertsStore();
 
@@ -61,6 +62,7 @@ let formHeightQuestion: Ref<HeightQuestion> = ref(data.worlds.world1.questions[2
 let formHs: Ref<HolySentence> = ref(data.worlds.world1.questions[13]);
 let formQuestion: Ref<Question> = ref(data.worlds.world1.questions[8]);
 let formHanged: Ref<Hanged> = ref(data.worlds.world1.questions[1]);
+let formPairs: Ref<ConnectPairs> = ref(data.worlds.world4.questions[1]);
 
 
 const initQuestionsForWorld = ()=>{
@@ -87,6 +89,9 @@ const initQuestionsForWorld = ()=>{
                 break;
             case QuestionEnum.Hanged:
                 listQuestions[i - 1] = Hanged.fromJSON(question);
+                break;
+            case QuestionEnum.ConnectPairs:
+                listQuestions[i - 1] = ConnectPairs.fromJSON(question);
                 break;
         }
     }
@@ -160,6 +165,10 @@ const openGame = () => {
         case QuestionEnum.Hanged:
             formHanged.value = currentQuestions[nextQuestion.value - 1] as Hanged;
             store.toggleHangedModal();
+            break;
+        case QuestionEnum.ConnectPairs:
+            formPairs.value = currentQuestions[nextQuestion.value - 1] as ConnectPairs;
+            store.toggleConnectPairsModal();
             break;
     }
 

@@ -2,7 +2,7 @@
     <div class="card_modal">
         <div class="head_modal">
             <div class="title_modal">
-                <h2>{{ props.title }}</h2>
+                <h2>{{ props.form.title }}</h2>
             </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
                 @click="store.toggleConnectPairsModal()" />
         </div>
@@ -43,23 +43,28 @@
   
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
-import { ref } from 'vue';
-import type { PairItem } from '@/class/ConnectPairs';
+import { ref , watch } from 'vue';
+import { ConnectPairs, type PairItem } from '@/class/ConnectPairs';
+import { Point } from '@/class/Point';
+import { it } from 'node:test';
 
 const answerPage = false;
 
 const store = useAlertsStore();
-store.isModalsVisible = true;
-store.isConnectPairsModalVisible = true;
 
 const props = defineProps({
-    id: String,
+    form: { type: ConnectPairs, required: true },
     next: { type: Function, required: true },
     previous: { type: Function, required: true },
     addPoint: { type: Function, required: true },
-    title: String,
-    answers: Array<PairItem>
 });
+
+watch(() => props.form, (form) => {
+    selectedItems.value = { item1: null, item2: null };
+    connections.value =[];
+    lines.value =[];
+    items.value = form.pairs;
+  });
 
 const svg = ref(null);
 const lines = ref([]);
@@ -67,14 +72,15 @@ const itemRefs = ref({});
 const selectedItems = ref({ item1: null, item2: null });
 //A sauvegarder dans le cookie
 const connections = ref([]);
-// TODO : Remplacer avec les données du JSON
 const items = ref([
-    { item1: 'Item 1A', item2: 'Item 1B' },
-    { item1: 'Item 4A', item2: 'Item 4B' },
-    { item1: 'Item 5A', item2: 'Item 5B' },
-    { item1: 'Item 3A', item2: 'Item 3B' },
-    { item1: 'Item 2A', item2: 'Item 2B' }
+    { item1: '', item2: '' },
+    { item1: '', item2: '' },
+    { item1: '', item2: '' },
+    { item1: '', item2: '' },
+    { item1: '', item2: '' }
 ]);
+
+items.value = props.form.pairs;
 
 const setRef = (itemName) => {
     return (el) => {
@@ -145,7 +151,11 @@ const checkAnswer = () => {
     });
 
     if (score == items.value.length)
-        props.addPoint(1);
+        props.addPoint(new Point(1,""));
+    else if( score == 0)
+        props.addPoint(new Point(0,""));
+    else
+        props.addPoint(new Point(0.5,""));
 
     connections.value = [];
 };
