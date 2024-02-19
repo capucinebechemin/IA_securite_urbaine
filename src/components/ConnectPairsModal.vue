@@ -25,8 +25,8 @@
 
                 <!-- Items for the second group -->
                 <div class="items-group">
-                    <div :ref="setRef(item.item2)" v-for="(item, index) in items" :key="'item2-' + item.item2" class="item"
-                        @click="selectItem(item.item2, 'item2')">
+                    <div :ref="setRef(item.item2)" v-for="(item, index) in shuffledItems" :key="'item2-' + item.item2"
+                        class="item" @click="selectItem(item.item2, 'item2')">
                         {{ item.item2 }}
                     </div>
                 </div>
@@ -43,14 +43,15 @@
   
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
-import { ref , watch } from 'vue';
+import { onBeforeMount, ref, watch } from 'vue';
 import { ConnectPairs, type PairItem } from '@/class/ConnectPairs';
 import { Point } from '@/class/Point';
-import { it } from 'node:test';
 
 const answerPage = false;
 
 const store = useAlertsStore();
+
+store.toggleConnectPairsModal();
 
 const props = defineProps({
     form: { type: ConnectPairs, required: true },
@@ -61,24 +62,34 @@ const props = defineProps({
 
 watch(() => props.form, (form) => {
     selectedItems.value = { item1: null, item2: null };
-    connections.value =[];
-    lines.value =[];
+    connections.value = [];
+    lines.value = [];
     items.value = form.pairs;
-  });
+});
 
 const svg = ref(null);
 const lines = ref([]);
 const itemRefs = ref({});
 const selectedItems = ref({ item1: null, item2: null });
+var shuffledItems = ref([]);
 //A sauvegarder dans le cookie
 const connections = ref([]);
-const items = ref([
-    { item1: '', item2: '' },
-    { item1: '', item2: '' },
-    { item1: '', item2: '' },
-    { item1: '', item2: '' },
-    { item1: '', item2: '' }
-]);
+const items = ref([]);
+
+
+onBeforeMount(() => {
+    shuffledItems.value = shuffleItems();
+});
+
+function shuffleItems() {
+    let shuffledItems = [...items.value];
+    for (let i = shuffledItems.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledItems[i], shuffledItems[j]] = [shuffledItems[j], shuffledItems[i]];
+    }
+    return shuffledItems;
+};
+
 
 items.value = props.form.pairs;
 
@@ -105,7 +116,6 @@ const selectItem = (selectedItem, group) => {
 const drawLine = (item1Label, item2Label) => {
     const item1Element = itemRefs.value[item1Label];
     const item2Element = itemRefs.value[item2Label];
-    console.log(item1Element, item2Element);
 
     if (item1Element && item2Element) {
         const svgRect = svg.value.getBoundingClientRect();
@@ -150,12 +160,14 @@ const checkAnswer = () => {
         }
     });
 
+    console.log(score);
+
     if (score == items.value.length)
-        props.addPoint(new Point(1,""));
-    else if( score == 0)
-        props.addPoint(new Point(0,""));
+        props.addPoint(new Point(1, ""));
+    else if (score == 0)
+        props.addPoint(new Point(0, ""));
     else
-        props.addPoint(new Point(0.5,""));
+        props.addPoint(new Point(0.5, ""));
 
     connections.value = [];
 };
