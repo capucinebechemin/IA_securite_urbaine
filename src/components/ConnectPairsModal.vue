@@ -80,12 +80,14 @@ onBeforeMount(() => {
 });
 
 function shuffleItems() {
-    let shuffledItems = [...items.value];
-    for (let i = shuffledItems.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledItems[i], shuffledItems[j]] = [shuffledItems[j], shuffledItems[i]];
+    if (items.value) {
+        let shuffledItems = [...items.value];
+        for (let i = shuffledItems.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledItems[i], shuffledItems[j]] = [shuffledItems[j], shuffledItems[i]];
+        }
+        return shuffledItems;
     }
-    return shuffledItems;
 };
 
 const setRef = (itemName) => {

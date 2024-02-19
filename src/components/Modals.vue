@@ -1,29 +1,28 @@
 <template>
-
-        <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible"/>
-        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formHs" v-show="store.isHolySentenceModalVisible" />
-        <QuestionModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formQuestion" v-show="store.isQuestionModalVisible" />
-        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formDaD" v-show="store.isDragAndDropModalVisible" />
-        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint
-        :form="formHeightQuestion" v-show="store.isHeightQuestionModalVisible" />
-        <EstimationModal :previous=previous :next=next :addPoint=addPoint
-        :form="formEstimation" v-show="store.isEstimationModalVisible" />
-        <CaptchaModal :previous=previous :next=next :addPoint=addPoint
-        :form="formCaptcha" v-show="store.isCaptchaModalVisible" />
-        <HangedModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formHanged" v-show="store.isHangedModalVisible" />
-        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formPairs" v-show="store.isConnectPairsModalVisible" />
-        <FlashcardModal :previous=previous :next=next :addPoint=addPoint
-        :form="formFlashcard" v-show="store.isFlashCardModalVisible" />
-        
+    <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
+    <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="formHs"
+        v-show="store.isHolySentenceModalVisible" />
+    <QuestionModal :previous=previous :next=next :addPoint=addPoint :form="formQuestion"
+        v-show="store.isQuestionModalVisible" />
+    <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="formDaD"
+        v-show="store.isDragAndDropModalVisible" />
+    <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :form="formHeightQuestion"
+        v-show="store.isHeightQuestionModalVisible" />
+    <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="formEstimation"
+        v-show="store.isEstimationModalVisible" />
+    <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="formCaptcha"
+        v-show="store.isCaptchaModalVisible" />
+    <HangedModal :previous=previous :next=next :addPoint=addPoint :form="formHanged" v-show="store.isHangedModalVisible" />
+    <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="formPairs"
+        v-show="store.isConnectPairsModalVisible" />
+    <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="formFlashcard"
+        v-show="store.isFlashCardModalVisible" />
 </template>
   
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
+import dataW1 from '@/data/world1.json';
+import dataW2 from '@/data/world2.json';
 import HolySentenceModal from '@/components/HolySentenceModal.vue';
 import QuestionModal from '@/components/QuestionModal.vue';
 import DragAndDropModal from '@/components/DragAndDropModal.vue';
@@ -33,7 +32,7 @@ import CaptchaModal from '@/components/CaptchaModal.vue';
 import HangedModal from './HangedModal.vue';
 import ConnectPairsModal from '@/components/ConnectPairsModal.vue';
 import FlashcardModal from '@/components/FlashcardModal.vue';
-import { ref, type Ref } from 'vue';
+import { ref, type Ref, onBeforeMount, mergeProps } from 'vue';
 import ResultModal from '@/components/ResultModal.vue';
 import { Point } from '@/class/Point';
 import { Estimation } from '@/class/Estimation';
@@ -44,39 +43,55 @@ import { DragAndDrop } from '@/class/DragAndDrop';
 import { Question } from '@/class/Question';
 import { HolySentence } from '@/class/HolySentence';
 import { Hanged } from '@/class/Hanged';
-import data from '@/data/questions.json';
 import { ConnectPairs } from '@/class/ConnectPairs';
 import { Flashcard } from '@/class/Flashcard';
+import { on } from 'events';
+
+const props = defineProps({
+    world: String
+});
 
 const store = useAlertsStore();
-
 
 const result_modal = ref<any>(null);
 const nLevel = ref(0);
 const nWorld = ref(0);
+let data = ref();
 
 
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
-let titleResultat= ref('');
+let titleResultat = ref('');
 
 let currentQuestions = [];
 let listQuestions = [];
 //Ils ont besoin d'être init ils peuvent pas être vide
-let formCaptcha: Ref<Captcha> = ref(data.worlds.world1.questions[6]);
-let formDaD: Ref<DragAndDrop> = ref(data.worlds.world1.questions[4]);
-let formEstimation: Ref<Estimation> = ref(data.worlds.world1.questions[3]);
-let formHeightQuestion: Ref<HeightQuestion> = ref(data.worlds.world1.questions[2]);
-let formHs: Ref<HolySentence> = ref(data.worlds.world1.questions[13]);
-let formQuestion: Ref<Question> = ref(data.worlds.world1.questions[8]);
-let formHanged: Ref<Hanged> = ref(data.worlds.world1.questions[1]);
-let formPairs: Ref<ConnectPairs> = ref(data.worlds.world4.questions[1]);
-let formFlashcard: Ref<Flashcard> = ref(data.worlds.world1.questions[2]);
+let formCaptcha: Ref<Captcha> = ref(dataW1.questions[6]);
+let formDaD: Ref<DragAndDrop> = ref(dataW1.questions[4]);
+let formEstimation: Ref<Estimation> = ref(dataW1.questions[3]);
+let formHeightQuestion: Ref<HeightQuestion> = ref(dataW1.questions[2]);
+let formHs: Ref<HolySentence> = ref(dataW1.questions[13]);
+let formQuestion: Ref<Question> = ref(dataW1.questions[8]);
+let formHanged: Ref<Hanged> = ref(dataW1.questions[1]);
+let formPairs: Ref<ConnectPairs> = ref(dataW1.questions[1]);
+let formFlashcard: Ref<Flashcard> = ref(dataW1.questions[2]);
 
-const initQuestionsForWorld = ()=>{
-    for(let i = 1; i<=15;i++){
-        let question = data.worlds["world"+nWorld.value].questions[i];
-        switch(question.type){
+onBeforeMount(() => {
+    initWorld();
+});
+
+const initWorld = () => {
+    if (props.world == "world1") {
+        data = dataW1;
+    } else if (props.world == "world2") {
+        data = dataW2;
+    }
+}
+
+const initQuestionsForWorld = () => {
+    for (let i = 1; i <= 15; i++) {
+        let question = data.questions[i];
+        switch (question.type) {
             case QuestionEnum.Captcha:
                 listQuestions[i - 1] = Captcha.fromJSON(question);
                 break;
@@ -108,11 +123,11 @@ const initQuestionsForWorld = ()=>{
     }
 }
 
-    
-const addPoint = (point : Point) => {
+
+const addPoint = (point: Point) => {
     let copiedArray = Array.from(points.value);
     //[...points.value]
-    copiedArray[nextQuestion.value-1] = point;
+    copiedArray[nextQuestion.value - 1] = point;
     points.value = copiedArray;
 }
 
@@ -148,7 +163,7 @@ const next = () => {
         openGame();
     }
     else {
-        titleResultat.value="Résultat niveau " + nLevel.value;
+        titleResultat.value = "Résultat niveau " + nLevel.value;
         store.toggleResultModalVisible();
         result_modal.value?.updatePoints()
     }
