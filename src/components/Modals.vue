@@ -2,7 +2,7 @@
     <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
     <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="formHs"
         v-show="store.isHolySentenceModalVisible" />
-    <QuestionModal :previous=previous :next=next :addPoint=addPoint :form="formMultipleChoice"
+    <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint :form="formMultipleChoice"
         v-show="store.isMultipleChoiceModalVisible" />
     <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="formDaD"
         v-show="store.isDragAndDropModalVisible" />
@@ -26,6 +26,8 @@ import { useAlertsStore } from '@/store';
 // Import your data files for each world
 import dataW1 from '@/data/world1.json';
 import dataW2 from '@/data/world2.json';
+import dataW3 from '@/data/world3.json';
+import dataW4 from '@/data/world4.json';
 
 // Import all the modal components
 import ResultModal from '@/components/ResultModal.vue';
@@ -89,6 +91,12 @@ function initWorld() {
             break;
         case "world2":
             data = dataW2;
+            break;
+        case "world3":
+            data = dataW3;
+            break;
+        case "world4":
+            data = dataW4;
             break;
         default:
             console.error("Unknown world: ", props.world);

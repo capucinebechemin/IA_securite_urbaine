@@ -278,7 +278,7 @@
         "12": {
             "id": 12,
             "title": "Glisser déposer",
-            "type": "drag_and_drop",
+            "type": "draganddrop",
             "question": "D’après la législation en vigueur, les algorithmes ne sont pas censés se baser sur certains types de données ou respecter des normes précises lorsqu’elles y sont autorisées en fonction de leur secteur d’activité. Sélectionner les données qui sont sensibles.",
             "answers": [
                 {

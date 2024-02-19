@@ -55,7 +55,7 @@
     "4": {
       "id": 4,
       "title": "Quel est le taux d’homicides volontaires enregistrés par les policiers (hors tentatives) en France pour 100 000 personnes au cours des années.",
-      "type": "match_pairs",
+      "type": "connectpairs",
       "pairs": [
           {
               "item1": "1989",
@@ -223,7 +223,7 @@
     "10": {
       "id": 10,
       "title": "Quel est le nombre de cambriolage au cours des années selon les enquêtes(CESDIP, INSEE, Intérieur (SSM-SI)) nationales et statistiques policières ?",
-      "type": "match_pairs",
+      "type": "connectpairs",
       "pairs": [
           {
               "item1": "1994-1995",
