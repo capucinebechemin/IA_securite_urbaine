@@ -83,7 +83,7 @@ const checkAnswer = () =>{
   }
   else 
     point = 0
-  props.addPoint(new Point(point,"type"));
+  props.addPoint(new Point(point,"type",answer.toString()));
 }
 
 </script>

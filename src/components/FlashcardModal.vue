@@ -50,6 +50,8 @@ const answerPage = false;
 
 const img = "public/world1/castle2.png";
 
+const gameOver = ref(false); 
+
 const cards = ref(props.form.answers);
 cards.value = cards.value.map(card => {
     return {
@@ -64,7 +66,20 @@ const matchedCards = ref([]);
 const score = ref(0);
 
 watch(() => props.form, (form) => {
-    setTimeout(() => { selectedAnswer.value = []; }, 50);
+    score.value=0;
+    gameOver.value = false;
+    cards.value = form.answers;
+    cards.value = cards.value.map(card => {
+    return {
+        ...card,
+        flipped: false,
+        matched: false
+        };
+    });
+    setTimeout(() => { 
+        selectedAnswer.value = false;
+        flippedCards.value = [];
+    }, 50);
 });
 
 const flipCard = (id: number) => {
@@ -110,23 +125,19 @@ const submit = () => {
 }
 
 const checkAnswer = () => {
-    //TODO
-    let nGoodAnswers = 0
-    let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
-    goodAsnwsers?.forEach((a) => {
-        if (selectedAnswer.value.includes(a.id)) {
-            nGoodAnswers += 1;
-        }
-    })
 
     let point = 0;
-    if (nGoodAnswers == goodAsnwsers!.length)
+    let display = '';
+    if (gameOver.value == true){
         point = 1;
-    else if (nGoodAnswers == 0)
+        display = 'Flashcard Réussi' //later
+    }
+    else{
         point = 0;
-    else
-        point = 0.5
-    props.addPoint(new Point(point, "type"));
+        display = 'Flashcard Perdu' //later
+    }
+
+    props.addPoint(new Point(point, "type", display));
 }
 
 </script>

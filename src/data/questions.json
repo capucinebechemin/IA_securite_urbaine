@@ -166,13 +166,61 @@
           "textAnswer": ""
         },
         "5": {
-          "id": 13,
-          "type": "holysentence",
-          "title": "Phrase à trou",
-          "start_question": "ANSSI → Agence nationale de la",
-          "end_question": "des systèmes d'information",
-          "holy_word": "sécurité",
-          "textAnswer": ""
+          "id": 2,
+          "title": "Mémorie",
+          "type": "flashcard",
+          "question": "Trouver les images paires",
+          "answers": [
+            {
+              "answer": "Le maquillage",
+              "img": "/captcha/captcha1_answer1.png"
+            },
+            {
+              "answer": "Le masque",
+              "img": "/captcha/captcha1_answer2.png"
+            },
+            {
+              "answer": "Les perruques",
+              "img": "/captcha/captcha1_answer3.png"
+            },
+            {
+              "answer": "Les fausses barbes",
+              "img": "/captcha/captcha1_answer4.png"
+            },
+            {
+              "answer": "Un t-shirt vert",
+              "img": "/captcha/captcha1_answer5.png"
+            },
+            {
+              "answer": "Une cravate",
+              "img": "/captcha/captcha1_answer6.png"
+            },
+            {
+              "answer": "Le maquillage",
+              "img": "/captcha/captcha1_answer1.png"
+            },
+            {
+              "answer": "Le masque",
+              "img": "/captcha/captcha1_answer2.png"
+            },
+            {
+              "answer": "Les perruques",
+              "img": "/captcha/captcha1_answer3.png"
+            },
+            {
+              "answer": "Les fausses barbes",
+              "img": "/captcha/captcha1_answer4.png"
+            },
+            {
+              "answer": "Un t-shirt vert",
+              "img": "/captcha/captcha1_answer5.png"
+            },
+            {
+              "answer": "Une cravate",
+              "img": "/captcha/captcha1_answer6.png"
+            }
+          ],
+          "textAnswer": "Pas trop compliqué ce mémorie !"
         },
         "6": {
           "id": 14,
