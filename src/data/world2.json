@@ -3,8 +3,8 @@
     "questions": {
         "1": {
             "id": 1,
-            "title": "Quiz sur les biais algorithmiques",
-            "type": "multiple_choice",
+            "title": "Question à choix multiples",
+            "type": "choix_multiple",
             "question": "Quels sont les biais algorithmiques qui peuvent survenir en cas d’entraînement de modèle d’IA avec des données non représentatives ?",
             "answers": [
                 {
@@ -28,12 +28,12 @@
                     "response": true
                 }
             ],
-            "textAnswer": ""
+            "textAnswer": "Toutes les réponses sont correctes."
         },
         "2": {
             "id": 2,
-            "title": "Quiz sur l'algorithme de prédiction de délits",
-            "type": "multiple_choice",
+            "title": "Question à choix multiples",
+            "type": "choix_multiple",
             "question": "L’algorithme de prédiction de délits s’appuie sur :",
             "answers": [
                 {
@@ -61,8 +61,8 @@
         },
         "3": {
             "id": 3,
-            "title": "Relier des paires sur la prédiction criminelle",
-            "type": "match_pairs",
+            "title": "Reliez chaque concept ou technologie de la prédiction criminelle à son application ou caractéristique principale",
+            "type": "connectpairs",
             "pairs": [
                 {
                     "item1": "1) Analyse prédictive",
@@ -85,64 +85,16 @@
         "4": {
             "id": 4,
             "title": "Pendu sur la police prédictive",
-            "type": "hangman",
-            "start_question": "Police prédictive : Son objectif principal est d'anticiper les faits et les zones les plus à risque avant qu'ils ne se produisent réellement en utilisant notamment des données ouvertes et celles produites par les services de sécurité.",
-            "word": "ANTICIPATION",
-            "textAnswer": ""
+            "type": "jeu_pendu",
+            "start_question": "",
+            "end_question": " : Son objectif principal est d'anticiper les faits et les zones les plus à risque avant qu'ils ne se produisent réellement en utilisant notamment des données ouvertes et celles produites par les services de sécurité.",
+            "word": "POLICE PREDICTIVE",
+            "textAnswer": "La réponse est police prédictive."
         },
         "5": {
             "id": 5,
-            "title": "Sélection de villes pratiquant la prédiction policière",
-            "type": "drag_and_drop",
-            "question": "Sélectionner parmi les villes suivantes, celles qui effectuent de la prédiction policière.",
-            "answers": [
-                {
-                    "id": "9",
-                    "answer": "Angers",
-                    "response": false
-                },
-                {
-                    "id": "10",
-                    "answer": "Nantes",
-                    "response": true
-                },
-                {
-                    "id": "11",
-                    "answer": "Lille",
-                    "response": true
-                },
-                {
-                    "id": "12",
-                    "answer": "Lyon",
-                    "response": true
-                },
-                {
-                    "id": "13",
-                    "answer": "Bordeaux",
-                    "response": false
-                },
-                {
-                    "id": "14",
-                    "answer": "Montpellier",
-                    "response": true
-                },
-                {
-                    "id": "15",
-                    "answer": "Nancy",
-                    "response": false
-                },
-                {
-                    "id": "16",
-                    "answer": "Limoges",
-                    "response": false
-                }
-            ],
-            "textAnswer": ""
-        },
-        "6": {
-            "id": 6,
-            "title": "Processus de la police prédictive",
-            "type": "drag_and_drop",
+            "title": "Glisser déposer",
+            "type": "draganddrop",
             "question": "Classez les éléments suivants en fonction de leur étape dans le processus de la police prédictive :",
             "answers": [
                 {
@@ -168,8 +120,8 @@
             ],
             "textAnswer": ""
         },
-        "7": {
-            "id": 7,
+        "6": {
+            "id": 6,
             "title": "Quiz sur les objectifs de la police prédictive",
             "type": "multiple_choice",
             "question": "A votre avis, quels sont les objectifs visés pour les forces de l’ordre d’avoir recours à la police prédictive ?",
@@ -197,9 +149,42 @@
             ],
             "textAnswer": "Les réponses B) et C) sont correctes. L'objectif n'est pas d'arrêter des personnes avant qu'un délit soit commis, ce qui serait contraire aux principes de la justice préventive."
         },
+        "7": {
+            "id": 7,
+            "title": "Mémorie",
+            "type": "flashcard",
+            "question": "Trouver les images paires",
+            "answers": [
+                {
+                    "answer": "Le maquillage",
+                    "img": "/captcha/captcha2_answer1.png"
+                },
+                {
+                    "answer": "Le masque",
+                    "img": "/captcha/captcha2_answer2.png"
+                },
+                {
+                    "answer": "Les perruques",
+                    "img": "/captcha/captcha2_answer3.png"
+                },
+                {
+                    "answer": "Les fausses barbes",
+                    "img": "/captcha/captcha2_answer4.png"
+                },
+                {
+                    "answer": "Un t-shirt vert",
+                    "img": "/captcha/captcha2_answer5.png"
+                },
+                {
+                    "answer": "Une cravate",
+                    "img": "/captcha/captcha2_answer6.png"
+                }
+            ],
+            "textAnswer": "Pas trop compliqué ce mémorie !"
+        },
         "8": {
             "id": 8,
-            "title": "Captcha sur l'incertitude et la police prédictive",
+            "title": "Captcha",
             "type": "captcha",
             "question": "La police prédictive pose cependant des questions sur la pertinence de ses résultats. Qui a dit : “l’incertitude n’est pas modélisable” ?",
             "answers": [
@@ -211,7 +196,7 @@
                 {
                     "id": "26",
                     "answer": "Aristote",
-                    "response": false
+                    "response": true
                 },
                 {
                     "id": "27",
@@ -226,7 +211,7 @@
                 {
                     "id": "29",
                     "answer": "Leibniz",
-                    "response": true
+                    "response": false
                 },
                 {
                     "id": "30",
@@ -249,36 +234,119 @@
                     "response": false
                 }
             ],
-            "textAnswer": "Leibniz a exprimé des doutes quant à la possibilité de modéliser l'incertitude."
+            "textAnswer": "Socrate a exprimé des doutes quant à la possibilité de modéliser l'incertitude."
         },
         "9": {
             "id": 9,
-            "title": "Phrase à trou sur les intérêts de la police prédictive",
-            "type": "fill_in_the_blanks",
-            "start_question": "La police prédictive est censée avoir plusieurs intérêts pour les forces de l’ordre. Elle permettrait d’orienter les patrouilles, d’établir des priorités d’action, de fixer des objectifs, d’optimiser les ressources sur des secteurs géographiques précis et a un impact",
+            "title": "Phrase à trou",
+            "type": "holysentence",
+            "start_question": "La police prédictive est censée avoir plusieurs intérêts pour les forces de l’ordre. Elle permettrait d’orienter ",
             "end_question": ".",
-            "holy_word": "managérial",
+            "holy_word": ", d’établir des priorités d’action, de fixer des objectifs, d’optimiser les ressources sur des secteurs géographiques précis et a un impact managérial. ",
             "textAnswer": ""
         },
         "10": {
             "id": 10,
-            "title": "Pendu sur les technologies de surveillance",
-            "type": "hangman",
-            "start_question": "Dans la police prédictive, plusieurs technologies de surveillance sont utilisées pour collecter et analyser les données. Voici quelques-unes de ces technologies : caméras de vidéosurveillance, reconnaissance faciale, systèmes de lecture automatique des plaques d'immatriculation (LAPI), capteurs acoustiques, drones, …",
+            "title": "Pendu",
+            "type": "jeu_pendu",
+            "start_question": "Dans la police prédictive, plusieurs technologies de surveillance sont utilisées pour collecter et analyser les données. Voici quelques-unes de ces technologies : caméras de vidéosurveillance, ",
+            "end_question": ",  systèmes de lecture automatique des plaques d'immatriculation (LAPI), capteurs acoustiques, drones, …",
             "word": "SURVEILLANCE",
             "textAnswer": ""
         },
         "11": {
             "id": 11,
-            "title": "Barre chiffrée sur l'implémentation de la police prédictive",
-            "type": "numeric_bar",
+            "title": "Barre chiffrée",
+            "type": "bar_chiffree",
             "question": "En quelle année la police prédictive a été implémentée pour la première fois ?",
             "minNumber": 2000,
             "maxNumber": 2020,
             "increment": 1,
             "minAnswer": 2013,
             "maxAnswer": 2013,
-            "textAnswer": "Le programme PredPol, a été testé pour la première fois par le département de police de Los Angeles (LAPD) en 2013."
+            "textAnswer": "Le programme PredPol, a été testé pour la première fois par le département de police de Los Angeles (LAPD) en 2013. PredPol utilisait des algorithmes pour prédire les endroits et les moments où des crimes spécifiques étaient susceptibles de se produire, permettant ainsi une allocation plus ciblée des ressources policières."
+        },
+        "12": {
+            "id": 12,
+            "title": "Glisser déposer",
+            "type": "drag_and_drop",
+            "question": "D’après la législation en vigueur, les algorithmes ne sont pas censés se baser sur certains types de données ou respecter des normes précises lorsqu’elles y sont autorisées en fonction de leur secteur d’activité. Sélectionner les données qui sont sensibles.",
+            "answers": [
+                {
+                    "id": 1,
+                    "answer": "origine ethnique",
+                    "response": true
+                },
+                {
+                    "id": 2,
+                    "answer": "données d’identification (nom, prénom)",
+                    "response": false
+                },
+                {
+                    "id": 3,
+                    "answer": "données financières",
+                    "response": false
+                },
+                {
+                    "id": 4,
+                    "answer": "opinions politiques",
+                    "response": true
+                },
+                {
+                    "id": 5,
+                    "answer": "convictions religieuses",
+                    "response": true
+                },
+                {
+                    "id": 6,
+                    "answer": "données démographique (âge)",
+                    "response": false
+                },
+                {
+                    "id": 7,
+                    "answer": "données biométriques",
+                    "response": true
+                },
+                {
+                    "id": 8,
+                    "answer": "style vestimentaire",
+                    "response": false
+                }
+            ],
+            "textAnswer": ""
+        },
+        "13": {
+            "id": 13,
+            "title": "Phrase à trou sur le marché de la surveillance",
+            "type": "holysentence",
+            "start_question": "L’un des plus importants marchés de la surveillance aujourd’hui porte sur le contrôle des ",
+            "end_question": " à l’intérieur et à l’extérieur des pays membres de l’Union européenne.",
+            "holy_word": "frontières",
+            "textAnswer": ""
+        },
+        "14": {
+            "id": 14,
+            "title": "Barre chiffrée",
+            "type": "bar_chiffree",
+            "question": "Au début de l’année 2020, quel était le nombre de vidéosurveillance dans les 50 villes les plus peuplées de France ? ",
+            "minNumber": 10000,
+            "maxNumber": 12000,
+            "increment": 100,
+            "minAnswer": 11400,
+            "maxAnswer": 11400,
+            "textAnswer": "11 400 selon un classement réalisé par «la Gazette des communes»."
+        },
+        "15": {
+            "id": 15,
+            "title": "Barre chiffrée",
+            "type": "bar_chiffree",
+            "question": "Combien coûte une caméra de vidéosurveillance à l’achat aux municipalités à l’unité (en euros) ?",
+            "minNumber": 20000,
+            "maxNumber": 50000,
+            "increment": 1000,
+            "minAnswer": 25000,
+            "maxAnswer": 40000,
+            "textAnswer": "Le coût peut varier entre 25 000 et 40 000 euros."
         }
     }
 }

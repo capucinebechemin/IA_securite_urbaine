@@ -277,7 +277,7 @@
     "8": {
       "id": 1,
       "title": "Question à choix multiples",
-      "type": "question",
+      "type": "choix_multiple",
       "question": "Selon vous, quels sont les buts principaux de la vidéosurveillance ?",
       "answers": [
         {

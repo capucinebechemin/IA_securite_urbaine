@@ -1,6 +1,6 @@
 export enum QuestionEnum {
   DragAndDrop = 'draganddrop',
-  Question = 'question',
+  MultipleChoice = 'choix_multiple',
   HolySentence = 'holysentence',
   Estimation = 'bar_chiffree',
   Height = 'jeu_selection',
