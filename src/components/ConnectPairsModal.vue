@@ -44,14 +44,12 @@
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
 import { onBeforeMount, ref, watch } from 'vue';
-import { ConnectPairs, type PairItem } from '@/class/ConnectPairs';
+import { ConnectPairs, } from '@/class/ConnectPairs';
 import { Point } from '@/class/Point';
 
 const answerPage = false;
 
 const store = useAlertsStore();
-
-store.toggleConnectPairsModal();
 
 const props = defineProps({
     form: { type: ConnectPairs, required: true },
@@ -75,6 +73,7 @@ var shuffledItems = ref([]);
 //A sauvegarder dans le cookie
 const connections = ref([]);
 const items = ref([]);
+items.value = props.form.pairs;
 
 
 onBeforeMount(() => {
@@ -89,9 +88,6 @@ function shuffleItems() {
     }
     return shuffledItems;
 };
-
-
-items.value = props.form.pairs;
 
 const setRef = (itemName) => {
     return (el) => {
@@ -131,7 +127,6 @@ const drawLine = (item1Label, item2Label) => {
     }
 };
 
-
 const previous = () => {
     store.toggleConnectPairsModal();
     props.previous();
@@ -160,8 +155,6 @@ const checkAnswer = () => {
         }
     });
 
-    console.log(score);
-
     if (score == items.value.length)
         props.addPoint(new Point(1, ""));
     else if (score == 0)
@@ -171,9 +164,6 @@ const checkAnswer = () => {
 
     connections.value = [];
 };
-
-
-
 
 </script>
   
