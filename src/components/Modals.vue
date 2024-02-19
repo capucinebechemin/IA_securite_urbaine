@@ -14,9 +14,9 @@
         <CaptchaModal :previous=previous :next=next :addPoint=addPoint
         :form="formCaptcha" v-show="store.isCaptchaModalVisible" />
         <HangedModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formHanged" v-show="store.isHangedModalVisible"></HangedModal>
+        :form="formHanged" v-show="store.isHangedModalVisible" />
         <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formPairs" v-show="store.isConnectPairsModalVisible"></ConnectPairsModal>
+        :form="formPairs" v-show="store.isConnectPairsModalVisible" />
         <FlashcardModal :previous=previous :next=next :addPoint=addPoint
         :form="formFlashcard" v-show="store.isFlashCardModalVisible" />
         
@@ -58,6 +58,7 @@ const nWorld = ref(0);
 
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
+let titleResultat= ref('');
 
 let currentQuestions = [];
 let listQuestions = [];
@@ -107,8 +108,12 @@ const initQuestionsForWorld = ()=>{
     }
 }
 
-const addPoint = (point: Point) => {
-    points.value[nextQuestion.value] = point;
+    
+const addPoint = (point : Point) => {
+    let copiedArray = Array.from(points.value);
+    //[...points.value]
+    copiedArray[nextQuestion.value-1] = point;
+    points.value = copiedArray;
 }
 
 const launchLevel = (l: number, scorePrevious: number, w: number) => {
@@ -143,6 +148,7 @@ const next = () => {
         openGame();
     }
     else {
+        titleResultat.value="Résultat niveau " + nLevel.value;
         store.toggleResultModalVisible();
         result_modal.value?.updatePoints()
     }

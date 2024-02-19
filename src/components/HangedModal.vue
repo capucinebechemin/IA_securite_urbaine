@@ -186,12 +186,16 @@ const checkAnswer = () => {
     selectedAnswer = ref(emptyWord.value.join(''));
     let isComplete = emptyWord.value.filter((w)=> w == ' ');
     let point=0;
-    if(nbBadAnswer.value==maxAnswer.value){
-        point = 0;
-    }else if(isComplete.length == 0){
+    let display = '';
+    if(isComplete.length == 0){
         point =1;
+        display = props.form.word
+    }else {
+        point = 0;
+        display = 'Mot non trouvé'
     }
-    props.addPoint(new Point(point,""));
+    
+    props.addPoint(new Point(point,"",display));
 }
 
 </script>

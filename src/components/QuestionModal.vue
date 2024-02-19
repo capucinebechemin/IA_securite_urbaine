@@ -73,12 +73,18 @@ const submit = () => {
 const checkAnswer = () =>{
   let nGoodAnswers = 0
   let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
+  
+  let display = '';
   goodAsnwsers?.forEach((a)=>{
     if(selectedAnswer.value.includes(a.id)){
+      display += a.answer + ',';
       nGoodAnswers +=1;
+      
     }
   })
-  
+  if(display == ''){
+    display='Aucune Réponse trouvée.'
+  }
   let point = 0;
   if(nGoodAnswers == goodAsnwsers!.length)
     point = 1;
@@ -86,7 +92,7 @@ const checkAnswer = () =>{
     point = 0;
   else 
     point = 0.5
-  props.addPoint(new Point(point,"type"));
+  props.addPoint(new Point(point,"type",display.slice(0, -1)));
 }
 
 </script>
