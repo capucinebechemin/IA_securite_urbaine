@@ -73,21 +73,26 @@ const submit = () => {
 
 const checkAnswer = () =>{
   let nGoodAnswers = 0
+  
   let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
+  let display = '';
   goodAsnwsers?.forEach((a)=>{
     if(selectedAnswer.value.includes(a.id)){
       nGoodAnswers +=1;
+      display += a.answer + ',';
     }
   })
-
-    let point = 0;
-    if (nGoodAnswers == goodAsnwsers!.length)
-        point = 1;
-    else if (nGoodAnswers == 0)
-        point = 0;
-    else
-        point = 0.5
-    props.addPoint(new Point(point, "type"));
+  if(display == ''){
+    display='Aucune Réponse trouvée.'
+  }
+  let point = 0;
+  if(nGoodAnswers == goodAsnwsers!.length)
+    point = 1;
+  else if (nGoodAnswers == 0)
+    point = 0;
+  else 
+    point = 0.5
+  props.addPoint(new Point(point,"type",display));
 }
 
 </script>

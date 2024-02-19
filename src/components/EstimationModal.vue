@@ -52,7 +52,6 @@ const answerPage = false;
 const sliderPosition = ref(0);
 
 watch(() => props.form, (newValue) => {
-  console.log('Value changed:', newValue.minNumber);
   sliderPosition.value=0;
   setTimeout(()=>{selectedAnswer.value =newValue.minNumber;},50)
 });
@@ -84,7 +83,7 @@ const checkAnswer = () =>{
   }
   else 
     point = 0
-  props.addPoint(new Point(point,"type"));
+  props.addPoint(new Point(point,"type",answer.toString()));
 }
 
 </script>

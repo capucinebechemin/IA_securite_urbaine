@@ -70,7 +70,8 @@ const checkAnswer = () =>{
     point=1;
   else point = 0;
 
-  props.addPoint(new Point(point,"type"));
+  props.addPoint(new Point(point,"type",selectedAnswer.value));
+
 }
 
 </script>
