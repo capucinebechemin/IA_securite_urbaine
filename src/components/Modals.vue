@@ -15,7 +15,8 @@
         :form="formCaptcha" v-show="store.isCaptchaModalVisible" />
         <HangedModal :previous=previous :next=next :addPoint=addPoint 
         :form="formHanged" v-show="store.isHangedModalVisible"></HangedModal>
-        
+        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint 
+        :form="formPairs" v-show="store.isConnectPairsModalVisible"></ConnectPairsModal>
 </template>
   
 <script setup lang="ts">
@@ -27,6 +28,7 @@ import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
 import EstimationModal from '@/components/EstimationModal.vue';
 import CaptchaModal from '@/components/CaptchaModal.vue';
 import HangedModal from './HangedModal.vue';
+import ConnectPairsModal from '@/components/ConnectPairsModal.vue';
 import { ref, type Ref } from 'vue';
 import ResultModal from '@/components/ResultModal.vue';
 import { Point } from '@/class/Point';
@@ -39,6 +41,7 @@ import { Question } from '@/class/Question';
 import { HolySentence } from '@/class/HolySentence';
 import { Hanged } from '@/class/Hanged';
 import data from '@/data/questions.json';
+import { ConnectPairs } from '@/class/ConnectPairs';
 
 const store = useAlertsStore();
 
@@ -50,15 +53,16 @@ let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
 
 let currentQuestions = [];
-let listQuestions =[];
+let listQuestions = [];
 //Ils ont besoin d'être init ils peuvent pas être vide
-let formCaptcha: Ref<Captcha>=ref(data.worlds.world1.questions[6]);
-let formDaD: Ref<DragAndDrop>=ref(data.worlds.world1.questions[4]);
-let formEstimation : Ref<Estimation>=ref(data.worlds.world1.questions[3]);
-let formHeightQuestion : Ref<HeightQuestion>= ref(data.worlds.world1.questions[2]);
+let formCaptcha: Ref<Captcha> = ref(data.worlds.world1.questions[6]);
+let formDaD: Ref<DragAndDrop> = ref(data.worlds.world1.questions[4]);
+let formEstimation: Ref<Estimation> = ref(data.worlds.world1.questions[3]);
+let formHeightQuestion: Ref<HeightQuestion> = ref(data.worlds.world1.questions[2]);
 let formHs: Ref<HolySentence> = ref(data.worlds.world1.questions[13]);
 let formQuestion: Ref<Question> = ref(data.worlds.world1.questions[8]);
 let formHanged: Ref<Hanged> = ref(data.worlds.world1.questions[1]);
+let formPairs: Ref<ConnectPairs> = ref(data.worlds.world4.questions[1]);
 
 
 const initQuestionsForWorld = ()=>{
@@ -66,31 +70,34 @@ const initQuestionsForWorld = ()=>{
         let question = data.worlds["world"+nWorld.value].questions[i];
         switch(question.type){
             case QuestionEnum.Captcha:
-                listQuestions[i-1] = Captcha.fromJSON(question);
+                listQuestions[i - 1] = Captcha.fromJSON(question);
                 break;
             case QuestionEnum.DragAndDrop:
-                listQuestions[i-1] = DragAndDrop.fromJSON(question);
+                listQuestions[i - 1] = DragAndDrop.fromJSON(question);
                 break;
             case QuestionEnum.Estimation:
-                listQuestions[i-1] = Estimation.fromJSON(question);
+                listQuestions[i - 1] = Estimation.fromJSON(question);
                 break;
             case QuestionEnum.Height:
-                listQuestions[i-1] = HeightQuestion.fromJSON(question);
+                listQuestions[i - 1] = HeightQuestion.fromJSON(question);
                 break;
             case QuestionEnum.HolySentence:
-                listQuestions[i-1] = HolySentence.fromJSON(question);
+                listQuestions[i - 1] = HolySentence.fromJSON(question);
                 break;
             case QuestionEnum.Question:
-                listQuestions[i-1] = Question.fromJSON(question);
+                listQuestions[i - 1] = Question.fromJSON(question);
                 break;
             case QuestionEnum.Hanged:
-                listQuestions[i-1] = Hanged.fromJSON(question);
+                listQuestions[i - 1] = Hanged.fromJSON(question);
+                break;
+            case QuestionEnum.ConnectPairs:
+                listQuestions[i - 1] = ConnectPairs.fromJSON(question);
                 break;
         }
     }
 }
-    
-const addPoint = (point : Point) => {
+
+const addPoint = (point: Point) => {
     points.value[nextQuestion.value] = point;
 }
 
@@ -158,6 +165,10 @@ const openGame = () => {
         case QuestionEnum.Hanged:
             formHanged.value = currentQuestions[nextQuestion.value - 1] as Hanged;
             store.toggleHangedModal();
+            break;
+        case QuestionEnum.ConnectPairs:
+            formPairs.value = currentQuestions[nextQuestion.value - 1] as ConnectPairs;
+            store.toggleConnectPairsModal();
             break;
     }
 
@@ -292,6 +303,10 @@ h3 {
 
     .btn_previous {
         background-color: grey;
+    }
+
+    .btn_reset {
+        background-color: #BB5326;
     }
 
     .btn_next {
