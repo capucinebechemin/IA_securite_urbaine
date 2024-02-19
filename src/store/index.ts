@@ -18,6 +18,7 @@ export const useAlertsStore = defineStore('alerts', {
       isModalsVisible: sessionStorage.getItem('isModalsVisible') === 'true',
       isHangedModalVisible: sessionStorage.getItem('isHangedModalVisible') === 'true',
       isConnectPairsModalVisible: sessionStorage.getItem('isConnectPairsModalVisible') === 'true',
+      isFlashCardModalVisible: sessionStorage.getItem('isFlashCardModalVisible') === 'true',
       isLevelEntranceModalVisible: sessionStorage.getItem('isLevelEntranceModalVisible') === 'true',
       isResultModalVisible: sessionStorage.getItem('isResultModalVisible') === 'true',
       scoreWorld1: JSON.parse(sessionStorage.getItem('scoreWorld1') || "[0,0,0]"),
@@ -81,6 +82,10 @@ export const useAlertsStore = defineStore('alerts', {
     toggleConnectPairsModal() {
       this.isConnectPairsModalVisible = !this.isConnectPairsModalVisible;
       sessionStorage.setItem('isConnectPairsModalVisible', this.isConnectPairsModalVisible ? 'true' : 'false');
+    },
+    toggleFlashCardModal() {
+      this.isFlashCardModalVisible = !this.isFlashCardModalVisible;
+      sessionStorage.setItem('isFlashCardModalVisible', this.isFlashCardModalVisible ? 'true' : 'false');
     },
     toggleLevelEntranceModalVisible() {
       this.isLevelEntranceModalVisible = !this.isLevelEntranceModalVisible;

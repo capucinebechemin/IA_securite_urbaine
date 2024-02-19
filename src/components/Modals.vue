@@ -17,6 +17,9 @@
         :form="formHanged" v-show="store.isHangedModalVisible"></HangedModal>
         <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint 
         :form="formPairs" v-show="store.isConnectPairsModalVisible"></ConnectPairsModal>
+        <FlashcardModal :previous=previous :next=next :addPoint=addPoint
+        :form="formFlashcard" v-show="store.isFlashCardModalVisible" />
+        
 </template>
   
 <script setup lang="ts">
@@ -29,6 +32,7 @@ import EstimationModal from '@/components/EstimationModal.vue';
 import CaptchaModal from '@/components/CaptchaModal.vue';
 import HangedModal from './HangedModal.vue';
 import ConnectPairsModal from '@/components/ConnectPairsModal.vue';
+import FlashcardModal from '@/components/FlashcardModal.vue';
 import { ref, type Ref } from 'vue';
 import ResultModal from '@/components/ResultModal.vue';
 import { Point } from '@/class/Point';
@@ -42,12 +46,15 @@ import { HolySentence } from '@/class/HolySentence';
 import { Hanged } from '@/class/Hanged';
 import data from '@/data/questions.json';
 import { ConnectPairs } from '@/class/ConnectPairs';
+import { Flashcard } from '@/class/Flashcard';
 
 const store = useAlertsStore();
+
 
 const result_modal = ref<any>(null);
 const nLevel = ref(0);
 const nWorld = ref(0);
+
 
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
@@ -63,7 +70,7 @@ let formHs: Ref<HolySentence> = ref(data.worlds.world1.questions[13]);
 let formQuestion: Ref<Question> = ref(data.worlds.world1.questions[8]);
 let formHanged: Ref<Hanged> = ref(data.worlds.world1.questions[1]);
 let formPairs: Ref<ConnectPairs> = ref(data.worlds.world4.questions[1]);
-
+let formFlashcard: Ref<Flashcard> = ref(data.worlds.world1.questions[2]);
 
 const initQuestionsForWorld = ()=>{
     for(let i = 1; i<=15;i++){
@@ -93,6 +100,9 @@ const initQuestionsForWorld = ()=>{
             case QuestionEnum.ConnectPairs:
                 listQuestions[i - 1] = ConnectPairs.fromJSON(question);
                 break;
+            case QuestionEnum.Flashcard:
+                listQuestions[i - 1] = Flashcard.fromJSON(question);
+                break;
         }
     }
 }
@@ -104,9 +114,9 @@ const addPoint = (point: Point) => {
 const launchLevel = (l: number, scorePrevious: number, w: number) => {
     nLevel.value = l;
     nWorld.value = w;
-
     initQuestionsForWorld();
     if (scorePrevious >= 3 || nLevel.value == 1) {
+
         currentQuestions = []
         for (let i = 0; i < 5; i++) {
             currentQuestions[i] = listQuestions[i + (5 * (nLevel.value - 1))]
@@ -114,6 +124,8 @@ const launchLevel = (l: number, scorePrevious: number, w: number) => {
         nextQuestion.value = 0;
         points.value = []
         store.toggleModals();
+        console.log(currentQuestions)
+        console.log(listQuestions)
         next()
     }
 }
@@ -162,14 +174,17 @@ const openGame = () => {
             formHeightQuestion.value = currentQuestions[nextQuestion.value - 1] as HeightQuestion;
             store.toggleHeightQuestionModal();
             break;
-        case QuestionEnum.Hanged:
-            formHanged.value = currentQuestions[nextQuestion.value - 1] as Hanged;
-            store.toggleHangedModal();
+        case QuestionEnum.Flashcard:
+            formFlashcard.value = currentQuestions[nextQuestion.value - 1] as Flashcard;
+            store.toggleFlashCardModal();
             break;
         case QuestionEnum.ConnectPairs:
             formPairs.value = currentQuestions[nextQuestion.value - 1] as ConnectPairs;
             store.toggleConnectPairsModal();
             break;
+        case QuestionEnum.Hanged:
+            formHanged.value = currentQuestions[nextQuestion.value - 1] as Hanged;
+            store.toggleHangedModal();
     }
 
 }
@@ -177,7 +192,6 @@ const openGame = () => {
 defineExpose({
     launchLevel
 });
-
 </script>
   
 <style>
