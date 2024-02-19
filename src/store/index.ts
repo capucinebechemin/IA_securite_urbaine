@@ -10,7 +10,7 @@ export const useAlertsStore = defineStore('alerts', {
       isRessourceVisible: false,
       isMenuVisible: sessionStorage.getItem('isMenuVisible') === 'true',
       isHolySentenceModalVisible: sessionStorage.getItem('isHolySentenceModalVisible') === 'true',
-      isQuestionModalVisible: sessionStorage.getItem('isQuestionModalVisible') === 'true',
+      isMultipleChoiceModalVisible: sessionStorage.getItem('isMultipleChoiceModalVisible') === 'true',
       isDragAndDropModalVisible: sessionStorage.getItem('isDragAndDropModalVisible') === 'true',
       isHeightQuestionModalVisible: sessionStorage.getItem('isHeightQuestionModalVisible') === 'true',
       isEstimationModalVisible: sessionStorage.getItem('isEstimationModalVisible') === 'true',
@@ -55,9 +55,9 @@ export const useAlertsStore = defineStore('alerts', {
       this.isHolySentenceModalVisible = !this.isHolySentenceModalVisible;
       sessionStorage.setItem('isHolySentenceModalVisible', this.isHolySentenceModalVisible ? 'true' : 'false');
     },
-    toggleQuestionModal() {
-      this.isQuestionModalVisible = !this.isQuestionModalVisible;
-      sessionStorage.setItem('isQuestionModalVisible', this.isQuestionModalVisible ? 'true' : 'false');
+    toggleMultipleChoiceModal() {
+      this.isMultipleChoiceModalVisible = !this.isMultipleChoiceModalVisible;
+      sessionStorage.setItem('isMultipleChoiceModalVisible', this.isMultipleChoiceModalVisible ? 'true' : 'false');
     },
     toggleDragAndDropModal() {
       this.isDragAndDropModalVisible = !this.isDragAndDropModalVisible;

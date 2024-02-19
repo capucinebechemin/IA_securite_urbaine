@@ -2,8 +2,8 @@
     <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
     <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="formHs"
         v-show="store.isHolySentenceModalVisible" />
-    <QuestionModal :previous=previous :next=next :addPoint=addPoint :form="formQuestion"
-        v-show="store.isQuestionModalVisible" />
+    <QuestionModal :previous=previous :next=next :addPoint=addPoint :form="formMultipleChoice"
+        v-show="store.isMultipleChoiceModalVisible" />
     <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="formDaD"
         v-show="store.isDragAndDropModalVisible" />
     <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :form="formHeightQuestion"
@@ -20,11 +20,17 @@
 </template>
   
 <script setup lang="ts">
+import { ref, watch, Ref } from 'vue';
 import { useAlertsStore } from '@/store';
+
+// Import your data files for each world
 import dataW1 from '@/data/world1.json';
 import dataW2 from '@/data/world2.json';
+
+// Import all the modal components
+import ResultModal from '@/components/ResultModal.vue';
 import HolySentenceModal from '@/components/HolySentenceModal.vue';
-import QuestionModal from '@/components/QuestionModal.vue';
+import MultipleChoiceModal from '@/components/MultipleChoiceModal.vue';
 import DragAndDropModal from '@/components/DragAndDropModal.vue';
 import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
 import EstimationModal from '@/components/EstimationModal.vue';
@@ -32,20 +38,17 @@ import CaptchaModal from '@/components/CaptchaModal.vue';
 import HangedModal from './HangedModal.vue';
 import ConnectPairsModal from '@/components/ConnectPairsModal.vue';
 import FlashcardModal from '@/components/FlashcardModal.vue';
-import { ref, type Ref, onBeforeMount, mergeProps } from 'vue';
-import ResultModal from '@/components/ResultModal.vue';
-import { Point } from '@/class/Point';
-import { Estimation } from '@/class/Estimation';
 import { Captcha } from '@/class/Captcha';
-import { QuestionEnum } from '@/class/QuestionEnum';
-import { HeightQuestion } from '@/class/HeightQuestion';
-import { DragAndDrop } from '@/class/DragAndDrop';
-import { Question } from '@/class/Question';
-import { HolySentence } from '@/class/HolySentence';
-import { Hanged } from '@/class/Hanged';
 import { ConnectPairs } from '@/class/ConnectPairs';
+import { DragAndDrop } from '@/class/DragAndDrop';
+import { Estimation } from '@/class/Estimation';
 import { Flashcard } from '@/class/Flashcard';
-import { on } from 'events';
+import { Hanged } from '@/class/Hanged';
+import { HeightQuestion } from '@/class/HeightQuestion';
+import { HolySentence } from '@/class/HolySentence';
+import { MultipleChoice } from '@/class/MultipleChoice';
+import { Point } from '@/class/Point';
+import { QuestionEnum } from '@/class/QuestionEnum';
 
 const props = defineProps({
     world: String
@@ -58,33 +61,37 @@ const nLevel = ref(0);
 const nWorld = ref(0);
 let data = ref();
 
-
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
-let titleResultat = ref('');
+let titleResult = ref('');
 
 let currentQuestions = [];
 let listQuestions = [];
-//Ils ont besoin d'être init ils peuvent pas être vide
+
+// Initialize forms with default values to avoid errors
 let formCaptcha: Ref<Captcha> = ref(dataW1.questions[6]);
 let formDaD: Ref<DragAndDrop> = ref(dataW1.questions[4]);
 let formEstimation: Ref<Estimation> = ref(dataW1.questions[3]);
 let formHeightQuestion: Ref<HeightQuestion> = ref(dataW1.questions[2]);
 let formHs: Ref<HolySentence> = ref(dataW1.questions[13]);
-let formQuestion: Ref<Question> = ref(dataW1.questions[8]);
+let formMultipleChoice: Ref<MultipleChoice> = ref(dataW1.questions[8]);
 let formHanged: Ref<Hanged> = ref(dataW1.questions[1]);
 let formPairs: Ref<ConnectPairs> = ref(dataW1.questions[1]);
 let formFlashcard: Ref<Flashcard> = ref(dataW1.questions[2]);
 
-onBeforeMount(() => {
-    initWorld();
-});
+watch(() => props.world, initWorld, { immediate: true });
 
-const initWorld = () => {
-    if (props.world == "world1") {
-        data = dataW1;
-    } else if (props.world == "world2") {
-        data = dataW2;
+
+function initWorld() {
+    switch (props.world) {
+        case "world1":
+            data = dataW1;
+            break;
+        case "world2":
+            data = dataW2;
+            break;
+        default:
+            console.error("Unknown world: ", props.world);
     }
 }
 
@@ -107,8 +114,8 @@ const initQuestionsForWorld = () => {
             case QuestionEnum.HolySentence:
                 listQuestions[i - 1] = HolySentence.fromJSON(question);
                 break;
-            case QuestionEnum.Question:
-                listQuestions[i - 1] = Question.fromJSON(question);
+            case QuestionEnum.MultipleChoice:
+                listQuestions[i - 1] = MultipleChoice.fromJSON(question);
                 break;
             case QuestionEnum.Hanged:
                 listQuestions[i - 1] = Hanged.fromJSON(question);
@@ -163,7 +170,7 @@ const next = () => {
         openGame();
     }
     else {
-        titleResultat.value = "Résultat niveau " + nLevel.value;
+        titleResult.value = "Résultat niveau " + nLevel.value;
         store.toggleResultModalVisible();
         result_modal.value?.updatePoints()
     }
@@ -175,9 +182,9 @@ const openGame = () => {
             formDaD.value = currentQuestions[nextQuestion.value - 1] as DragAndDrop;
             store.toggleDragAndDropModal();
             break;
-        case QuestionEnum.Question:
-            formQuestion.value = currentQuestions[nextQuestion.value - 1] as Question;
-            store.toggleQuestionModal();
+        case QuestionEnum.MultipleChoice:
+            formMultipleChoice.value = currentQuestions[nextQuestion.value - 1] as MultipleChoice;
+            store.toggleMultipleChoiceModal();
             break;
         case QuestionEnum.HolySentence:
             formHs.value = currentQuestions[nextQuestion.value - 1] as HolySentence;

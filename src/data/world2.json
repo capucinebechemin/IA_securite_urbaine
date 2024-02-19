@@ -123,7 +123,7 @@
         "6": {
             "id": 6,
             "title": "Quiz sur les objectifs de la police prédictive",
-            "type": "multiple_choice",
+            "type": "choix_multiple",
             "question": "A votre avis, quels sont les objectifs visés pour les forces de l’ordre d’avoir recours à la police prédictive ?",
             "answers": [
                 {
@@ -156,31 +156,31 @@
             "question": "Trouver les images paires",
             "answers": [
                 {
-                    "answer": "Le maquillage",
-                    "img": "/captcha/captcha2_answer1.png"
+                    "answer": "Cartographie predictive",
+                    "img": "/flashcard/world2-flashcard1.png"
                 },
                 {
-                    "answer": "Le masque",
-                    "img": "/captcha/captcha2_answer2.png"
+                    "answer": "Analyse de donnees",
+                    "img": "/flashcard/world2-flashcard2.png"
                 },
                 {
-                    "answer": "Les perruques",
-                    "img": "/captcha/captcha2_answer3.png"
+                    "answer": "Ecran videosurveillance",
+                    "img": "/flashcard/world2-flashcard3.png"
                 },
                 {
-                    "answer": "Les fausses barbes",
-                    "img": "/captcha/captcha2_answer4.png"
+                    "answer": "Intervention policiere",
+                    "img": "/flashcard/world2-flashcard4.png"
                 },
                 {
-                    "answer": "Un t-shirt vert",
-                    "img": "/captcha/captcha2_answer5.png"
+                    "answer": "Reperes sur une carte",
+                    "img": "/flashcard/world2-flashcard5.png"
                 },
                 {
-                    "answer": "Une cravate",
-                    "img": "/captcha/captcha2_answer6.png"
+                    "answer": "Camera videosurveillance",
+                    "img": "/flashcard/world2-flashcard6.png"
                 }
             ],
-            "textAnswer": "Pas trop compliqué ce mémorie !"
+            "textAnswer": ""
         },
         "8": {
             "id": 8,
@@ -191,46 +191,55 @@
                 {
                     "id": "25",
                     "answer": "Descartes",
+                    "img": "/captcha/captcha2_answer1.png",
                     "response": false
                 },
                 {
                     "id": "26",
                     "answer": "Aristote",
+                    "img": "/captcha/captcha2_answer2.png",
                     "response": true
                 },
                 {
                     "id": "27",
                     "answer": "Nietzsche",
+                    "img": "/captcha/captcha2_answer3.png",
                     "response": false
                 },
                 {
                     "id": "28",
                     "answer": "Platon",
+                    "img": "/captcha/captcha2_answer4.png",
                     "response": false
                 },
                 {
                     "id": "29",
                     "answer": "Leibniz",
+                    "img": "/captcha/captcha2_answer5.png",
                     "response": false
                 },
                 {
                     "id": "30",
                     "answer": "Rousseau",
+                    "img": "/captcha/captcha2_answer6.png",
                     "response": false
                 },
                 {
                     "id": "31",
                     "answer": "Diderot",
+                    "img": "/captcha/captcha2_answer7.png",
                     "response": false
                 },
                 {
                     "id": "32",
                     "answer": "Spinoza",
+                    "img": "/captcha/captcha2_answer8.png",
                     "response": false
                 },
                 {
                     "id": "33",
                     "answer": "Socrate",
+                    "img": "/captcha/captcha2_answer9.png",
                     "response": false
                 }
             ],

@@ -1,14 +1,14 @@
 import { QuestionEnum } from "./QuestionEnum";
 
-export class Question {
+export class MultipleChoice {
     id: string;
     title: string;
-    type =QuestionEnum.Question;
+    type = QuestionEnum.MultipleChoice;
     question: string;
-    answers: QuestionAnswer[];
+    answers: MultipleChoiceAnswer[];
     textAnswer: string;
   
-    constructor(id: string, title: string, question: string, answers: QuestionAnswer[], textAnswer: string) {
+    constructor(id: string, title: string, question: string, answers: MultipleChoiceAnswer[], textAnswer: string) {
       this.id = id;
       this.title = title;
       this.question = question;
@@ -16,12 +16,12 @@ export class Question {
       this.textAnswer = textAnswer;
     };
 
-    static fromJSON(jsonData: any): Question {
+    static fromJSON(jsonData: any): MultipleChoice {
       const { id, title, type, question, answers, textAnswer } = jsonData;
-      return new Question(id, title, question, answers, textAnswer);
+      return new MultipleChoice(id, title, question, answers, textAnswer);
     }
   }
-export interface QuestionAnswer {
+export interface MultipleChoiceAnswer {
     id: number;
     answer: string;
     response: boolean;
