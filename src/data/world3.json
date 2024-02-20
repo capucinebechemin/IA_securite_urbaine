@@ -275,38 +275,38 @@
       "answers": [
         {
           "id": 1,
-          "answer": "Débit frauduleux",
-          "img": "/captcha/captcha-3-13-1.png",
+          "title": "Débit frauduleux",
+          "img": "/captcha/world3-captcha1.png",
           "response": true
         },
         {
           "id": 2,
-          "answer": "Cambriolages",
-          "img": "/captcha/captcha-3-13-2.png",
+          "title": "Cambriolages",
+          "img": "/captcha/world3-captcha2.png",
           "response": true
         },
         {
           "id": 3,
-          "answer": "Agressions non létales",
-          "img": "/captcha/captcha-3-13-3.png",
+          "title": "Agressions non létales",
+          "img": "/captcha/world3-captcha3.png",
           "response": false
         },
         {
           "id": 4,
-          "answer": "Agressions sexuelles",
-          "img": "/captcha/captcha-3-13-4.png",
+          "title": "Agressions sexuelles",
+          "img": "/captcha/world3-captcha4.png",
           "response": false
         },
         {
           "id": 5,
-          "answer": "Atteinte aux voitures",
-          "img": "/captcha/captcha-3-13-5.png",
+          "title": "Atteinte aux voitures",
+          "img": "/captcha/world3-captcha5.png",
           "response": false
         },
         {
           "id": 6,
-          "answer": "Vols",
-          "img": "/captcha/captcha-3-13-6.png",
+          "title": "Vols",
+          "img": "/captcha/cworld3-captcha6.png",
           "response": false
         }
       ],

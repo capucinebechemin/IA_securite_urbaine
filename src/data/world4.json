@@ -37,28 +37,28 @@
         "question": "Trouver les images paires",
         "answers": [
           {
-            "answer": "Paolo Cirio",
-            "img": "/flahscard/flashcard-4-2-1.png"
+            "title": "Paolo Cirio",
+            "img": "/flahscard/world4-flashcard1.png"
           },
           {
-            "answer": "URME",
-            "img": "/flahscard/flashcard-4-2-2.png"
+            "title": "URME",
+            "img": "/flahscard/world4-flashcard2.png"
           },
           {
-            "answer": "Le carnaval de Nice",
-            "img": "/flahscard/flashcard-4-2-3.png"
+            "title": "Le carnaval de Nice",
+            "img": "/flahscard/world4-flashcard3.png"
           },
           {
-            "answer": "JO",
-            "img": "/flahscard/flashcard-4-2-4.png"
+            "title": "JO",
+            "img": "/flahscard/world4-flashcard4.png"
           },
           {
-            "answer": "Yeshimabeit Milner",
-            "img": "/flahscard/flashcard-4-2-5.png"
+            "title": "Yeshimabeit Milner",
+            "img": "/flahscard/world4-flashcard5.png"
           },
           {
-            "answer": "Un masque",
-            "img": "/flahscard/flashcard-4-2-6.png"
+            "title": "Un masque",
+            "img": "/flahscard/world4-flashcard6.png"
           }
         ],
         "textAnswer": "Pas trop compliqué ce mémorie !"
@@ -109,38 +109,38 @@
       "answers": [
         {
           "id": 1,
-          "answer": "Le maquillage",
-          "img": "/captcha/captcha-4-5-1.png",
+          "title": "Le maquillage",
+          "img": "/captcha/world4-captcha1.png",
           "response": true
         },
         {
           "id": 2,
-          "answer": "Le masque",
-          "img": "/captcha/captcha-4-5-2.png",
+          "title": "Le masque",
+          "img": "/captcha/world4-captcha2.png",
           "response": true
         },
         {
           "id": 3,
-          "answer": "Les perruques",
-          "img": "/captcha/captcha-4-5-3.png",
+          "title": "Les perruques",
+          "img": "/captcha/world4-captcha3.png",
           "response": true
         },
         {
           "id": 4,
-          "answer": "Les fausses barbes",
-          "img": "/captcha/captcha-4-5-4.png",
+          "title": "Les fausses barbes",
+          "img": "/captcha/world4-captcha4.png",
           "response": true
         },
         {
           "id": 5,
-          "answer": "Un t-shirt vert",
-          "img": "/captcha/captcha-4-5-5.png",
+          "title": "Un t-shirt vert",
+          "img": "/captcha/world4-captcha5.png",
           "response": false
         },
         {
           "id": 6,
-          "answer": "Une cravatte",
-          "img": "/captcha/captcha-4-5-6.png",
+          "title": "Une cravatte",
+          "img": "/captcha/world4-captcha6.png",
           "response": false
         }
       ],

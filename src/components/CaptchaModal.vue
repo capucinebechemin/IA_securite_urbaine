@@ -12,7 +12,7 @@
                 <div class="question_modal">{{ props.form.question }}</div>
                 <p>Selection</p>
                 <div class="answers_captcha">
-                    <img class="img_captcha" :src=answer.img :alt=answer.answer v-for="answer in props.form.answers"
+                    <img class="img_captcha" :src=answer.img :alt=answer.title v-for="answer in props.form.answers"
                         @click="clickAnswer(answer.id)"
                         v-bind:class="{ checked_captcha: selectedAnswer.includes(answer.id) }">
                 </div>
@@ -78,7 +78,7 @@ const checkAnswer = () =>{
   let display = '';
   goodAsnwsers?.forEach((a)=>{
     if(selectedAnswer.value.includes(a.id)){
-        display += a.answer + ',';
+        display += a.title + ',';
         nGoodAnswers +=1;
     }
   })
