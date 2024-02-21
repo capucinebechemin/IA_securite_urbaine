@@ -47,8 +47,8 @@ const selectedAnswer = ref<number[]>([]);
 const answerPage = false;
 
 watch(() => props.form, (form) => {
-    setTimeout(()=>{selectedAnswer.value = [];},50);
-  });
+  setTimeout(() => { selectedAnswer.value = []; }, 50);
+});
 
 const clickAnswer = (a: number) => {
   const index = selectedAnswer.value.indexOf(a);
@@ -70,36 +70,36 @@ const submit = () => {
   props.next();
 }
 
-const checkAnswer = () =>{
+const checkAnswer = () => {
   let nGoodAnswers = 0
   let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
-  
+
   let display = '';
-  goodAsnwsers?.forEach((a)=>{
-    if(selectedAnswer.value.includes(a.id)){
+  goodAsnwsers?.forEach((a) => {
+    if (selectedAnswer.value.includes(a.id)) {
       display += a.answer + ',';
-      nGoodAnswers +=1;
-      
+      nGoodAnswers += 1;
+
     }
   })
-  if(display == ''){
-    display='Aucune Réponse trouvée.'
+  if (display == '') {
+    display = 'Aucune Réponse trouvée.'
   }
   let point = 0;
-  if(nGoodAnswers == goodAsnwsers!.length)
+  if (nGoodAnswers == goodAsnwsers!.length)
     point = 1;
   else if (nGoodAnswers == 0)
     point = 0;
-  else 
+  else
     point = 0.5
-  props.addPoint(new Point(point,"type",display.slice(0, -1)));
+  props.addPoint(new Point(point, "type", display.slice(0, -1)));
 }
 
 </script>
   
 <style>
 .answers_question {
-  padding: 0 2vw;
+  padding: 0 4vw;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
