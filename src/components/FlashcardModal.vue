@@ -151,7 +151,7 @@ const checkAnswer = () => {
     margin: 0 4vw;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     max-height: 38vh;
     border-radius: .7rem;
@@ -162,8 +162,8 @@ const checkAnswer = () => {
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 10vw;
-    height: 11vh;
+    width: 15vh;
+    height: 15vh;
     border-radius: .7rem;
     margin: .5vh .5vw;
     font-size: 0.8rem;
