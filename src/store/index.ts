@@ -98,6 +98,24 @@ export const useAlertsStore = defineStore('alerts', {
     setScoreWorld1(newScore: number[]) {
       this.scoreWorld1 = newScore;
       sessionStorage.setItem('scoreWorld1', JSON.stringify(this.scoreWorld1));
+    },
+    setScoreWorld2(newScore: number[]) {
+      this.scoreWorld2 = newScore;
+      sessionStorage.setItem('scoreWorld2', JSON.stringify(this.scoreWorld2));
+    },
+    setScoreWorld3(newScore: number[]) {
+      this.scoreWorld3 = newScore;
+      sessionStorage.setItem('scoreWorld3', JSON.stringify(this.scoreWorld3));
+    },
+    shuffleItems(values: any[]) {
+      if (values) {
+        let shuffledItems = [...values];
+        for (let i = shuffledItems.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledItems[i], shuffledItems[j]] = [shuffledItems[j], shuffledItems[i]];
+        }
+        return shuffledItems;
+      }
     }
   }
 })

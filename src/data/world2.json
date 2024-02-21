@@ -99,18 +99,18 @@
             "answers": [
                 {
                     "id": "17",
-                    "answer": "Collecte de données historiques sur les crimes",
-                    "position": 1
-                },
-                {
-                    "id": "18",
                     "answer": "Analyse des données par des algorithmes prédictifs",
                     "position": 2
                 },
                 {
-                    "id": "19",
+                    "id": "18",
                     "answer": "Intervention policière basée sur les prédictions",
                     "position": 3
+                },
+                {
+                    "id": "19",
+                    "answer": "Collecte de données historiques sur les crimes",
+                    "position": 1
                 },
                 {
                     "id": "20",
@@ -260,7 +260,7 @@
         "12": {
             "id": 12,
             "title": "Glisser déposer",
-            "type": "draganddrop",
+            "type": "jeu_selection",
             "question": "D’après la législation en vigueur, les algorithmes ne sont pas censés se baser sur certains types de données ou respecter des normes précises lorsqu’elles y sont autorisées en fonction de leur secteur d’activité. Sélectionner les données qui sont sensibles.",
             "answers": [
                 {

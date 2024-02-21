@@ -43,7 +43,7 @@
 import { ref } from 'vue';
 import { useAlertsStore } from '@/store';
 import { Point } from '@/class/Point';
-import { Hanged, type HangedAnswer } from '@/class/Hanged';
+import { Hanged } from '@/class/Hanged';
 
 const store = useAlertsStore();
 
@@ -59,7 +59,6 @@ const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => ({ let
 
 const emptyWord = ref(props.form.word.split('').map(char => char === ' ' ? '&' : ' '));
 
-const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[] });
 let selectedAnswer = ref<string>("");
 const answerPage = false;
 const nbBadAnswer = ref(0);

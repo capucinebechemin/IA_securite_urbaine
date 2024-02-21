@@ -61,7 +61,7 @@ const props = defineProps({
 watch(() => props.form, (form) => {
     reset();
     items.value = form.pairs;
-    shuffledItems.value = shuffleItems();
+    shuffledItems.value = store.shuffleItems(items.value);
 });
 
 const svg = ref(null);
@@ -76,19 +76,8 @@ items.value = props.form.pairs;
 
 
 onBeforeMount(() => {
-    shuffledItems.value = shuffleItems();
+    shuffledItems.value = store.shuffleItems(items.value);
 });
-
-function shuffleItems() {
-    if (items.value) {
-        let shuffledItems = [...items.value];
-        for (let i = shuffledItems.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledItems[i], shuffledItems[j]] = [shuffledItems[j], shuffledItems[i]];
-        }
-        return shuffledItems;
-    }
-};
 
 const setRef = (itemName) => {
     return (el) => {
@@ -183,7 +172,7 @@ const checkAnswer = () => {
     flex-direction: column;
     padding: 0 2vw;
     max-height: 40vh;
-    width: 50%;
+    width: auto;
 }
 
 .item {
@@ -193,7 +182,7 @@ const checkAnswer = () => {
     border-radius: .7rem;
     height: 6vh;
     margin: .5vh .5vw;
-    padding: 1vh 1vw;
+    padding: 1rem 1rem;
     background-color: #638e995d;
     transition: filter 0.3s ease, transform 0.3s ease;
 

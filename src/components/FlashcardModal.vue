@@ -35,6 +35,7 @@ import { Flashcard, type FlashcardAnswer } from '@/class/Flashcard';
 
 
 const store = useAlertsStore();
+store.isFlashCardModalVisible = true;
 
 const props = defineProps({
     form: { type: Flashcard, required: true },
@@ -48,11 +49,14 @@ const data = ref({ questionId: null as string | null, selectedAnswer: [] as numb
 const selectedAnswer = ref(false);
 const answerPage = false;
 
-const img = "public/world1/castle2.png";
+const img = '/world1/castle2.png';
 
 const gameOver = ref(false); 
 
-const cards = ref(props.form.answers);
+let cards = ref(props.form.answers);
+cards.value.push(...cards.value);
+cards.value = store.shuffleItems(cards.value);
+
 cards.value = cards.value.map(card => {
     return {
         ...card,
