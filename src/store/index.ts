@@ -99,5 +99,5 @@ export const useAlertsStore = defineStore('alerts', {
       this.scoreWorld1 = newScore;
       sessionStorage.setItem('scoreWorld1', JSON.stringify(this.scoreWorld1));
     }
-  },
+  }
 })

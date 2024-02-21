@@ -77,37 +77,37 @@
                 {
                     "id": "25",
                     "title": "Photographe",
-                    "img": "/captcha/world1_captcha1.png",
+                    "img": "/captcha/world1-captcha1.png",
                     "response": false
                 },
                 {
                     "id": "26",
                     "title": "Regroupement",
-                    "img": "/captcha/world1_captcha2.png",
+                    "img": "/captcha/world1-captcha2.png",
                     "response": true
                 },
                 {
                     "id": "27",
                     "title": "Individu escaladant un mur",
-                    "img": "/captcha/world1_captcha3.png",
+                    "img": "/captcha/world1-captcha3.png",
                     "response": true
                 },
                 {
                     "id": "28",
                     "title": "Individu pressé",
-                    "img": "/captcha/world1_captcha4.png",
+                    "img": "/captcha/world1-captcha4.png",
                     "response": false
                 },
                 {
                     "id": "29",
                     "title": "Voiture teinté",
-                    "img": "/captcha/world1_captcha5.png",
+                    "img": "/captcha/world1-captcha5.png",
                     "response": false
                 },
                 {
                     "id": "30",
                     "title": "Individus devant casier",
-                    "img": "/captcha/world1_captcha6.png",
+                    "img": "/captcha/world1-captcha6.png",
                     "response": true
                 }
             ],
