@@ -13,7 +13,7 @@
                 <p>Selection</p>
                 <div class="answers_flashcard">
                     <img class="img_flashcard" :src="card.flipped == true || card.matched == true ? card.img : img"
-                        :alt=card.answer v-for="(card, index) in cards" @click="flipCard(index)"
+                        :alt=card.title v-for="(card, index) in cards" @click="flipCard(index)"
                         v-bind:class="{ flipped_flashcard: card.flipped, matched_flashcard: card.matched }">
                 </div>
                 <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
@@ -94,7 +94,7 @@ const flipCard = (id: number) => {
 const checkMatch = () => {
     const card1 = flippedCards.value[0];
     const card2 = flippedCards.value[1];
-    if (card1.answer === card2.answer) {
+    if (card1.title === card2.title) {
         card1.matched = true;
         card2.matched = true;
         card1.flipped = false;

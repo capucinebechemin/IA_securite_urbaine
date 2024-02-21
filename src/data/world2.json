@@ -1,0 +1,343 @@
+{
+    "id": 2,
+    "questions": {
+        "1": {
+            "id": 1,
+            "title": "Question à choix multiples",
+            "type": "choix_multiple",
+            "question": "Quels sont les biais algorithmiques qui peuvent survenir en cas d’entraînement de modèle d’IA avec des données non représentatives ?",
+            "answers": [
+                {
+                    "id": "1",
+                    "answer": "Racisme",
+                    "response": true
+                },
+                {
+                    "id": "2",
+                    "answer": "Sexisme",
+                    "response": true
+                },
+                {
+                    "id": "3",
+                    "answer": "Discrimination envers les personnes handicapées",
+                    "response": true
+                },
+                {
+                    "id": "4",
+                    "answer": "Homophobie",
+                    "response": true
+                }
+            ],
+            "textAnswer": "Toutes les réponses sont correctes."
+        },
+        "2": {
+            "id": 2,
+            "title": "Question à choix multiples",
+            "type": "choix_multiple",
+            "question": "L’algorithme de prédiction de délits s’appuie sur :",
+            "answers": [
+                {
+                    "id": "5",
+                    "answer": "des intuitions générées par l’Intelligence Artificielle",
+                    "response": false
+                },
+                {
+                    "id": "6",
+                    "answer": "des données historiques sur les activités criminelles",
+                    "response": true
+                },
+                {
+                    "id": "7",
+                    "answer": "des témoignages de criminel",
+                    "response": false
+                },
+                {
+                    "id": "8",
+                    "answer": "des informations fournies par les forces de l’ordre",
+                    "response": true
+                }
+            ],
+            "textAnswer": "Les réponses et sont correctes."
+        },
+        "3": {
+            "id": 3,
+            "title": "Reliez chaque concept ou technologie de la prédiction criminelle à son application ou caractéristique principale",
+            "type": "connectpairs",
+            "pairs": [
+                {
+                    "item1": "Analyse prédictive",
+                    "item2": "Utilise des modèles statistiques pour anticiper les activités criminelles futures."
+                },
+                {
+                    "item1": "Cartographie prédictive",
+                    "item2": "Emploie des analyses géographiques pour prédire les zones à haut risque de criminalité."
+                },
+                {
+                    "item1": "Data-driven policing",
+                    "item2": "Utilise des données massives pour identifier des tendances ou des modèles en relation avec la criminalité."
+                },
+                {
+                    "item1": "Profilage criminel",
+                    "item2": "Technique d'investigation visant à identifier les caractéristiques comportementales et psychologiques des criminels."
+                }
+            ]
+        },
+        "4": {
+            "id": 4,
+            "title": "Pendu sur la police prédictive",
+            "type": "jeu_pendu",
+            "start_question": "",
+            "end_question": " : Son objectif principal est d'anticiper les faits et les zones les plus à risque avant qu'ils ne se produisent réellement en utilisant notamment des données ouvertes et celles produites par les services de sécurité.",
+            "word": "POLICE PREDICTIVE",
+            "textAnswer": "La réponse est police prédictive."
+        },
+        "5": {
+            "id": 5,
+            "title": "Glisser déposer",
+            "type": "draganddrop",
+            "question": "Classez les éléments suivants en fonction de leur étape dans le processus de la police prédictive :",
+            "answers": [
+                {
+                    "id": "17",
+                    "answer": "Collecte de données historiques sur les crimes",
+                    "position": 1
+                },
+                {
+                    "id": "18",
+                    "answer": "Analyse des données par des algorithmes prédictifs",
+                    "position": 2
+                },
+                {
+                    "id": "19",
+                    "answer": "Intervention policière basée sur les prédictions",
+                    "position": 3
+                },
+                {
+                    "id": "20",
+                    "answer": "Évaluation et ajustement des stratégies de police",
+                    "position": 4
+                }
+            ],
+            "textAnswer": ""
+        },
+        "6": {
+            "id": 6,
+            "title": "Quiz sur les objectifs de la police prédictive",
+            "type": "choix_multiple",
+            "question": "A votre avis, quels sont les objectifs visés pour les forces de l’ordre d’avoir recours à la police prédictive ?",
+            "answers": [
+                {
+                    "id": "21",
+                    "answer": "Rendre la police plus réactive et urgentiste",
+                    "response": false
+                },
+                {
+                    "id": "22",
+                    "answer": "Rendre la police plus proactive et vigilante",
+                    "response": true
+                },
+                {
+                    "id": "23",
+                    "answer": "Optimiser les parcours des patrouilles en s'assurant que les policiers se rendent là où se posent les problèmes",
+                    "response": true
+                },
+                {
+                    "id": "24",
+                    "answer": "Arrêter des personnes avant qu'ils ne commettent un délit ou un crime",
+                    "response": false
+                }
+            ],
+            "textAnswer": "Les réponses et sont correctes. L'objectif n'est pas d'arrêter des personnes avant qu'un délit soit commis, ce qui serait contraire aux principes de la justice préventive."
+        },
+        "7": {
+            "id": 7,
+            "title": "Mémorie",
+            "type": "flashcard",
+            "question": "Trouver les images paires",
+            "answers": [
+                {
+                    "title": "Cartographie predictive",
+                    "img": "/flashcard/world2-flashcard1.png"
+                },
+                {
+                    "title": "Analyse de donnees",
+                    "img": "/flashcard/world2-flashcard2.png"
+                },
+                {
+                    "title": "Ecran videosurveillance",
+                    "img": "/flashcard/world2-flashcard3.png"
+                },
+                {
+                    "title": "Intervention policiere",
+                    "img": "/flashcard/world2-flashcard4.png"
+                },
+                {
+                    "title": "Reperes sur une carte",
+                    "img": "/flashcard/world2-flashcard5.png"
+                },
+                {
+                    "title": "Camera videosurveillance",
+                    "img": "/flashcard/world2-flashcard6.png"
+                }
+            ],
+            "textAnswer": ""
+        },
+        "8": {
+            "id": 8,
+            "title": "Captcha",
+            "type": "captcha",
+            "question": "La police prédictive pose cependant des questions sur la pertinence de ses résultats. Qui a dit : “l’incertitude n’est pas modélisable” ?",
+            "answers": [
+                {
+                    "id": "25",
+                    "title": "Descartes",
+                    "img": "/captcha/world2-captcha1.png",
+                    "response": false
+                },
+                {
+                    "id": "26",
+                    "title": "Aristote",
+                    "img": "/captcha/world2-captcha2.png",
+                    "response": true
+                },
+                {
+                    "id": "27",
+                    "title": "Nietzsche",
+                    "img": "/captcha/world2-captcha3.png",
+                    "response": false
+                },
+                {
+                    "id": "28",
+                    "title": "Rousseau",
+                    "img": "/captcha/world2-captcha4.png",
+                    "response": false
+                },
+                {
+                    "id": "29",
+                    "title": "Diderot",
+                    "img": "/captcha/world2-captcha5.png",
+                    "response": false
+                },
+                {
+                    "id": "30",
+                    "title": "Socrate",
+                    "img": "/captcha/world2-captcha6.png",
+                    "response": false
+                }
+            ],
+            "textAnswer": "Socrate a exprimé des doutes quant à la possibilité de modéliser l'incertitude."
+        },
+        "9": {
+            "id": 9,
+            "title": "Phrase à trou",
+            "type": "holysentence",
+            "start_question": "La police prédictive est censée avoir plusieurs intérêts pour les forces de l’ordre. Elle permettrait d’orienter ",
+            "end_question": ".",
+            "holy_word": ", d’établir des priorités d’action, de fixer des objectifs, d’optimiser les ressources sur des secteurs géographiques précis et a un impact managérial. ",
+            "textAnswer": ""
+        },
+        "10": {
+            "id": 10,
+            "title": "Pendu",
+            "type": "jeu_pendu",
+            "start_question": "Dans la police prédictive, plusieurs technologies de surveillance sont utilisées pour collecter et analyser les données. Voici quelques-unes de ces technologies : caméras de vidéosurveillance, ",
+            "end_question": ",  systèmes de lecture automatique des plaques d'immatriculation (LAPI), capteurs acoustiques, drones, …",
+            "word": "SURVEILLANCE",
+            "textAnswer": ""
+        },
+        "11": {
+            "id": 11,
+            "title": "Barre chiffrée",
+            "type": "bar_chiffree",
+            "question": "En quelle année la police prédictive a été implémentée pour la première fois ?",
+            "minNumber": 2000,
+            "maxNumber": 2020,
+            "increment": 1,
+            "minAnswer": 2013,
+            "maxAnswer": 2013,
+            "textAnswer": "Le programme PredPol, a été testé pour la première fois par le département de police de Los Angeles (LAPen 2013. PredPol utilisait des algorithmes pour prédire les endroits et les moments où des crimes spécifiques étaient susceptibles de se produire, permettant ainsi une allocation plus ciblée des ressources policières."
+        },
+        "12": {
+            "id": 12,
+            "title": "Glisser déposer",
+            "type": "draganddrop",
+            "question": "D’après la législation en vigueur, les algorithmes ne sont pas censés se baser sur certains types de données ou respecter des normes précises lorsqu’elles y sont autorisées en fonction de leur secteur d’activité. Sélectionner les données qui sont sensibles.",
+            "answers": [
+                {
+                    "id": 1,
+                    "answer": "origine ethnique",
+                    "response": true
+                },
+                {
+                    "id": 2,
+                    "answer": "données d’identification (nom, prénom)",
+                    "response": false
+                },
+                {
+                    "id": 3,
+                    "answer": "données financières",
+                    "response": false
+                },
+                {
+                    "id": 4,
+                    "answer": "opinions politiques",
+                    "response": true
+                },
+                {
+                    "id": 5,
+                    "answer": "convictions religieuses",
+                    "response": true
+                },
+                {
+                    "id": 6,
+                    "answer": "données démographique (âge)",
+                    "response": false
+                },
+                {
+                    "id": 7,
+                    "answer": "données biométriques",
+                    "response": true
+                },
+                {
+                    "id": 8,
+                    "answer": "style vestimentaire",
+                    "response": false
+                }
+            ],
+            "textAnswer": ""
+        },
+        "13": {
+            "id": 13,
+            "title": "Phrase à trou sur le marché de la surveillance",
+            "type": "holysentence",
+            "start_question": "L’un des plus importants marchés de la surveillance aujourd’hui porte sur le contrôle des ",
+            "end_question": " à l’intérieur et à l’extérieur des pays membres de l’Union européenne.",
+            "holy_word": "frontières",
+            "textAnswer": ""
+        },
+        "14": {
+            "id": 14,
+            "title": "Barre chiffrée",
+            "type": "bar_chiffree",
+            "question": "Au début de l’année 2020, quel était le nombre de vidéosurveillance dans les 50 villes les plus peuplées de France ? ",
+            "minNumber": 10000,
+            "maxNumber": 12000,
+            "increment": 100,
+            "minAnswer": 11400,
+            "maxAnswer": 11400,
+            "textAnswer": "11 400 selon un classement réalisé par «la Gazette des communes»."
+        },
+        "15": {
+            "id": 15,
+            "title": "Barre chiffrée",
+            "type": "bar_chiffree",
+            "question": "Combien coûte une caméra de vidéosurveillance à l’achat aux municipalités à l’unité (en euros) ?",
+            "minNumber": 20000,
+            "maxNumber": 50000,
+            "increment": 1000,
+            "minAnswer": 25000,
+            "maxAnswer": 40000,
+            "textAnswer": "Le coût peut varier entre 25 000 et 40 000 euros."
+        }
+    }
+}

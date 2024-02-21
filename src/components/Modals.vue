@@ -1,31 +1,38 @@
 <template>
-
-        <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible"/>
-        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formHs" v-show="store.isHolySentenceModalVisible" />
-        <QuestionModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formQuestion" v-show="store.isQuestionModalVisible" />
-        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formDaD" v-show="store.isDragAndDropModalVisible" />
-        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint
-        :form="formHeightQuestion" v-show="store.isHeightQuestionModalVisible" />
-        <EstimationModal :previous=previous :next=next :addPoint=addPoint
-        :form="formEstimation" v-show="store.isEstimationModalVisible" />
-        <CaptchaModal :previous=previous :next=next :addPoint=addPoint
-        :form="formCaptcha" v-show="store.isCaptchaModalVisible" />
-        <HangedModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formHanged" v-show="store.isHangedModalVisible" />
-        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint 
-        :form="formPairs" v-show="store.isConnectPairsModalVisible" />
-        <FlashcardModal :previous=previous :next=next :addPoint=addPoint
-        :form="formFlashcard" v-show="store.isFlashCardModalVisible" />
-        
+    <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
+    <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="formHs"
+        v-show="store.isHolySentenceModalVisible" />
+    <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint :form="formMultipleChoice"
+        v-show="store.isMultipleChoiceModalVisible" />
+    <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="formDaD"
+        v-show="store.isDragAndDropModalVisible" />
+    <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :form="formHeightQuestion"
+        v-show="store.isHeightQuestionModalVisible" />
+    <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="formEstimation"
+        v-show="store.isEstimationModalVisible" />
+    <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="formCaptcha"
+        v-show="store.isCaptchaModalVisible" />
+    <HangedModal :previous=previous :next=next :addPoint=addPoint :form="formHanged" v-show="store.isHangedModalVisible" />
+    <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="formPairs"
+        v-show="store.isConnectPairsModalVisible" />
+    <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="formFlashcard"
+        v-show="store.isFlashCardModalVisible" />
 </template>
   
 <script setup lang="ts">
+import { ref, watch, Ref } from 'vue';
 import { useAlertsStore } from '@/store';
+
+// Import your data files for each world
+import dataW1 from '@/data/world1.json';
+import dataW2 from '@/data/world2.json';
+import dataW3 from '@/data/world3.json';
+import dataW4 from '@/data/world4.json';
+
+// Import all the modal components
+import ResultModal from '@/components/ResultModal.vue';
 import HolySentenceModal from '@/components/HolySentenceModal.vue';
-import QuestionModal from '@/components/QuestionModal.vue';
+import MultipleChoiceModal from '@/components/MultipleChoiceModal.vue';
 import DragAndDropModal from '@/components/DragAndDropModal.vue';
 import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
 import EstimationModal from '@/components/EstimationModal.vue';
@@ -33,50 +40,73 @@ import CaptchaModal from '@/components/CaptchaModal.vue';
 import HangedModal from './HangedModal.vue';
 import ConnectPairsModal from '@/components/ConnectPairsModal.vue';
 import FlashcardModal from '@/components/FlashcardModal.vue';
-import { ref, type Ref } from 'vue';
-import ResultModal from '@/components/ResultModal.vue';
-import { Point } from '@/class/Point';
-import { Estimation } from '@/class/Estimation';
 import { Captcha } from '@/class/Captcha';
-import { QuestionEnum } from '@/class/QuestionEnum';
-import { HeightQuestion } from '@/class/HeightQuestion';
-import { DragAndDrop } from '@/class/DragAndDrop';
-import { Question } from '@/class/Question';
-import { HolySentence } from '@/class/HolySentence';
-import { Hanged } from '@/class/Hanged';
-import data from '@/data/questions.json';
 import { ConnectPairs } from '@/class/ConnectPairs';
+import { DragAndDrop } from '@/class/DragAndDrop';
+import { Estimation } from '@/class/Estimation';
 import { Flashcard } from '@/class/Flashcard';
+import { Hanged } from '@/class/Hanged';
+import { HeightQuestion } from '@/class/HeightQuestion';
+import { HolySentence } from '@/class/HolySentence';
+import { MultipleChoice } from '@/class/MultipleChoice';
+import { Point } from '@/class/Point';
+import { QuestionEnum } from '@/class/QuestionEnum';
+
+const props = defineProps({
+    world: String
+});
 
 const store = useAlertsStore();
-
 
 const result_modal = ref<any>(null);
 const nLevel = ref(0);
 const nWorld = ref(0);
-
+let data = ref();
 
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
-let titleResultat= ref('');
+let titleResult = ref('');
 
 let currentQuestions = [];
 let listQuestions = [];
-//Ils ont besoin d'être init ils peuvent pas être vide
-let formCaptcha: Ref<Captcha> = ref(data.worlds.world1.questions[6]);
-let formDaD: Ref<DragAndDrop> = ref(data.worlds.world1.questions[4]);
-let formEstimation: Ref<Estimation> = ref(data.worlds.world1.questions[3]);
-let formHeightQuestion: Ref<HeightQuestion> = ref(data.worlds.world1.questions[2]);
-let formHs: Ref<HolySentence> = ref(data.worlds.world1.questions[13]);
-let formQuestion: Ref<Question> = ref(data.worlds.world1.questions[8]);
-let formHanged: Ref<Hanged> = ref(data.worlds.world1.questions[1]);
-let formPairs: Ref<ConnectPairs> = ref(data.worlds.world4.questions[1]);
-let formFlashcard: Ref<Flashcard> = ref(data.worlds.world1.questions[2]);
 
-const initQuestionsForWorld = ()=>{
-    for(let i = 1; i<=15;i++){
-        let question = data.worlds["world"+nWorld.value].questions[i];
-        switch(question.type){
+// Initialize forms with default values to avoid errors
+let formMultipleChoice: Ref<MultipleChoice> = ref(dataW1.questions[1]);
+let formHanged: Ref<Hanged> = ref(dataW1.questions[3]);
+let formCaptcha: Ref<Captcha> = ref(dataW1.questions[4]);
+let formEstimation: Ref<Estimation> = ref(dataW1.questions[6]);
+let formHs: Ref<HolySentence> = ref(dataW1.questions[8]);
+let formPairs: Ref<ConnectPairs> = ref(dataW1.questions[9]);
+let formHeightQuestion: Ref<HeightQuestion> = ref(dataW1.questions[13]);
+let formDaD: Ref<DragAndDrop> = ref(dataW2.questions[5]);
+let formFlashcard: Ref<Flashcard> = ref(dataW2.questions[7]);
+
+watch(() => props.world, initWorld, { immediate: true });
+
+
+function initWorld() {
+    switch (props.world) {
+        case "world1":
+            data = dataW1;
+            break;
+        case "world2":
+            data = dataW2;
+            break;
+        case "world3":
+            data = dataW3;
+            break;
+        case "world4":
+            data = dataW4;
+            break;
+        default:
+            console.error("Unknown world: ", props.world);
+    }
+}
+
+const initQuestionsForWorld = () => {
+    for (let i = 1; i <= 15; i++) {
+        let question = data.questions[i];
+        switch (question.type) {
             case QuestionEnum.Captcha:
                 listQuestions[i - 1] = Captcha.fromJSON(question);
                 break;
@@ -92,8 +122,8 @@ const initQuestionsForWorld = ()=>{
             case QuestionEnum.HolySentence:
                 listQuestions[i - 1] = HolySentence.fromJSON(question);
                 break;
-            case QuestionEnum.Question:
-                listQuestions[i - 1] = Question.fromJSON(question);
+            case QuestionEnum.MultipleChoice:
+                listQuestions[i - 1] = MultipleChoice.fromJSON(question);
                 break;
             case QuestionEnum.Hanged:
                 listQuestions[i - 1] = Hanged.fromJSON(question);
@@ -108,11 +138,11 @@ const initQuestionsForWorld = ()=>{
     }
 }
 
-    
-const addPoint = (point : Point) => {
+
+const addPoint = (point: Point) => {
     let copiedArray = Array.from(points.value);
     //[...points.value]
-    copiedArray[nextQuestion.value-1] = point;
+    copiedArray[nextQuestion.value - 1] = point;
     points.value = copiedArray;
 }
 
@@ -148,7 +178,7 @@ const next = () => {
         openGame();
     }
     else {
-        titleResultat.value="Résultat niveau " + nLevel.value;
+        titleResult.value = "Résultat niveau " + nLevel.value;
         store.toggleResultModalVisible();
         result_modal.value?.updatePoints()
     }
@@ -160,9 +190,9 @@ const openGame = () => {
             formDaD.value = currentQuestions[nextQuestion.value - 1] as DragAndDrop;
             store.toggleDragAndDropModal();
             break;
-        case QuestionEnum.Question:
-            formQuestion.value = currentQuestions[nextQuestion.value - 1] as Question;
-            store.toggleQuestionModal();
+        case QuestionEnum.MultipleChoice:
+            formMultipleChoice.value = currentQuestions[nextQuestion.value - 1] as MultipleChoice;
+            store.toggleMultipleChoiceModal();
             break;
         case QuestionEnum.HolySentence:
             formHs.value = currentQuestions[nextQuestion.value - 1] as HolySentence;

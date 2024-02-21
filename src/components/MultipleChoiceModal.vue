@@ -5,7 +5,7 @@
       <div class="head_modal">
         <div class="title_modal">
           <h2>{{ props.form.title }}</h2>
-        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleQuestionModal" />
+        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleMultipleChoiceModal" />
       </div>
       <div class='main_modal'>
         <p>Question</p>
@@ -31,12 +31,12 @@
 import { ref, watch } from 'vue';
 import { useAlertsStore } from '@/store';
 import { Point } from '@/class/Point';
-import { Question, type QuestionAnswer } from '@/class/Question';
+import { MultipleChoice, type MultipleChoiceAnswer } from '@/class/MultipleChoice';
 
 const store = useAlertsStore();
 
 const props = defineProps({
-  form: { type: Question, required: true },
+  form: { type: MultipleChoice, required: true },
   next: { type: Function, required: true },
   previous: { type: Function, required: true },
   addPoint: { type: Function, required: true },
@@ -60,12 +60,12 @@ const clickAnswer = (a: number) => {
 }
 
 const previous = () => {
-  store.toggleQuestionModal();
+  store.toggleMultipleChoiceModal();
   props.previous();
 }
 
 const submit = () => {
-  store.toggleQuestionModal();
+  store.toggleMultipleChoiceModal();
   checkAnswer();
   props.next();
 }
