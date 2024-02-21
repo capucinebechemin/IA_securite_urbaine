@@ -8,9 +8,7 @@
                 </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleFlashCardModal" />
             </div>
             <div class='main_modal'>
-                <p>Question</p>
-                <div class="question_modal">{{ props.form.question }}</div>
-                <p>Selection</p>
+                <p>Trouver les paires</p>
                 <div class="answers_flashcard">
                     <img class="img_flashcard" :src="card.flipped == true || card.matched == true ? card.img : img"
                         :alt=card.title v-for="(card, index) in cards" @click="flipCard(index)"
@@ -51,7 +49,7 @@ const answerPage = false;
 
 const img = '/world1/castle2.png';
 
-const gameOver = ref(false); 
+const gameOver = ref(false);
 
 let cards = ref(props.form.answers);
 cards.value.push(...cards.value);
@@ -70,17 +68,19 @@ const matchedCards = ref([]);
 const score = ref(0);
 
 watch(() => props.form, (form) => {
-    score.value=0;
+    score.value = 0;
     gameOver.value = false;
     cards.value = form.answers;
+    cards.value.push(...cards.value);
+    cards.value = store.shuffleItems(cards.value);
     cards.value = cards.value.map(card => {
-    return {
-        ...card,
-        flipped: false,
-        matched: false
+        return {
+            ...card,
+            flipped: false,
+            matched: false
         };
     });
-    setTimeout(() => { 
+    setTimeout(() => {
         selectedAnswer.value = false;
         flippedCards.value = [];
     }, 50);
@@ -132,11 +132,11 @@ const checkAnswer = () => {
 
     let point = 0;
     let display = '';
-    if (gameOver.value == true){
+    if (gameOver.value == true) {
         point = 1;
         display = 'Flashcard Réussi' //later
     }
-    else{
+    else {
         point = 0;
         display = 'Flashcard Perdu' //later
     }
@@ -153,9 +153,10 @@ const checkAnswer = () => {
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    max-height: 38vh;
+    align-content: center;
+    max-height: 50vh;
     border-radius: .7rem;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .img_flashcard {
@@ -182,17 +183,24 @@ const checkAnswer = () => {
     }
 }
 
-.flipped_flashcard {
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    transition: transform 0.5s;
+@keyframes flip {
+    from {
+        transform-style: preserve-3d;
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform-style: preserve-3d;
+        transform: rotateY(180deg);
+    }
 }
 
-.flipped_flashcard:active {
-    transform: rotateY(180deg);
+.flipped_flashcard {
+    animation: flip 0.5s forwards;
 }
 
 .matched_flashcard {
+    animation: flip 0.5s forwards;
     opacity: 0.5;
 }
 
