@@ -8,9 +8,7 @@
                 </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleFlashCardModal" />
             </div>
             <div class='main_modal'>
-                <p>Question</p>
-                <div class="question_modal">{{ props.form.question }}</div>
-                <p>Selection</p>
+                <p>Trouver les paires</p>
                 <div class="answers_flashcard">
                     <img class="img_flashcard" :src="card.flipped == true || card.matched == true ? card.img : img"
                         :alt=card.title v-for="(card, index) in cards" @click="flipCard(index)"
@@ -48,11 +46,14 @@ const data = ref({ questionId: null as string | null, selectedAnswer: [] as numb
 const selectedAnswer = ref(false);
 const answerPage = false;
 
-const img = "public/world1/castle2.png";
+const img = '/world1/castle2.png';
 
-const gameOver = ref(false); 
+const gameOver = ref(false);
 
-const cards = ref(props.form.answers);
+let cards = ref(props.form.answers);
+cards.value.push(...cards.value);
+cards.value = store.shuffleItems(cards.value);
+
 cards.value = cards.value.map(card => {
     return {
         ...card,
@@ -66,17 +67,19 @@ const matchedCards = ref([]);
 const score = ref(0);
 
 watch(() => props.form, (form) => {
-    score.value=0;
+    score.value = 0;
     gameOver.value = false;
     cards.value = form.answers;
+    cards.value.push(...cards.value);
+    cards.value = store.shuffleItems(cards.value);
     cards.value = cards.value.map(card => {
-    return {
-        ...card,
-        flipped: false,
-        matched: false
+        return {
+            ...card,
+            flipped: false,
+            matched: false
         };
     });
-    setTimeout(() => { 
+    setTimeout(() => {
         selectedAnswer.value = false;
         flippedCards.value = [];
     }, 50);
@@ -128,11 +131,11 @@ const checkAnswer = () => {
 
     let point = 0;
     let display = '';
-    if (gameOver.value == true){
+    if (gameOver.value == true) {
         point = 1;
         display = 'Flashcard Réussi' //later
     }
-    else{
+    else {
         point = 0;
         display = 'Flashcard Perdu' //later
     }
@@ -147,19 +150,20 @@ const checkAnswer = () => {
     margin: 0 4vw;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    max-height: 38vh;
+    align-content: center;
+    max-height: 50vh;
     border-radius: .7rem;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .img_flashcard {
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 10vw;
-    height: 11vh;
+    width: 15vh;
+    height: 15vh;
     border-radius: .7rem;
     margin: .5vh .5vw;
     font-size: 0.8rem;
@@ -178,17 +182,24 @@ const checkAnswer = () => {
     }
 }
 
-.flipped_flashcard {
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    transition: transform 0.5s;
+@keyframes flip {
+    from {
+        transform-style: preserve-3d;
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform-style: preserve-3d;
+        transform: rotateY(180deg);
+    }
 }
 
-.flipped_flashcard:active {
-    transform: rotateY(180deg);
+.flipped_flashcard {
+    animation: flip 1.5s forwards;
 }
 
 .matched_flashcard {
+    animation: flip 1.5s forwards;
     opacity: 0.5;
 }
 
@@ -199,8 +210,8 @@ const checkAnswer = () => {
     }
 
     .img_flashcard {
-        width: 20vw;
-        height: 10vh;
+        width: 11vh;
+        height: 11vh;
     }
 }
 </style>

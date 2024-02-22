@@ -8,7 +8,6 @@
         "start_question": "Le fait de subir une atteinte, matérielle, corporelle ou psychique ainsi que d’en être conscient est la ",
         "end_question": ".",
         "word": "VICTIMISATION",
-        "answers": [],
         "textAnswer": "La bonne réponse est la victimisation."
     },
     "2": {
@@ -250,7 +249,7 @@
       "question": "Quel est le pourcentage de cambriolage élucidés pour la période 2017-2018 ?",
       "minNumber": 1,
       "maxNumber": 10,
-      "increment": 0.1,
+      "increment": 1,
       "minAnswer": 4,
       "maxAnswer": 5,
       "textAnswer": "4.2"
@@ -262,9 +261,9 @@
       "question": "En 2020 quel est le pourcentage de débit frauduleux par transaction ?",
       "minNumber": 1,
       "maxNumber": 10,
-      "increment": 0.1,
-      "minAnswer": 8.5,
-      "maxAnswer": 9.5,
+      "increment": 1,
+      "minAnswer": 8,
+      "maxAnswer": 9,
       "textAnswer": "9%"
     },
     "13": {
@@ -319,7 +318,6 @@
       "start_question": "En 2001-2021 il y a 4 peur majeures domicile, transports, quartier, mais la plus grosses peur reste pour les",
       "end_question": "selon l'IPR.",
       "word": "ENFANTS",
-      "answers": [],
       "textAnswer": ""
     },
     "15": {
