@@ -33,7 +33,6 @@ import { Flashcard, type FlashcardAnswer } from '@/class/Flashcard';
 
 
 const store = useAlertsStore();
-store.isFlashCardModalVisible = true;
 
 const props = defineProps({
     form: { type: Flashcard, required: true },
@@ -196,11 +195,11 @@ const checkAnswer = () => {
 }
 
 .flipped_flashcard {
-    animation: flip 0.5s forwards;
+    animation: flip 1.5s forwards;
 }
 
 .matched_flashcard {
-    animation: flip 0.5s forwards;
+    animation: flip 1.5s forwards;
     opacity: 0.5;
 }
 
@@ -211,8 +210,8 @@ const checkAnswer = () => {
     }
 
     .img_flashcard {
-        width: 20vw;
-        height: 10vh;
+        width: 11vh;
+        height: 11vh;
     }
 }
 </style>

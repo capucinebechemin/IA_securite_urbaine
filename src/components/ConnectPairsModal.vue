@@ -50,6 +50,7 @@ import { Point } from '@/class/Point';
 const answerPage = false;
 
 const store = useAlertsStore();
+store.isConnectPairsModalVisible = true;
 
 const props = defineProps({
     form: { type: ConnectPairs, required: true },
@@ -159,6 +160,7 @@ const checkAnswer = () => {
 </script>
   
 <style scoped>
+
 .items-container {
     display: flex;
     justify-content: space-around;
@@ -171,7 +173,6 @@ const checkAnswer = () => {
     display: flex;
     flex-direction: column;
     padding: 0 2vw;
-    max-height: 40vh;
     width: auto;
 }
 
@@ -180,7 +181,7 @@ const checkAnswer = () => {
     cursor: pointer;
     align-items: center;
     border-radius: .7rem;
-    height: 6vh;
+    height: auto;
     margin: .5vh .5vw;
     padding: 1rem 1rem;
     background-color: #638e995d;
@@ -205,6 +206,12 @@ const checkAnswer = () => {
     width: 100%;
     height: 100%;
     pointer-events: none;
+}
+
+@media screen and (max-width: 900px) {
+    .items-container {
+        font-size: 0.6rem;
+    }
 }
 </style>
 
