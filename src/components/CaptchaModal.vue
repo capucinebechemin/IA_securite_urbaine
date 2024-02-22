@@ -12,8 +12,8 @@
                 <div class="question_modal">{{ props.form.question }}</div>
                 <p>Selection</p>
                 <div class="answers_captcha">
-                    <img class="img_captcha" :src=answer.img :alt=answer.title v-for="answer in props.form.answers"
-                        @click="clickAnswer(answer.id)"
+                    <img class="img_captcha" :src=answer.img :alt=answer.title :title=answer.title
+                        v-for="answer in props.form.answers" @click="clickAnswer(answer.id)"
                         v-bind:class="{ checked_captcha: selectedAnswer.includes(answer.id) }">
                 </div>
                 <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
@@ -49,8 +49,8 @@ const selectedAnswer = ref<number[]>([]);
 const answerPage = false;
 
 watch(() => props.form, (form) => {
-    setTimeout(()=>{selectedAnswer.value = [];},50);
-  });
+    setTimeout(() => { selectedAnswer.value = []; }, 50);
+});
 
 const clickAnswer = (a: number) => {
     const index = selectedAnswer.value.indexOf(a);
@@ -72,28 +72,28 @@ const submit = () => {
     props.next();
 }
 
-const checkAnswer = () =>{
-  let nGoodAnswers = 0
-  let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
-  let display = '';
-  goodAsnwsers?.forEach((a)=>{
-    if(selectedAnswer.value.includes(a.id)){
-        display += a.title + ',';
-        nGoodAnswers +=1;
+const checkAnswer = () => {
+    let nGoodAnswers = 0
+    let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
+    let display = '';
+    goodAsnwsers?.forEach((a) => {
+        if (selectedAnswer.value.includes(a.id)) {
+            display += a.title + ',';
+            nGoodAnswers += 1;
+        }
+    })
+    if (display == '') {
+        display = 'Aucune Réponse trouvée.'
     }
-  })
-  if(display == ''){
-    display='Aucune Réponse trouvée.'
-  }
-  
-  let point = 0;
-  if(nGoodAnswers == goodAsnwsers!.length)
-    point = 1;
-  else if (nGoodAnswers == 0)
-    point = 0;
-  else 
-    point = 0.5
-  props.addPoint(new Point(point,"type",display.slice(0, -1)));
+
+    let point = 0;
+    if (nGoodAnswers == goodAsnwsers!.length)
+        point = 1;
+    else if (nGoodAnswers == 0)
+        point = 0;
+    else
+        point = 0.5
+    props.addPoint(new Point(point, "type", display.slice(0, -1)));
 }
 
 </script>
@@ -103,24 +103,23 @@ const checkAnswer = () =>{
     margin: 0 4vw;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     max-height: 38vh;
     border-radius: .7rem;
-    background-color: #638e995d;
-    justify-content: space-around;
+    justify-content: center;
+    align-content: center;
 }
 
 .img_captcha {
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 12vw;
+    width: 15vh;
     height: 15vh;
     border-radius: .7rem;
-    margin: .5vh .5vw;
+    margin: .5vh .8vw;
     font-size: 0.8rem;
-    background-color: #638e995d;
     transition: filter 0.3s ease, transform 0.3s ease;
 
     &:hover {
@@ -136,7 +135,7 @@ const checkAnswer = () =>{
 }
 
 .checked_captcha {
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px 5px #638e99d1;
     transform: translate3d(0, 0, 3px);
     transition: filter 0.3s ease, transform 0.3s ease;
 }
@@ -145,11 +144,6 @@ const checkAnswer = () =>{
     .answers_captcha {
         margin: 0 2vw;
         max-height: 48vh;
-    }
-
-    .img_captcha {
-        width: 30vw;
-        height: 13vh;
     }
 }
 </style>
