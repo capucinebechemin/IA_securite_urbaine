@@ -1,26 +1,28 @@
 <template>
-    <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
-    <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="formHs"
-        v-show="store.isHolySentenceModalVisible" />
-    <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint :form="formMultipleChoice"
-        v-show="store.isMultipleChoiceModalVisible" />
-    <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="formDaD"
-        v-show="store.isDragAndDropModalVisible" />
-    <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :form="formHeightQuestion"
-        v-show="store.isHeightQuestionModalVisible" />
-    <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="formEstimation"
-        v-show="store.isEstimationModalVisible" />
-    <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="formCaptcha"
-        v-show="store.isCaptchaModalVisible" />
-    <HangedModal :previous=previous :next=next :addPoint=addPoint :form="formHanged" v-show="store.isHangedModalVisible" />
-    <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="formPairs"
-        v-show="store.isConnectPairsModalVisible" />
-    <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="formFlashcard"
-        v-show="store.isFlashCardModalVisible" />
+    <div v-show="store.isModalsVisible">
+        <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
+        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="HolySentence.fromJSON(formHs)"
+            v-show="store.isHolySentenceModalVisible" />
+        <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint :form="MultipleChoice.fromJSON(formMultipleChoice)"
+            v-show="store.isMultipleChoiceModalVisible" />
+        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="DragAndDrop.fromJSON(formDaD)"
+            v-show="store.isDragAndDropModalVisible" />
+        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :form="HeightQuestion.fromJSON(formHeightQuestion)"
+            v-show="store.isHeightQuestionModalVisible" />
+        <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="Estimation.fromJSON(formEstimation)"
+            v-show="store.isEstimationModalVisible" />
+        <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="Captcha.fromJSON(formCaptcha)"
+            v-show="store.isCaptchaModalVisible" />
+        <HangedModal :previous=previous :next=next :addPoint=addPoint :form="Hanged.fromJSON(formHanged)" v-show="store.isHangedModalVisible" />
+        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="ConnectPairs.fromJSON(formPairs)"
+            v-show="store.isConnectPairsModalVisible" />
+        <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="Flashcard.fromJSON(formFlashcard)"
+            v-show="store.isFlashCardModalVisible" />
+    </div>
 </template>
   
 <script setup lang="ts">
-import { ref, watch, Ref } from 'vue';
+import { ref, watch, Ref, onBeforeMount } from 'vue';
 import { useAlertsStore } from '@/store';
 
 // Import your data files for each world
@@ -31,15 +33,15 @@ import dataW4 from '@/data/world4.json';
 
 // Import all the modal components
 import ResultModal from '@/components/ResultModal.vue';
-import HolySentenceModal from '@/components/HolySentenceModal.vue';
-import MultipleChoiceModal from '@/components/MultipleChoiceModal.vue';
-import DragAndDropModal from '@/components/DragAndDropModal.vue';
-import HeightQuestionModal from '@/components/HeightQuestionModal.vue';
-import EstimationModal from '@/components/EstimationModal.vue';
-import CaptchaModal from '@/components/CaptchaModal.vue';
-import HangedModal from './HangedModal.vue';
-import ConnectPairsModal from '@/components/ConnectPairsModal.vue';
-import FlashcardModal from '@/components/FlashcardModal.vue';
+import HolySentenceModal from '@/components/games/HolySentenceModal.vue';
+import MultipleChoiceModal from '@/components/games/MultipleChoiceModal.vue';
+import DragAndDropModal from '@/components/games/DragAndDropModal.vue';
+import HeightQuestionModal from '@/components/games/HeightQuestionModal.vue';
+import EstimationModal from '@/components/games/EstimationModal.vue';
+import CaptchaModal from '@/components/games/CaptchaModal.vue';
+import HangedModal from '@/components/games/HangedModal.vue';
+import ConnectPairsModal from '@/components/games/ConnectPairsModal.vue';
+import FlashcardModal from '@/components/games/FlashcardModal.vue';
 import { Captcha } from '@/class/Captcha';
 import { ConnectPairs } from '@/class/ConnectPairs';
 import { DragAndDrop } from '@/class/DragAndDrop';
@@ -82,7 +84,6 @@ let formDaD: Ref<DragAndDrop> = ref(dataW2.questions[5]);
 let formFlashcard: Ref<Flashcard> = ref(dataW2.questions[7]);
 
 watch(() => props.world, initWorld, { immediate: true });
-
 
 function initWorld() {
     switch (props.world) {

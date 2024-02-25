@@ -1,6 +1,5 @@
 <!-- Modal du jeu glisser-déposer -->
 <template>
-  <Transition name="modal">
     <div class="card_modal">
       <div class="head_modal">
         <div class="title_modal">
@@ -32,7 +31,6 @@
         <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
       </div>
     </div>
-  </Transition>
 </template>
   
 <script setup lang="ts">
@@ -40,7 +38,7 @@ import { useAlertsStore } from '@/store';
 import { ref, watch } from 'vue';
 import { Point } from '@/class/Point';
 import draggable from 'vuedraggable';
-import {DragAndDrop, type DragAndDropAnswer} from '@/class/DragAndDrop';
+import { DragAndDrop } from '@/class/DragAndDrop';
 
 const store = useAlertsStore();
 

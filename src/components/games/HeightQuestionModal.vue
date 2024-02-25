@@ -1,47 +1,44 @@
 <!-- Modal des questions à 8 réponses -->
 <template>
-    <Transition name="modal">
-        <div class="card_modal">
-            <div class="head_modal">
-                <div class="title_modal">
-                    <h2>{{ props.form.title }}</h2>
-                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleCaptchaModal" />
-            </div>
-            <div class='main_modal'>
-                <p>Question</p>
-                <div class="question_modal">{{ props.form.question }}</div>
-                <p>Selection</p>
-                <div class="answers_captcha">
-                    <img class="img_captcha" :src=answer.img :alt=answer.title :title=answer.title
-                        v-for="answer in props.form.answers" @click="clickAnswer(answer.id)"
-                        v-bind:class="{ checked_captcha: selectedAnswer.includes(answer.id) }">
-                </div>
-                <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
-            </div>
-            <div class='btn_submit_modal'>
-                <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-                <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-                <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
-            </div>
+    <div class="card_modal">
+        <div class="head_modal">
+            <div class="title_modal">
+                <h2>{{ props.form.title }}</h2>
+            </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+                @click="store.toggleHeightQuestionModal" />
         </div>
-    </Transition>
+        <div class='main_modal'>
+            <p>Question</p>
+            <div class="question_modal">{{ props.form.question }}</div>
+            <p>Choix multiple</p>
+            <div class="answers_height_question">
+                <div class="answer_height_question" v-for="answer in props.form.answers" @click="clickAnswer(answer.id)"
+                    v-bind:class="{ checked_height_question: selectedAnswer.includes(answer.id) }">
+                    {{ answer.answer }}</div>
+            </div>
+            <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
+        </div>
+        <div class='btn_submit_modal'>
+            <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
+            <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+            <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+        </div>
+    </div>
 </template>
     
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
 import { ref, watch } from 'vue';
 import { Point } from '@/class/Point';
-import { Captcha, type CaptchaAnswer } from '@/class/Captcha';
-
+import { HeightQuestion } from '@/class/HeightQuestion';
 
 const store = useAlertsStore();
 
 const props = defineProps({
-    form: { type: Captcha, required: true },
+    form: { type: HeightQuestion, required: true },
     next: { type: Function, required: true },
     previous: { type: Function, required: true },
     addPoint: { type: Function, required: true },
-
 });
 
 const data = ref({ questionId: null as string | null, selectedAnswer: [] as number[] });
@@ -62,30 +59,30 @@ const clickAnswer = (a: number) => {
 }
 
 const previous = () => {
-    store.toggleCaptchaModal();
+    store.toggleHeightQuestionModal();
     props.previous();
 }
 
 const submit = () => {
-    store.toggleCaptchaModal();
+    store.toggleHeightQuestionModal();
     checkAnswer();
     props.next();
 }
 
 const checkAnswer = () => {
     let nGoodAnswers = 0
+
     let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
     let display = '';
     goodAsnwsers?.forEach((a) => {
         if (selectedAnswer.value.includes(a.id)) {
-            display += a.title + ',';
             nGoodAnswers += 1;
+            display += a.answer + ',';
         }
     })
     if (display == '') {
         display = 'Aucune Réponse trouvée.'
     }
-
     let point = 0;
     if (nGoodAnswers == goodAsnwsers!.length)
         point = 1;
@@ -93,33 +90,32 @@ const checkAnswer = () => {
         point = 0;
     else
         point = 0.5
-    props.addPoint(new Point(point, "type", display.slice(0, -1)));
+    props.addPoint(new Point(point, "type", display));
 }
 
 </script>
     
 <style scoped>
-.answers_captcha {
-    margin: 0 4vw;
+.answers_height_question {
+    padding: 0 4vw;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-    max-height: 38vh;
-    border-radius: .7rem;
-    justify-content: center;
-    align-content: center;
+    flex-direction: row;
+    align-items: flex-start;
+    min-height: 34vh;
 }
 
-.img_captcha {
+.answer_height_question {
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 15vh;
-    height: 15vh;
+    width: 9.5vw;
+    height: 13vh;
     border-radius: .7rem;
-    margin: .5vh .8vw;
+    margin: .5vh .5vw;
+    padding: 1vh 1vw;
     font-size: 0.8rem;
+    background-color: #638e995d;
     transition: filter 0.3s ease, transform 0.3s ease;
 
     &:hover {
@@ -134,16 +130,25 @@ const checkAnswer = () => {
     }
 }
 
-.checked_captcha {
-    box-shadow: 0 0 10px 5px #638e99d1;
+.checked_height_question {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
     transform: translate3d(0, 0, 3px);
     transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 @media screen and (max-width: 900px) {
-    .answers_captcha {
-        margin: 0 2vw;
-        max-height: 48vh;
+    .answers_height_question {
+        padding: 0 2vw;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        max-height: 45vh;
+    }
+
+    .answer_height_question {
+        width: 100%;
+        max-height: 2.5vh;
+        min-height: 2vh;
+        font-size: .6rem;
     }
 }
 </style>
