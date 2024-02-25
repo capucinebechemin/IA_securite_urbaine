@@ -12,7 +12,7 @@
             <img :src="`/players/player${store.avatarId}.png`" alt="w4-player" id="w4-player" class="player">
         </div>
         <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" />
-        <Modals ref="modal" world="world4"/>
+        <Modals ref="modal" world="world4" :v-show="store.isModalsVisible"/>
     </div>
 </template>
 

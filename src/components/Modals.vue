@@ -1,5 +1,5 @@
 <template>
-    <div v-show="store.isModalsVisible">
+    <div>
         <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
         <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="HolySentence.fromJSON(formHs)"
             v-show="store.isHolySentenceModalVisible" />
