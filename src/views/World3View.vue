@@ -7,11 +7,11 @@
             <div v-for="i in 3" class="castles" :id="'w3-castle' + i + '-div'">
                 <img :src="'/world3/castle' + i + '.png'" :alt="'world 3 castle ' + i" :id="'w3-castle' + i"
                     @click="movePlayer('w3-castle' + i + '-div')">
-                <img v-if="store.scoreWorld3[i - 1]>3" src="/stars/star3.png" class="star-castle" />
+                <img v-if="store.scoreWorld3[i - 1] > 3" src="/stars/star3.png" class="star-castle" />
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w3-player" id="w3-player" class="player">
         </div>
-        <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" ></RessourceModal>
+        <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" world="world3"></RessourceModal>
         <Modals ref="modal" world="world3" :v-show="store.isModalsVisible"></Modals>
     </div>
 </template>
@@ -59,9 +59,9 @@ function movePlayer(castleName: string) {
     }
     setTimeout(() => {
         let element = castleName.replace(/[^\d]/g, '');
-        nLevel.value = parseInt(element[1]); 
+        nLevel.value = parseInt(element[1]);
         if (nLevel.value > 0) {
-            modal.value?.launchLevel(nLevel.value, store.scoreWorld3[nLevel.value - 2],3);
+            modal.value?.launchLevel(nLevel.value, store.scoreWorld3[nLevel.value - 2], 3);
         }
 
 
@@ -135,4 +135,5 @@ function movePlayer(castleName: string) {
         top: 30%;
         left: 45%;
     }
-}</style>
+}
+</style>
