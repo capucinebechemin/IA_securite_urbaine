@@ -64,17 +64,7 @@ function initWorld() {
 }
 
 function getRessources(subject: String) {
-    //TODO : Remplacer par les données du JSON
     return data.ressources;
-    // if (subject === "videosurveillance") {
-    //     return [
-    //         { title: "Ressource 1", url: "https://www.google.com" },
-    //         { title: "Ressource 2", url: "https://www.google.com" },
-    //         { title: "Ressource 3", url: "https://www.google.com" },
-    //         { title: "Ressource 4", url: "https://www.google.com" },
-    //         { title: "Ressource 5", url: "https://www.google.com" },
-    //     ]
-    // }
 }
 
 </script>
