@@ -11,16 +11,16 @@
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w2-player" id="w2-player" class="player">
         </div>
-        <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" ></RessourceModal>
+        <RessourceModal :subject="'videosurveillance'" ></RessourceModal>
         <Modals ref="modal" world="world2" :v-show="store.isModalsVisible"></Modals>
     </div>
 </template>
 
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
-import HomeBanner from '@/components/HomeBanner.vue';
-import BannerMenu from '@/components/BannerMenu.vue';
-import RessourceModal from '@/components/RessourceModal.vue';
+import HomeBanner from '@/components/menu/HomeBanner.vue';
+import BannerMenu from '@/components/menu/BannerMenu.vue';
+import RessourceModal from '@/components/menu/RessourceModal.vue';
 import Modals from '@/components/Modals.vue';
 import { ref } from 'vue';
 
@@ -31,6 +31,9 @@ const nLevel = ref(1);
 const modal = ref<any>(null);
 
 function movePlayer(castleName: string) {
+    if(castleName != "w2-castle" + nLevel.value + "-div") {
+        return;
+    }
     var castle = document.getElementById(castleName);
     var player = document.getElementById('w2-player');
 
@@ -74,8 +77,6 @@ function movePlayer(castleName: string) {
         if (nLevel.value > 0) {
             modal.value?.launchLevel(nLevel.value, store.scoreWorld2[nLevel.value - 2],2);
         }
-
-
     }, 1500);
 
 }

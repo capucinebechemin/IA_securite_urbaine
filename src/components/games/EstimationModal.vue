@@ -1,40 +1,37 @@
 <!-- Modal estimation chiffré -->
 <template>
-    <Transition name="modal">
-        <div class="card_modal">
-            <div class="head_modal">
-                <div class="title_modal">
-                    <h2>{{ props.form.title }}</h2>
-                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-                    @click="store.toggleEstimationModal" />
-            </div>
-            <div class='main_modal'>
-                <p>Question</p>
-                <div class="question_modal">{{ props.form.question }}</div>
-                <p>Estimation</p>
-                <div class="answers_estimation">
-                    <div class="selectedAnswer_estimation" :style="{ left: sliderPosition + '%' }">{{ selectedAnswer }}
-                    </div>
-                    <input type="range" :min="props.form.minNumber" :max="props.form.maxNumber" v-model=selectedAnswer
-                        class="slider_estimation" id="myRange" @input="updateSliderPosition">
-                    <div class="display_values_estimation">
-                        <div>{{ props.form.minNumber }}</div>
-                        <div>{{ props.form.maxNumber }}</div>
-                    </div>
-                </div>
-                <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
-            </div>
-            <div class='btn_submit_modal'>
-                <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-                <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-                <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
-            </div>
+    <div class="card_modal">
+        <div class="head_modal">
+            <div class="title_modal">
+                <h2>{{ props.form.title }}</h2>
+            </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleEstimationModal" />
         </div>
-    </Transition>
+        <div class='main_modal'>
+            <p>Question</p>
+            <div class="question_modal">{{ props.form.question }}</div>
+            <p>Estimation</p>
+            <div class="answers_estimation">
+                <div class="selectedAnswer_estimation" :style="{ left: sliderPosition + '%' }">{{ selectedAnswer }}
+                </div>
+                <input type="range" :min="props.form.minNumber" :max="props.form.maxNumber" v-model=selectedAnswer
+                    class="slider_estimation" id="myRange" @input="updateSliderPosition">
+                <div class="display_values_estimation">
+                    <div>{{ props.form.minNumber }}</div>
+                    <div>{{ props.form.maxNumber }}</div>
+                </div>
+            </div>
+            <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
+        </div>
+        <div class='btn_submit_modal'>
+            <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
+            <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+            <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+        </div>
+    </div>
 </template>
     
 <script setup lang="ts">
-import { ref , watch , onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import { Point } from '@/class/Point';
 import { useAlertsStore } from '@/store';
 import { Estimation } from '@/class/Estimation';
@@ -52,8 +49,8 @@ const answerPage = false;
 const sliderPosition = ref(0);
 
 watch(() => props.form, (newValue) => {
-  sliderPosition.value=0;
-  setTimeout(()=>{selectedAnswer.value =newValue.minNumber;},50)
+    sliderPosition.value = 0;
+    setTimeout(() => { selectedAnswer.value = newValue.minNumber; }, 50)
 });
 
 
@@ -75,15 +72,15 @@ const submit = () => {
     props.next();
 }
 
-const checkAnswer = () =>{
-  let answer = selectedAnswer.value!;
-  let point = 0;
-  if(answer < props.form.maxAnswer! && answer > props.form.minAnswer!){
-      point =1;
-  }
-  else 
-    point = 0
-  props.addPoint(new Point(point,"type",answer.toString()));
+const checkAnswer = () => {
+    let answer = selectedAnswer.value!;
+    let point = 0;
+    if (answer < props.form.maxAnswer! && answer > props.form.minAnswer!) {
+        point = 1;
+    }
+    else
+        point = 0
+    props.addPoint(new Point(point, "type", answer.toString()));
 }
 
 </script>

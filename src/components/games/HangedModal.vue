@@ -1,42 +1,40 @@
 <!-- Modal des phrases à trou -->
 <template>
-    <Transition name="modal">
-        <div class="card_modal">
-            <div class="head_modal">
-                <div class="title_modal">
-                    <h2>{{ props.form.title }}</h2>
-                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleHangedModal" />
-            </div>
-            <div class='main_modal'>
-                <p>Question</p>
-                <div class="container_hanged">
-                    <div class="question_hanged">
-                        {{ props.form.start_question }}
-                        <span class="word_hanged"> ? </span>
-                        {{ props.form.end_question }}
-                        <div class="field_container">
-                            <input type="text" v-for="l in emptyWord" :value="l" readonly class="field_input"
-                                :class="{ space_hanged: l == '&', word_hanged: l != '' }">
-                        </div>
-                    </div>
-                    <div class="drawing_hanged">
-                        <canvas id="canvas"></canvas>
-                    </div>
-                </div>
-                <div class="letters_hanged">
-                    <button v-for="a, index in alphabet" class="letter_hanged" @click="clickLetter(index)"
-                        :class="{ letter_checked_hanged: !a.clickable || nbBadAnswer >= maxAnswer }" :disabled="!a.clickable
-                            || nbBadAnswer >= maxAnswer">{{ a.letter }}</button>
-                </div>
-                <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
-            </div>
-            <div class='btn_submit_modal'>
-                <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-                <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-                <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
-            </div>
+    <div class="card_modal">
+        <div class="head_modal">
+            <div class="title_modal">
+                <h2>{{ props.form.title }}</h2>
+            </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleHangedModal" />
         </div>
-    </Transition>
+        <div class='main_modal'>
+            <p>Question</p>
+            <div class="container_hanged">
+                <div class="question_hanged">
+                    {{ props.form.start_question }}
+                    <span class="word_hanged"> ? </span>
+                    {{ props.form.end_question }}
+                    <div class="field_container">
+                        <input type="text" v-for="l in emptyWord" :value="l" readonly class="field_input"
+                            :class="{ space_hanged: l == '&', word_hanged: l != '' }">
+                    </div>
+                </div>
+                <div class="drawing_hanged">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </div>
+            <div class="letters_hanged">
+                <button v-for="a, index in alphabet" class="letter_hanged" @click="clickLetter(index)"
+                    :class="{ letter_checked_hanged: !a.clickable || nbBadAnswer >= maxAnswer }" :disabled="!a.clickable
+                        || nbBadAnswer >= maxAnswer">{{ a.letter }}</button>
+            </div>
+            <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
+        </div>
+        <div class='btn_submit_modal'>
+            <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
+            <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+            <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+        </div>
+    </div>
 </template>
     
 <script setup lang="ts">
@@ -183,18 +181,18 @@ const submit = () => {
 
 const checkAnswer = () => {
     selectedAnswer = ref(emptyWord.value.join(''));
-    let isComplete = emptyWord.value.filter((w)=> w == ' ');
-    let point=0;
+    let isComplete = emptyWord.value.filter((w) => w == ' ');
+    let point = 0;
     let display = '';
-    if(isComplete.length == 0){
-        point =1;
+    if (isComplete.length == 0) {
+        point = 1;
         display = props.form.word
-    }else {
+    } else {
         point = 0;
         display = 'Mot non trouvé'
     }
-    
-    props.addPoint(new Point(point,"",display));
+
+    props.addPoint(new Point(point, "", display));
 }
 
 </script>
