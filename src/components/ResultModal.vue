@@ -4,7 +4,7 @@
     <div class="card_modal">
       <div class="head_modal">
         <div class="title_modal">
-          <h2>{{ props.title }}</h2>
+          <h2> Résultats </h2>
         </div>
         <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleResultModalVisible" />
       </div>

@@ -242,7 +242,7 @@ const checkAnswer = () => {
     transition: .5s all;
 
     &:hover {
-        outline: .5px solid #638e99;
+        outline: .5px solid var(--answer-color);
         box-shadow: 0 7px 50px 10px white;
         transform: scale(1.015);
         filter: brightness(1.3);
@@ -256,7 +256,7 @@ const checkAnswer = () => {
 }
 
 .letter_checked_hanged {
-    background-color: #638e99;
+    background-color: var(--answer-color);
     color: white;
 }
 
@@ -285,7 +285,7 @@ const checkAnswer = () => {
 
 
 .word_hanged {
-    color: #638e99;
+    color: var(--answer-color);
     font-size: 1.2rem;
     font-weight: bold;
 }

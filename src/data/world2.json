@@ -107,8 +107,9 @@
         },
         "3": {
             "id": 3,
-            "title": "Reliez chaque concept ou technologie de la prédiction criminelle à son application ou caractéristique principale",
+            "title": "Relier des paires",
             "type": "connectpairs",
+            "question": "Relier chaque concept ou technologie de la prédiction criminelle à son application ou caractéristique principale",
             "pairs": [
                 {
                     "item1": "Analyse prédictive",
@@ -130,7 +131,7 @@
         },
         "4": {
             "id": 4,
-            "title": "Pendu sur la police prédictive",
+            "title": "Pendu",
             "type": "jeu_pendu",
             "start_question": "",
             "end_question": " : Son objectif principal est d'anticiper les faits et les zones les plus à risque avant qu'ils ne se produisent réellement en utilisant notamment des données ouvertes et celles produites par les services de sécurité.",

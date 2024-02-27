@@ -16,7 +16,6 @@
                     v-for="answer in props.form.answers" @click="clickAnswer(answer.id)"
                     v-bind:class="{ checked_captcha: selectedAnswer.includes(answer.id) }">
             </div>
-            <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
         </div>
         <div class='btn_submit_modal'>
             <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
@@ -134,7 +133,7 @@ const checkAnswer = () => {
 }
 
 .checked_captcha {
-    box-shadow: 0 0 10px 5px #638e99d1;
+    box-shadow: 0 0 10px 5px var(--answer-color);
     transform: translate3d(0, 0, 3px);
     transition: filter 0.3s ease, transform 0.3s ease;
 }

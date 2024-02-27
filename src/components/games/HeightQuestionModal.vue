@@ -16,7 +16,6 @@
                     v-bind:class="{ checked_height_question: selectedAnswer.includes(answer.id) }">
                     {{ answer.answer }}</div>
             </div>
-            <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
         </div>
         <div class='btn_submit_modal'>
             <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
@@ -115,7 +114,7 @@ const checkAnswer = () => {
     margin: .5vh .5vw;
     padding: 1vh 1vw;
     font-size: 0.8rem;
-    background-color: #638e995d;
+    background-color: var(--answer-transparent-color);
     transition: filter 0.3s ease, transform 0.3s ease;
 
     &:hover {

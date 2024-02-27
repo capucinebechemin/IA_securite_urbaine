@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div
+        :style="`--button-color: ${buttonColor};--answer-color: ${answerColor};--answer-transparent-color: ${answerTransparentColor};`">
         <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
         <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="HolySentence.fromJSON(formHs)"
             v-show="store.isHolySentenceModalVisible" />
@@ -65,6 +66,9 @@ const result_modal = ref<any>(null);
 const nLevel = ref(0);
 const nWorld = ref(0);
 let data = ref();
+let answerTransparentColor = ref("");
+let answerColor = ref("");
+let buttonColor = ref("");
 
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
@@ -90,15 +94,27 @@ function initWorld() {
     switch (props.world) {
         case "world1":
             data = dataW1;
+            answerTransparentColor.value = "#638e998d";
+            answerColor.value = "#638e99";
+            buttonColor.value = "#88924b";
             break;
         case "world2":
             data = dataW2;
+            answerTransparentColor.value = "#ddaa7c8d";
+            answerColor.value = "#ddaa7c";
+            buttonColor.value = "#be7f55";
             break;
         case "world3":
             data = dataW3;
+            answerTransparentColor.value = "#9b504f8d";
+            answerColor.value = "#9b504f";
+            buttonColor.value = "#1c4a62";
             break;
         case "world4":
-            data = dataW4;
+            data = dataW4; 7
+            answerTransparentColor.value = "#7f744b8d";
+            answerColor.value = "#7f744b";
+            buttonColor.value = "#4e7781";
             break;
         default:
             console.error("Unknown world: ", props.world);
@@ -259,7 +275,7 @@ h3 {
 .head_modal {
     display: flex;
     align-items: center;
-    padding: 2vh 2vw;
+    padding: 0 1vw;
 }
 
 .title_modal {
@@ -279,13 +295,12 @@ h3 {
     flex-direction: column;
     justify-content: center;
     padding: 0 6vw;
-    height: 55vh;
+    height: 60vh;
 }
 
 .text_answer_modal {
     max-height: 7vh;
     margin: 2vh 0;
-    color: #638e99;
 }
 
 .field_input {
@@ -313,10 +328,10 @@ h3 {
 }
 
 .field_input:focus {
-    filter: drop-shadow(0 2rem 2rem #638e99);
-    border-bottom: 2px solid #638e99;
-    color: #638e99;
-    box-shadow: 0 8px 4px -4px #638e99d1;
+    filter: drop-shadow(0 2rem 2rem var(--answer-color));
+    border-bottom: 2px solid var(--answer-color);
+    color: var(--answer-color);
+    box-shadow: 0 8px 4px -4px var(--answer-color);
 }
 
 .field_input_good_answer {
@@ -362,7 +377,7 @@ h3 {
     }
 
     .btn_next {
-        background-color: #88924b;
+        background-color: var(--button-color);
     }
 
     .btn_return {
@@ -429,7 +444,6 @@ h3 {
     .text_answer_modal {
         max-height: 7vh;
         margin: 2vh 0;
-        color: #638e99;
     }
 
 

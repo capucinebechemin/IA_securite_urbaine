@@ -7,7 +7,7 @@
                 @click="store.toggleConnectPairsModal(); store.toggleModals()" />
         </div>
         <div class='main_modal'>
-            <p>Connect the pairs:</p>
+            <p>{{ props.form.question }}</p>
             <div class="items-container">
                 <!-- Items for the first group -->
                 <div class="items-group">
@@ -182,7 +182,7 @@ const checkAnswer = () => {
     height: auto;
     margin: .5vh .5vw;
     padding: 1rem 1rem;
-    background-color: #638e995d;
+    background-color: var(--answer-transparent-color);
     transition: filter 0.3s ease, transform 0.3s ease;
 
     &:hover {

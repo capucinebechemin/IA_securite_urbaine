@@ -99,7 +99,7 @@ const checkAnswer = () => {
     width: 100%;
     height: 2vh;
     background: transparent;
-    border: 3px solid #638e99;
+    border: 3px solid var(--answer-color);
     border-radius: 0.4rem;
 }
 
@@ -109,10 +109,10 @@ const checkAnswer = () => {
     appearance: none;
     width: 1.2vw;
     height: 7vh;
-    background: #638e99;
+    background: var(--answer-color);
     transition: all 0.1s;
     cursor: pointer;
-    border: .2rem solid #638e99;
+    border: .2rem solid var(--answer-color);
     border-radius: 0.4rem;
 }
 
@@ -120,10 +120,10 @@ const checkAnswer = () => {
 .slider_estimation::-moz-range-thumb {
     width: 1.2vw;
     height: 7vh;
-    background: #638e99;
+    background: var(--answer-color);
     transition: all 0.25s;
     cursor: pointer;
-    border: .2rem solid #638e99;
+    border: .2rem solid var(--answer-color);
     border-radius: 0.4rem;
 }
 
@@ -158,7 +158,7 @@ const checkAnswer = () => {
 .selectedAnswer_estimation {
     position: absolute;
     margin-top: -8vh;
-    color: #638e99;
+    color: var(--answer-color);
     font-size: 1.5rem;
     transform: translateX(-50%);
 }

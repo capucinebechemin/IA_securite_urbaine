@@ -24,7 +24,6 @@
           </template>
         </draggable>
       </div>
-      <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
     </div>
     <div class='btn_submit_modal'>
       <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
@@ -121,7 +120,7 @@ const checkAnswer = () => {
   margin: .5vh .5vw;
   padding: 1vh 1vw;
   font-size: 0.8rem;
-  background-color: #638e995d;
+  background-color: var(--answer-transparent-color);
 
   &:hover {
     filter: drop-shadow(0 0 2rem white);
@@ -180,10 +179,10 @@ const checkAnswer = () => {
   margin: .5vh .5vw;
   padding: 1vh 1vw;
   font-size: .8rem;
-  background-color: #638e995d;
+  background-color: var(--answer-transparent-color);
 
   &:hover {
-    background-color: #638e9949;
+    opacity: 0.9;
   }
 
   &:hover::after {

@@ -14,7 +14,6 @@
                     :alt=card.title v-for="(card, index) in cards" @click="flipCard(index)"
                     v-bind:class="{ flipped_flashcard: card.flipped, matched_flashcard: card.matched }">
             </div>
-            <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
         </div>
         <div class='btn_submit_modal'>
             <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
@@ -166,7 +165,7 @@ const checkAnswer = () => {
     border-radius: .7rem;
     margin: .5vh .5vw;
     font-size: 0.8rem;
-    background-color: #638e995d;
+    background-color: var(--answer-transparent-color);
     transition: filter 0.3s ease, transform 0.3s ease;
 
     &:hover {
