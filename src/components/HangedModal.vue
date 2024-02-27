@@ -5,7 +5,8 @@
             <div class="head_modal">
                 <div class="title_modal">
                     <h2>{{ props.form.title }}</h2>
-                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleHangedModal" />
+                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+                    @click="store.toggleHangedModal(); store.toggleModals()" />
             </div>
             <div class='main_modal'>
                 <p>Question</p>
@@ -183,18 +184,18 @@ const submit = () => {
 
 const checkAnswer = () => {
     selectedAnswer = ref(emptyWord.value.join(''));
-    let isComplete = emptyWord.value.filter((w)=> w == ' ');
-    let point=0;
+    let isComplete = emptyWord.value.filter((w) => w == ' ');
+    let point = 0;
     let display = '';
-    if(isComplete.length == 0){
-        point =1;
+    if (isComplete.length == 0) {
+        point = 1;
         display = props.form.word
-    }else {
+    } else {
         point = 0;
         display = 'Mot non trouvé'
     }
-    
-    props.addPoint(new Point(point,"",display));
+
+    props.addPoint(new Point(point, "", display));
 }
 
 </script>

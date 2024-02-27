@@ -5,7 +5,8 @@
             <div class="head_modal">
                 <div class="title_modal">
                     <h2>{{ props.form.title }}</h2>
-                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleFlashCardModal" />
+                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+                    @click="store.toggleFlashCardModal(); store.toggleModals()" />
             </div>
             <div class='main_modal'>
                 <p>Trouver les paires</p>

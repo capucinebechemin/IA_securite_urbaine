@@ -4,7 +4,7 @@
             <div class="title_modal">
                 <h2>{{ props.form.title }}</h2>
             </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-                @click="store.toggleConnectPairsModal()" />
+                @click="store.toggleConnectPairsModal(); store.toggleModals()" />
         </div>
         <div class='main_modal'>
             <p>Connect the pairs:</p>
@@ -50,7 +50,6 @@ import { Point } from '@/class/Point';
 const answerPage = false;
 
 const store = useAlertsStore();
-store.isConnectPairsModalVisible = true;
 
 const props = defineProps({
     form: { type: ConnectPairs, required: true },
@@ -160,7 +159,6 @@ const checkAnswer = () => {
 </script>
   
 <style scoped>
-
 .items-container {
     display: flex;
     justify-content: space-around;

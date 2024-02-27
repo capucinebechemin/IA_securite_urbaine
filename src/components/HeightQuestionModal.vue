@@ -6,7 +6,7 @@
                 <div class="title_modal">
                     <h2>{{ props.form.title }}</h2>
                 </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-                    @click="store.toggleHeightQuestionModal" />
+                    @click="store.toggleHeightQuestionModal(); store.toggleModals()" />
             </div>
             <div class='main_modal'>
                 <p>Question</p>
@@ -30,7 +30,7 @@
     
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
-import { ref , watch } from 'vue';
+import { ref, watch } from 'vue';
 import { Point } from '@/class/Point';
 import { HeightQuestion, type HeightAnswer } from '@/class/HeightQuestion';
 
@@ -48,8 +48,8 @@ const selectedAnswer = ref<number[]>([]);
 const answerPage = false;
 
 watch(() => props.form, (form) => {
-    setTimeout(()=>{selectedAnswer.value = [];},50);
-  });
+    setTimeout(() => { selectedAnswer.value = []; }, 50);
+});
 
 const clickAnswer = (a: number) => {
     const index = selectedAnswer.value.indexOf(a);
@@ -71,28 +71,28 @@ const submit = () => {
     props.next();
 }
 
-const checkAnswer = () =>{
-  let nGoodAnswers = 0
-  
-  let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
-  let display = '';
-  goodAsnwsers?.forEach((a)=>{
-    if(selectedAnswer.value.includes(a.id)){
-      nGoodAnswers +=1;
-      display += a.answer + ',';
+const checkAnswer = () => {
+    let nGoodAnswers = 0
+
+    let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
+    let display = '';
+    goodAsnwsers?.forEach((a) => {
+        if (selectedAnswer.value.includes(a.id)) {
+            nGoodAnswers += 1;
+            display += a.answer + ',';
+        }
+    })
+    if (display == '') {
+        display = 'Aucune Réponse trouvée.'
     }
-  })
-  if(display == ''){
-    display='Aucune Réponse trouvée.'
-  }
-  let point = 0;
-  if(nGoodAnswers == goodAsnwsers!.length)
-    point = 1;
-  else if (nGoodAnswers == 0)
-    point = 0;
-  else 
-    point = 0.5
-  props.addPoint(new Point(point,"type",display));
+    let point = 0;
+    if (nGoodAnswers == goodAsnwsers!.length)
+        point = 1;
+    else if (nGoodAnswers == 0)
+        point = 0;
+    else
+        point = 0.5
+    props.addPoint(new Point(point, "type", display));
 }
 
 </script>

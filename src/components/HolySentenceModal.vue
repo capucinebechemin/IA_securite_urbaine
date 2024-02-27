@@ -5,7 +5,8 @@
       <div class="head_modal">
         <div class="title_modal">
           <h2>{{ props.form.title }}</h2>
-        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleHolySentenceModal" />
+        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+          @click="store.toggleHolySentenceModal(); store.toggleModals()" />
       </div>
       <div class='main_modal'>
         <p>Question</p>
@@ -27,7 +28,7 @@
 </template>
   
 <script setup lang="ts">
-import { ref , watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useAlertsStore } from '@/store';
 import { Point } from '@/class/Point';
 import diacritics from 'diacritics';
@@ -46,9 +47,9 @@ const data = ref({ questionId: null as String | null, selectedAnswer: [] as numb
 const selectedAnswer = ref<string>("");
 const answerPage = false;
 
-  watch(() => props.form, (form) => {
-    selectedAnswer.value = '';
-  });
+watch(() => props.form, (form) => {
+  selectedAnswer.value = '';
+});
 
 const previous = () => {
   store.toggleHolySentenceModal();
@@ -61,16 +62,16 @@ const submit = () => {
   props.next();
 }
 
-const checkAnswer = () =>{
+const checkAnswer = () => {
   let point = 0;
   //Clean the word to remoe space, accents, majuscule...
   let answer = diacritics.remove(selectedAnswer.value.toLowerCase().replace(/[\u0300-\u036f]/g, "").replace(/[\s-]/g, "")).replace(/[\s-]/g, '');
   let holy_word = diacritics.remove(props.form.holy_word?.toLowerCase()).replace(/[\s-]/g, '') || "";
-  if(answer === holy_word )
-    point=1;
+  if (answer === holy_word)
+    point = 1;
   else point = 0;
 
-  props.addPoint(new Point(point,"type",selectedAnswer.value));
+  props.addPoint(new Point(point, "type", selectedAnswer.value));
 
 }
 

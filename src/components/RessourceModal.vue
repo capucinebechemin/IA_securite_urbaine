@@ -81,8 +81,4 @@ function getRessources(subject: String) {
     padding: 0 0;
     margin: 0 4vw;
 }
-
-.answer_question {
-    flex-basis: 42%;
-}
 </style>

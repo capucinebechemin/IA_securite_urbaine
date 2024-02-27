@@ -5,7 +5,8 @@
       <div class="head_modal">
         <div class="title_modal">
           <h2>{{ props.form.title }}</h2>
-        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleDragAndDropModal" />
+        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+          @click="store.toggleDragAndDropModal(); store.toggleModals()" />
       </div>
       <div class='main_modal'>
         <p>Question</p>
@@ -40,7 +41,7 @@ import { useAlertsStore } from '@/store';
 import { ref, watch } from 'vue';
 import { Point } from '@/class/Point';
 import draggable from 'vuedraggable';
-import {DragAndDrop, type DragAndDropAnswer} from '@/class/DragAndDrop';
+import { DragAndDrop, type DragAndDropAnswer } from '@/class/DragAndDrop';
 
 const store = useAlertsStore();
 
@@ -57,8 +58,8 @@ const answerPage = false;
 const answers = ref(props.form.answers);
 
 watch(() => props.form, (form) => {
-    setTimeout(()=>{selectedAnswer.value = [];answers.value=form.answers},50);
-  });
+  setTimeout(() => { selectedAnswer.value = []; answers.value = form.answers }, 50);
+});
 
 function onMove() {
   if (selectedAnswer.value.length == 4) return false
@@ -75,28 +76,28 @@ const submit = () => {
   props.next();
 }
 
-const checkAnswer = () =>{
+const checkAnswer = () => {
   let nGoodAnswers = 0
   let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
   let answers = selectedAnswer.value.map(obj => obj.id);
   let display = '';
-  goodAsnwsers?.forEach((a)=>{
-    if(answers.includes(a.id) ){
+  goodAsnwsers?.forEach((a) => {
+    if (answers.includes(a.id)) {
       display += a.answer + ',';
-      nGoodAnswers +=1;
-    } 
+      nGoodAnswers += 1;
+    }
   })
-  if(display == ''){
-    display='Aucune Réponse trouvée.'
+  if (display == '') {
+    display = 'Aucune Réponse trouvée.'
   }
   let point = 0;
-  if(nGoodAnswers == goodAsnwsers.length)
+  if (nGoodAnswers == goodAsnwsers.length)
     point = 1;
   else if (nGoodAnswers == 0)
     point = 0;
-  else 
+  else
     point = 0.5
-  props.addPoint(new Point(point,"type",display.slice(0, -1)));
+  props.addPoint(new Point(point, "type", display.slice(0, -1)));
 }
 
 

@@ -6,7 +6,7 @@
                 <div class="title_modal">
                     <h2>{{ props.form.title }}</h2>
                 </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-                    @click="store.toggleEstimationModal" />
+                    @click="store.toggleEstimationModal(); store.toggleModals()" />
             </div>
             <div class='main_modal'>
                 <p>Question</p>
@@ -34,7 +34,7 @@
 </template>
     
 <script setup lang="ts">
-import { ref , watch , onMounted } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { Point } from '@/class/Point';
 import { useAlertsStore } from '@/store';
 import { Estimation } from '@/class/Estimation';
@@ -52,8 +52,8 @@ const answerPage = false;
 const sliderPosition = ref(0);
 
 watch(() => props.form, (newValue) => {
-  sliderPosition.value=0;
-  setTimeout(()=>{selectedAnswer.value =newValue.minNumber;},50)
+    sliderPosition.value = 0;
+    setTimeout(() => { selectedAnswer.value = newValue.minNumber; }, 50)
 });
 
 
@@ -75,15 +75,15 @@ const submit = () => {
     props.next();
 }
 
-const checkAnswer = () =>{
-  let answer = selectedAnswer.value!;
-  let point = 0;
-  if(answer < props.form.maxAnswer! && answer > props.form.minAnswer!){
-      point =1;
-  }
-  else 
-    point = 0
-  props.addPoint(new Point(point,"type",answer.toString()));
+const checkAnswer = () => {
+    let answer = selectedAnswer.value!;
+    let point = 0;
+    if (answer < props.form.maxAnswer! && answer > props.form.minAnswer!) {
+        point = 1;
+    }
+    else
+        point = 0
+    props.addPoint(new Point(point, "type", answer.toString()));
 }
 
 </script>
