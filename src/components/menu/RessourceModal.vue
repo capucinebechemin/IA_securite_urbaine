@@ -5,8 +5,7 @@
             <div class="title_modal">
                 <h2>Ressource</h2>
             </div>
-            <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-                @click="store.toggleRessourceModal(); store.toggleModals()" />
+            <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleRessourceModal()" />
         </div>
         <div class='main_modal'>
             <p>Voici des liens pour trouver plus d’informations</p>

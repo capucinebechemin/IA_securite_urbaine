@@ -3,17 +3,18 @@
         <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
         <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="HolySentence.fromJSON(formHs)"
             v-show="store.isHolySentenceModalVisible" />
-        <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint :form="MultipleChoice.fromJSON(formMultipleChoice)"
-            v-show="store.isMultipleChoiceModalVisible" />
+        <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint
+            :form="MultipleChoice.fromJSON(formMultipleChoice)" v-show="store.isMultipleChoiceModalVisible" />
         <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="DragAndDrop.fromJSON(formDaD)"
             v-show="store.isDragAndDropModalVisible" />
-        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :form="HeightQuestion.fromJSON(formHeightQuestion)"
-            v-show="store.isHeightQuestionModalVisible" />
+        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint
+            :form="HeightQuestion.fromJSON(formHeightQuestion)" v-show="store.isHeightQuestionModalVisible" />
         <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="Estimation.fromJSON(formEstimation)"
             v-show="store.isEstimationModalVisible" />
         <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="Captcha.fromJSON(formCaptcha)"
             v-show="store.isCaptchaModalVisible" />
-        <HangedModal :previous=previous :next=next :addPoint=addPoint :form="Hanged.fromJSON(formHanged)" v-show="store.isHangedModalVisible" />
+        <HangedModal :previous=previous :next=next :addPoint=addPoint :form="Hanged.fromJSON(formHanged)"
+            v-show="store.isHangedModalVisible" />
         <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="ConnectPairs.fromJSON(formPairs)"
             v-show="store.isConnectPairsModalVisible" />
         <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="Flashcard.fromJSON(formFlashcard)"
