@@ -1,24 +1,23 @@
 <!-- Modal des avatars -->
 <template>
-    <Transition name="modal">
-        <div class="card_modal">
-            <div class="head_modal">
-                <div class="title_modal">
-                    <h2>Ressource</h2>
-                </div>
-                <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleRessourceModal" />
+    <div v-show="store.isRessourceModalVisible" class="card_modal">
+        <div class="head_modal">
+            <div class="title_modal">
+                <h2>Ressource</h2>
             </div>
-            <div class='main_modal'>
-                <p>Voici des liens pour trouver plus d’informations</p>
-                <div class="answers_question">
-                    <a v-for="ressource in getRessources(props.subject || '')" :key="ressource.title" :href="ressource.url"
-                        class="answer_question">
-                        {{ ressource.title }}
-                    </a>
-                </div>
+            <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+                @click="store.toggleRessourceModal(); store.toggleModals()" />
+        </div>
+        <div class='main_modal'>
+            <p>Voici des liens pour trouver plus d’informations</p>
+            <div class="answers_question">
+                <a v-for="ressource in getRessources(props.subject || '')" :key="ressource.title" :href="ressource.url"
+                    class="answer_question">
+                    {{ ressource.title }}
+                </a>
             </div>
         </div>
-    </Transition>
+    </div>
 </template>
     
 <script setup lang="ts">

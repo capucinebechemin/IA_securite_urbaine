@@ -34,7 +34,7 @@
         </div>
         <div class='btn_submit_modal'>
             <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-            <button class="btn_reset" @click="reset" v-show="!answerPage">Reset</button>
+            <button class="btn_reset" @click="reset" v-show="!answerPage">Effacer</button>
             <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
             <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
         </div>

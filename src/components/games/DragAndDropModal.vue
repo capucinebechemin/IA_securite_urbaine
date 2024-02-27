@@ -1,39 +1,37 @@
 <!-- Modal du jeu glisser-déposer -->
 <template>
-  <Transition name="modal">
-    <div class="card_modal">
-      <div class="head_modal">
-        <div class="title_modal">
-          <h2>{{ props.form.title }}</h2>
-        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-          @click="store.toggleDragAndDropModal(); store.toggleModals()" />
-      </div>
-      <div class='main_modal'>
-        <p>Question</p>
-        <div class="question_modal">{{ props.form.question }}</div>
-        <p>Classement</p>
-        <div class="draggable">
-          <draggable v-model="answers" group="answer" class="answers_drag_and_drop" item-key="id" :move="onMove">
-            <template #item="{ element }">
-              <div class="answer_drag_and_drop" :key="element.id">{{ element.answer }}</div>
-            </template>
-          </draggable>
-          <draggable v-model="selectedAnswer" group="answer" class="classement_drag_and_drop" item-key="id">
-            <template #item="{ element, index }">
-              <div class="drop" :key="element.id" v-bind:class="{ [`classement${index + 1}_drag_and_drop`]: true }">
-                {{ element.answer }}</div>
-            </template>
-          </draggable>
-        </div>
-        <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
-      </div>
-      <div class='btn_submit_modal'>
-        <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-        <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-        <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
-      </div>
+  <div class="card_modal">
+    <div class="head_modal">
+      <div class="title_modal">
+        <h2>{{ props.form.title }}</h2>
+      </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+        @click="store.toggleDragAndDropModal(); store.toggleModals()" />
     </div>
-  </Transition>
+    <div class='main_modal'>
+      <p>Question</p>
+      <div class="question_modal">{{ props.form.question }}</div>
+      <p>Classement</p>
+      <div class="draggable">
+        <draggable v-model="answers" group="answer" class="answers_drag_and_drop" item-key="id" :move="onMove">
+          <template #item="{ element }">
+            <div class="answer_drag_and_drop" :key="element.id">{{ element.answer }}</div>
+          </template>
+        </draggable>
+        <draggable v-model="selectedAnswer" group="answer" class="classement_drag_and_drop" item-key="id">
+          <template #item="{ element, index }">
+            <div class="drop" :key="element.id" v-bind:class="{ [`classement${index + 1}_drag_and_drop`]: true }">
+              {{ element.answer }}</div>
+          </template>
+        </draggable>
+      </div>
+      <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
+    </div>
+    <div class='btn_submit_modal'>
+      <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
+      <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+      <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+    </div>
+  </div>
 </template>
   
 <script setup lang="ts">
@@ -41,7 +39,7 @@ import { useAlertsStore } from '@/store';
 import { ref, watch } from 'vue';
 import { Point } from '@/class/Point';
 import draggable from 'vuedraggable';
-import { DragAndDrop, type DragAndDropAnswer } from '@/class/DragAndDrop';
+import { DragAndDrop } from '@/class/DragAndDrop';
 
 const store = useAlertsStore();
 

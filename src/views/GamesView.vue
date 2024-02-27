@@ -22,10 +22,10 @@
 </template>
   
 <script setup lang="ts">
-import HomeBanner from '@/components/HomeBanner.vue';
-import BannerMenu from '@/components/BannerMenu.vue';
+import HomeBanner from '@/components/menu/HomeBanner.vue';
+import BannerMenu from '@/components/menu/BannerMenu.vue';
 import GameCard from '@/components/GameCard.vue';
-import AvatarModal from '@/components/AvatarModal.vue';
+import AvatarModal from '@/components/menu/AvatarModal.vue';
 import { useAlertsStore } from '@/store';
 
 const store = useAlertsStore();

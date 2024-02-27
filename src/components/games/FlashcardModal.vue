@@ -1,36 +1,34 @@
 <!-- Modal flashcard -->
 <template>
-    <Transition name="modal">
-        <div class="card_modal">
-            <div class="head_modal">
-                <div class="title_modal">
-                    <h2>{{ props.form.title }}</h2>
-                </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-                    @click="store.toggleFlashCardModal(); store.toggleModals()" />
-            </div>
-            <div class='main_modal'>
-                <p>Trouver les paires</p>
-                <div class="answers_flashcard">
-                    <img class="img_flashcard" :src="card.flipped == true || card.matched == true ? card.img : img"
-                        :alt=card.title v-for="(card, index) in cards" @click="flipCard(index)"
-                        v-bind:class="{ flipped_flashcard: card.flipped, matched_flashcard: card.matched }">
-                </div>
-                <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
-            </div>
-            <div class='btn_submit_modal'>
-                <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-                <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-                <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
-            </div>
+    <div class="card_modal">
+        <div class="head_modal">
+            <div class="title_modal">
+                <h2>{{ props.form.title }}</h2>
+            </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+                @click="store.toggleFlashCardModal(); store.toggleModals()" />
         </div>
-    </Transition>
+        <div class='main_modal'>
+            <p>Trouver les paires</p>
+            <div class="answers_flashcard">
+                <img class="img_flashcard" :src="card.flipped == true || card.matched == true ? card.img : img"
+                    :alt=card.title v-for="(card, index) in cards" @click="flipCard(index)"
+                    v-bind:class="{ flipped_flashcard: card.flipped, matched_flashcard: card.matched }">
+            </div>
+            <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
+        </div>
+        <div class='btn_submit_modal'>
+            <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
+            <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+            <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+        </div>
+    </div>
 </template>
     
 <script setup lang="ts">
 import { useAlertsStore } from '@/store';
 import { ref, watch } from 'vue';
 import { Point } from '@/class/Point';
-import { Flashcard, type FlashcardAnswer } from '@/class/Flashcard';
+import { Flashcard } from '@/class/Flashcard';
 
 
 const store = useAlertsStore();

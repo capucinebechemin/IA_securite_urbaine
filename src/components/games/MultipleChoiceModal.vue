@@ -1,38 +1,36 @@
 <!-- Modal question -->
 <template>
-  <Transition name="modal">
-    <div class="card_modal">
-      <div class="head_modal">
-        <div class="title_modal">
-          <h2>{{ props.form.title }}</h2>
-        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
-          @click="store.toggleMultipleChoiceModal(); store.toggleModals()" />
-      </div>
-      <div class='main_modal'>
-        <p>Question</p>
-        <div class="question_modal">{{ props.form.question }}</div>
-        <p>Choix multiple</p>
-        <div class="answers_question">
-          <div class="answer_question" v-for="answer in props.form.answers" @click="clickAnswer(answer.id)"
-            v-bind:class="{ checked_question: selectedAnswer.includes(answer.id) }">
-            {{ answer.answer }}</div>
-        </div>
-        <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
-      </div>
-      <div class='btn_submit_modal'>
-        <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-        <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-        <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
-      </div>
+  <div class="card_modal">
+    <div class="head_modal">
+      <div class="title_modal">
+        <h2>{{ props.form.title }}</h2>
+      </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+        @click="store.toggleMultipleChoiceModal(); store.toggleModals()" />
     </div>
-  </Transition>
+    <div class='main_modal'>
+      <p>Question</p>
+      <div class="question_modal">{{ props.form.question }}</div>
+      <p>Choix multiple</p>
+      <div class="answers_question">
+        <div class="answer_question" v-for="answer in props.form.answers" @click="clickAnswer(answer.id)"
+          v-bind:class="{ checked_question: selectedAnswer.includes(answer.id) }">
+          {{ answer.answer }}</div>
+      </div>
+      <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
+    </div>
+    <div class='btn_submit_modal'>
+      <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
+      <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+      <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+    </div>
+  </div>
 </template>
   
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useAlertsStore } from '@/store';
 import { Point } from '@/class/Point';
-import { MultipleChoice, type MultipleChoiceAnswer } from '@/class/MultipleChoice';
+import { MultipleChoice } from '@/class/MultipleChoice';
 
 const store = useAlertsStore();
 

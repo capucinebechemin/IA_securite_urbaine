@@ -142,7 +142,7 @@
                     "id": "26",
                     "title": "Regroupement",
                     "img": "/captcha/world1-captcha2.png",
-                    "response": true
+                    "response": false
                 },
                 {
                     "id": "27",
