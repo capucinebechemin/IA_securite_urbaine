@@ -11,7 +11,7 @@
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w3-player" id="w3-player" class="player">
         </div>
-        <RessourceModal v-show="store.isRessourceModalVisible" :subject="'videosurveillance'" world="world3">
+        <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" world="world3">
         </RessourceModal>
         <Modals ref="modal" world="world3" :v-show="store.isModalsVisible"></Modals>
     </div>

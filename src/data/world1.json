@@ -10,52 +10,20 @@
             "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
         },
         {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+            "title": "Technopolice",
+            "url": "https://technopolice.fr/villes/"
         },
         {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+            "title": "Sciences Po : Ecole urbaine",
+            "url": "https://www.sciencespo.fr/ecole-urbaine/sites/sciencespo.fr.ecole-urbaine/files/2019_05%20-%20Castagnino.pdf"
         },
         {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+            "title": "College police : Réduction du crime",
+            "url": "https://www.college.police.uk/research/crime-reduction-toolkit/cctv"
         },
         {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-        },
-        {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-        },
-        {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-        },
-        {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-        },
-        {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-        },
-        {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-        },
-        {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-        },
-        {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-        },
-        {
-            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+            "title": "La CNIL : Vidéosurveillance sur la voie publique",
+            "url": "https://www.cnil.fr/fr/la-videosurveillance-videoprotection-sur-la-voie-publique"
         }
     ],
     "questions": {
@@ -67,8 +35,8 @@
             "answers": [
                 {
                     "id": "1",
-                    "answer": "Dissuader les comportements criminels par une présence visible.",
-                    "response": true
+                    "answer": "Analyser les tendances de circulation pour l'urbanisme.",
+                    "response": false
                 },
                 {
                     "id": "2",
@@ -77,16 +45,15 @@
                 },
                 {
                     "id": "3",
-                    "answer": "Analyser les tendances de circulation pour l'urbanisme.",
+                    "answer": "Fournir des données pour des études sociologiques.",
                     "response": false
                 },
                 {
                     "id": "4",
-                    "answer": "Fournir des données pour des études sociologiques.",
-                    "response": false
+                    "answer": "Dissuader les comportements criminels par une présence visible.",
+                    "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "2": {
             "id": 2,
