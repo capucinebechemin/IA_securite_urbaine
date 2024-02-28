@@ -90,7 +90,7 @@ function getRessources(subject: String) {
     margin: .5vh .5vw;
     padding: 1vh 1vw;
     cursor: pointer;
-    background-color: var(--ressource-color);
+    background-color: var(--answer-transparent-color);
     transition: filter 0.3s ease, transform 0.3s ease;
 
     &:hover {
