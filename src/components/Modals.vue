@@ -23,7 +23,7 @@
 </template>
   
 <script setup lang="ts">
-import { ref, watch, Ref, onBeforeMount } from 'vue';
+import { ref, Ref, onBeforeMount } from 'vue';
 import { useAlertsStore } from '@/store';
 
 // Import your data files for each world
@@ -83,9 +83,11 @@ let formHeightQuestion: Ref<HeightQuestion> = ref(dataW1.questions[8]);
 let formDaD: Ref<DragAndDrop> = ref(dataW2.questions[5]);
 let formFlashcard: Ref<Flashcard> = ref(dataW2.questions[7]);
 
-watch(() => props.world, initWorld, { immediate: true });
+onBeforeMount(() => {
+    launchLevel
+});
 
-function initWorld() {
+const initWorld = () => {
     switch (props.world) {
         case "world1":
             data = dataW1;
@@ -139,7 +141,6 @@ const initQuestionsForWorld = () => {
     }
 }
 
-
 const addPoint = (point: Point) => {
     let copiedArray = Array.from(points.value);
     //[...points.value]
@@ -150,6 +151,7 @@ const addPoint = (point: Point) => {
 const launchLevel = (l: number, scorePrevious: number, w: number) => {
     nLevel.value = l;
     nWorld.value = w;
+    initWorld();
     initQuestionsForWorld();
     if (scorePrevious >= 3 || nLevel.value == 1) {
 
