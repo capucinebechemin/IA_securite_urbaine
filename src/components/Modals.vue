@@ -79,12 +79,12 @@ let listQuestions = [];
 
 // Initialize forms with default values to avoid errors
 let formMultipleChoice: Ref<MultipleChoice> = ref(dataW1.questions[1]);
-let formHanged: Ref<Hanged> = ref(dataW1.questions[3]);
-let formCaptcha: Ref<Captcha> = ref(dataW1.questions[4]);
-let formEstimation: Ref<Estimation> = ref(dataW1.questions[6]);
-let formHs: Ref<HolySentence> = ref(dataW1.questions[8]);
-let formPairs: Ref<ConnectPairs> = ref(dataW1.questions[9]);
-let formHeightQuestion: Ref<HeightQuestion> = ref(dataW1.questions[13]);
+let formHanged: Ref<Hanged> = ref(dataW1.questions[5]);
+let formCaptcha: Ref<Captcha> = ref(dataW1.questions[3]);
+let formEstimation: Ref<Estimation> = ref(dataW1.questions[2]);
+let formHs: Ref<HolySentence> = ref(dataW1.questions[9]);
+let formPairs: Ref<ConnectPairs> = ref(dataW1.questions[10]);
+let formHeightQuestion: Ref<HeightQuestion> = ref(dataW1.questions[8]);
 let formDaD: Ref<DragAndDrop> = ref(dataW2.questions[5]);
 let formFlashcard: Ref<Flashcard> = ref(dataW2.questions[7]);
 
