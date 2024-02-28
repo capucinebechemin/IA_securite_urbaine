@@ -15,8 +15,8 @@
                     <span class="word_hanged"> ? </span>
                     {{ props.form.end_question }}
                     <div class="field_container">
-                        <input type="text" v-for="l in emptyWord" :value="l" readonly class="field_input"
-                            :class="{ space_hanged: l == '&', word_hanged: l != '' }">
+                        <input type="text" v-for="letter in emptyWord" :value="letter" readonly class="field_input"
+                            :class="{ space_hanged: letter == '&', word_hanged: letter != '' }">
                     </div>
                 </div>
                 <div class="drawing_hanged">
