@@ -1,6 +1,6 @@
 <!-- Modal des avatars -->
 <template>
-    <div v-show="store.isRessourceModalVisible" class="card_modal" :style="`--ressource-color: ${ressourceColor};`">
+    <div v-show="store.isRessourceModalVisible" class="card_modal">
         <div class="head_modal">
             <div class="title_modal">
                 <h2>Ressource</h2>
@@ -35,7 +35,6 @@ const props = defineProps({
     world: String
 });
 let data = ref();
-let ressourceColor = ref("");
 
 onMounted(() => {
     getRessources(props.subject || '');
@@ -47,19 +46,15 @@ function initWorld() {
     switch (props.world) {
         case "world1":
             data = dataW1;
-            ressourceColor.value = "#638e99";
             break;
         case "world2":
             data = dataW2;
-            ressourceColor.value = "#ddaa7c";
             break;
         case "world3":
             data = dataW3;
-            ressourceColor.value = "#9b504f";
             break;
         case "world4":
             data = dataW4;
-            ressourceColor.value = "#7f744b";
             break;
         default:
             console.error("Unknown world: ", props.world);

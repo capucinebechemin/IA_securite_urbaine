@@ -1,6 +1,5 @@
 <template>
-    <div
-        :style="`--button-color: ${buttonColor};--answer-color: ${answerColor};--answer-transparent-color: ${answerTransparentColor};`">
+    <div>
         <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
         <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="HolySentence.fromJSON(formHs)"
             v-show="store.isHolySentenceModalVisible" />
@@ -66,10 +65,6 @@ const result_modal = ref<any>(null);
 const nLevel = ref(0);
 const nWorld = ref(0);
 let data = ref();
-let answerTransparentColor = ref("");
-let answerColor = ref("");
-let buttonColor = ref("");
-
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
 let titleResult = ref('');
@@ -94,27 +89,15 @@ function initWorld() {
     switch (props.world) {
         case "world1":
             data = dataW1;
-            answerTransparentColor.value = "#638e998d";
-            answerColor.value = "#638e99";
-            buttonColor.value = "#88924b";
             break;
         case "world2":
             data = dataW2;
-            answerTransparentColor.value = "#ddaa7c8d";
-            answerColor.value = "#ddaa7c";
-            buttonColor.value = "#be7f55";
             break;
         case "world3":
             data = dataW3;
-            answerTransparentColor.value = "#9b504f8d";
-            answerColor.value = "#9b504f";
-            buttonColor.value = "#1c4a62";
             break;
         case "world4":
-            data = dataW4; 7
-            answerTransparentColor.value = "#7f744b8d";
-            answerColor.value = "#7f744b";
-            buttonColor.value = "#4e7781";
+            data = dataW4;
             break;
         default:
             console.error("Unknown world: ", props.world);
