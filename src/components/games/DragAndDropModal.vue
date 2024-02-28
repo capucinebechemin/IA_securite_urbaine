@@ -10,7 +10,7 @@
     <div class='main_modal'>
       <p>Question</p>
       <div class="question_modal">{{ props.form.question }}</div>
-      <p>Classement</p>
+      <p>Classement par ordre croissant</p>
       <div class="draggable">
         <draggable v-model="answers" group="answer" class="answers_drag_and_drop" item-key="id" :move="onMove">
           <template #item="{ element }">

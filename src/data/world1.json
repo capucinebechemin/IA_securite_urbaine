@@ -251,6 +251,7 @@
             "id": 10,
             "title": "Relier des paires",
             "type": "connectpairs",
+            "question": "Trouver les définitions correspondantes.",
             "pairs": [
                 {
                     "item1": "Faux positifs",
@@ -324,6 +325,7 @@
             "id": 14,
             "title": "Relier des paires",
             "type": "connectpairs",
+            "question": "Trouver les définitions correspondantes.",
             "pairs": [
                 {
                     "item1": "Apprentissage supervisé",
