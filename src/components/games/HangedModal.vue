@@ -39,7 +39,7 @@
 </template>
     
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useAlertsStore } from '@/store';
 import { Point } from '@/class/Point';
 import { Hanged } from '@/class/Hanged';
@@ -56,7 +56,7 @@ const props = defineProps({
 
 const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => ({ letter, clickable: true })));
 
-const emptyWord = ref(props.form.word.split('').map(char => char === ' ' ? '&' : ' '));
+let emptyWord = ref(props.form.word.split('').map(char => char === ' ' ? '&' : ' '));
 
 let selectedAnswer = ref<string>("");
 const answerPage = false;
@@ -64,6 +64,10 @@ const nbBadAnswer = ref(0);
 const maxAnswer = ref(10);
 let canvas = ref<HTMLCanvasElement | null>(null);
 let context = ref<CanvasRenderingContext2D | null>(null);
+
+watch(() => props.form.word, (newVal) => {
+    emptyWord.value = newVal.split('').map(char => char === ' ' ? '&' : ' ');
+});
 
 const clickLetter = (index: number) => {
     alphabet.value[index].clickable = false;
