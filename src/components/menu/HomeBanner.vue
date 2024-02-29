@@ -4,9 +4,9 @@
     <img class="menu-icon" alt="Menu" src='/menu/burger-bar.png' @click="store.toggleMenu" />
     <h1>{{ title }}</h1>
     <div class="av-res-container">
-      <img v-if='!store.isRessourceVisible' class='av-res-icon' alt="Avatar choisi" :src="`/players/player${store.avatarId}.png`"
-        @click="store.toggleAvatarModal" />
-      <img v-else class='av-res-icon' alt="Ressource" src='/menu/ressource-logo.png' @click="store.toggleRessourceModal" />
+      <img v-if='!store.isRessourceVisible' class='av-res-icon' alt="Avatar choisi"
+        :src="`/players/player${store.avatarId}.png`" @click="store.toggleAvatarModal" />
+      <img v-else class='av-res-icon' alt="Ressource" src='/menu/ressource-logo.png' @click="toggleRessource()" />
     </div>
   </div>
 </template>
@@ -19,6 +19,11 @@ const store = useAlertsStore();
 const props = defineProps({
   title: String
 });
+
+function toggleRessource() {
+  if (!store.isModalsVisible)
+    store.toggleRessourceModal()
+}
 
 </script>
   

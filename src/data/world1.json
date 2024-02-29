@@ -1,5 +1,31 @@
 {
     "id": 1,
+    "ressources": [
+        {
+            "title": "Wikipedia Vidéosurveillance",
+            "url": "https://fr.wikipedia.org/wiki/Vid%C3%A9osurveillance"
+        },
+        {
+            "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
+            "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+        },
+        {
+            "title": "Technopolice",
+            "url": "https://technopolice.fr/villes/"
+        },
+        {
+            "title": "Sciences Po : Ecole urbaine",
+            "url": "https://www.sciencespo.fr/ecole-urbaine/sites/sciencespo.fr.ecole-urbaine/files/2019_05%20-%20Castagnino.pdf"
+        },
+        {
+            "title": "College police : Réduction du crime",
+            "url": "https://www.college.police.uk/research/crime-reduction-toolkit/cctv"
+        },
+        {
+            "title": "La CNIL : Vidéosurveillance sur la voie publique",
+            "url": "https://www.cnil.fr/fr/la-videosurveillance-videoprotection-sur-la-voie-publique"
+        }
+    ],
     "questions": {
         "1": {
             "id": 1,
@@ -9,8 +35,8 @@
             "answers": [
                 {
                     "id": "1",
-                    "answer": "Dissuader les comportements criminels par une présence visible.",
-                    "response": true
+                    "answer": "Analyser les tendances de circulation pour l'urbanisme.",
+                    "response": false
                 },
                 {
                     "id": "2",
@@ -19,57 +45,31 @@
                 },
                 {
                     "id": "3",
-                    "answer": "Analyser les tendances de circulation pour l'urbanisme.",
+                    "answer": "Fournir des données pour des études sociologiques.",
                     "response": false
                 },
                 {
                     "id": "4",
-                    "answer": "Fournir des données pour des études sociologiques.",
-                    "response": false
+                    "answer": "Dissuader les comportements criminels par une présence visible.",
+                    "response": true
                 }
             ],
             "textAnswer": ""
         },
         "2": {
             "id": 2,
-            "title": "Question à choix multiples",
-            "type": "choix_multiple",
-            "question": "Selon vous, quels sont les buts principaux de l'IA dans la vidéosurveillance ?",
-            "answers": [
-                {
-                    "id": "5",
-                    "answer": "Réduire les coûts opérationnels en minimisant le besoin de travail humain.",
-                    "response": false
-                },
-                {
-                    "id": "6",
-                    "answer": "Optimiser le stockage de données en identifiant et en enregistrant uniquement les moments pertinents.",
-                    "response": true
-                },
-                {
-                    "id": "7",
-                    "answer": "Améliorer la détection et la classification automatique d'événements prédéfinis ou d'individus particuliers ou de comportements “suspects”.",
-                    "response": true
-                },
-                {
-                    "id": "8",
-                    "answer": "Automatiser le processus de suivi et de zoom sur des objets ou individus en mouvement.",
-                    "response": true
-                }
-            ],
-            "textAnswer": ""
+            "title": "Barre chiffrée",
+            "type": "bar_chiffree",
+            "question": "En France, combien de temps maximum les vidéos prises par les caméras de surveillance peuvent être sauvegardées légalement ?",
+            "minNumber": 1,
+            "maxNumber": 30,
+            "increment": 7,
+            "minAnswer": 21,
+            "maxAnswer": 30,
+            "textAnswer": "Les vidéos peuvent être conservées 1 mois maximum."
         },
         "3": {
             "id": 3,
-            "title": "Pendu",
-            "type": "jeu_pendu",
-            "start_question": "Les modèles d'intelligence artificielle sont formés à l'aide d'images enregistrées. Cela permet de déterminer ce qui caractérise une situation dite “anormale” (c’est-à-dire peu fréquente statistiquement). Des biais algorithmiques peuvent alors apparaitre si ces données ne sont pas représentatives et engendrer de la ",
-            "end_question": ".",
-            "word": "DISCRIMINATION",
-            "textAnswer": ""
-        },
-        "4": {
-            "id": 4,
             "title": "Captcha",
             "type": "captcha",
             "question": "Sélectionner les images où il y a une situation suspecte.",
@@ -113,8 +113,8 @@
             ],
             "textAnswer": ""
         },
-        "5": {
-            "id": 5,
+        "4": {
+            "id": 4,
             "title": "Question à choix multiples",
             "type": "choix_multiple",
             "question": "Une méta-analyse de 2022 compare la variation de la délinquance entre zones vidéosurveillées et zones non-vidéosurveillées. En moyenne, quel est l'effet de la vidéosurveillance sur la délinquance dans les zones avec vidéo comparée aux zones sans vidéo ?",
@@ -142,111 +142,55 @@
             ],
             "textAnswer": ""
         },
-        "6": {
-            "id": 6,
-            "title": "Barre chiffrée",
-            "type": "bar_chiffree",
-            "question": "En France, combien de temps maximum les vidéos prises par les caméras de surveillance peuvent être sauvegardées légalement ?",
-            "minNumber": 1,
-            "maxNumber": 30,
-            "increment": 7,
-            "minAnswer": 21,
-            "maxAnswer": 30,
-            "textAnswer": ""
-        },
-        "7": {
-            "id": 7,
-            "title": "Barre chiffrée",
-            "type": "bar_chiffree",
-            "question": "En pratique et en moyenne, combien de temps les collectivités gardent-elles les images ?",
-            "minNumber": 1,
-            "maxNumber": 30,
-            "increment": 7,
-            "minAnswer": 1,
-            "maxAnswer": 7,
-            "textAnswer": ""
-        },
-        "8": {
-            "id": 8,
-            "title": "Phrase à trou",
-            "type": "holysentence",
-            "start_question": "",
-            "end_question": " : Technologie permettant d'identifier ou de confirmer l'identité d'une personne à partir de son visage a posteriori ou en temps réel.",
-            "holy_word": "RECONNAISSANCE FACIALE",
-            "textAnswer": ""
-        },
-        "9": {
-            "id": 9,
-            "title": "Relier des paires",
-            "type": "connectpairs",
-            "pairs": [
-                {
-                    "item1": "Faux positifs",
-                    "item2": "Système identifie à tort un événement normal comme étant suspect ou anormal"
-                },
-                {
-                    "item1": "Faux négatifs",
-                    "item2": "Système ne repère pas un événement suspect ou anormal"
-                },
-                {
-                    "item1": "Biais Algorithmique",
-                    "item2": "Système d’IA génère des résultats erronés ou injustes"
-                },
-                {
-                    "item1": "Analyse Prédictive",
-                    "item2": "Utilise des modèles statistiques pour estimer des événements ou des résultats futurs en analysant des données historiques et actuelles"
-                }
-            ]
-        },
-        "10": {
-            "id": 10,
-            "title": "Question à choix multiples",
-            "type": "choix_multiple",
-            "question": "Des caméras intelligentes équipées d'algorithmes d’IA sont utilisées pour la surveillance et l’analyse en temps réel. Quelles sont les applications concrètes possibles ?",
-            "answers": [
-                {
-                    "id": "13",
-                    "answer": "La reconnaissance faciale",
-                    "response": true
-                },
-                {
-                    "id": "14",
-                    "answer": "La détection de comportements suspects",
-                    "response": true
-                },
-                {
-                    "id": "15",
-                    "answer": "La détection d’objets abandonnés",
-                    "response": true
-                },
-                {
-                    "id": "16",
-                    "answer": "Le suivi en temps réel d’activités ou d’individus spécifiques",
-                    "response": true
-                }
-            ],
-            "textAnswer": ""
-        },
-        "11": {
-            "id": 11,
-            "title": "Phrase à trou",
-            "type": "holysentence",
-            "start_question": "Analyse ",
-            "end_question": " par IA : L'utilisation de l'intelligence artificielle pour interpréter les données vidéo et identifier des comportements spécifiques, comme les mouvements suspects ou de foule en formation.",
-            "holy_word": "COMPORTEMENTALE",
-            "textAnswer": ""
-        },
-        "12": {
-            "id": 12,
+        "5": {
+            "id": 5,
             "title": "Pendu",
             "type": "jeu_pendu",
             "start_question": "Il est compliqué de quantifier le nombre de villes qui utilisent la vidéosurveillance automatisée (VSA), en raison du manque de ",
             "end_question": " de ces dernières, il est possible d’en repérer au moins une cinquantaine.",
             "word": "TRANSPARENCE",
+            "textAnswer": "La détection des villes utilisant la VSA est difficile car elles ont une certaine réticence à partager ces informations et manquent de transparence."
+        },
+        "6": {
+            "id": 6,
+            "title": "Question à choix multiples",
+            "type": "choix_multiple",
+            "question": "Selon vous, quels sont les buts principaux de l'Inteligence Artificielle dans la vidéosurveillance ?",
+            "answers": [
+                {
+                    "id": "5",
+                    "answer": "Optimiser le stockage de données en identifiant et en enregistrant uniquement les moments pertinents.",
+                    "response": true
+                },
+                {
+                    "id": "6",
+                    "answer": "Améliorer la détection et la classification automatique d'événements prédéfinis ou d'individus particuliers ou de comportements “suspects”.",
+                    "response": true
+                },
+                {
+                    "id": "7",
+                    "answer": "Réduire les coûts opérationnels en minimisant le besoin de travail humain.",
+                    "response": false
+                },
+                {
+                    "id": "8",
+                    "answer": "Automatiser le processus de suivi et de zoom sur des objets ou individus en mouvement.",
+                    "response": true
+                }
+            ],
             "textAnswer": ""
         },
-        "13": {
-            "id": 13,
+        "7": {
+            "id": 7,
+            "title": "Pendu",
+            "type": "jeu_pendu",
+            "start_question": "Les modèles d'intelligence artificielle sont formés à l'aide d'images enregistrées. Cela permet de déterminer ce qui caractérise une situation dite “anormale” (c’est-à-dire peu fréquente statistiquement). Des biais algorithmiques peuvent alors apparaitre si ces données ne sont pas représentatives et engendrer de la ",
+            "end_question": ".",
+            "word": "DISCRIMINATION",
+            "textAnswer": "Les biais des IA en vidéosurveillance peuvent causer de la discrimination si les données sont non-représentatives."
+        },
+        "8": {
+            "id": 8,
             "title": "Question à choix multiples",
             "type": "jeu_selection",
             "question": "Sélectionner parmi les villes suivantes, celles qui ont adopté la vidéosurveillance automatisée (VSA).",
@@ -294,10 +238,94 @@
             ],
             "textAnswer": ""
         },
+        "9": {
+            "id": 9,
+            "title": "Phrase à trou",
+            "type": "holysentence",
+            "start_question": "",
+            "end_question": " : Technologie permettant d'identifier ou de confirmer l'identité d'une personne à partir de son visage a posteriori ou en temps réel.",
+            "holy_word": "reconnaissance faciale",
+            "textAnswer": "C’est la reconnaissance faciale qui identifie ou confirme une identité via le visage."
+        },
+        "10": {
+            "id": 10,
+            "title": "Relier des paires",
+            "type": "connectpairs",
+            "question": "Trouver les définitions correspondantes.",
+            "pairs": [
+                {
+                    "item1": "Faux positifs",
+                    "item2": "Système identifie à tort un événement normal comme étant suspect ou anormal"
+                },
+                {
+                    "item1": "Faux négatifs",
+                    "item2": "Système ne repère pas un événement suspect ou anormal"
+                },
+                {
+                    "item1": "Biais Algorithmique",
+                    "item2": "Système d’IA génère des résultats erronés ou injustes"
+                },
+                {
+                    "item1": "Analyse Prédictive",
+                    "item2": "Utilise des modèles statistiques pour estimer des événements ou des résultats futurs en analysant des données historiques et actuelles"
+                }
+            ]
+        },
+        "11": {
+            "id": 11,
+            "title": "Question à choix multiples",
+            "type": "choix_multiple",
+            "question": "Des caméras intelligentes équipées d'algorithmes d’IA sont utilisées pour la surveillance et l’analyse en temps réel. Quelles sont les applications concrètes possibles ?",
+            "answers": [
+                {
+                    "id": "13",
+                    "answer": "La reconnaissance faciale",
+                    "response": true
+                },
+                {
+                    "id": "14",
+                    "answer": "La détection de comportements suspects",
+                    "response": true
+                },
+                {
+                    "id": "15",
+                    "answer": "La détection d’objets abandonnés",
+                    "response": true
+                },
+                {
+                    "id": "16",
+                    "answer": "Le suivi en temps réel d’activités ou d’individus spécifiques",
+                    "response": true
+                }
+            ],
+            "textAnswer": ""
+        },
+        "12": {
+            "id": 12,
+            "title": "Barre chiffrée",
+            "type": "bar_chiffree",
+            "question": "En pratique et en moyenne, combien de temps les collectivités gardent-elles les images ?",
+            "minNumber": 1,
+            "maxNumber": 30,
+            "increment": 7,
+            "minAnswer": 1,
+            "maxAnswer": 7,
+            "textAnswer": "En moyenne, les collectivités conservent les images de vidéosurveillance 4 à 7 jours par manque de moyen."
+        },
+        "13": {
+            "id": 13,
+            "title": "Phrase à trou",
+            "type": "holysentence",
+            "start_question": "Analyse ",
+            "end_question": " par IA : L'utilisation de l'intelligence artificielle pour interpréter les données vidéo et identifier des comportements spécifiques, comme les mouvements suspects ou de foule en formation.",
+            "holy_word": "comportemantale",
+            "textAnswer": "L'analyse comportementale par IA est capable d'identifier des mouvements spécifiques dans les vidéos​."
+        },
         "14": {
             "id": 14,
             "title": "Relier des paires",
             "type": "connectpairs",
+            "question": "Trouver les définitions correspondantes.",
             "pairs": [
                 {
                     "item1": "Apprentissage supervisé",
@@ -324,7 +352,7 @@
             "start_question": "ANSSI : Agence nationale de la ",
             "end_question": " des systèmes d'information.",
             "holy_word": "sécurité",
-            "textAnswer": ""
+            "textAnswer": "L'ANSSI est l'Agence nationale de la sécurité des systèmes d'information, focalisée sur la protection des données et infrastructures critiques."
         }
     }
 }

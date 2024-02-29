@@ -6,12 +6,13 @@
             <span id="w2-start" @click="movePlayer('w2-start')" class="start"></span>
             <div v-for="i in 3" class="castles" :id="'w2-castle' + i + '-div'">
                 <img :src="'/world2/castle' + i + '.png'" :alt="'world 2 castle ' + i" :id="'w2-castle' + i"
-                @click="movePlayer('w2-castle' + i + '-div')">
-                <img v-if="store.scoreWorld2[i - 1]>3" src="/stars/star2.png" class="star-castle" />
+                    @click="movePlayer('w2-castle' + i + '-div')">
+                <img v-if="store.scoreWorld2[i - 1] > 3" src="/stars/star2.png" class="star-castle" />
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w2-player" id="w2-player" class="player">
         </div>
-        <RessourceModal :subject="'videosurveillance'" ></RessourceModal>
+        <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" world="world2">
+        </RessourceModal>
         <Modals ref="modal" world="world2" :v-show="store.isModalsVisible"></Modals>
     </div>
 </template>
@@ -31,7 +32,7 @@ const nLevel = ref(1);
 const modal = ref<any>(null);
 
 function movePlayer(castleName: string) {
-    if(castleName != "w2-castle" + nLevel.value + "-div") {
+    if (castleName != "w2-castle" + nLevel.value + "-div") {
         return;
     }
     var castle = document.getElementById(castleName);
@@ -73,9 +74,9 @@ function movePlayer(castleName: string) {
     }
     setTimeout(() => {
         let element = castleName.replace(/[^\d]/g, '');
-        nLevel.value = parseInt(element[1]); 
+        nLevel.value = parseInt(element[1]);
         if (nLevel.value > 0) {
-            modal.value?.launchLevel(nLevel.value, store.scoreWorld2[nLevel.value - 2],2);
+            modal.value?.launchLevel(nLevel.value, store.scoreWorld2[nLevel.value - 2], 2);
         }
     }, 1500);
 
@@ -148,4 +149,5 @@ function movePlayer(castleName: string) {
         top: 25%;
         left: 90%;
     }
-}</style>
+}
+</style>
