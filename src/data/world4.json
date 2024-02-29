@@ -2,55 +2,31 @@
   "id": 1,
   "ressources": [
     {
-      "title": "Wikipedia Vidéosurveillance",
-      "url": "https://fr.wikipedia.org/wiki/Vid%C3%A9osurveillance"
+      "title": "CNIL : Technologies Vidéosurveillance et Vidéoprotection",
+      "url": "https://www.cnil.fr/fr/technologies/videosurveillance-videoprotection"
     },
     {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+      "title": "CNIL : La vidéosurveillance sur la voie publique",
+      "url": "https://www.cnil.fr/fr/la-videosurveillance-videoprotection-sur-la-voie-publique"
     },
     {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+      "title": "CNIL : Caméras dites augmentées dans les espaces publics",
+      "url": "https://www.cnil.fr/fr/cameras-dites-augmentees-dans-les-espaces-publics-la-position-de-la-cnil"
     },
     {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+      "title": "Service public : Les droits des particuliers",
+      "url": "https://www.service-public.fr/particuliers/vosdroits/F2517"
     },
     {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-    },
-    {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-    },
-    {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-    },
-    {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-    },
-    {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-    },
-    {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
-    },
-    {
-      "title": "La Quadrature du Net : Vidéosurveillance algorithmique",
-      "url": "https://www.laquadrature.net/2022/03/23/quest-ce-que-la-videosurveillance-algorithmique/"
+      "title": "Wikipedia : CNIL",
+      "url": "https://fr.wikipedia.org/wiki/Commission_nationale_de_l%27informatique_et_des_libert%C3%A9s"
     }
   ],
   "questions": {
     "1": {
       "id": 1,
-      "title": "Glisser déposer",
-      "type": "draganddrop",
+      "title": "Question à choix multiples",
+      "type": "choix_multiple",
       "question": "En France quels réponses sont fausses sur la vidéosurveillance ?",
       "answers": [
         {
@@ -107,13 +83,13 @@
           "img": "/flahscard/world4-flashcard6.png"
         }
       ],
-      "textAnswer": "Pas trop compliqué ce mémorie !"
+      "textAnswer": ""
     },
     "3": {
       "id": 3,
       "title": "Question à choix multiples",
       "type": "choix_multiple",
-      "question": "Que fait URME FVE (facial video editor) ?",
+      "question": "Que fait URME FVE (facial video encryptor) ?",
       "answers": [
         {
           "id": "1",
@@ -145,11 +121,11 @@
       "start_question": "URME FVE est un acte",
       "end_question": "répondant aux préoccupations croissantes concernant la surveillance numérique et la protection de la vie privée.",
       "holy_word": "militant",
-      "textAnswer": ""
+      "textAnswer": "C'est un acte militant."
     },
     "5": {
       "id": 5,
-      "title": "Captcha sur l'incertitude et la police prédictive",
+      "title": "Captcha",
       "type": "captcha",
       "question": "Qu’est-ce qui peut bloquer la reconnaissance faciale ?",
       "answers": [
@@ -202,13 +178,13 @@
       "increment": 1000,
       "minAnswer": 3000,
       "maxAnswer": 5000,
-      "textAnswer": ""
+      "textAnswer": "4000 policiers"
     },
     "7": {
       "id": 7,
       "title": "Question à choix multiples",
       "type": "choix_multiple",
-      "question": "L’auteur dénonce une injustice laquelle ?",
+      "question": "Quelle injustice Paolo Cirio dénonce-t-il ?",
       "answers": [
         {
           "id": "1",
@@ -237,7 +213,7 @@
       "id": 8,
       "title": "Question à choix multiples",
       "type": "choix_multiple",
-      "question": "La CNIL a été crée quelques années après le scandale :",
+      "question": "La CNIL a été crée quelques années après un scandale, lequel ?",
       "answers": [
         {
           "id": "1",
@@ -266,7 +242,7 @@
       "id": 9,
       "title": "Question à choix multiples",
       "type": "choix_multiple",
-      "question": "SAFARI est l’acronyme de :",
+      "question": "Quel est l'acronyme de SAFARI ?",
       "answers": [
         {
           "id": "1",
@@ -298,11 +274,11 @@
       "pairs": [
         {
           "item1": "Formation restreinte",
-          "item2": "instruction disciplinaire"
+          "item2": "Instruction disciplinaire"
         },
         {
           "item1": "CNIL",
-          "item2": "autorité administrative française"
+          "item2": "Autorité administrative française"
         },
         {
           "item1": "RGPD",
@@ -310,21 +286,21 @@
         },
         {
           "item1": "CPED",
-          "item2": "autorité données EU"
+          "item2": "Autorité données EU"
         }
       ]
     },
     "11": {
       "id": 11,
-      "title": "Estimation",
+      "title": "Barre chiffrée",
       "type": "bar_chiffree",
-      "question": "Année de création de la cnil :",
+      "question": "Quelle est l'année de création de la cnil ?",
       "minNumber": 1970,
       "maxNumber": 1080,
       "increment": 1,
       "minAnswer": 1978,
       "maxAnswer": 1978,
-      "textAnswer": ""
+      "textAnswer": "La CNIL a été créée en 1978."
     },
     "12": {
       "id": 12,
@@ -333,32 +309,32 @@
       "start_question": "L’acronyme CNIL signifie “Commission Nationale de l'Informatique et des",
       "end_question": "”. C’est un régulateur des données personnelles.",
       "holy_word": "Libertés",
-      "textAnswer": ""
+      "textAnswer": "Commission Nationale de l'Informatique et des Libertés"
     },
     "13": {
       "id": 13,
-      "title": "Glisser déposer",
-      "type": "draganddrop",
+      "title": "Question à choix multiples",
+      "type": "choix_multiple",
       "question": "La CNIL veille à ce que l'informatique :",
       "answers": [
         {
           "id": 1,
-          "answer": "soit au service du citoyen",
+          "answer": "Soit au service du citoyen",
           "response": true
         },
         {
           "id": 2,
-          "answer": "contrôle et sanctionne",
+          "answer": "Contrôle et sanctionne",
           "response": true
         },
         {
           "id": 3,
-          "answer": "ne prenne pas le dessus sur l’homme par le biais de l’IA",
+          "answer": "Ne prenne pas le dessus sur l’homme par le biais de l’IA",
           "response": false
         },
         {
           "id": 4,
-          "answer": "ne porte pas atteinte à la vie privée",
+          "answer": "Ne porte pas atteinte à la vie privée",
           "response": true
         }
       ],
@@ -368,10 +344,10 @@
       "id": 14,
       "title": "Pendu",
       "type": "jeu_pendu",
-      "start_question": "La RGPD est l’acronyme de",
-      "end_question": ".",
-      "word": "REGLEMENT GENERAL SUR LA PROTECTION DES DONNEES",
-      "textAnswer": ""
+      "start_question": "La RGPD est l’acronyme de “Réglement Général sur la ",
+      "end_question": " des données”.",
+      "word": "PROTECTION",
+      "textAnswer": "RGPD -> Réglement Général sur la Protection des Données"
     },
     "15": {
       "id": 15,
@@ -380,7 +356,7 @@
       "start_question": "La RGPD est un réglement dont l’application est contrôlé par la",
       "end_question": ".",
       "holy_word": "CNIL",
-      "textAnswer": ""
+      "textAnswer": "C'est la CNIL qui contrôle l'application du règlement RGPD."
     }
   }
 }
