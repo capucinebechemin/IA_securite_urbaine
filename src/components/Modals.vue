@@ -1,23 +1,23 @@
 <template>
     <div>
         <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
-        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="HolySentence.fromJSON(formHs)"
+        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="formHs"
             v-show="store.isHolySentenceModalVisible" />
         <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint
             :form="MultipleChoice.fromJSON(formMultipleChoice)" v-show="store.isMultipleChoiceModalVisible" />
-        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="DragAndDrop.fromJSON(formDaD)"
+        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="formDaD"
             v-show="store.isDragAndDropModalVisible" />
         <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint
             :form="HeightQuestion.fromJSON(formHeightQuestion)" v-show="store.isHeightQuestionModalVisible" />
-        <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="Estimation.fromJSON(formEstimation)"
+        <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="formEstimation"
             v-show="store.isEstimationModalVisible" />
-        <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="Captcha.fromJSON(formCaptcha)"
+        <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="formCaptcha"
             v-show="store.isCaptchaModalVisible" />
-        <HangedModal :previous=previous :next=next :addPoint=addPoint :form="Hanged.fromJSON(formHanged)"
+        <HangedModal :previous=previous :next=next :addPoint=addPoint :form="formHanged"
             v-show="store.isHangedModalVisible" />
-        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="ConnectPairs.fromJSON(formPairs)"
+        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="formPairs"
             v-show="store.isConnectPairsModalVisible" />
-        <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="Flashcard.fromJSON(formFlashcard)"
+        <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="formFlashcard"
             v-show="store.isFlashCardModalVisible" />
     </div>
 </template>
@@ -73,15 +73,15 @@ let currentQuestions = [];
 let listQuestions = [];
 
 // Initialize forms with default values to avoid errors
-let formMultipleChoice: Ref<MultipleChoice> = ref(dataW1.questions[1]);
-let formHanged: Ref<Hanged> = ref(dataW1.questions[5]);
-let formCaptcha: Ref<Captcha> = ref(dataW1.questions[3]);
-let formEstimation: Ref<Estimation> = ref(dataW1.questions[2]);
-let formHs: Ref<HolySentence> = ref(dataW1.questions[9]);
-let formPairs: Ref<ConnectPairs> = ref(dataW1.questions[10]);
-let formHeightQuestion: Ref<HeightQuestion> = ref(dataW1.questions[8]);
-let formDaD: Ref<DragAndDrop> = ref(dataW2.questions[5]);
-let formFlashcard: Ref<Flashcard> = ref(dataW2.questions[7]);
+let formMultipleChoice: Ref<MultipleChoice> = ref(MultipleChoice.fromJSON(dataW1.questions[1]));
+let formHanged: Ref<Hanged> = ref(Hanged.fromJSON(dataW1.questions[5]));
+let formCaptcha: Ref<Captcha> = ref(Captcha.fromJSON(dataW1.questions[3]));
+let formEstimation: Ref<Estimation> = ref(Estimation.fromJSON(dataW1.questions[2]));
+let formHs: Ref<HolySentence> = ref(HolySentence.fromJSON(dataW1.questions[9]));
+let formPairs: Ref<ConnectPairs> = ref(ConnectPairs.fromJSON(dataW1.questions[10]));
+let formHeightQuestion: Ref<HeightQuestion> = ref(HeightQuestion.fromJSON(dataW1.questions[8]));
+let formDaD: Ref<DragAndDrop> = ref(DragAndDrop.fromJSON(dataW2.questions[5]));
+let formFlashcard: Ref<Flashcard> = ref(Flashcard.fromJSON(dataW2.questions[7]));
 
 onBeforeMount(() => {
     launchLevel
