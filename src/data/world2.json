@@ -235,7 +235,7 @@
         },
         "9": {
             "id": 9,
-            "title": "Glisser-déposer",
+            "title": "Question à choix multiples",
             "type": "jeu_selection",
             "question": "D’après la législation en vigueur, les algorithmes ne sont pas censés se baser sur certains types de données ou respecter des normes précises lorsqu’elles y sont autorisées en fonction de leur secteur d’activité. Sélectionner les données qui sont sensibles.",
             "answers": [
@@ -310,7 +310,7 @@
             "increment": 1000,
             "minAnswer": 10000,
             "maxAnswer": 12000,
-            "textAnswer": "11 400 caméras selon un classement réalisé par «la Gazette des communes»"
+            "textAnswer": "11 400 caméras selon un classement réalisé par «la Gazette des communes». En France, on estime à 150 000 le nombre total de caméras visionnant la voie publique, soit environ 1 caméra pour 44 habitants (au Royaume-Uni, on estime qu’il y a une caméra pour 14 habitants)."
         },
         "13": {
             "id": 13,

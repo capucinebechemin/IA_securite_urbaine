@@ -337,16 +337,16 @@
       "increment": 0.5,
       "minAnswer": 1.5,
       "maxAnswer": 2.5,
-      "textAnswer": "Le nombre moyen d’agressions sexuelles par victime est 1,83."
+      "textAnswer": "Le nombre moyen d’agressions sexuelles par victime est de 1,83."
     },
     "15": {
       "id": 15,
       "title": "Phrase à trou",
       "type": "holysentence",
-      "start_question": "Au cours des dernières décennies, le sentiment de victimation augmente et les crimes restent ",
+      "start_question": "Au cours des dernières décennies, le sentiment de victimation augmente et les crimes et les délits physiques ",
       "end_question": "(à l’exception des débits frauduleux, impactés par les progrès technologiques).",
-      "holy_word": "stagnants",
-      "textAnswer": "En effet, la plupart des crimes restent stagnants. Certains diminuent même, comme les homicides."
+      "holy_word": "stagnent",
+      "textAnswer": "En effet, la plupart des crimes restent stagnants. Certains diminuent même, comme les homicides. En revanche, la cybercriminalité a tendance a augmenté. "
     }
   }
 }
