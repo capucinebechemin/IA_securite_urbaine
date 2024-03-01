@@ -31,9 +31,6 @@ const nLevel = ref(1);
 const modal = ref<any>(null);
 
 function movePlayer(castleName: string, castleNumber: number) {
-    console.log(castleName);
-    console.log(castleNumber);
-    console.log(store.scoreWorld1[castleNumber-2]);
     if(castleNumber > 1 && store.scoreWorld1[castleNumber-2]<4) {
         return;
     }
