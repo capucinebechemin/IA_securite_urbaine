@@ -3,10 +3,10 @@
         <HomeBanner title="Analyse statistique et criminalité" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w3-start" @click="movePlayer('w3-start')" class="start"></span>
+            <span id="w3-start" @click="movePlayer('w3-start', 0)" class="start"></span>
             <div v-for="i in 3" class="castles" :id="'w3-castle' + i + '-div'">
                 <img :src="'/world3/castle' + i + '.png'" :alt="'world 3 castle ' + i" :id="'w3-castle' + i"
-                    @click="movePlayer('w3-castle' + i + '-div')">
+                    @click="movePlayer('w3-castle' + i + '-div', i)">
                 <img v-if="store.scoreWorld3[i - 1]>3" src="/stars/star3.png" class="star-castle" />
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w3-player" id="w3-player" class="player">
@@ -30,8 +30,8 @@ const store = useAlertsStore();
 const nLevel = ref(1);
 const modal = ref<any>(null);
 
-function movePlayer(castleName: string) {
-    if(castleName != "w3-castle" + nLevel.value + "-div") {
+function movePlayer(castleName: string, castleNumber: number) {
+    if(castleNumber > 1 && store.scoreWorld3[castleNumber-2]<4) {
         return;
     }
     var castle = document.getElementById(castleName);

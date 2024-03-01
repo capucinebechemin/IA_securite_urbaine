@@ -3,10 +3,10 @@
         <HomeBanner title="Protection de la vie privée et contre-surveillance" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w4-start" @click="movePlayer('w4-start')" class="start"></span>
+            <span id="w4-start" @click="movePlayer('w4-start', 0)" class="start"></span>
             <div v-for="i in 3" class="castles" :id="'w4-castle' + i + '-div'">
                 <img :src="'/world4/castle' + i + '.png'" :alt="'world 4 castle ' + i" :id="'w4-castle' + i"
-                    @click="movePlayer('w4-castle' + i + '-div')">
+                    @click="movePlayer('w4-castle' + i + '-div', i)">
                 <img v-if="store.scoreWorld3[i - 1]>3" src="/stars/star4.png" class="star-castle" />
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w4-player" id="w4-player" class="player">
@@ -30,8 +30,8 @@ const store = useAlertsStore();
 const nLevel = ref(1);
 const modal = ref<any>(null);
 
-function movePlayer(castleName: string) {
-    if(castleName != "w4-castle" + nLevel.value + "-div") {
+function movePlayer(castleName: string, castleNumber: number) {
+    if(castleNumber > 1 && store.scoreWorld4[castleNumber-2]<4) {
         return;
     }
     var castle = document.getElementById(castleName);

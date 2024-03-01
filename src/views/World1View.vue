@@ -3,10 +3,10 @@
         <HomeBanner title="videosurveillance algorithmique" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w1-start" class="start" @click="movePlayer('w1-start')"></span>
+            <span id="w1-start" class="start" @click="movePlayer('w1-start', 0)"></span>
             <div v-for="i in 3" class="castles" :id="'w1-castle' + i + '-div'">
                 <img :src="'/world1/castle' + i + '.png'" :alt="'world 1 castle ' + i" :data-index="i" :id="'w1-castle' + i"
-                    @click="movePlayer('w1-castle' + i + '-div')">
+                    @click="movePlayer('w1-castle' + i + '-div', i)">
                 <img v-if="store.scoreWorld1[i - 1] > 3" src="/stars/star1.png" class="star-castle" />
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="player" id="w1-player" class="player">
@@ -30,8 +30,11 @@ const store = useAlertsStore();
 const nLevel = ref(1);
 const modal = ref<any>(null);
 
-function movePlayer(castleName: string) {
-    if(castleName != "w1-castle" + nLevel.value + "-div") {
+function movePlayer(castleName: string, castleNumber: number) {
+    console.log(castleName);
+    console.log(castleNumber);
+    console.log(store.scoreWorld1[castleNumber-2]);
+    if(castleNumber > 1 && store.scoreWorld1[castleNumber-2]<4) {
         return;
     }
     var castle = document.getElementById(castleName);
