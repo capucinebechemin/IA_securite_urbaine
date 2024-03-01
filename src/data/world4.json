@@ -53,8 +53,7 @@
           "answer": "Une entreprise a le droit de s’en servir pour surveiller ses employés",
           "response": true
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "2": {
       "id": 2,
@@ -86,8 +85,7 @@
           "title": "Un masque",
           "img": "/flahscard/world4-flashcard6.png"
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "3": {
       "id": 3,
@@ -115,8 +113,7 @@
           "answer": "Il rend votre visage tout lisse pour être irreconnaissable",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "4": {
       "id": 4,
@@ -169,8 +166,7 @@
           "img": "/captcha/world4-captcha6.png",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "6": {
       "id": 6,
@@ -210,8 +206,7 @@
           "answer": "Les policiers utilisent la vidéosurveillance et la reconnaissance faciale sur les citoyens et manifestants mais ne souhaitent pas que cette technologie soit utilisée sur eux.",
           "response": true
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "8": {
       "id": 8,
@@ -239,8 +234,7 @@
           "answer": "OPERA",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "9": {
       "id": 9,
@@ -268,8 +262,7 @@
           "answer": "Système Automatisé de Facturation et de Rapprochement Informatisé",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "10": {
       "id": 10,
@@ -341,8 +334,7 @@
           "answer": "Ne porte pas atteinte à la vie privée",
           "response": true
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "14": {
       "id": 14,

@@ -62,8 +62,7 @@
                     "answer": "Évaluation et ajustement des stratégies de police",
                     "position": 4
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "3": {
             "id": 3,
@@ -91,8 +90,7 @@
                     "answer": "Des informations fournies par les forces de l’ordre",
                     "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "4": {
             "id": 4,
@@ -132,8 +130,7 @@
                     "answer": "Arrêter des personnes avant qu'ils ne commettent un délit ou un crime",
                     "response": false
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "6": {
             "id": 6,
@@ -201,8 +198,7 @@
                     "img": "/captcha/world2-captcha6.png",
                     "response": false
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "8": {
             "id": 8,
@@ -230,8 +226,7 @@
                     "answer": "Homophobie",
                     "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "9": {
             "id": 9,
@@ -279,8 +274,7 @@
                     "answer": "Style vestimentaire",
                     "response": false
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "10": {
             "id": 10,
@@ -342,8 +336,7 @@
                     "title": "Camera videosurveillance",
                     "img": "/flashcard/world2-flashcard6.png"
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "14": {
             "id": 14,
