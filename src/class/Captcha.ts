@@ -1,29 +1,27 @@
 import { QuestionEnum } from "./QuestionEnum";
 
 export class Captcha {
-    id: string;
-    title: string;
-    type = QuestionEnum.Captcha;
-    question: string;
-    answers: CaptchaAnswer[];
-    textAnswer: string;
+  id: string;
+  title: string;
+  type = QuestionEnum.Captcha;
+  question: string;
+  answers: CaptchaAnswer[];
 
-    constructor(id: string, title: string, question: string, answers: CaptchaAnswer[], textAnswer: string) {
+  constructor(id: string, title: string, question: string, answers: CaptchaAnswer[]) {
     this.id = id;
     this.title = title;
     this.question = question;
     this.answers = answers;
-    this.textAnswer = textAnswer;
-    }
-    static fromJSON(jsonData: any): Captcha {
-        const { id, title, question, answers, textAnswer } = jsonData;
-        return new Captcha(id, title, question, answers, textAnswer);
-      }
+  }
+  static fromJSON(jsonData: any): Captcha {
+    const { id, title, question, answers } = jsonData;
+    return new Captcha(id, title, question, answers);
+  }
 }
 
 export interface CaptchaAnswer {
-    id: number;
-    answer: string;
-    img: string;
-    response: boolean;
-  }
+  id: number;
+  answer: string;
+  img: string;
+  response: boolean;
+}

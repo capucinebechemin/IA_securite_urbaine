@@ -6,12 +6,12 @@
     <div class="game-cards" v-show="!store.isAvatarModalVisible">
       <router-link to="/world1">
         <GameCard title="Vidéosurveillance algorithmique"
-          description="Partie pour se concentrera sur l'utilisation de l'IA dans la vidéosurveillance, en explorant son fonctionnement, ses avantages et ses inconvénients."
+          description="Utilisons l'IA dans la vidéosurveillance : fonctionnement, avantages et inconvénients."
           img_title='world1/world1.png' :rating=store.scoreWorld1 world_num='1' />
       </router-link>
       <router-link to="/world2">
         <GameCard title="Prédiction du crime"
-          description="Abordons la cartographie prédictive du crime et les méthodes utilisées pour anticiper les crimes. Elle mettra également en lumière les défis liés à cette technologie."
+          description="Abordons la cartographie prédictive du crime et les méthodes utilisées pour anticiper les crimes."
           img_title='world2/world2.png' :rating=store.scoreWorld2 world_num='2' />
       </router-link>
       <router-link to="/world3">
@@ -21,7 +21,7 @@
       </router-link>
       <router-link to="/world4">
         <GameCard title="Contre-surveillance"
-          description="Explorons les outils de protection de la vie privée et de contre-surveillance, mettant en évidence les limites de la vidéosurveillance et les moyens de protéger la vie privée des individus."
+          description="Explorons les outils de contre-surveillance, mettant en évidence les limites de la vidéosurveillance et les moyens de protéger la vie privée des individus."
           img_title='world4/world4.png' :rating=store.scoreWorld4 world_num='4' />
       </router-link>
     </div>

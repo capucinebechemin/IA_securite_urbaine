@@ -20,6 +20,10 @@
     {
       "title": "Wikipedia : CNIL",
       "url": "https://fr.wikipedia.org/wiki/Commission_nationale_de_l%27informatique_et_des_libert%C3%A9s"
+    },
+    {
+      "title": "Les missions de la CNIL",
+      "url": "https://www.cnil.fr/fr/les-missions-de-la-cnil#:~:text=Dans%20l%27univers%20num%C3%A9rique%2C%20la,personnelles%20et%20exercer%20leurs%20droits"
     }
   ],
   "questions": {
@@ -27,30 +31,29 @@
       "id": 1,
       "title": "Question à choix multiples",
       "type": "choix_multiple",
-      "question": "En France quels réponses sont fausses sur la vidéosurveillance ?",
+      "question": "En France, quelles sont les affirmations suivantes sur la vidéosurveillance qui sont fausses ?",
       "answers": [
         {
           "id": 1,
-          "answer": "Une enquête judiciaire peut utiliser la reconnaissance faciale",
-          "response": true
+          "answer": "Sur autorisation d’un procureur ou d’un juge d’instruction, les enquêteurs de la police judicaire peuventt utiliser la reconnaissance faciale a posteriori",
+          "response": false
         },
         {
           "id": 2,
-          "answer": "Une autorité public peut filmer la voie publique",
-          "response": true
+          "answer": "Une autorité publique (les mairies notamment) peut filmer la voie publique",
+          "response": false
         },
         {
           "id": 3,
           "answer": "Un établissement public peut filmer la voie publique",
-          "response": false
+          "response": true
         },
         {
           "id": 4,
-          "answer": "Une entreprise à le droit de s’en servir pour surveiller ses employés",
-          "response": false
+          "answer": "Une entreprise a le droit de s’en servir pour surveiller ses employés",
+          "response": true
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "2": {
       "id": 2,
@@ -82,8 +85,7 @@
           "title": "Un masque",
           "img": "/flahscard/world4-flashcard6.png"
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "3": {
       "id": 3,
@@ -103,7 +105,7 @@
         },
         {
           "id": "3",
-          "answer": "Il remplace votre visage par celui d’URME surveillance",
+          "answer": "Il remplace votre visage par celui de l’artiste Leo Selvaggio",
           "response": true
         },
         {
@@ -111,8 +113,7 @@
           "answer": "Il rend votre visage tout lisse pour être irreconnaissable",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "4": {
       "id": 4,
@@ -165,8 +166,7 @@
           "img": "/captcha/world4-captcha6.png",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "6": {
       "id": 6,
@@ -206,14 +206,13 @@
           "answer": "Les policiers utilisent la vidéosurveillance et la reconnaissance faciale sur les citoyens et manifestants mais ne souhaitent pas que cette technologie soit utilisée sur eux.",
           "response": true
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "8": {
       "id": 8,
       "title": "Question à choix multiples",
       "type": "choix_multiple",
-      "question": "La CNIL a été crée quelques années après un scandale, lequel ?",
+      "question": "La CNIL a été créée quelques années après un scandale, lequel ?",
       "answers": [
         {
           "id": "1",
@@ -235,8 +234,7 @@
           "answer": "OPERA",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "9": {
       "id": 9,
@@ -246,7 +244,7 @@
       "answers": [
         {
           "id": "1",
-          "answer": "Scandale avancée formation aspirant à rapporter des informations",
+          "answer": "Service d'Appui à la Formation et à l'Accompagnement en Ressources Informatiques",
           "response": false
         },
         {
@@ -256,16 +254,15 @@
         },
         {
           "id": "3",
-          "answer": "Stratégie analytique facilement approuvé pour la recherche d’identifiants",
+          "answer": "Système Automatisé de Facturation et de Rapprochement Informatisé",
           "response": false
         },
         {
           "id": "4",
-          "answer": "Service archivage fichiers attesté relativement inoffensifs",
+          "answer": "Système Automatisé de Facturation et de Rapprochement Informatisé",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "10": {
       "id": 10,
@@ -278,15 +275,15 @@
         },
         {
           "item1": "CNIL",
-          "item2": "Autorité administrative française"
+          "item2": "Autorité administrative française pour la protection des données"
         },
         {
           "item1": "RGPD",
-          "item2": "Réglement"
+          "item2": "Réglement général européen pour la protection des données"
         },
         {
           "item1": "CPED",
-          "item2": "Autorité données EU"
+          "item2": "Autorité administrations européennes pour la protection des données"
         }
       ]
     },
@@ -337,8 +334,7 @@
           "answer": "Ne porte pas atteinte à la vie privée",
           "response": true
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "14": {
       "id": 14,

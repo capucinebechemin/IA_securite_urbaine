@@ -62,8 +62,7 @@
                     "answer": "Évaluation et ajustement des stratégies de police",
                     "position": 4
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "3": {
             "id": 3,
@@ -91,8 +90,7 @@
                     "answer": "Des informations fournies par les forces de l’ordre",
                     "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "4": {
             "id": 4,
@@ -132,8 +130,7 @@
                     "answer": "Arrêter des personnes avant qu'ils ne commettent un délit ou un crime",
                     "response": false
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "6": {
             "id": 6,
@@ -201,8 +198,7 @@
                     "img": "/captcha/world2-captcha6.png",
                     "response": false
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "8": {
             "id": 8,
@@ -230,12 +226,11 @@
                     "answer": "Homophobie",
                     "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "9": {
             "id": 9,
-            "title": "Glisser-déposer",
+            "title": "Question à choix multiples",
             "type": "jeu_selection",
             "question": "D’après la législation en vigueur, les algorithmes ne sont pas censés se baser sur certains types de données ou respecter des normes précises lorsqu’elles y sont autorisées en fonction de leur secteur d’activité. Sélectionner les données qui sont sensibles.",
             "answers": [
@@ -279,8 +274,7 @@
                     "answer": "Style vestimentaire",
                     "response": false
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "10": {
             "id": 10,
@@ -310,7 +304,7 @@
             "increment": 1000,
             "minAnswer": 10000,
             "maxAnswer": 12000,
-            "textAnswer": "11 400 caméras selon un classement réalisé par «la Gazette des communes»"
+            "textAnswer": "11 400 caméras selon un classement réalisé par «la Gazette des communes». En France, on estime à 150 000 le nombre total de caméras visionnant la voie publique, soit environ 1 caméra pour 44 habitants (au Royaume-Uni, on estime qu’il y a une caméra pour 14 habitants)."
         },
         "13": {
             "id": 13,
@@ -342,8 +336,7 @@
                     "title": "Camera videosurveillance",
                     "img": "/flashcard/world2-flashcard6.png"
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "14": {
             "id": 14,

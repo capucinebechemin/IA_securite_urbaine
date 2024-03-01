@@ -24,6 +24,10 @@
         {
             "title": "La CNIL : Vidéosurveillance sur la voie publique",
             "url": "https://www.cnil.fr/fr/la-videosurveillance-videoprotection-sur-la-voie-publique"
+        },
+        {
+            "title": "Tandfonline : The internationalisation of cctv surveillance",
+            "url": "https://www.tandfonline.com/doi/abs/10.1080/01924036.2021.1879885"
         }
     ],
     "questions": {
@@ -53,8 +57,7 @@
                     "answer": "Dissuader les comportements criminels par une présence visible.",
                     "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "2": {
             "id": 2,
@@ -110,8 +113,7 @@
                     "img": "/captcha/world1-captcha6.png",
                     "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "4": {
             "id": 4,
@@ -139,8 +141,7 @@
                     "answer": "Une hausse de 3 % de la délinquance",
                     "response": false
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "5": {
             "id": 5,
@@ -177,8 +178,7 @@
                     "answer": "Automatiser le processus de suivi et de zoom sur des objets ou individus en mouvement.",
                     "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "7": {
             "id": 7,
@@ -235,8 +235,7 @@
                     "answer": "Le Mans",
                     "response": false
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "9": {
             "id": 9,
@@ -297,8 +296,7 @@
                     "answer": "Le suivi en temps réel d’activités ou d’individus spécifiques",
                     "response": true
                 }
-            ],
-            "textAnswer": ""
+            ]
         },
         "12": {
             "id": 12,
