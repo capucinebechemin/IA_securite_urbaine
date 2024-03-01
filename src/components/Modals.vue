@@ -1,24 +1,24 @@
 <template>
     <div>
-        <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
+        <ResultModal ref="result_modal" :openReadOnly=openReadOnly :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
         <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="formHs"
-            v-show="store.isHolySentenceModalVisible" />
-        <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint
-            :form="MultipleChoice.fromJSON(formMultipleChoice)" v-show="store.isMultipleChoiceModalVisible" />
+            :isReadOnly="isReadOnly" v-show="store.isHolySentenceModalVisible" />
+        <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint :form="formMultipleChoice"
+            :isReadOnly="isReadOnly" v-show="store.isMultipleChoiceModalVisible" />
         <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="formDaD"
-            v-show="store.isDragAndDropModalVisible" />
-        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint
-            :form="HeightQuestion.fromJSON(formHeightQuestion)" v-show="store.isHeightQuestionModalVisible" />
+            :isReadOnly="isReadOnly" v-show="store.isDragAndDropModalVisible" />
+        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :form="formHeightQuestion"
+            :isReadOnly="isReadOnly" v-show="store.isHeightQuestionModalVisible" />
         <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="formEstimation"
-            v-show="store.isEstimationModalVisible" />
+            :isReadOnly="isReadOnly" v-show="store.isEstimationModalVisible" />
         <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="formCaptcha"
-            v-show="store.isCaptchaModalVisible" />
+            :isReadOnly="isReadOnly" v-show="store.isCaptchaModalVisible" />
         <HangedModal :previous=previous :next=next :addPoint=addPoint :form="formHanged"
-            v-show="store.isHangedModalVisible" />
+            :isReadOnly="isReadOnly" v-show="store.isHangedModalVisible" />
         <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="formPairs"
-            v-show="store.isConnectPairsModalVisible" />
+            :isReadOnly="isReadOnly" v-show="store.isConnectPairsModalVisible" />
         <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="formFlashcard"
-            v-show="store.isFlashCardModalVisible" />
+            :isReadOnly="isReadOnly" v-show="store.isFlashCardModalVisible" />
     </div>
 </template>
   
@@ -61,6 +61,7 @@ const props = defineProps({
 
 const store = useAlertsStore();
 
+const isReadOnly = ref<Boolean>(false);
 const result_modal = ref<any>(null);
 const nLevel = ref(0);
 const nWorld = ref(0);
@@ -143,27 +144,28 @@ const initQuestionsForWorld = () => {
 
 const addPoint = (point: Point) => {
     let copiedArray = Array.from(points.value);
-    //[...points.value]
     copiedArray[nextQuestion.value - 1] = point;
     points.value = copiedArray;
 }
 
 const launchLevel = (l: number, scorePrevious: number, w: number) => {
     nLevel.value = l;
+    isReadOnly.value=false;
     nWorld.value = w;
     initWorld();
+    nextQuestion.value = 0;
+    currentQuestions = [];
+    listQuestions = [];
     initQuestionsForWorld();
     if (scorePrevious >= 3 || nLevel.value == 1) {
 
-        currentQuestions = []
+        
         for (let i = 0; i < 5; i++) {
             currentQuestions[i] = listQuestions[i + (5 * (nLevel.value - 1))]
         }
-        nextQuestion.value = 0;
+        
         points.value = []
         store.toggleModals();
-        console.log(currentQuestions)
-        console.log(listQuestions)
         next()
     }
 }
@@ -185,6 +187,13 @@ const next = () => {
         store.toggleResultModalVisible();
         result_modal.value?.updatePoints()
     }
+}
+
+const openReadOnly = (form : any) =>{
+    isReadOnly.value=true;
+    currentQuestions=[form];
+    nextQuestion.value=1;
+    setTimeout(() => { openGame(); }, 50);
 }
 
 const openGame = () => {
