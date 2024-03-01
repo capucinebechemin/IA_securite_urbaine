@@ -4,7 +4,8 @@
     <div class="head_modal">
       <div class="title_modal">
         <h2>{{ props.form.title }}</h2>
-      </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleMultipleChoiceModal" />
+      </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+        @click="store.toggleMultipleChoiceModal(); store.toggleModals()" />
     </div>
     <div class='main_modal'>
       <p>Question</p>
@@ -15,7 +16,6 @@
           v-bind:class="{ checked_question: selectedAnswer.includes(answer.id) }">
           {{ answer.answer }}</div>
       </div>
-      <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
     </div>
     <div class='btn_submit_modal'>
       <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
@@ -114,7 +114,7 @@ const checkAnswer = () => {
   margin: .5vh .5vw;
   padding: 1vh 1vw;
   cursor: pointer;
-  background-color: #638e995d;
+  background-color: var(--answer-transparent-color);
   transition: filter 0.3s ease, transform 0.3s ease;
 
   &:hover {

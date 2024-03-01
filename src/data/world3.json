@@ -1,84 +1,98 @@
 {
   "id": 1,
+  "ressources": [
+    {
+      "title": "OSCJ2 : Observer dans la durée les agressions",
+      "url": "https://oscj2.cesdip.fr/wp-content/uploads/2023/07/Observer-dans-la-duree-les-agressions.pdf"
+    },
+    {
+      "title": "OSCJ2 : Observer dans la durée les agressions sexuelles",
+      "url": "https://oscj2.cesdip.fr/wp-content/uploads/2023/04/Observer-dans-la-dure%CC%81e-les-agressions-sexuelles.pdf"
+    },
+    {
+      "title": "OSCJ2 : Des sources faiblement concordantes",
+      "url": "https://oscj2.cesdip.fr/wp-content/uploads/2023/01/Des-sources-faiblement-concordantes.pdf"
+    }
+  ],
   "questions": {
     "1": {
-        "id": 1,
-        "title": "Pendu",
-        "type": "jeu_pendu",
-        "start_question": "Le fait de subir une atteinte, matérielle, corporelle ou psychique ainsi que d’en être conscient est la ",
-        "end_question": ".",
-        "word": "VICTIMISATION",
-        "textAnswer": "La bonne réponse est la victimisation."
+      "id": 1,
+      "title": "Pendu",
+      "type": "jeu_pendu",
+      "start_question": "Le fait de subir une atteinte, matérielle, corporelle ou psychique ainsi que d’en être conscient est la ",
+      "end_question": ".",
+      "word": "VICTIMISATION",
+      "textAnswer": "La victimisation désigne l'expérience d'une atteinte, qu'elle soit matérielle, corporelle ou psychique, accompagnée de la conscience d'en être la victime."
     },
     "2": {
-        "id": 2,
-        "title": "Question à choix multiples",
-        "type": "choix_multiple",
-        "question": "Les enquêtes cadre de vie et sécurité (CVS) permettent d’établir le profil le plus récurent des victimes de violences physiques. A votre avis, sur la période 2005-2020, quel était ce profil ?",
-        "answers": [
-          {
-            "id": "1",
-            "answer": "Moins de 30 ans, élèves étudiant dans les zones urbaines",
-            "response": true
-          },
-          {
-            "id": "2",
-            "answer": "Ouvriers des classes populaires de plus de 40 ans dans les zones rurales.",
-            "response": false
-          },
-          {
-            "id": "3",
-            "answer": "Fonctionnaires entre 30 et 40 ans avec des enfants dans les zones rurales.",
-            "response": false
-          },
-          {
-            "id": "4",
-            "answer": "Ministres de plus de 50 ans de la capitale.",
-            "response": false
-          }
-        ],
-        "textAnswer": ""
+      "id": 2,
+      "title": "Question à choix multiples",
+      "type": "choix_multiple",
+      "question": "Les enquêtes cadre de vie et sécurité permettent d’établir le profil le plus récurent des victimes de violences physiques. A votre avis, sur la période 2005-2020, quel était ce profil ?",
+      "answers": [
+        {
+          "id": "1",
+          "answer": "Moins de 30 ans, élèves étudiant dans les zones urbaines.",
+          "response": true
+        },
+        {
+          "id": "2",
+          "answer": "Ouvriers des classes populaires de plus de 40 ans dans les zones rurales.",
+          "response": false
+        },
+        {
+          "id": "3",
+          "answer": "Fonctionnaires entre 30 et 40 ans avec des enfants dans les zones rurales.",
+          "response": false
+        },
+        {
+          "id": "4",
+          "answer": "Ministres de plus de 50 ans de la capitale.",
+          "response": false
+        }
+      ]
     },
     "3": {
       "id": 3,
-      "title": "Estimation",
+      "title": "Bar chiffrée",
       "type": "bar_chiffree",
       "question": "Quel est le nombre de plaintes déposées sur les 2 056 000 agressions physiques non létales en 2019-2020 ?",
       "minNumber": 400000,
-      "maxNumber": 750000,
-      "increment": 50000,
-      "minAnswer": 450000,
-      "maxAnswer": 550000,
-      "textAnswer": "495 000 pour être exacte"
+      "maxNumber": 2000000,
+      "increment": 200000,
+      "minAnswer": 400000,
+      "maxAnswer": 600000,
+      "textAnswer": "En 2019 et 2020, sur 2 056 000 agressions physiques non létales, 495 000 plaintes ont été déposées."
     },
     "4": {
       "id": 4,
-      "title": "Quel est le taux d’homicides volontaires enregistrés par les policiers (hors tentatives) en France pour 100 000 personnes au cours des années.",
+      "title": "Relier les paires",
       "type": "connectpairs",
+      "question": "Quel est le taux d’homicides volontaires enregistrés par les policiers (hors tentatives) en France pour 100 000 personnes au cours des années.",
       "pairs": [
-          {
-              "item1": "1989",
-              "item2": "2.9"
-          },
-          {
-              "item1": "2000",
-              "item2": "2.0"
-          },
-          {
-              "item1": "2010",
-              "item2": "1.3"
-          },
-          {
-              "item1": "2017",
-              "item2": "1.6"
-          }
+        {
+          "item1": "1989",
+          "item2": "2.9%"
+        },
+        {
+          "item1": "2000",
+          "item2": "2%"
+        },
+        {
+          "item1": "2010",
+          "item2": "1.3%"
+        },
+        {
+          "item1": "2017",
+          "item2": "1.6%"
+        }
       ]
     },
     "5": {
       "id": 5,
-      "title": "Glisser déposer",
+      "title": "Glisser-déposer",
       "type": "draganddrop",
-      "question": "Entre 2015 et 2018, l’enquête Cadres de vie et sécurité (CVS) demandé à un panel de personnes si elles avaient été victimes de gestes déplacés de la part de personnes ne vivant pas dans leur foyer (non-cohabitant) entre combien et combien était la tranche de gestes déplacés par un non-cohabitant ?",
+      "question": "Entre 2015 et 2018, quelle est la proportion de personnes, selon l'enquête Cadres de vie et sécurité, ayant signalé subir des gestes déplacés de la part d'individus n'appartenant pas à leur foyer ?",
       "answers": [
         {
           "id": 1,
@@ -92,26 +106,25 @@
         },
         {
           "id": 3,
-          "answer": "0.5",
+          "answer": "1.5%",
           "response": false
         },
         {
           "id": 4,
-          "answer": "1.5%",
+          "answer": "Gestes déplacés",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "6": {
       "id": 6,
-      "title": "Glisser déposer",
+      "title": "Glisser-déposer",
       "type": "draganddrop",
-      "question": "Toujours sur l’enquête CVS en combien et combien est la tranche des personnes qui ont ont été témoins d’exhibitionnisme entre 2006 et 2018 ?",
+      "question": "D'après l'enquête Cadres de vie et sécurité, quel pourcentage de personnes a observé des actes d'exhibitionnisme entre 2006 et 2018 ?",
       "answers": [
         {
           "id": 1,
-          "answer": "0.5%",
+          "answer": "3.5%",
           "response": false
         },
         {
@@ -121,22 +134,21 @@
         },
         {
           "id": 3,
-          "answer": "8.5%",
+          "answer": "1.5%",
           "response": false
         },
         {
           "id": 4,
-          "answer": "1.5%",
+          "answer": "Exhibitions",
           "response": true
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "7": {
       "id": 7,
       "title": "Question à choix multiples",
       "type": "choix_multiple",
-      "question": "La moitié des agressions sexuelles de l’enquête pour la période 1999-2020 se sont passés",
+      "question": "Où se sont passées la moitié des agressions sexuelles pour la période 1999-2020 ?",
       "answers": [
         {
           "id": "1",
@@ -158,14 +170,13 @@
           "answer": "Dans la rue.",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "8": {
       "id": 8,
       "title": "Question à choix multiples",
       "type": "choix_multiple",
-      "question": "La tranche d’âge la plus à risque d’agressions sexuelles par une personne non connue est",
+      "question": "Quelle est la tranche d’âge la plus à risque d’agressions sexuelles par une personne non connue ?",
       "answers": [
         {
           "id": "1",
@@ -187,147 +198,148 @@
           "answer": "60+",
           "response": false
         }
-      ],
-      "textAnswer": "Les moins de 30 ans représentent certes la tranches la plus à risque, cependant la tranche 20-29 reste en dessous de la tranche 30-59."
+      ]
     },
     "9": {
       "id": 9,
-      "title": "Glisser déposer",
+      "title": "Glisser-déposer",
       "type": "draganddrop",
-      "question": "Toujours sur l’enquête CVS entre combien et combien est le pourcentage de personnes qui ont été victimes d’agressions sexuelles ?",
+      "question": "Selon l’enquête Cadres de vie et sécurité, quelle est la proportion de personnes (entre 18 et 75 ans) qui ont été victimes d’agressions sexuelles entre 2017 et 2018 ?",
       "answers": [
         {
           "id": 1,
-          "answer": "1.5%",
+          "answer": "3%",
           "response": true
         },
         {
           "id": 2,
-          "answer": "0.5%",
+          "answer": "2%",
           "response": true
         },
         {
           "id": 3,
-          "answer": "8.5",
+          "answer": "1%",
           "response": false
         },
         {
           "id": 4,
-          "answer": "7.5%",
+          "answer": "Agressions sexuelles",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "10": {
       "id": 10,
-      "title": "Quel est le nombre de cambriolage au cours des années selon les enquêtes(CESDIP, INSEE, Intérieur (SSM-SI)) nationales et statistiques policières ?",
+      "title": "Relier les paires",
       "type": "connectpairs",
+      "question": "Quel est le nombre de cambriolages au cours des années selon les enquêtes nationales (CESDIP, INSEE, Intérieur (SSM-SI)) et statistiques policières ?",
       "pairs": [
-          {
-              "item1": "1994-1995",
-              "item2": "1 038 000"
-          },
-          {
-              "item1": "2003-2004",
-              "item2": "729 000"
-          },
-          {
-              "item1": "2012-2013",
-              "item2": "1 222 000"
-          },
-          {
-              "item1": "2019-2020",
-              "item2": "965 000"
-          }
+        {
+          "item1": "1994-1995",
+          "item2": "1 038 000"
+        },
+        {
+          "item1": "2003-2004",
+          "item2": "729 000"
+        },
+        {
+          "item1": "2012-2013",
+          "item2": "1 222 000"
+        },
+        {
+          "item1": "2019-2020",
+          "item2": "965 000"
+        }
       ]
     },
     "11": {
       "id": 11,
-      "title": "Estimation",
+      "title": "Barre chiffrée",
       "type": "bar_chiffree",
-      "question": "Quel est le pourcentage de cambriolage élucidés pour la période 2017-2018 ?",
-      "minNumber": 1,
-      "maxNumber": 10,
-      "increment": 1,
-      "minAnswer": 4,
-      "maxAnswer": 5,
-      "textAnswer": "4.2"
+      "question": "Quel est le pourcentage de cambriolages élucidés pour la période 2017-2018 ?",
+      "minNumber": 0,
+      "maxNumber": 100,
+      "increment": 5,
+      "minAnswer": 0,
+      "maxAnswer": 10,
+      "textAnswer": "Pour la période 2017-2018, le pourcentage de cambriolages élucidés était de 4,2% exactement."
     },
     "12": {
       "id": 12,
-      "title": "Estimation",
+      "title": "Barre chiffrée",
       "type": "bar_chiffree",
       "question": "En 2020 quel est le pourcentage de débit frauduleux par transaction ?",
-      "minNumber": 1,
-      "maxNumber": 10,
-      "increment": 1,
-      "minAnswer": 8,
-      "maxAnswer": 9,
-      "textAnswer": "9%"
+      "minNumber": 0,
+      "maxNumber": 100,
+      "increment": 5,
+      "minAnswer": 5,
+      "maxAnswer": 15,
+      "textAnswer": "En 2020, pour 9% des transactions un débit frauduleux s’y cachait."
     },
     "13": {
       "id": 13,
-      "title": "Captcha sur l'incertitude et la police prédictive",
+      "title": "Captcha",
       "type": "captcha",
       "question": "Lesquels de ces crimes sont en augmentation pour la période 2009-2020 selon l’INSEE ?",
       "answers": [
         {
           "id": 1,
-          "title": "Débit frauduleux",
+          "title": "Les débits frauduleux",
           "img": "/captcha/world3-captcha1.png",
           "response": true
         },
         {
           "id": 2,
-          "title": "Cambriolages",
+          "title": "Les cambriolages",
           "img": "/captcha/world3-captcha2.png",
           "response": true
         },
         {
           "id": 3,
-          "title": "Agressions non létales",
+          "title": "Les agressions non létales",
           "img": "/captcha/world3-captcha3.png",
           "response": false
         },
         {
           "id": 4,
-          "title": "Agressions sexuelles",
+          "title": "Les agressions sexuelles",
           "img": "/captcha/world3-captcha4.png",
           "response": false
         },
         {
           "id": 5,
-          "title": "Atteinte aux voitures",
+          "title": "Les atteintes aux voitures",
           "img": "/captcha/world3-captcha5.png",
           "response": false
         },
         {
           "id": 6,
-          "title": "Vols",
+          "title": "Les vols",
           "img": "/captcha/cworld3-captcha6.png",
           "response": false
         }
-      ],
-      "textAnswer": ""
+      ]
     },
     "14": {
       "id": 14,
-      "title": "Pendu",
-      "type": "jeu_pendu",
-      "start_question": "En 2001-2021 il y a 4 peur majeures domicile, transports, quartier, mais la plus grosses peur reste pour les",
-      "end_question": "selon l'IPR.",
-      "word": "ENFANTS",
-      "textAnswer": ""
+      "title": "Barre chiffrée",
+      "type": "bar_chiffree",
+      "question": "Selon l’enquête Cadres de vie et sécurité, quel est le nombre moyen d’agressions sexuelles par victime (multivictimation) entre 2017 et 2018 ?",
+      "minNumber": 1,
+      "maxNumber": 5,
+      "increment": 0.5,
+      "minAnswer": 1.5,
+      "maxAnswer": 2.5,
+      "textAnswer": "Le nombre moyen d’agressions sexuelles par victime est de 1,83."
     },
     "15": {
       "id": 15,
-      "type": "holysentence",
       "title": "Phrase à trou",
-      "start_question": "Au cours des dernières décennies, le sentiment de victimation augment et les crimes reste",
-      "end_question": ".",
-      "holy_word": "stagnant",
-      "textAnswer": ""
+      "type": "holysentence",
+      "start_question": "Au cours des dernières décennies, le sentiment de victimation augmente et les crimes et les délits physiques ",
+      "end_question": "(à l’exception des débits frauduleux, impactés par les progrès technologiques).",
+      "holy_word": "stagnent",
+      "textAnswer": "En effet, la plupart des crimes restent stagnants. Certains diminuent même, comme les homicides. En revanche, la cybercriminalité a tendance a augmenté. "
     }
   }
 }

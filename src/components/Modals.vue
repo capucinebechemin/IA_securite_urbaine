@@ -1,28 +1,29 @@
 <template>
     <div>
         <ResultModal ref="result_modal" :nWorld=nWorld :nLevel=nLevel :points=points v-show="store.isResultModalVisible" />
-        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="HolySentence.fromJSON(formHs)"
+        <HolySentenceModal :previous=previous :next=next :addPoint=addPoint :form="formHs"
             v-show="store.isHolySentenceModalVisible" />
-        <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint :form="MultipleChoice.fromJSON(formMultipleChoice)"
-            v-show="store.isMultipleChoiceModalVisible" />
-        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="DragAndDrop.fromJSON(formDaD)"
+        <MultipleChoiceModal :previous=previous :next=next :addPoint=addPoint
+            :form="MultipleChoice.fromJSON(formMultipleChoice)" v-show="store.isMultipleChoiceModalVisible" />
+        <DragAndDropModal :previous=previous :next=next :addPoint=addPoint :form="formDaD"
             v-show="store.isDragAndDropModalVisible" />
-        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint :form="HeightQuestion.fromJSON(formHeightQuestion)"
-            v-show="store.isHeightQuestionModalVisible" />
-        <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="Estimation.fromJSON(formEstimation)"
+        <HeightQuestionModal :previous=previous :next=next :addPoint=addPoint
+            :form="HeightQuestion.fromJSON(formHeightQuestion)" v-show="store.isHeightQuestionModalVisible" />
+        <EstimationModal :previous=previous :next=next :addPoint=addPoint :form="formEstimation"
             v-show="store.isEstimationModalVisible" />
-        <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="Captcha.fromJSON(formCaptcha)"
+        <CaptchaModal :previous=previous :next=next :addPoint=addPoint :form="formCaptcha"
             v-show="store.isCaptchaModalVisible" />
-        <HangedModal :previous=previous :next=next :addPoint=addPoint :form="Hanged.fromJSON(formHanged)" v-show="store.isHangedModalVisible" />
-        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="ConnectPairs.fromJSON(formPairs)"
+        <HangedModal :previous=previous :next=next :addPoint=addPoint :form="formHanged"
+            v-show="store.isHangedModalVisible" />
+        <ConnectPairsModal :previous=previous :next=next :addPoint=addPoint :form="formPairs"
             v-show="store.isConnectPairsModalVisible" />
-        <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="Flashcard.fromJSON(formFlashcard)"
+        <FlashcardModal :previous=previous :next=next :addPoint=addPoint :form="formFlashcard"
             v-show="store.isFlashCardModalVisible" />
     </div>
 </template>
   
 <script setup lang="ts">
-import { ref, watch, Ref, onBeforeMount } from 'vue';
+import { ref, Ref, onBeforeMount } from 'vue';
 import { useAlertsStore } from '@/store';
 
 // Import your data files for each world
@@ -64,7 +65,6 @@ const result_modal = ref<any>(null);
 const nLevel = ref(0);
 const nWorld = ref(0);
 let data = ref();
-
 let nextQuestion = ref(1); // Current question number
 let points = ref<Point[]>([]);
 let titleResult = ref('');
@@ -73,19 +73,21 @@ let currentQuestions = [];
 let listQuestions = [];
 
 // Initialize forms with default values to avoid errors
-let formMultipleChoice: Ref<MultipleChoice> = ref(dataW1.questions[1]);
-let formHanged: Ref<Hanged> = ref(dataW1.questions[3]);
-let formCaptcha: Ref<Captcha> = ref(dataW1.questions[4]);
-let formEstimation: Ref<Estimation> = ref(dataW1.questions[6]);
-let formHs: Ref<HolySentence> = ref(dataW1.questions[8]);
-let formPairs: Ref<ConnectPairs> = ref(dataW1.questions[9]);
-let formHeightQuestion: Ref<HeightQuestion> = ref(dataW1.questions[13]);
-let formDaD: Ref<DragAndDrop> = ref(dataW2.questions[5]);
-let formFlashcard: Ref<Flashcard> = ref(dataW2.questions[7]);
+let formMultipleChoice: Ref<MultipleChoice> = ref(MultipleChoice.fromJSON(dataW1.questions[1]));
+let formHanged: Ref<Hanged> = ref(Hanged.fromJSON(dataW1.questions[5]));
+let formCaptcha: Ref<Captcha> = ref(Captcha.fromJSON(dataW1.questions[3]));
+let formEstimation: Ref<Estimation> = ref(Estimation.fromJSON(dataW1.questions[2]));
+let formHs: Ref<HolySentence> = ref(HolySentence.fromJSON(dataW1.questions[9]));
+let formPairs: Ref<ConnectPairs> = ref(ConnectPairs.fromJSON(dataW1.questions[10]));
+let formHeightQuestion: Ref<HeightQuestion> = ref(HeightQuestion.fromJSON(dataW1.questions[8]));
+let formDaD: Ref<DragAndDrop> = ref(DragAndDrop.fromJSON(dataW2.questions[5]));
+let formFlashcard: Ref<Flashcard> = ref(Flashcard.fromJSON(dataW2.questions[7]));
 
-watch(() => props.world, initWorld, { immediate: true });
+onBeforeMount(() => {
+    launchLevel
+});
 
-function initWorld() {
+const initWorld = () => {
     switch (props.world) {
         case "world1":
             data = dataW1;
@@ -139,7 +141,6 @@ const initQuestionsForWorld = () => {
     }
 }
 
-
 const addPoint = (point: Point) => {
     let copiedArray = Array.from(points.value);
     //[...points.value]
@@ -150,6 +151,7 @@ const addPoint = (point: Point) => {
 const launchLevel = (l: number, scorePrevious: number, w: number) => {
     nLevel.value = l;
     nWorld.value = w;
+    initWorld();
     initQuestionsForWorld();
     if (scorePrevious >= 3 || nLevel.value == 1) {
 
@@ -258,7 +260,7 @@ h3 {
 .head_modal {
     display: flex;
     align-items: center;
-    padding: 2vh 2vw;
+    padding: 0 1vw;
 }
 
 .title_modal {
@@ -278,13 +280,12 @@ h3 {
     flex-direction: column;
     justify-content: center;
     padding: 0 6vw;
-    height: 55vh;
+    height: 60vh;
 }
 
 .text_answer_modal {
     max-height: 7vh;
     margin: 2vh 0;
-    color: #638e99;
 }
 
 .field_input {
@@ -312,10 +313,10 @@ h3 {
 }
 
 .field_input:focus {
-    filter: drop-shadow(0 2rem 2rem #638e99);
-    border-bottom: 2px solid #638e99;
-    color: #638e99;
-    box-shadow: 0 8px 4px -4px #638e99d1;
+    filter: drop-shadow(0 2rem 2rem var(--answer-color));
+    border-bottom: 2px solid var(--answer-color);
+    color: var(--answer-color);
+    box-shadow: 0 8px 4px -4px var(--answer-color);
 }
 
 .field_input_good_answer {
@@ -361,7 +362,7 @@ h3 {
     }
 
     .btn_next {
-        background-color: #88924b;
+        background-color: var(--button-color);
     }
 
     .btn_return {
@@ -428,7 +429,6 @@ h3 {
     .text_answer_modal {
         max-height: 7vh;
         margin: 2vh 0;
-        color: #638e99;
     }
 
 

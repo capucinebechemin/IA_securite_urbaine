@@ -1,36 +1,36 @@
 <!-- Modal du jeu glisser-déposer -->
 <template>
-    <div class="card_modal">
-      <div class="head_modal">
-        <div class="title_modal">
-          <h2>{{ props.form.title }}</h2>
-        </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleDragAndDropModal" />
-      </div>
-      <div class='main_modal'>
-        <p>Question</p>
-        <div class="question_modal">{{ props.form.question }}</div>
-        <p>Classement</p>
-        <div class="draggable">
-          <draggable v-model="answers" group="answer" class="answers_drag_and_drop" item-key="id" :move="onMove">
-            <template #item="{ element }">
-              <div class="answer_drag_and_drop" :key="element.id">{{ element.answer }}</div>
-            </template>
-          </draggable>
-          <draggable v-model="selectedAnswer" group="answer" class="classement_drag_and_drop" item-key="id">
-            <template #item="{ element, index }">
-              <div class="drop" :key="element.id" v-bind:class="{ [`classement${index + 1}_drag_and_drop`]: true }">
-                {{ element.answer }}</div>
-            </template>
-          </draggable>
-        </div>
-        <div class="text_answer_modal" v-show="answerPage">Réponse : {{ props.form.textAnswer }}</div>
-      </div>
-      <div class='btn_submit_modal'>
-        <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
-        <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-        <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+  <div class="card_modal">
+    <div class="head_modal">
+      <div class="title_modal">
+        <h2>{{ props.form.title }}</h2>
+      </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+        @click="store.toggleDragAndDropModal(); store.toggleModals()" />
+    </div>
+    <div class='main_modal'>
+      <p>Question</p>
+      <div class="question_modal">{{ props.form.question }}</div>
+      <p>Classement par ordre croissant</p>
+      <div class="draggable">
+        <draggable v-model="answers" group="answer" class="answers_drag_and_drop" item-key="id" :move="onMove">
+          <template #item="{ element }">
+            <div class="answer_drag_and_drop" :key="element.id">{{ element.answer }}</div>
+          </template>
+        </draggable>
+        <draggable v-model="selectedAnswer" group="answer" class="classement_drag_and_drop" item-key="id">
+          <template #item="{ element, index }">
+            <div class="drop" :key="element.id" v-bind:class="{ [`classement${index + 1}_drag_and_drop`]: true }">
+              {{ element.answer }}</div>
+          </template>
+        </draggable>
       </div>
     </div>
+    <div class='btn_submit_modal'>
+      <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
+      <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
+      <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+    </div>
+  </div>
 </template>
   
 <script setup lang="ts">
@@ -55,8 +55,8 @@ const answerPage = false;
 const answers = ref(props.form.answers);
 
 watch(() => props.form, (form) => {
-    setTimeout(()=>{selectedAnswer.value = [];answers.value=form.answers},50);
-  });
+  setTimeout(() => { selectedAnswer.value = []; answers.value = form.answers }, 50);
+});
 
 function onMove() {
   if (selectedAnswer.value.length == 4) return false
@@ -73,28 +73,28 @@ const submit = () => {
   props.next();
 }
 
-const checkAnswer = () =>{
+const checkAnswer = () => {
   let nGoodAnswers = 0
   let goodAsnwsers = props.form.answers?.filter((a) => a.response == true);
   let answers = selectedAnswer.value.map(obj => obj.id);
   let display = '';
-  goodAsnwsers?.forEach((a)=>{
-    if(answers.includes(a.id) ){
+  goodAsnwsers?.forEach((a) => {
+    if (answers.includes(a.id)) {
       display += a.answer + ',';
-      nGoodAnswers +=1;
-    } 
+      nGoodAnswers += 1;
+    }
   })
-  if(display == ''){
-    display='Aucune Réponse trouvée.'
+  if (display == '') {
+    display = 'Aucune Réponse trouvée.'
   }
   let point = 0;
-  if(nGoodAnswers == goodAsnwsers.length)
+  if (nGoodAnswers == goodAsnwsers.length)
     point = 1;
   else if (nGoodAnswers == 0)
     point = 0;
-  else 
+  else
     point = 0.5
-  props.addPoint(new Point(point,"type",display.slice(0, -1)));
+  props.addPoint(new Point(point, "type", display.slice(0, -1)));
 }
 
 
@@ -120,7 +120,7 @@ const checkAnswer = () =>{
   margin: .5vh .5vw;
   padding: 1vh 1vw;
   font-size: 0.8rem;
-  background-color: #638e995d;
+  background-color: var(--answer-transparent-color);
 
   &:hover {
     filter: drop-shadow(0 0 2rem white);
@@ -179,10 +179,10 @@ const checkAnswer = () =>{
   margin: .5vh .5vw;
   padding: 1vh 1vw;
   font-size: .8rem;
-  background-color: #638e995d;
+  background-color: var(--answer-transparent-color);
 
   &:hover {
-    background-color: #638e9949;
+    opacity: 0.9;
   }
 
   &:hover::after {

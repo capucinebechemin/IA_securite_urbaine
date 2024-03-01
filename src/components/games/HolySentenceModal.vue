@@ -4,7 +4,8 @@
     <div class="head_modal">
       <div class="title_modal">
         <h2>{{ props.form.title }}</h2>
-      </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleHolySentenceModal" />
+      </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+        @click="store.toggleHolySentenceModal(); store.toggleModals()" />
     </div>
     <div class='main_modal'>
       <p>Question</p>

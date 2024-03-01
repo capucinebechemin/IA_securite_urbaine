@@ -4,7 +4,8 @@
         <div class="head_modal">
             <div class="title_modal">
                 <h2>{{ props.form.title }}</h2>
-            </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleHangedModal" />
+            </div> <img alt="Fermer" class="close_modal" src='/buttons/close.png'
+                @click="store.toggleHangedModal(); store.toggleModals()" />
         </div>
         <div class='main_modal'>
             <p>Question</p>
@@ -14,8 +15,8 @@
                     <span class="word_hanged"> ? </span>
                     {{ props.form.end_question }}
                     <div class="field_container">
-                        <input type="text" v-for="l in emptyWord" :value="l" readonly class="field_input"
-                            :class="{ space_hanged: l == '&', word_hanged: l != '' }">
+                        <input type="text" v-for="letter in emptyWord" :value="letter" readonly class="field_input"
+                            :class="{ space_hanged: letter == '&', word_hanged: letter != '' }">
                     </div>
                 </div>
                 <div class="drawing_hanged">
@@ -38,7 +39,7 @@
 </template>
     
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useAlertsStore } from '@/store';
 import { Point } from '@/class/Point';
 import { Hanged } from '@/class/Hanged';
@@ -55,7 +56,7 @@ const props = defineProps({
 
 const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => ({ letter, clickable: true })));
 
-const emptyWord = ref(props.form.word.split('').map(char => char === ' ' ? '&' : ' '));
+let emptyWord = ref(props.form.word.split('').map(char => char === ' ' ? '&' : ' '));
 
 let selectedAnswer = ref<string>("");
 const answerPage = false;
@@ -63,6 +64,10 @@ const nbBadAnswer = ref(0);
 const maxAnswer = ref(10);
 let canvas = ref<HTMLCanvasElement | null>(null);
 let context = ref<CanvasRenderingContext2D | null>(null);
+
+watch(() => props.form.word, (newVal) => {
+    emptyWord.value = newVal.split('').map(char => char === ' ' ? '&' : ' ');
+});
 
 const clickLetter = (index: number) => {
     alphabet.value[index].clickable = false;
@@ -241,7 +246,7 @@ const checkAnswer = () => {
     transition: .5s all;
 
     &:hover {
-        outline: .5px solid #638e99;
+        outline: .5px solid var(--answer-color);
         box-shadow: 0 7px 50px 10px white;
         transform: scale(1.015);
         filter: brightness(1.3);
@@ -255,7 +260,7 @@ const checkAnswer = () => {
 }
 
 .letter_checked_hanged {
-    background-color: #638e99;
+    background-color: var(--answer-color);
     color: white;
 }
 
@@ -284,7 +289,7 @@ const checkAnswer = () => {
 
 
 .word_hanged {
-    color: #638e99;
+    color: var(--answer-color);
     font-size: 1.2rem;
     font-weight: bold;
 }

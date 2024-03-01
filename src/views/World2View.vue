@@ -11,7 +11,8 @@
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w2-player" id="w2-player" class="player">
         </div>
-        <RessourceModal :subject="'videosurveillance'" ></RessourceModal>
+        <RessourceModal v-if="store.isRessourceModalVisible" :subject="'videosurveillance'" world="world2">
+        </RessourceModal>
         <Modals ref="modal" world="world2" :v-show="store.isModalsVisible"></Modals>
     </div>
 </template>
@@ -73,9 +74,9 @@ function movePlayer(castleName: string, castleNumber: number) {
     }
     setTimeout(() => {
         let element = castleName.replace(/[^\d]/g, '');
-        nLevel.value = parseInt(element[1]); 
+        nLevel.value = parseInt(element[1]);
         if (nLevel.value > 0) {
-            modal.value?.launchLevel(nLevel.value, store.scoreWorld2[nLevel.value - 2],2);
+            modal.value?.launchLevel(nLevel.value, store.scoreWorld2[nLevel.value - 2], 2);
         }
     }, 1500);
 
@@ -148,4 +149,5 @@ function movePlayer(castleName: string, castleNumber: number) {
         top: 25%;
         left: 90%;
     }
-}</style>
+}
+</style>

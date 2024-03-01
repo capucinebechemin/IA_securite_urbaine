@@ -6,18 +6,16 @@ export class Flashcard {
     type = QuestionEnum.Flashcard;
     question: string;
     answers: FlashcardAnswer[];
-    textAnswer: string;
 
-    constructor(id: string, title: string, question: string, answers: FlashcardAnswer[], textAnswer: string) {
+    constructor(id: string, title: string, question: string, answers: FlashcardAnswer[]) {
         this.id = id;
         this.title = title;
         this.question = question;
         this.answers = answers;
-        this.textAnswer = textAnswer;
     }
     static fromJSON(jsonData: any): Flashcard {
-        const { id, title, question, answers, textAnswer } = jsonData;
-        return new Flashcard(id, title, question, answers, textAnswer);
+        const { id, title, question, answers } = jsonData;
+        return new Flashcard(id, title, question, answers);
     }
 }
 
