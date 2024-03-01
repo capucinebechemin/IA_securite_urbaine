@@ -1,23 +1,32 @@
 import { QuestionEnum } from "./QuestionEnum";
 
 export class MultipleChoice {
-  id: string;
-  title: string;
-  type = QuestionEnum.MultipleChoice;
-  question: string;
-  answers: MultipleChoiceAnswer[];
+    id: string;
+    title: string;
+    type = QuestionEnum.MultipleChoice;
+    question: string;
+    answers: MultipleChoiceAnswer[];
+    textAnswer: string;
+    savedAnswers: number[] = [];
+  
+    constructor(id: string, title: string, question: string, answers: MultipleChoiceAnswer[], textAnswer: string, savedAnswers?:number[]) {
+      this.id = id;
+      this.title = title;
+      this.question = question;
+      this.answers = answers;
+      this.textAnswer = textAnswer;
+      this.savedAnswers = savedAnswers || [];
+    };
 
-  constructor(id: string, title: string, question: string, answers: MultipleChoiceAnswer[]) {
-    this.id = id;
-    this.title = title;
-    this.question = question;
-    this.answers = answers;
-  };
+    static fromJSON(jsonData: any): MultipleChoice {
+      const { id, title, question, answers, textAnswer, savedAnswers } = jsonData;
+      return new MultipleChoice(id, title, question, answers, textAnswer, savedAnswers);
+    }
 
-  static fromJSON(jsonData: any): MultipleChoice {
-    const { id, title, type, question, answers } = jsonData;
-    return new MultipleChoice(id, title, question, answers);
-  }
+    saveAnswer(answers: number[]): void {
+      this.savedAnswers = answers; 
+    }
+  
 }
 export interface MultipleChoiceAnswer {
   id: number;

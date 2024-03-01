@@ -31,6 +31,9 @@ const store = useAlertsStore();
 const nLevel = ref(1);
 const modal = ref<any>(null);
 
+
+
+
 function movePlayer(castleName: string, castleNumber: number) {
     if(castleNumber > 1 && store.scoreWorld1[castleNumber-2]<4) {
         return;

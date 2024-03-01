@@ -26,7 +26,7 @@
         <div class='btn_submit_modal'>
             <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
             <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-            <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+            <button class="btn_return" @click="back" v-show="answerPage">Retour</button>
         </div>
     </div>
 </template>
@@ -43,17 +43,22 @@ const props = defineProps({
     next: { type: Function, required: true },
     previous: { type: Function, required: true },
     addPoint: { type: Function, required: true },
+    isReadOnly: Boolean
 });
 const selectedAnswer = ref(props.form.minNumber);
 const data = ref({ questionId: null as String | null, selectedAnswer: Number });
-const answerPage = false;
+const answerPage = ref<Boolean>(false);
 const sliderPosition = ref(0);
 
-watch(() => props.form, (newValue) => {
-    sliderPosition.value = 0;
-    setTimeout(() => { selectedAnswer.value = newValue.minNumber; }, 50)
+watch([() => props.form, () => props.isReadOnly], ([form, isReadOnly]) => {
+    answerPage.value=isReadOnly;
+    if(answerPage.value){
+        selectedAnswer.value = form.savedAnswer
+    }else {
+        sliderPosition.value = 0;
+        setTimeout(() => { selectedAnswer.value = form.minNumber; }, 50)
+    }
 });
-
 
 const updateSliderPosition = (event: any) => {
     selectedAnswer.value = event.target.value;
@@ -81,7 +86,15 @@ const checkAnswer = () => {
     }
     else
         point = 0
-    props.addPoint(new Point(point, "type", answer.toString()));
+
+    let form : Estimation = { ...props.form, saveAnswer: props.form.saveAnswer };
+    form.saveAnswer(selectedAnswer.value);
+    props.addPoint(new Point(point, form, answer.toString()));
+}
+
+const back = () =>{
+    store.toggleEstimationModal();
+    store.toggleResultModalVisible();
 }
 
 </script>

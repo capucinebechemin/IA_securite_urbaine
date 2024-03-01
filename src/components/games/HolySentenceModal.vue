@@ -20,7 +20,7 @@
     <div class='btn_submit_modal'>
       <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
       <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-      <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+      <button class="btn_return" @click="back" v-show="answerPage">Retour</button>
     </div>
   </div>
 </template>
@@ -39,14 +39,25 @@ const props = defineProps({
   next: { type: Function, required: true },
   previous: { type: Function, required: true },
   addPoint: { type: Function, required: true },
+  isReadOnly: Boolean
 });
 
 const data = ref({ questionId: null as String | null, selectedAnswer: [] as number[] });
 const selectedAnswer = ref<string>("");
-const answerPage = false;
+const answerPage = ref<Boolean>(false);
 
-watch(() => props.form, (form) => {
-  selectedAnswer.value = '';
+watch([() => props.form, () => props.isReadOnly], ([form, isReadOnly]) => {
+  answerPage.value = isReadOnly;
+  if(answerPage.value){
+    selectedAnswer.value = form.savedAnswer;
+  }else{
+    selectedAnswer.value = '';
+  }
+
+});
+
+watch(() => props.isReadOnly, (isReadOnly) => {
+    answerPage.value=isReadOnly;
 });
 
 const previous = () => {
@@ -62,15 +73,21 @@ const submit = () => {
 
 const checkAnswer = () => {
   let point = 0;
-  //Clean the word to remoe space, accents, majuscule...
+  //Clean the word to remove space, accents, upper cases...
   let answer = diacritics.remove(selectedAnswer.value.toLowerCase().replace(/[\u0300-\u036f]/g, "").replace(/[\s-]/g, "")).replace(/[\s-]/g, '');
   let holy_word = diacritics.remove(props.form.holy_word?.toLowerCase()).replace(/[\s-]/g, '') || "";
   if (answer === holy_word)
     point = 1;
   else point = 0;
+  let form : HolySentence = { ...props.form, saveAnswer: props.form.saveAnswer };
+  form.saveAnswer(selectedAnswer.value);
+  props.addPoint(new Point(point, form, selectedAnswer.value));
 
-  props.addPoint(new Point(point, "type", selectedAnswer.value));
+}
 
+const back = () =>{
+    store.toggleHolySentenceModal();
+    store.toggleResultModalVisible();
 }
 
 </script>

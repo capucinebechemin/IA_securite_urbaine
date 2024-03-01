@@ -1,79 +1,86 @@
 <!-- Modal des phrases à trou -->
 <template>
-  <Transition name="modal">
-    <div class="card_modal">
-      <div class="head_modal">
-        <div class="title_modal">
-          <h2> Résultats </h2>
-        </div>
-        <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleResultModalVisible" />
-      </div>
-      <div class="score">
-        <div class="questionsReponses">
-          <div v-for="(text, index) in messages" :style="getBackgroundColor(index)" :key="index" class="question">
-            {{ text }}
+    <Transition name="modal">
+      <div class="card_modal">
+        <div class="head_modal">
+          <div class="title_modal">
+              <h2>Résultats</h2>
+            </div>
+            <img alt="Fermer" class="close_modal" src='/buttons/close.png' @click="store.toggleResultModalVisible" />
           </div>
-        </div>
-        <div class="scoreRound">
-          <div :style="getScoreRoundColor(displayScore)">
-            <p>{{ displayScore }}/5</p>
+          <div class="score">
+            <div class="questionsReponses">
+              <div @click="goTo(point.form)" v-for="(point, index) in $props.points" :style="getBackgroundColor(index)" :key="index" class="question">
+              {{ point.displayAnswer.split('\n').join('').substring(0, 160) }}
+              </div>
+            </div>
+            <div class="scoreRound" >
+              <div :style="getScoreRoundColor(displayScore)"><p>{{ displayScore }}/5</p></div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="btn_submit_modal">
-        <button class="btn_close" @click="submit">Fermer</button>
-      </div>
+          <div class="btn_submit_modal">
+            <button class="btn_close" @click="submit">Fermer</button>
+          </div>
     </div>
   </Transition>
 </template>
     
 <script setup lang="ts">
 
-import { Point } from '@/class/Point';
-import { useAlertsStore } from '@/store';
-import { ref, watch } from 'vue';
-
-const displayScore = ref(0);
-const props = defineProps({
-  title: String,
-  points: { type: Array<Point>, required: true },
-  nLevel: Number,
-  nWorld: Number
-});
+  import { Point } from '@/class/Point';
+  import { useAlertsStore } from '@/store';
+  import { ref, watch } from 'vue';
+  
+  const displayScore = ref(0);
+  const props = defineProps({
+    title: String,
+    points: { type: Array<Point>, required: true },
+    nLevel: Number,
+    nWorld: Number,
+    openReadOnly: { type: Function, required: true }
+  });
 
 const store = useAlertsStore();
 
 let score = 0;
 let pointsOnly = props.points!.map((p) => p.point);
-let messages = props.points!.map((m) => m.displayAnswer);
 
 
 watch(() => props.points, (points) => {
-  if (points.length == 5) {
-    pointsOnly = points.map((p) => p.point);
-    messages = points.map((m) => m.displayAnswer?.split('\n').join('').substring(0, 160));
+  if(points.length==5){
+    pointsOnly = points.map((p)=> p.point);
     displayScore.value = pointsOnly.reduce((acc, cur) => acc + cur, 0);
   }
 });
+
 
 const updatePoints = () => {
   score = 0;
   props.points?.forEach((p) => {
     score += p.point;
   })
-
+  let pointsToScore : number[]
   switch (props.nWorld) {
     case 1:
-      store.scoreWorld1[props.nLevel! - 1] = score;
+      pointsToScore = Array.from(store.scoreWorld1);
+      pointsToScore[props.nLevel! - 1] = score;
+      store.setScoreWorld1(pointsToScore);
       break;
     case 2:
-      store.scoreWorld2[props.nLevel! - 1] = score;
+      pointsToScore = Array.from(store.scoreWorld2);
+      pointsToScore[props.nLevel! - 1] = score;
+      store.setScoreWorld2(pointsToScore);
       break;
     case 3:
-      store.scoreWorld3[props.nLevel! - 1] = score;
+      pointsToScore = Array.from(store.scoreWorld3);
+      pointsToScore[props.nLevel! - 1] = score;
+      store.setScoreWorld3(pointsToScore);
       break;
     case 4:
       store.scoreWorld4[props.nLevel! - 1] = score;
+      pointsToScore = Array.from(store.scoreWorld4);
+      pointsToScore[props.nLevel! - 1] = score;
+      store.setScoreWorld4(pointsToScore);
       break;
 
   }
@@ -84,6 +91,10 @@ defineExpose({
   updatePoints
 });
 
+  const goTo = (form:any) => {
+    props.openReadOnly(form);
+    store.toggleResultModalVisible();
+  }
 
 
 const getBackgroundColor = (index: number) => {
@@ -105,6 +116,7 @@ const submit = () => {
 }
 
 </script>
+
   
 <style scoped>
 .score {

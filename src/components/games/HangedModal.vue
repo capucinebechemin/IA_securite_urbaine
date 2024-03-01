@@ -33,7 +33,7 @@
         <div class='btn_submit_modal'>
             <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
             <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-            <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+            <button class="btn_return" @click="back" v-show="answerPage">Retour</button>
         </div>
     </div>
 </template>
@@ -51,7 +51,7 @@ const props = defineProps({
     next: { type: Function, required: true },
     previous: { type: Function, required: true },
     addPoint: { type: Function, required: true },
-
+    isReadOnly: Boolean
 });
 
 const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => ({ letter, clickable: true })));
@@ -59,11 +59,31 @@ const alphabet = ref("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => ({ let
 let emptyWord = ref(props.form.word.split('').map(char => char === ' ' ? '&' : ' '));
 
 let selectedAnswer = ref<string>("");
-const answerPage = false;
+const answerPage = ref<Boolean>(false);
 const nbBadAnswer = ref(0);
 const maxAnswer = ref(10);
-let canvas = ref<HTMLCanvasElement | null>(null);
-let context = ref<CanvasRenderingContext2D | null>(null);
+const canvas = ref<HTMLCanvasElement | null>(null);
+const context = ref<CanvasRenderingContext2D | null>(null);
+
+watch([() => props.form, () => props.isReadOnly], ([form, isReadOnly]) => {
+    answerPage.value=isReadOnly;
+    if(answerPage.value){
+        selectedAnswer.value =form.selectedAnswer;
+        alphabet.value = form.alphabet;
+        emptyWord.value = form.emptyWord;
+        let canvas = form.canvas;
+    }else{
+        selectedAnswer.value ="";
+        nbBadAnswer.value = 0;
+        alphabet.value = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(letter => ({ letter, clickable: true }));
+        emptyWord.value = form.word.split('').map(char => char === ' ' ? '&' : ' ');
+        let canvas = document.getElementById('canvas') as HTMLCanvasElement;
+        const context = canvas.getContext('2d');
+        if (context) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+});
 
 watch(() => props.form.word, (newVal) => {
     emptyWord.value = newVal.split('').map(char => char === ' ' ? '&' : ' ');
@@ -197,7 +217,21 @@ const checkAnswer = () => {
         display = 'Mot non trouvé'
     }
 
-    props.addPoint(new Point(point, "", display));
+    let form : Hanged = { ...props.form, saveAnswer: props.form.saveAnswer };
+    console.log(alphabet.value)
+    console.log(emptyWord.value)
+    form.saveAnswer(
+        selectedAnswer.value,
+        Array.from(alphabet.value),
+        Array.from(emptyWord.value),
+        document.getElementById('canvas') as HTMLCanvasElement
+    );
+    props.addPoint(new Point(point, form, display));
+}
+
+const back = () =>{
+    store.toggleHangedModal();
+    store.toggleResultModalVisible();
 }
 
 </script>
