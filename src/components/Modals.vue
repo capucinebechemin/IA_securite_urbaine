@@ -23,7 +23,7 @@
 </template>
   
 <script setup lang="ts">
-import { ref, Ref, onBeforeMount } from 'vue';
+import { ref, Ref, onBeforeMount , watch } from 'vue';
 import { useAlertsStore } from '@/store';
 
 // Import your data files for each world
@@ -84,6 +84,7 @@ let formHeightQuestion: Ref<HeightQuestion> = ref(HeightQuestion.fromJSON(dataW1
 let formDaD: Ref<DragAndDrop> = ref(DragAndDrop.fromJSON(dataW2.questions[5]));
 let formFlashcard: Ref<Flashcard> = ref(Flashcard.fromJSON(dataW2.questions[7]));
 
+
 onBeforeMount(() => {
     launchLevel
 });
@@ -106,6 +107,10 @@ const initWorld = () => {
             console.error("Unknown world: ", props.world);
     }
 }
+
+watch(() => props.world, initWorld, { immediate: true });
+window.addEventListener('beforeunload', () => { store.closeAllModals();});
+
 
 const initQuestionsForWorld = () => {
     for (let i = 1; i <= 15; i++) {
