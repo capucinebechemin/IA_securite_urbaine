@@ -20,7 +20,7 @@
     <div class='btn_submit_modal'>
       <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
       <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-      <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+      <button class="btn_return" @click="back" v-show="answerPage">Retour</button>
     </div>
   </div>
 </template>
@@ -83,6 +83,11 @@ const checkAnswer = () => {
   form.saveAnswer(selectedAnswer.value);
   props.addPoint(new Point(point, form, selectedAnswer.value));
 
+}
+
+const back = () =>{
+    store.toggleHolySentenceModal();
+    store.toggleResultModalVisible();
 }
 
 </script>

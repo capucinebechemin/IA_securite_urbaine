@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="btn_submit_modal">
-            <button class="btn_close" @click="close">Fermer</button>
+            <button class="btn_close" @click="submit">Fermer</button>
           </div>
     </div>
   </Transition>
@@ -46,12 +46,12 @@ let score = 0;
 let pointsOnly = props.points!.map((p) => p.point);
 
 
-  watch(() => props.points, (points) => {
-    if(points.length==5){
-      pointsOnly = points.map((p)=> p.point);
-      displayScore.value = pointsOnly.reduce((acc, cur) => acc + cur, 0);
-    }
-  });
+watch(() => props.points, (points) => {
+  if(points.length==5){
+    pointsOnly = points.map((p)=> p.point);
+    displayScore.value = pointsOnly.reduce((acc, cur) => acc + cur, 0);
+  }
+});
 
 
 const updatePoints = () => {
@@ -107,9 +107,7 @@ const submit = () => {
 }
 
 </script>
-  const close = () => {
-    store.toggleResultModalVisible();
-  }
+
   
 <style scoped>
 .score {

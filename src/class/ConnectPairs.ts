@@ -3,19 +3,17 @@ import { QuestionEnum } from "./QuestionEnum";
 export class ConnectPairs {
   id: string;
   title: string;
-  question: string;
   type = QuestionEnum.ConnectPairs;
   pairs: PairItem[];
   savedAnswersConnections: number[] = [];
   savedAnswersLines: number[] = [];
 
-  constructor(id: string, title: string, pairs: PairItem[], c?: any[], l?:any[]) {
+  constructor(id: string, title: string, pairs: PairItem[], savedAnswersConnections?: any[], savedAnswersLines?:any[]) {
     this.id = id;
     this.title = title;
-    this.question = question;
     this.pairs = pairs;
-    this.savedAnswersConnections = c || [];
-    this.savedAnswersLines = l || [];
+    this.savedAnswersConnections = savedAnswersConnections || [];
+    this.savedAnswersLines = savedAnswersLines || [];
   }
 
   static fromJSON(jsonData: any): ConnectPairs {

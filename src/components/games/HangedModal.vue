@@ -33,7 +33,7 @@
         <div class='btn_submit_modal'>
             <button class="btn_previous" @click="previous" v-show="!answerPage">Précédent</button>
             <button class="btn_next" @click="submit" v-show="!answerPage">Suivant</button>
-            <button class="btn_return" @click="submit" v-show="answerPage">Retour</button>
+            <button class="btn_return" @click="back" v-show="answerPage">Retour</button>
         </div>
     </div>
 </template>
@@ -218,13 +218,20 @@ const checkAnswer = () => {
     }
 
     let form : Hanged = { ...props.form, saveAnswer: props.form.saveAnswer };
+    console.log(alphabet.value)
+    console.log(emptyWord.value)
     form.saveAnswer(
         selectedAnswer.value,
-        alphabet.value,
-        emptyWord.value,
+        Array.from(alphabet.value),
+        Array.from(emptyWord.value),
         document.getElementById('canvas') as HTMLCanvasElement
     );
     props.addPoint(new Point(point, form, display));
+}
+
+const back = () =>{
+    store.toggleHangedModal();
+    store.toggleResultModalVisible();
 }
 
 </script>

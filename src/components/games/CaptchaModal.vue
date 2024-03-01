@@ -48,16 +48,16 @@ const answerPage = ref<Boolean>(false);
 
 watch([() => props.form, () => props.isReadOnly], ([form, isReadOnly]) => {
     answerPage.value = isReadOnly;
-
-    setTimeout(() => { form.savedAnswers.forEach((e)=>{
-            if(answerPage.value){
-                setTimeout(() => { form.savedAnswers.forEach((e)=>{
-                    clickAnswer(e);
-                }) }, 50);
-            }else{
-                setTimeout(() => { selectedAnswer.value = []; }, 50);
-            }
-        }) }, 50);
+    setTimeout(() => {
+        if(answerPage.value){
+            let valueInArray : number[] = Array.from(form.savedAnswers);
+            valueInArray.forEach((e)=>{
+                clickAnswer(e);
+            }) 
+        } else {
+            setTimeout(() => { selectedAnswer.value = []; }, 50);
+        }
+    }, 50);
 
     
 });
@@ -104,7 +104,7 @@ const checkAnswer = () => {
         point = 0;
     else
         point = 0.5
-        
+    
     let form : Captcha = { ...props.form, saveAnswer: props.form.saveAnswer };
     form.saveAnswer(Array.from(selectedAnswer.value));
     props.addPoint(new Point(point, form, display.slice(0, -1)));
