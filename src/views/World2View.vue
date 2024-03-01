@@ -3,11 +3,11 @@
         <HomeBanner title="Prédiction du crime" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w2-start" @click="movePlayer('w2-start')" class="start"></span>
+            <span id="w2-start" @click="movePlayer('w2-start', 0)" class="start"></span>
             <div v-for="i in 3" class="castles" :id="'w2-castle' + i + '-div'">
                 <img :src="'/world2/castle' + i + '.png'" :alt="'world 2 castle ' + i" :id="'w2-castle' + i"
-                    @click="movePlayer('w2-castle' + i + '-div')">
-                <img v-if="store.scoreWorld2[i - 1] > 3" src="/stars/star2.png" class="star-castle" />
+                @click="movePlayer('w2-castle' + i + '-div', i)">
+                <img v-if="store.scoreWorld2[i - 1]>3" src="/stars/star2.png" class="star-castle" />
             </div>
             <img :src="`/players/player${store.avatarId}.png`" alt="w2-player" id="w2-player" class="player">
         </div>
@@ -31,8 +31,8 @@ const store = useAlertsStore();
 const nLevel = ref(1);
 const modal = ref<any>(null);
 
-function movePlayer(castleName: string) {
-    if (castleName != "w2-castle" + nLevel.value + "-div") {
+function movePlayer(castleName: string, castleNumber: number) {
+    if(castleNumber > 1 && store.scoreWorld2[castleNumber-2]<4) {
         return;
     }
     var castle = document.getElementById(castleName);

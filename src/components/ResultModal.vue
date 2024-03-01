@@ -92,11 +92,11 @@ const getBackgroundColor = (index: number) => {
   else return { backgroundColor: 'rgba(200, 0, 0,0.1)' }
 }
 
-const getScoreRoundColor = (n: number) => {
-  if (n >= 3)
-    return { backgroundColor: 'rgba(0, 200, 0,0.1)' }
-  else return { backgroundColor: 'rgba(200, 0, 0,0.1)' }
-}
+  const getScoreRoundColor = (n:number) =>{
+    if(n > 3)
+      return { backgroundColor: 'rgba(0, 200, 0,0.1)' }
+    else return { backgroundColor: 'rgba(200, 0, 0,0.1)' }
+  }
 
 
 const submit = () => {
