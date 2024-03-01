@@ -59,19 +59,28 @@ const updatePoints = () => {
   props.points?.forEach((p) => {
     score += p.point;
   })
-
+  let pointsToScore : number[]
   switch (props.nWorld) {
     case 1:
-      store.scoreWorld1[props.nLevel! - 1] = score;
+      pointsToScore = Array.from(store.scoreWorld1);
+      pointsToScore[props.nLevel! - 1] = score;
+      store.setScoreWorld1(pointsToScore);
       break;
     case 2:
-      store.scoreWorld2[props.nLevel! - 1] = score;
+      pointsToScore = Array.from(store.scoreWorld2);
+      pointsToScore[props.nLevel! - 1] = score;
+      store.setScoreWorld2(pointsToScore);
       break;
     case 3:
-      store.scoreWorld3[props.nLevel! - 1] = score;
+      pointsToScore = Array.from(store.scoreWorld3);
+      pointsToScore[props.nLevel! - 1] = score;
+      store.setScoreWorld3(pointsToScore);
       break;
     case 4:
       store.scoreWorld4[props.nLevel! - 1] = score;
+      pointsToScore = Array.from(store.scoreWorld4);
+      pointsToScore[props.nLevel! - 1] = score;
+      store.setScoreWorld4(pointsToScore);
       break;
 
   }

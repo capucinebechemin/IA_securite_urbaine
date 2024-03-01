@@ -239,6 +239,7 @@ const openGame = () => {
             formHanged.value = currentQuestions[nextQuestion.value - 1] as Hanged;
             store.toggleHangedModal();
     }
+       
 
 }
 

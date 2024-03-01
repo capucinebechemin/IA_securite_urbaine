@@ -21,7 +21,8 @@ export const useAlertsStore = defineStore('alerts', {
       isFlashCardModalVisible: sessionStorage.getItem('isFlashCardModalVisible') === 'true',
       isLevelEntranceModalVisible: sessionStorage.getItem('isLevelEntranceModalVisible') === 'true',
       isResultModalVisible: sessionStorage.getItem('isResultModalVisible') === 'true',
-      scoreWorld1: JSON.parse(sessionStorage.getItem('scoreWorld1') || "[0,0,0]"),
+      scoreWorld1: JSON.parse(sessionStorage.getItem('scoreWorld1') ?? 'null') || [0, 0, 0],
+
       scoreWorld2: JSON.parse(sessionStorage.getItem('scoreWorld2') || "[0,0,0]"),
       scoreWorld3: JSON.parse(sessionStorage.getItem('scoreWorld3') || "[0,0,0]"),
       scoreWorld4: JSON.parse(sessionStorage.getItem('scoreWorld4') || "[0,0,0]"),
@@ -106,6 +107,10 @@ export const useAlertsStore = defineStore('alerts', {
     setScoreWorld3(newScore: number[]) {
       this.scoreWorld3 = newScore;
       sessionStorage.setItem('scoreWorld3', JSON.stringify(this.scoreWorld3));
+    },
+    setScoreWorld4(newScore: number[]) {
+      this.scoreWorld4 = newScore;
+      sessionStorage.setItem('scoreWorld3', JSON.stringify(this.scoreWorld4));
     },
     shuffleItems(values: any[]) {
       if (values) {
