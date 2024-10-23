@@ -3,7 +3,6 @@
         <HomeBanner title="Prédiction du crime" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w2-start" @click="movePlayer('w2-start', 0)" class="start"></span>
             <div v-for="i in 3" class="castles" :id="'w2-castle' + i + '-div'">
                 <img :src="'/world2/castle' + i + '.png'" :alt="'world 2 castle ' + i" :id="'w2-castle' + i"
                 @click="movePlayer('w2-castle' + i + '-div', i)">
@@ -82,72 +81,3 @@ function movePlayer(castleName: string, castleNumber: number) {
 
 }
 </script>
-
-<style>
-#w2-start {
-    top: 97%;
-    left: 60%;
-}
-
-#w2-player {
-    height: 10rem;
-    top: 82%;
-    left: 60%;
-}
-
-#w2-castle1-div {
-    top: 65%;
-    left: 72%;
-
-    #w2-castle1 {
-        height: 8rem;
-    }
-}
-
-#w2-castle2-div {
-    top: 40%;
-    left: 82%;
-
-    #w2-castle2 {
-        height: 5rem;
-    }
-}
-
-#w2-castle3-div {
-    top: 20%;
-    left: 85%;
-
-    #w2-castle3 {
-        height: 3rem;
-    }
-}
-
-@media screen and (max-width: 900px) {
-
-    #w2-start {
-        top: 95%;
-        left: 0;
-    }
-
-    #w2-player {
-        top: 77%;
-        left: 0;
-    }
-
-    #w2-castle1-div {
-        height: 6rem;
-        top: 65%;
-        left: 50%;
-    }
-
-    #w2-castle2-div {
-        top: 35%;
-        left: 75%;
-    }
-
-    #w2-castle3-div {
-        top: 25%;
-        left: 90%;
-    }
-}
-</style>

@@ -1,0 +1,92 @@
+@import url('https://fonts.cdnfonts.com/css/game');
+
+html {
+  right: 0;
+  --main-bg-color: #000000;
+  --main-transparent: rgba(255, 255, 255, 0.5);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1rem;
+  background: rgb(217,217,217);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+
+.world_page {
+  position: relative;
+  height: 90vh;
+}
+
+.start {
+  position: absolute;
+  width: 5rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1rem 0;
+  color: rgba(255, 255, 255, 0.3);
+  filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.5));
+}
+
+.player {
+  position: absolute;
+  height: 10rem;
+  filter: drop-shadow(0 0 0.75rem white);
+  transition: all 1s ease-in-out;
+}
+
+.castles {
+  animation: floating 2s ease-in-out 0s infinite;
+  filter: drop-shadow(0 0 0.5rem #ffffff);
+  width: 10rem;
+}
+
+.castles img {
+  width: 10rem;
+}
+
+.game_zone{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100%;
+  align-items: flex-end;
+}
+
+.star-castle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+  z-index: -1;
+  filter: drop-shadow(0 0 1rem white);
+}
+
+.start,
+.castles,
+.player {
+  cursor: pointer;
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+
+  50% {
+    transform: translate(0, -10px);
+  }
+
+  100% {
+    transform: translate(0, 0px);
+  }
+}

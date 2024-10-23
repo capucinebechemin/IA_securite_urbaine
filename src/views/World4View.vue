@@ -1,9 +1,8 @@
 <template>
-    <div class="world4_page">
+    <div class="world_page">
         <HomeBanner title="Protection de la vie privée et contre-surveillance" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w4-start" @click="movePlayer('w4-start', 0)" class="start"></span>
             <div v-for="i in 3" class="castles" :id="'w4-castle' + i + '-div'">
                 <img :src="'/world4/castle' + i + '.png'" :alt="'world 4 castle ' + i" :id="'w4-castle' + i"
                     @click="movePlayer('w4-castle' + i + '-div', i)">
@@ -71,77 +70,3 @@ function movePlayer(castleName: string, castleNumber: number) {
 
 }
 </script>
-
-<style>
-#w4-start {
-    top: 90%;
-    left: 10%;
-}
-
-#w4-player {
-    height: 10rem;
-    top: 75%;
-    left: 10%;
-}
-
-#w4-castle1-div {
-    top: 50%;
-    left: 25%;
-
-    #w4-castle1 {
-        height: 8rem;
-    }
-}
-
-#w4-castle2-div {
-    top: 52%;
-    left: 70%;
-
-    #w4-castle2 {
-        height: 7rem;
-    }
-}
-
-#w4-castle3-div {
-    top: 45%;
-    left: 60%;
-
-    #w4-castle3 {
-        height: 5rem;
-    }
-}
-
-@media screen and (max-width: 900px) {
-
-    h1 {
-        font-size: 1rem;
-    }
-
-    #w4-start {
-        top: 95%;
-        left: 0;
-    }
-
-    #w4-player {
-        top: 77%;
-        left: 0;
-    }
-
-    #w4-castle1-div {
-        height: 7rem;
-        top: 70%;
-        left: 15%;
-    }
-
-    #w4-castle2-div {
-        height: 6rem;
-        top: 60%;
-        left: 35%;
-    }
-
-    #w4-castle3-div {
-        top: 50%;
-        left: 55%;
-    }
-}
-</style>

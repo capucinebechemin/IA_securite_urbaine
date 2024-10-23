@@ -3,7 +3,6 @@
         <HomeBanner title="Analyse statistique et criminalité" />
         <BannerMenu v-show="store.isMenuVisible" />
         <div class="game_zone">
-            <span id="w3-start" @click="movePlayer('w3-start', 0)" class="start"></span>
             <div v-for="i in 3" class="castles" :id="'w3-castle' + i + '-div'">
                 <img :src="'/world3/castle' + i + '.png'" :alt="'world 3 castle ' + i" :id="'w3-castle' + i"
                     @click="movePlayer('w3-castle' + i + '-div', i)">
@@ -71,71 +70,3 @@ function movePlayer(castleName: string, castleNumber: number) {
 
 }
 </script>
-
-<style>
-#w3-start {
-    top: 100%;
-    left: 57%;
-}
-
-#w3-player {
-    height: 10rem;
-    top: 85%;
-    left: 57%;
-}
-
-#w3-castle1-div {
-    top: 65%;
-    left: 55%;
-
-    #w3-castle1 {
-        height: 7rem;
-    }
-}
-
-#w3-castle2-div {
-    top: 50%;
-    left: 60%;
-
-    #w3-castle2 {
-        height: 5rem;
-    }
-}
-
-#w3-castle3-div {
-    top: 35%;
-    left: 65%;
-
-    #w3-castle3 {
-        height: 3rem;
-    }
-}
-
-@media screen and (max-width: 900px) {
-
-    #w3-start {
-        top: 95%;
-        left: 20%;
-    }
-
-    #w3-player {
-        top: 75%;
-        left: 20%;
-    }
-
-    #w3-castle1-div {
-        top: 60%;
-        left: 25%;
-    }
-
-    #w3-castle2-div {
-        top: 43%;
-        left: 35%;
-    }
-
-    #w3-castle3-div {
-        top: 30%;
-        left: 45%;
-    }
-}
-</style>
